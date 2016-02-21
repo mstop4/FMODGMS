@@ -1,10 +1,10 @@
 /*-------------------------------------------------
-//  
-//  FMODGMS v0.3.1
-//  By: M.S.T.O.P.
 //
-//  C++ wrapper that allows communication between 
-//  the FMOD low level API and GmaeMaker: Studio.
+//  FMODGMS v0.3.2
+// By: M.S.T.O.P.
+//
+//  Wrapper library that allows communication between
+//  the FMOD low level API and GameMaker: Studio.
 //
 --------------------------------------------------*/
 
@@ -107,7 +107,7 @@ GMexport double FMODGMS_Sys_Close()
 // Loads a sound and indexes it in soundList
 GMexport double FMODGMS_Snd_LoadSound(char* filename)
 {
-	FMOD::Sound *sound;
+	FMOD::Sound *sound = NULL;
 	result = sys->createSound(filename, FMOD_DEFAULT, 0, &sound);
 
 	// we cool?
@@ -180,7 +180,7 @@ GMexport double FMODGMS_Snd_PlaySound(double index, double channel)
 		/*channelList[c]->isPlaying(n);
 
 		if (&n)
-			channelList[c]->stop;*/
+		channelList[c]->stop;*/
 	}
 
 	// index out of bounds
@@ -206,22 +206,22 @@ GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times
 	switch (m)
 	{
 		// loop off
-		case 0:
-			result = soundList[i]->setMode(FMOD_LOOP_OFF);
-			break;
+	case 0:
+		result = soundList[i]->setMode(FMOD_LOOP_OFF);
+		break;
 
 		// loop on
-		case 1:
-			result = soundList[i]->setMode(FMOD_LOOP_NORMAL);
-			break;
+	case 1:
+		result = soundList[i]->setMode(FMOD_LOOP_NORMAL);
+		break;
 
 		// loop bidi
-		case 2:
-			result = soundList[i]->setMode(FMOD_LOOP_BIDI);
-			break;
+	case 2:
+		result = soundList[i]->setMode(FMOD_LOOP_BIDI);
+		break;
 
-		default:
-			errorMessage = "Unknown loop mode";
+	default:
+		errorMessage = "Unknown loop mode";
 	}
 
 	result = soundList[i]->setLoopCount(t);
@@ -267,7 +267,7 @@ GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double which)
 // Creates a new channel
 GMexport double FMODGMS_Chan_CreateChannel()
 {
-	FMOD::Channel *chan;
+	FMOD::Channel *chan = NULL;
 	channelList.push_back(chan);
 
 	errorMessage = "No errors.";
@@ -275,17 +275,86 @@ GMexport double FMODGMS_Chan_CreateChannel()
 }
 
 //Deletes a channel
-GMexport double FMODGMS_Chan_RemoveChannel(double index)
+GMexport double FMODGMS_Chan_RemoveChannel(double channel)
 {
-	int i = (int)index;
+	int c = (int)channel;
 	int chanListSize = channelList.size();
 
-	if (chanListSize > i)
+	if (chanListSize > c)
 	{
-		channelList[i]->stop();
-		channelList.erase(channelList.begin());
-		errorMessage = "No errors.";
-		return GMS_true;
+		if (channelList[c] != NULL)
+		{
+			channelList[c]->stop();
+			channelList.erase(channelList.begin());
+			errorMessage = "No errors.";
+			return GMS_true;
+		}
+
+		else
+		{
+			errorMessage = "Channel is null.";
+			return GMS_error;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Pauses a channel
+GMexport double FMODGMS_Chan_PauseChannel(double channel)
+{
+	int c = (int)channel;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		if (channelList[c] != NULL)
+		{
+			channelList[c]->setPaused(true);
+			errorMessage = "No errors.";
+			return GMS_true;
+		}
+
+		else
+		{
+			errorMessage = "Channel is null.";
+			return GMS_error;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+//Resumes a puased channel
+GMexport double FMODGMS_Chan_ResumeChannel(double channel)
+{
+	int c = (int)channel;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		if (channelList[c] != NULL)
+		{
+			channelList[c]->setPaused(false);
+			errorMessage = "No errors.";
+			return GMS_true;
+		}
+
+		else
+		{
+			errorMessage = "Channel is null.";
+			return GMS_error;
+		}
 	}
 
 	// index out of bounds
@@ -297,16 +366,25 @@ GMexport double FMODGMS_Chan_RemoveChannel(double index)
 }
 
 // Stops a channel
-GMexport double FMODGMS_Chan_StopChannel(double index)
+GMexport double FMODGMS_Chan_StopChannel(double channel)
 {
-	int i = (int)index;
+	int c = (int)channel;
 	int chanListSize = channelList.size();
 
-	if (chanListSize > i)
+	if (chanListSize > c)
 	{
-		channelList[i]->stop();
-		errorMessage = "No errors.";
-		return GMS_true;
+		if (channelList[c] != NULL)
+		{
+			channelList[c]->stop();
+			errorMessage = "No errors.";
+			return GMS_true;
+		}
+
+		else
+		{
+			errorMessage = "Channel is null.";
+			return GMS_error;
+		}
 	}
 
 	// index out of bounds
@@ -476,7 +554,7 @@ GMexport double FMODGMS_Chan_Get_ModRow(double channel)
 GMexport double FMODGMS_Snd_Get_NumTags(double index)
 {
 	int i = (int)index;
-	int sndListSize = soundList.size(); 	
+	int sndListSize = soundList.size();
 
 	if (sndListSize > i)
 	{
@@ -499,7 +577,7 @@ GMexport double FMODGMS_Snd_Get_NumTags(double index)
 GMexport const char* FMODGMS_Snd_Get_TagName(double soundIndex, double tagIndex)
 {
 	int si = (int)soundIndex;
-	int sndListSize = soundList.size(); 	
+	int sndListSize = soundList.size();
 
 	if (sndListSize > si)
 	{
@@ -565,7 +643,7 @@ GMexport const char* FMODGMS_Snd_Get_Type(double index)
 	*/
 
 	int i = (int)index;
-	int sndListSize = soundList.size(); 	
+	int sndListSize = soundList.size();
 
 	if (sndListSize > i)
 	{
@@ -574,104 +652,104 @@ GMexport const char* FMODGMS_Snd_Get_Type(double index)
 
 		switch ((int)type)
 		{
-			case 0:
-				return "Unknown";
-				break;
+		case 0:
+			return "Unknown";
+			break;
 
-			case 1:
-				return "AIFF";
-				break;
+		case 1:
+			return "AIFF";
+			break;
 
-			case 2:
-				return "ASF - Microsoft Advanced Systems Format";
-				break;
+		case 2:
+			return "ASF - Microsoft Advanced Systems Format";
+			break;
 
-			case 3:
-				return "DLS - SoundFont / Dowloadable Sound Bank";
-				break;
+		case 3:
+			return "DLS - SoundFont / Dowloadable Sound Bank";
+			break;
 
-			case 4:
-				return "FLAC lossless codec";
-				break;
+		case 4:
+			return "FLAC lossless codec";
+			break;
 
-			case 5:
-				return "FMOD Sample Bank";
-				break;
+		case 5:
+			return "FMOD Sample Bank";
+			break;
 
-			case 6:
-				return "IT - Impluse Tracker module";
-				break;
+		case 6:
+			return "IT - Impluse Tracker module";
+			break;
 
-			case 7:
-				return "MIDI Sequence";
-				break;
+		case 7:
+			return "MIDI Sequence";
+			break;
 
-			case 8:
-				return "MOD - Protracker / Fasttracker module";
-				break;
+		case 8:
+			return "MOD - Protracker / Fasttracker module";
+			break;
 
-			case 9:
-				return "MP2/MP3 MPEG";
-				break;
+		case 9:
+			return "MP2/MP3 MPEG";
+			break;
 
-			case 10:
-				return "OGG - Ogg Vorbis";
-				break;
+		case 10:
+			return "OGG - Ogg Vorbis";
+			break;
 
-			case 11:
-				return "Playlist - ASX/PLS/M3U/WAX";
-				break;
+		case 11:
+			return "Playlist - ASX/PLS/M3U/WAX";
+			break;
 
-			case 12:
-				return "RAW - Raw PCM data";
-				break;
+		case 12:
+			return "RAW - Raw PCM data";
+			break;
 
-			case 13:
-				return "S3M - ScreamTracker 3 module";
-				break;
+		case 13:
+			return "S3M - ScreamTracker 3 module";
+			break;
 
-			case 14:
-				return "User-created";
-				break;
+		case 14:
+			return "User-created";
+			break;
 
-			case 15:
-				return "WAV - Microsoft Wave";
-				break;
+		case 15:
+			return "WAV - Microsoft Wave";
+			break;
 
-			case 16:
-				return "XM = FastTracker 2 module";
-				break;
+		case 16:
+			return "XM = FastTracker 2 module";
+			break;
 
-			case 17:
-				return "Xbox 360 XMA";
-				break;
+		case 17:
+			return "Xbox 360 XMA";
+			break;
 
-			case 18:
-				return "iPhone hardware decoder";
-				break;
+		case 18:
+			return "iPhone hardware decoder";
+			break;
 
-			case 19:
-				return "PS4 / PSVita ATRAC 9";
-				break;
+		case 19:
+			return "PS4 / PSVita ATRAC 9";
+			break;
 
-			case 20:
-				return "Vorbis";
-				break;
+		case 20:
+			return "Vorbis";
+			break;
 
-			case 21:
-				return "Windows Store Application built-in system codecs";
-				break;
+		case 21:
+			return "Windows Store Application built-in system codecs";
+			break;
 
-			case 22:
-				return "Android MediaCodec";
-				break;
+		case 22:
+			return "Android MediaCodec";
+			break;
 
-			case 23:
-				return "FMOD Adaptive Differential PCM";
-				break;
+		case 23:
+			return "FMOD Adaptive Differential PCM";
+			break;
 
-			case 24:
-				return "Max";
+		case 24:
+			return "Max";
 		}
 	}
 

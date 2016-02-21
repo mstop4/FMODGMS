@@ -1,4 +1,4 @@
-// FMODGMS v.0.3.1
+// FMODGMS v.0.3.2
 // by M.S.T.O.P.
 
 #ifndef FMODGMS_H
@@ -23,7 +23,6 @@ GMexport double FMODGMS_Snd_LoadSound(char* filename);
 GMexport double FMODGMS_Snd_LoadStream(char* filename);
 GMexport double FMODGMS_Snd_Unload(double index);
 GMexport double FMODGMS_Snd_PlaySound(double index, double channel);
-//GMexport double FMODGMS_Snd_SoundExists(double index);
 GMexport double FMODGMS_Snd_Set_LoopMode(double index, double modem, double times);
 GMexport double FMODGMS_Snd_Set_LoopPoints(double index, double start, double end);
 GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double which);
@@ -33,9 +32,10 @@ GMexport const char* FMODGMS_Snd_Get_Type(double index);
 
 // Channel Functions
 GMexport double FMODGMS_Chan_CreateChannel();
-GMexport double FMODGMS_Chan_RemoveChannel(double index);
-GMexport double FMODGMS_Chan_StopChannel(double index);
-//GMexport double FMODGMS_Chan_SetPosition(double index, double posType);
+GMexport double FMODGMS_Chan_RemoveChannel(double channel);
+GMexport double FMODGMS_Chan_PauseChannel(double channel);
+GMexport double FMODGMS_Chan_ResumeChannel(double channel);
+GMexport double FMODGMS_Chan_StopChannel(double channel);
 GMexport double FMODGMS_Chan_Get_Position(double channel);
 GMexport double FMODGMS_Chan_Get_ModOrder(double channel);
 GMexport double FMODGMS_Chan_Get_ModPattern(double channel);

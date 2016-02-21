@@ -50,6 +50,7 @@
     //vu_on = true;
     sound_index = 0;
     is_playing = false;
+    is_paused = false;
     randomize();
     hue = irandom(255);
     
@@ -151,7 +152,7 @@
     draw_set_halign(fa_left);
 
     // CPU Usage
-    draw_set_color(make_color_hsv((hue+15 mod 256),128,255));
+    draw_set_color(make_color_hsv((hue+16 mod 256),128,255));
     draw_text(16,32,"CPU Usage: ");
     
     draw_set_halign(fa_center);
@@ -162,30 +163,44 @@
     draw_healthbar(160,32,260,48,FMODGMS_Sys_Get_CPUUsage(),make_color_rgb(64,64,64),make_color_hsv((hue+42 mod 256),0,255),make_color_hsv((hue+42 mod 256),255,255),0,true,true);
     
     // FPS
-    draw_set_color(make_color_hsv((hue+15 mod 256),128,255));
+    draw_set_color(make_color_hsv((hue+16 mod 256),128,255));
     draw_text(320,32,"FPS: " + string(fps) + "/" + string(room_speed));
     
     // Sound info
-    draw_set_color(make_color_hsv((hue+45 mod 256),128,255));
+    draw_set_color(make_color_hsv((hue+32 mod 256),128,255));
     draw_text(16,64,"Audio Type: " + string(FMODGMS_Snd_Get_Type(sound[sound_index])));
-    draw_set_color(make_color_hsv((hue+60 mod 256),128,255));
-    draw_text(16,112,"Loop Points: " + string(FMODGMS_Snd_Get_LoopPoints(sound[sound_index],0)) + " - " + string(FMODGMS_Snd_Get_LoopPoints(sound[sound_index],1)));
-    draw_set_color(make_color_hsv((hue+75 mod 256),128,255));
+    
+    draw_set_color(make_color_hsv((hue+48 mod 256),128,255));
+    
+    if (!is_playing)
+        draw_text(16,112,"State: Stopped");
+        
+    else
+    {
+        if (is_paused)
+            draw_text(16,112,"State: Paused");
+        else
+            draw_text(16,112,"State: Playing");            
+    }  
+      
+    draw_set_color(make_color_hsv((hue+64 mod 256),128,255));
     draw_text(16,128,"Position: " + string(FMODGMS_Chan_Get_Position(0)));
-    draw_set_color(make_color_hsv((hue+90 mod 256),128,255));
-    draw_text(16,144,"Order: " + string(FMODGMS_Chan_Get_ModOrder(0))); // only works with module files
-    draw_set_color(make_color_hsv((hue+105 mod 256),128,255));
-    draw_text(16,160,"Row: " + string(FMODGMS_Chan_Get_ModRow(0))); // only works with module files
+    draw_set_color(make_color_hsv((hue+80 mod 256),128,255));
+    draw_text(16,144,"Loop Points: " + string(FMODGMS_Snd_Get_LoopPoints(sound[sound_index],0)) + " - " + string(FMODGMS_Snd_Get_LoopPoints(sound[sound_index],1)));
+    draw_set_color(make_color_hsv((hue+96 mod 256),128,255));
+    draw_text(16,160,"Order: " + string(FMODGMS_Chan_Get_ModOrder(0))); // only works with module files
+    draw_set_color(make_color_hsv((hue+112 mod 256),128,255));
+    draw_text(16,176,"Row: " + string(FMODGMS_Chan_Get_ModRow(0))); // only works with module files
     
     draw_set_color(c_white);
-    draw_text(16,240,"Space -- Play/Stop#1-5 -- Switch track#R -- Toggle fullscreen#Esc -- Quit");
+    draw_text(16,240,"Space -- Play/Stop#P - Pause/Unpause#1-5 -- Switch track#R -- Toggle fullscreen#Esc -- Quit");
     
-    draw_set_color(make_color_hsv((hue+120 mod 256),128,255));
+    draw_set_color(make_color_hsv((hue+128 mod 256),128,255));
     draw_text(16,416,"FMODGMS Test Program - by M.S.T.O.P.");
-    draw_set_color(make_color_hsv((hue+135 mod 256),128,255));
-    draw_text(16,432,"FMODGMS version: 0.3.1");
-    draw_set_color(make_color_hsv((hue+150 mod 256),128,255));
-    draw_text(16,448,"FMOD version: Studio 1.07.06");
+    draw_set_color(make_color_hsv((hue+144 mod 256),128,255));
+    draw_text(16,432,"FMODGMS version: 0.3.2");
+    draw_set_color(make_color_hsv((hue+160 mod 256),128,255));
+    draw_text(16,448,"FMOD version: Studio 1.07.07");
     
 }
 </string>
@@ -211,6 +226,43 @@
           <argument>
             <kind>4</kind>
             <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="80">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Pause/Unpause current sound
+if (is_playing)
+{
+    if (!is_paused)
+    {
+        FMODGMS_Chan_PauseChannel(channel[0]);
+        is_paused = true;
+    }
+    
+    else
+    {
+        FMODGMS_Chan_ResumeChannel(channel[0]);
+        is_paused = false;
+    }
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -480,6 +532,8 @@
         is_playing = true;
         FMODGMS_Snd_PlaySound(sound[sound_index],channel[0]);
     }
+    
+    is_paused = false;
 }
 </string>
           </argument>

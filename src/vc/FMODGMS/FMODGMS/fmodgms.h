@@ -1,4 +1,4 @@
-// FMODGMS v.0.3.1
+// FMODGMS v.0.3.2
 // by M.S.T.O.P.
 
 #ifndef FMODGMS_H
@@ -32,8 +32,10 @@ GMexport const char* FMODGMS_Snd_Get_Type(double index);
 
 // Channel Functions
 GMexport double FMODGMS_Chan_CreateChannel();
-GMexport double FMODGMS_Chan_RemoveChannel(double index);
-GMexport double FMODGMS_Chan_StopChannel(double index);
+GMexport double FMODGMS_Chan_RemoveChannel(double channel);
+GMexport double FMODGMS_Chan_PauseChannel(double channel);
+GMexport double FMODGMS_Chan_ResumeChannel(double channel);
+GMexport double FMODGMS_Chan_StopChannel(double channel);
 GMexport double FMODGMS_Chan_Get_Position(double channel);
 GMexport double FMODGMS_Chan_Get_ModOrder(double channel);
 GMexport double FMODGMS_Chan_Get_ModPattern(double channel);

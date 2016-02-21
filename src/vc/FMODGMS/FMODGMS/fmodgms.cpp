@@ -1,6 +1,6 @@
 /*-------------------------------------------------
 //
-//  FMODGMS v0.3.1
+//  FMODGMS v0.3.2
 // By: M.S.T.O.P.
 //
 //  Wrapper library that allows communication between
@@ -107,7 +107,7 @@ GMexport double FMODGMS_Sys_Close()
 // Loads a sound and indexes it in soundList
 GMexport double FMODGMS_Snd_LoadSound(char* filename)
 {
-	FMOD::Sound *sound;
+	FMOD::Sound *sound = NULL;
 	result = sys->createSound(filename, FMOD_DEFAULT, 0, &sound);
 
 	// we cool?
@@ -267,7 +267,7 @@ GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double which)
 // Creates a new channel
 GMexport double FMODGMS_Chan_CreateChannel()
 {
-	FMOD::Channel *chan;
+	FMOD::Channel *chan = NULL;
 	channelList.push_back(chan);
 
 	errorMessage = "No errors.";
@@ -275,17 +275,86 @@ GMexport double FMODGMS_Chan_CreateChannel()
 }
 
 //Deletes a channel
-GMexport double FMODGMS_Chan_RemoveChannel(double index)
+GMexport double FMODGMS_Chan_RemoveChannel(double channel)
 {
-	int i = (int)index;
+	int c = (int)channel;
 	int chanListSize = channelList.size();
 
-	if (chanListSize > i)
+	if (chanListSize > c)
 	{
-		channelList[i]->stop();
-		channelList.erase(channelList.begin());
-		errorMessage = "No errors.";
-		return GMS_true;
+		if (channelList[c] != NULL)
+		{
+			channelList[c]->stop();
+			channelList.erase(channelList.begin());
+			errorMessage = "No errors.";
+			return GMS_true;
+		}
+
+		else
+		{
+			errorMessage = "Channel is null.";
+			return GMS_error;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Pauses a channel
+GMexport double FMODGMS_Chan_PauseChannel(double channel)
+{
+	int c = (int)channel;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		if (channelList[c] != NULL)
+		{
+			channelList[c]->setPaused(true);
+			errorMessage = "No errors.";
+			return GMS_true;
+		}
+
+		else
+		{
+			errorMessage = "Channel is null.";
+			return GMS_error;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+//Resumes a puased channel
+GMexport double FMODGMS_Chan_ResumeChannel(double channel)
+{
+	int c = (int)channel;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		if (channelList[c] != NULL)
+		{
+			channelList[c]->setPaused(false);
+			errorMessage = "No errors.";
+			return GMS_true;
+		}
+
+		else
+		{
+			errorMessage = "Channel is null.";
+			return GMS_error;
+		}
 	}
 
 	// index out of bounds
@@ -297,16 +366,25 @@ GMexport double FMODGMS_Chan_RemoveChannel(double index)
 }
 
 // Stops a channel
-GMexport double FMODGMS_Chan_StopChannel(double index)
+GMexport double FMODGMS_Chan_StopChannel(double channel)
 {
-	int i = (int)index;
+	int c = (int)channel;
 	int chanListSize = channelList.size();
 
-	if (chanListSize > i)
+	if (chanListSize > c)
 	{
-		channelList[i]->stop();
-		errorMessage = "No errors.";
-		return GMS_true;
+		if (channelList[c] != NULL)
+		{
+			channelList[c]->stop();
+			errorMessage = "No errors.";
+			return GMS_true;
+		}
+
+		else
+		{
+			errorMessage = "Channel is null.";
+			return GMS_error;
+		}
 	}
 
 	// index out of bounds

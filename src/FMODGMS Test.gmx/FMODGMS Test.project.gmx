@@ -117,6 +117,7 @@
   <scripts name="scripts">
     <script>scripts\switch_track.gml</script>
   </scripts>
+  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_normal</font>
     <font>fonts\fnt_small</font>
