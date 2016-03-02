@@ -7,7 +7,7 @@ Lastest changes
 v.0.4
 -------
 
-FMODGMS libary
+__FMODGMS libary__
 
 - Added the following functions:
  - FMODGMS_Sys_Update
@@ -22,7 +22,7 @@ FMODGMS libary
  - FMODGMS_Chan_Get_Pitch
 - Some minor optimizations
 
-FMODGMS Test Program
+__FMODGMS Test Program__
 
 - Added functions to manipulate volume, frequency and pitch
 - Added MP3 demo with custom loop points. (Represents a more typical use case than the OGG demo.)
