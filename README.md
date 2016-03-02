@@ -8,7 +8,7 @@ What's inside
 - __FMODGMS_Test_win.zip__ - FMODGMS test program for Windows
 - __FMODGMS_test_linux.tar.gz__ - FMODGMS test program for Linux
 - __src__ - library and test program source code
- - _FMODGMS_ Test.gmx - GameMaker: Studio project for test program
+ - _FMODGMS Test.gmx_ - GameMaker: Studio project for test program
  - _linux_ - FMODGMS source for Linux
  - _vc/FMODGMS_ - FMODGMS source for VS 2013
 
