@@ -1,6 +1,6 @@
 /*-------------------------------------------------
 //
-//  FMODGMS v0.3.2
+//  FMODGMS v.0.4.0
 // By: M.S.T.O.P.
 //
 //  Wrapper library that allows communication between
@@ -69,6 +69,13 @@ GMexport double FMODGMS_Sys_SetSoftwareFormat(double sampleRate, double speakerm
 	FMOD_SPEAKERMODE sm = (FMOD_SPEAKERMODE)(int)speakermode;
 
 	result = sys->setSoftwareFormat(sr, sm, FMOD_MAX_CHANNEL_WIDTH);
+	return FMODGMS_Util_ErrorChecker();
+}
+
+// Updates the FMOD system
+GMexport double FMODGMS_Sys_Update()
+{
+	result = sys->update();
 	return FMODGMS_Util_ErrorChecker();
 }
 
@@ -395,8 +402,102 @@ GMexport double FMODGMS_Chan_StopChannel(double channel)
 	}
 }
 
-// Returns the current position of the sound being played on the channel
-GMexport double FMODGMS_Chan_Get_Position(double channel)
+// Sets the playing position of a channel
+GMexport double FMODGMS_Chan_Set_Position(double channel, double pos)
+{
+	int c = (int)channel;
+
+	unsigned int p;
+	if (pos < 0)
+		p = 0;
+	else
+		p = (unsigned int)pos;
+
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		result = channelList[c]->setPosition(p, FMOD_TIMEUNIT_PCM);
+		errorMessage = "No errors.";
+		return GMS_true;
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Sets the volume of a channel
+GMexport double FMODGMS_Chan_Set_Volume(double channel, double vol)
+{
+	int c = (int)channel;
+	float v = (float)vol;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		result = channelList[c]->setVolume(v);
+		errorMessage = "No errors.";
+		return GMS_true;
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+//Sets playback frequency of a channel
+GMexport double FMODGMS_Chan_Set_Frequency(double channel, double freq)
+{
+	int c = (int)channel;
+	float f = (float)freq;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		result = channelList[c]->setFrequency(f);
+		errorMessage = "No errors.";
+		return GMS_true;
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+//Sets frequency multiplier of a channel
+GMexport double FMODGMS_Chan_Set_Pitch(double channel, double pitch)
+{
+	int c = (int)channel;
+	float p = (float)pitch;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		result = channelList[c]->setPitch(p);
+		errorMessage = "No errors.";
+		return GMS_true;
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Sets the order position of a channel playing a MOD
+GMexport double FMODGMS_Chan_Set_ModOrder(double channel, double ord)
 {
 	int c = (int)channel;
 	int chanListSize = channelList.size();
@@ -407,10 +508,174 @@ GMexport double FMODGMS_Chan_Get_Position(double channel)
 		FMOD::Sound *snd;
 		channelList[c]->getCurrentSound(&snd);
 
+		// check to see if the sound is a module
+		FMOD_SOUND_TYPE type;
+		snd->getFormat(&type, 0, 0, 0);
+
+		if (type == FMOD_SOUND_TYPE_MOD ||
+			type == FMOD_SOUND_TYPE_S3M ||
+			type == FMOD_SOUND_TYPE_XM ||
+			type == FMOD_SOUND_TYPE_IT)
+		{
+			unsigned int _ord;
+			if (ord < 0)
+				_ord = 0;
+			else
+				_ord = (unsigned int)ord;
+
+			channelList[c]->setPosition(_ord, FMOD_TIMEUNIT_MODORDER);
+			errorMessage = "No errors.";
+			return GMS_true;
+		}
+
+		// not a module
+		else
+		{
+			errorMessage = "Not a MOD, S3M, XM, or IT.";
+			return GMS_error;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Sets the row position of a channel playing a MOD
+GMexport double FMODGMS_Chan_Set_ModRow(double channel, double row)
+{
+	int c = (int)channel;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		// get handle of sound currently playing in channel
+		FMOD::Sound *snd;
+		channelList[c]->getCurrentSound(&snd);
+
+		// check to see if the sound is a module
+		FMOD_SOUND_TYPE type;
+		snd->getFormat(&type, 0, 0, 0);
+
+		if (type == FMOD_SOUND_TYPE_MOD ||
+			type == FMOD_SOUND_TYPE_S3M ||
+			type == FMOD_SOUND_TYPE_XM ||
+			type == FMOD_SOUND_TYPE_IT)
+		{
+			unsigned int r;
+			if (row < 0)
+				r = 0;
+			else
+				r = (unsigned int)row;
+
+			channelList[c]->setPosition(r, FMOD_TIMEUNIT_MODROW);
+			errorMessage = "No errors.";
+			return GMS_true;
+		}
+
+		// not a module
+		else
+		{
+			errorMessage = "Not a MOD, S3M, XM, or IT.";
+			return GMS_error;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Returns the current position of the sound being played on the channel
+GMexport double FMODGMS_Chan_Get_Position(double channel)
+{
+	int c = (int)channel;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		/*
+		// get handle of sound currently playing in channel
+		FMOD::Sound *snd;
+		channelList[c]->getCurrentSound(&snd);
+		*/
+
 		unsigned int pos;
 		channelList[c]->getPosition(&pos, FMOD_TIMEUNIT_PCM);
 		errorMessage = "No errors.";
 		return (double)pos;
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Returns the volume of a channel
+GMexport double FMODGMS_Chan_Get_Volume(double channel)
+{
+	int c = (int)channel;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		float vol;
+		channelList[c]->getVolume(&vol);
+		errorMessage = "No errors.";
+		return (double)vol;
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Returns the frequency the channel is being played at
+GMexport double FMODGMS_Chan_Get_Frequency(double channel)
+{
+	int c = (int)channel;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		float freq;
+		channelList[c]->getFrequency(&freq);
+		errorMessage = "No errors.";
+		return (double)freq;
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+//Returns the frequency multipler of a channel
+GMexport double FMODGMS_Chan_Get_Pitch(double channel)
+{
+	int c = (int)channel;
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c)
+	{
+		float pitch;
+		channelList[c]->getPitch(&pitch);
+		errorMessage = "No errors.";
+		return (double)pitch;
 	}
 
 	// index out of bounds
@@ -777,7 +1042,8 @@ GMexport const char* FMODGMS_Util_GetErrorMessage()
 // the Result is FMOD_OK and GMS_error (-1) otherwise
 double FMODGMS_Util_ErrorChecker()
 {
-	errorMessage = strdup(FMOD_ErrorString(result)); // convert const char* to char * by duplication
+	//errorMessage = _strdup(FMOD_ErrorString(result)); // convert const char* to char * by duplication
+	errorMessage = FMOD_ErrorString(result);
 
 	if (result != FMOD_OK)
 	{

@@ -3,7 +3,7 @@
   <name>FMODGMS</name>
   <version>0.3.2</version>
   <packageID></packageID>
-  <ProductID>F79C97955FD1AF4686EB4EF4EF90F0DB</ProductID>
+  <ProductID>F3D00DAD3DDB83EFFDD568E8093FC7AA</ProductID>
   <date>13/02/2016</date>
   <license>Free to use, also for commercial games.</license>
   <description></description>
@@ -317,6 +317,120 @@
           <externalName>FMODGMS_Chan_ResumeChannel</externalName>
           <kind>12</kind>
           <help>FMODGMS_Chan_ResumeChannel(channel)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Sys_Update</name>
+          <externalName>FMODGMS_Sys_Update</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Sys_Update()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Set_Position</name>
+          <externalName>FMODGMS_Chan_Set_Position</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Set_Position(channel,pos)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Set_Volume</name>
+          <externalName>FMODGMS_Chan_Set_Volume</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Set_Volume(channel,vol)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Set_Frequency</name>
+          <externalName>FMODGMS_Chan_Set_Frequency</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Set_Frequency(channel,freq)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Set_Pitch</name>
+          <externalName>FMODGMS_Chan_Set_Pitch</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Set_Pitch(channel,pitch)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Set_ModOrder</name>
+          <externalName>FMODGMS_Chan_Set_ModOrder</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Set_ModOrder(channel,ord)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Set_ModRow</name>
+          <externalName>FMODGMS_Chan_Set_ModRow</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Set_ModRow(channel,row)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Get_Volume</name>
+          <externalName>FMODGMS_Chan_Get_Volume</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Get_Volume(channel)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Get_Frequency</name>
+          <externalName>FMODGMS_Chan_Get_Frequency</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Get_Frequency(channel)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Get_Pitch</name>
+          <externalName>FMODGMS_Chan_Get_Pitch</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Get_Pitch(channel)</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>

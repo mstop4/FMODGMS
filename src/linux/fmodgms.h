@@ -1,4 +1,4 @@
-// FMODGMS v.0.3.2
+// FMODGMS v.0.4.0
 // by M.S.T.O.P.
 
 #ifndef FMODGMS_H
@@ -13,6 +13,7 @@
 GMexport double FMODGMS_Sys_Create();
 GMexport double FMODGMS_Sys_Initialize(double maxChan);
 GMexport double FMODGMS_Sys_SetSoftwareFormat(double sampleRate, double speakermode);
+GMexport double FMODGMS_Sys_Update();
 GMexport double FMODGMS_Sys_Get_CPUUsage();
 GMexport double FMODGMS_Sys_Get_MaxSoundIndex();
 GMexport double FMODGMS_Sys_Get_MaxChannelIndex();
@@ -36,7 +37,16 @@ GMexport double FMODGMS_Chan_RemoveChannel(double channel);
 GMexport double FMODGMS_Chan_PauseChannel(double channel);
 GMexport double FMODGMS_Chan_ResumeChannel(double channel);
 GMexport double FMODGMS_Chan_StopChannel(double channel);
+GMexport double FMODGMS_Chan_Set_Position(double channel, double pos);
+GMexport double FMODGMS_Chan_Set_Volume(double channel, double vol);
+GMexport double FMODGMS_Chan_Set_Frequency(double channel, double freq);
+GMexport double FMODGMS_Chan_Set_Pitch(double channel, double pitch);
+GMexport double FMODGMS_Chan_Set_ModOrder(double channel, double ord);
+GMexport double FMODGMS_Chan_Set_ModRow(double channel, double row);
 GMexport double FMODGMS_Chan_Get_Position(double channel);
+GMexport double FMODGMS_Chan_Get_Volume(double channel);
+GMexport double FMODGMS_Chan_Get_Frequency(double channel);
+GMexport double FMODGMS_Chan_Get_Pitch(double channel);
 GMexport double FMODGMS_Chan_Get_ModOrder(double channel);
 GMexport double FMODGMS_Chan_Get_ModPattern(double channel);
 GMexport double FMODGMS_Chan_Get_ModRow(double channel);

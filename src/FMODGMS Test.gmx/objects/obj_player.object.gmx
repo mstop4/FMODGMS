@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>/// Init FMODGMS
 {
+    randomize();
+
     // Create the system
     FMODGMS_Sys_Create();
     FMODGMS_Sys_Initialize(128);
@@ -34,13 +36,18 @@
     // Load sounds
     sound[0] = FMODGMS_Snd_LoadSound(working_directory + "cronolog.s3m");
     sound[1] = FMODGMS_Snd_LoadSound(working_directory + "lemming1.mod");
-    //sound[5] = FMODGMS_Snd_LoadSound(working_directory + "DKC_Water-KM.mid");   // this doesn't work yet
     sound[2] = FMODGMS_Snd_LoadSound(working_directory + "giana_sisters.xm");
     sound[3] = FMODGMS_Snd_LoadSound(working_directory + "super_mario_rpg-barrel_volcano.it");    
-    sound[4] = FMODGMS_Snd_LoadSound(working_directory + "looptest.ogg");    
+    sound[5] = FMODGMS_Snd_LoadSound(working_directory + "looptest.ogg");    
+    sound[4] = FMODGMS_Snd_LoadSound(working_directory + "hiyalooped.mp3"); 
+    //sound[6] = FMODGMS_Snd_LoadSound(working_directory + "DKC_Water-KM.mid");   // this doesn't work yet
 
     // set custom loop points for looptest.ogg
-    FMODGMS_Snd_Set_LoopPoints(sound[4],176400,352800);
+    FMODGMS_Snd_Set_LoopPoints(sound[5],176400,352800);
+    FMODGMS_Snd_Set_LoopMode(sound[5],1,-1);
+    
+    // set custom loop points for hiyalooped.mp3
+    FMODGMS_Snd_Set_LoopPoints(sound[4],2168851,6680062);
     FMODGMS_Snd_Set_LoopMode(sound[4],1,-1);
     
     //create a channel
@@ -51,8 +58,10 @@
     sound_index = 0;
     is_playing = false;
     is_paused = false;
-    randomize();
     hue = irandom(255);
+    channel_volume = 1;
+    channel_frequency = 1;
+    channel_pitch = 1;
     
     window_set_caption("The colours!");
 }
@@ -80,8 +89,166 @@
             <kind>1</kind>
             <string>// The colours!
 {
+    FMODGMS_Sys_Update();
     hue = (hue + 1) mod 256;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="87">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>channel_frequency += 100;
+FMODGMS_Chan_Set_Frequency(0,channel_frequency);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="83">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>channel_frequency -= 100;
+
+// Only the OGG track can go below 0 Hz (for reverse playback).
+// Make sure MOD tracks don't or else this function will stop working.
+
+if (sound_index &lt;&gt; 4 &amp;&amp; channel_frequency &lt; 100)
+    channel_frequency = 100;
+
+FMODGMS_Chan_Set_Frequency(0,channel_frequency);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="81">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>channel_volume = clamp(channel_volume+0.01,0,1);
+FMODGMS_Chan_Set_Volume(0,channel_volume);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="69">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>channel_pitch += 0.01;
+FMODGMS_Chan_Set_Pitch(0,channel_pitch);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="68">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>channel_pitch -= 0.01;
+
+// No negative multiplers allowed
+
+if (channel_pitch &lt; 0.01)
+    channel_pitch = 0.01;
+
+FMODGMS_Chan_Set_Pitch(0,channel_pitch);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="65">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>channel_volume = clamp(channel_volume-0.01,0,1);
+FMODGMS_Chan_Set_Volume(0,channel_volume);
 </string>
           </argument>
         </arguments>
@@ -190,16 +357,25 @@
     draw_set_color(make_color_hsv((hue+96 mod 256),128,255));
     draw_text(16,160,"Order: " + string(FMODGMS_Chan_Get_ModOrder(0))); // only works with module files
     draw_set_color(make_color_hsv((hue+112 mod 256),128,255));
-    draw_text(16,176,"Row: " + string(FMODGMS_Chan_Get_ModRow(0))); // only works with module files
+    draw_text(16,176,"Pattern: " + string(FMODGMS_Chan_Get_ModPattern(0))); // only works with module files
+    draw_set_color(make_color_hsv((hue+128 mod 256),128,255));
+    draw_text(16,192,"Row: " + string(FMODGMS_Chan_Get_ModRow(0))); // only works with module files
+    draw_set_color(make_color_hsv((hue+144 mod 256),128,255));
+    draw_text(16,208,"Volume: " + string(channel_volume));  
+    draw_set_color(make_color_hsv((hue+160 mod 256),128,255));
+    draw_text(16,224,"Playback Freq.: " + string(channel_frequency * channel_pitch) + " Hz# (" + string(channel_frequency) + " x " + string(channel_pitch) + ")");  
+    //draw_set_color(make_color_hsv((hue+176 mod 256),128,255));
+    //draw_text(16,240,"Pitch: " + string(FMODGMS_Chan_Get_Pitch(0)));  
     
     draw_set_color(c_white);
-    draw_text(16,240,"Space -- Play/Stop#P - Pause/Unpause#1-5 -- Switch track#R -- Toggle fullscreen#Esc -- Quit");
+    draw_text(16,304,"Space -- Play/Stop#P - Pause/Unpause#Q/A -- Change volume#W/S -- Change frequency#E/D -- Change pitch");
+    draw_text(416,304,"1-6 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit");
     
-    draw_set_color(make_color_hsv((hue+128 mod 256),128,255));
-    draw_text(16,416,"FMODGMS Test Program - by M.S.T.O.P.");
-    draw_set_color(make_color_hsv((hue+144 mod 256),128,255));
-    draw_text(16,432,"FMODGMS version: 0.3.2");
-    draw_set_color(make_color_hsv((hue+160 mod 256),128,255));
+    draw_set_color(make_color_hsv((hue+176 mod 256),128,255));
+    draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
+    draw_set_color(make_color_hsv((hue+192 mod 256),128,255));
+    draw_text(16,432,"FMODGMS version: 0.4.0");
+    draw_set_color(make_color_hsv((hue+208 mod 256),128,255));
     draw_text(16,448,"FMOD version: Studio 1.07.07");
     
 }
@@ -208,7 +384,7 @@
         </arguments>
       </action>
     </event>
-    <event eventtype="9" enumb="82">
+    <event eventtype="9" enumb="115">
       <action>
         <libid>1</libid>
         <id>531</id>
@@ -288,6 +464,48 @@ if (is_playing)
     //vu_on = !vu_on;
 }
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="54">
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>switch_track</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>5</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -531,6 +749,9 @@ if (is_playing)
     {
         is_playing = true;
         FMODGMS_Snd_PlaySound(sound[sound_index],channel[0]);
+        channel_volume = FMODGMS_Chan_Get_Volume(0);
+        channel_frequency = FMODGMS_Chan_Get_Frequency(0);
+        channel_pitch = FMODGMS_Chan_Get_Pitch(0);
     }
     
     is_paused = false;
