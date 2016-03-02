@@ -1,7 +1,7 @@
 # FMODGMS
 FMOD Studio low-level API wrapper for GameMaker:Studio's Windows and Linux modules
 
-Lastest changes
+Latest changes
 ---------
 
 v.0.4
