@@ -1,6 +1,6 @@
 /*-------------------------------------------------
 //
-//  FMODGMS v.0.4.0
+//  FMODGMS v.0.4.1
 // By: M.S.T.O.P.
 //
 //  Wrapper library that allows communication between
@@ -18,7 +18,7 @@
 #include <string.h>
 #include "fmod.hpp"
 #include "fmod_errors.h"
-#include "fmodgms.h"
+#include "fmodgms.hpp"
 
 #pragma region Global variables
 
@@ -103,8 +103,19 @@ GMexport double FMODGMS_Sys_Get_MaxChannelIndex()
 // Closes and releases the system
 GMexport double FMODGMS_Sys_Close()
 {
-	sys->release();						//bye
+	// Free sounds
+	while (!soundList.empty())
+	{
+		soundList.back()->release();
+		soundList.pop_back();
+	}
+
+	// Free system
+	sys->close();
+	sys->release();						
 	return FMODGMS_Util_ErrorChecker();
+
+	//Free willy
 }
 
 #pragma endregion
@@ -954,7 +965,7 @@ GMexport const char* FMODGMS_Snd_Get_Type(double index)
 			break;
 
 		case 9:
-			return "MP2/MP3 MPEG";
+			return "MP2/MP3 - MPEG";
 			break;
 
 		case 10:
@@ -982,7 +993,7 @@ GMexport const char* FMODGMS_Snd_Get_Type(double index)
 			break;
 
 		case 16:
-			return "XM = FastTracker 2 module";
+			return "XM - FastTracker 2 module";
 			break;
 
 		case 17:

@@ -39,7 +39,7 @@
     <ClInclude Include="fmod_output.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fmodgms.h">
+    <ClInclude Include="fmodgms.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

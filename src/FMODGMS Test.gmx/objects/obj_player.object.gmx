@@ -38,9 +38,9 @@
     sound[1] = FMODGMS_Snd_LoadSound(working_directory + "lemming1.mod");
     sound[2] = FMODGMS_Snd_LoadSound(working_directory + "giana_sisters.xm");
     sound[3] = FMODGMS_Snd_LoadSound(working_directory + "super_mario_rpg-barrel_volcano.it");    
-    sound[5] = FMODGMS_Snd_LoadSound(working_directory + "looptest.ogg");    
     sound[4] = FMODGMS_Snd_LoadSound(working_directory + "hiyalooped.mp3"); 
-    //sound[6] = FMODGMS_Snd_LoadSound(working_directory + "DKC_Water-KM.mid");   // this doesn't work yet
+    sound[5] = FMODGMS_Snd_LoadSound(working_directory + "looptest.ogg");    
+    sound[6] = FMODGMS_Snd_LoadSound(working_directory + "DKC_Water-KM.mid");   // this is only guaranteed to work in Windows
 
     // set custom loop points for looptest.ogg
     FMODGMS_Snd_Set_LoopPoints(sound[5],176400,352800);
@@ -369,12 +369,17 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     
     draw_set_color(c_white);
     draw_text(16,304,"Space -- Play/Stop#P - Pause/Unpause#Q/A -- Change volume#W/S -- Change frequency#E/D -- Change pitch");
-    draw_text(416,304,"1-6 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit");
+    
+    // Disallow MIDI demo in Linux build
+    if (os_type == os_linux)
+        draw_text(416,304,"1-6 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit");
+    else
+        draw_text(416,304,"1-7 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit");
     
     draw_set_color(make_color_hsv((hue+176 mod 256),128,255));
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
     draw_set_color(make_color_hsv((hue+192 mod 256),128,255));
-    draw_text(16,432,"FMODGMS version: 0.4.0");
+    draw_text(16,432,"FMODGMS version: 0.4.1");
     draw_set_color(make_color_hsv((hue+208 mod 256),128,255));
     draw_text(16,448,"FMOD version: Studio 1.07.07");
     
@@ -463,6 +468,31 @@ if (is_playing)
             <string>{
     //vu_on = !vu_on;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="55">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// This might not work in Linux, so don't do anything in that OS just to be safe
+if (os_type &lt;&gt; os_linux)
+    switch_track(6);
 </string>
           </argument>
         </arguments>
