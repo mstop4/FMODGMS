@@ -18,7 +18,7 @@ Latest changes
 v.0.4.1
 -------
 
-__FMODGMS libary__
+__FMODGMS library__
 
 - Improved FMODGMS_Sys_Close
 - Minor Fixes
@@ -30,7 +30,7 @@ __FMODGMS Test Program__
 v.0.4
 -------
 
-__FMODGMS libary__
+__FMODGMS library__
 
 - Added the following functions:
  - FMODGMS_Sys_Update
