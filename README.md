@@ -15,6 +15,18 @@ What's inside
 Latest changes
 ---------
 
+v.0.4.1
+-------
+
+__FMODGMS libary__
+
+- Improved FMODGMS_Sys_Close
+- Minor Fixes
+
+__FMODGMS Test Program__
+
+- Added MIDI demo to Windows build. Demo would crash in Linux if no MIDI synth were found on the system.
+
 v.0.4
 -------
 
