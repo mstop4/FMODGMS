@@ -1,6 +1,15 @@
 # FMODGMS
 FMOD Studio low-level API wrapper for GameMaker:Studio's Windows and Linux modules
 
+Features
+--------
+
+- Load and play a wide variety of audio formats not natively supported by *GameMaker:Studio* (e.g. MP3, MIDI, MOD, S3M, XM, IT, etc.).
+- Add custom loop points to sounds. This allows, for example, a music track to have an intro section that can seamlessly transition into an infinitely looping main section without having to break them up into two separate files.
+- Dynamically change to volume, playback frequency and relative pitch of a sound.
+- Analyze an audio stream using Fast Fourier Transform (FFT) and obtain its spectrum data.
+
+
 What's inside
 -------------
 
@@ -12,40 +21,4 @@ What's inside
  - _linux_ - FMODGMS source for Linux
  - _vc/FMODGMS_ - FMODGMS source for VS 2013
 
-Latest changes
----------
-
-v.0.4.1
--------
-
-__FMODGMS library__
-
-- Improved FMODGMS_Sys_Close
-- Minor Fixes
-
-__FMODGMS Test Program__
-
-- Added MIDI demo to Windows build. Demo would crash in Linux if no MIDI synth were found on the system.
-
-v.0.4
--------
-
-__FMODGMS library__
-
-- Added the following functions:
- - FMODGMS_Sys_Update
- - FMODGMS_Chan_Set_Position
- - FMODGMS_Chan_Set_Volume
- - FMODGMS_Chan_Set_Frequency
- - FMODGMS_Chan_Set_Pitch
- - FMODGMS_Chan_Set_ModOrder
- - FMODGMS_Chan_Set_ModRow
- - FMODGMS_Chan_Get_Volume
- - FMODGMS_Chan_Get_Frequency
- - FMODGMS_Chan_Get_Pitch
-- Some minor optimizations
-
-__FMODGMS Test Program__
-
-- Added functions to manipulate volume, frequency and pitch
-- Added MP3 demo with custom loop points. (Represents a more typical use case than the OGG demo.)
+For a list of changes and development history, [click here](..blob/master/README.md).

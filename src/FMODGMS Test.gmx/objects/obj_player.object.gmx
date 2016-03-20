@@ -31,7 +31,11 @@
 
     // Create the system
     FMODGMS_Sys_Create();
-    FMODGMS_Sys_Initialize(128);
+    FMODGMS_Sys_Initialize(32);
+    
+    // Number of bins in Spectrum data
+    //show_message(FMODGMS_FFT_Set_WindowSize(128));
+    numBins = FMODGMS_FFT_Get_NumBins();
     
     // Load sounds
     sound[0] = FMODGMS_Snd_LoadSound(working_directory + "cronolog.s3m");
@@ -339,6 +343,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     
     draw_set_color(make_color_hsv((hue+48 mod 256),128,255));
     
+    //Play state
     if (!is_playing)
         draw_text(16,112,"State: Stopped");
         
@@ -348,7 +353,28 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
             draw_text(16,112,"State: Paused");
         else
             draw_text(16,112,"State: Playing");            
-    }  
+    } 
+    
+    // dominant Frequency
+    draw_text(416,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");    
+        
+    // spectrum
+    
+    draw_rectangle_colour(416,144,416+numBins*5,244,c_black,c_black,$202020,$202020,false);
+    
+    for (var i=0; i&lt;numBins; i++)
+    {
+        var bin = FMODGMS_FFT_Get_BinValue(i);
+        var col;
+        
+        if (bin &lt;= 0.5)
+            col = merge_colour(c_lime,c_yellow,bin*2);
+        else
+            col = merge_colour(c_yellow,c_red,(bin-0.5)*2);
+    
+        draw_set_colour(col);
+        draw_rectangle(416+i*5+1,244-bin*100,416+i*5+4,244,false);
+    }       
       
     draw_set_color(make_color_hsv((hue+64 mod 256),128,255));
     draw_text(16,128,"Position: " + string(FMODGMS_Chan_Get_Position(0)));
@@ -379,9 +405,9 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     draw_set_color(make_color_hsv((hue+176 mod 256),128,255));
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
     draw_set_color(make_color_hsv((hue+192 mod 256),128,255));
-    draw_text(16,432,"FMODGMS version: 0.4.1");
+    draw_text(16,432,"FMODGMS version: 0.5.0");
     draw_set_color(make_color_hsv((hue+208 mod 256),128,255));
-    draw_text(16,448,"FMOD version: Studio 1.07.07");
+    draw_text(16,448,"FMOD version: Studio 1.08.00");
     
 }
 </string>

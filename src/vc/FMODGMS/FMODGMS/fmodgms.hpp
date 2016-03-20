@@ -1,4 +1,4 @@
-// FMODGMS v.0.4.1
+// FMODGMS v.0.5.0
 // by M.S.T.O.P.
 
 #ifndef FMODGMS_HPP
@@ -12,12 +12,19 @@
 // System Functions
 GMexport double FMODGMS_Sys_Create();
 GMexport double FMODGMS_Sys_Initialize(double maxChan);
-GMexport double FMODGMS_Sys_SetSoftwareFormat(double sampleRate, double speakermode);
 GMexport double FMODGMS_Sys_Update();
+GMexport double FMODGMS_Sys_Close();
+GMexport double FMODGMS_Sys_Set_SoftwareFormat(double sampleRate, double speakermode);
+GMexport double FMODGMS_Sys_Get_SampleRate();
 GMexport double FMODGMS_Sys_Get_CPUUsage();
 GMexport double FMODGMS_Sys_Get_MaxSoundIndex();
 GMexport double FMODGMS_Sys_Get_MaxChannelIndex();
-GMexport double FMODGMS_Sys_Close();
+
+// FFT (Spectrum) Functions
+GMexport double FMODGMS_FFT_Set_WindowSize(double size);
+GMexport double FMODGMS_FFT_Get_DominantFrequency();
+GMexport double FMODGMS_FFT_Get_BinValue(double index);
+GMexport double FMODGMS_FFT_Get_NumBins();
 
 // Sound Functions
 GMexport double FMODGMS_Snd_LoadSound(char* filename);

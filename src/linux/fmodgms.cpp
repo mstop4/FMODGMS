@@ -1,6 +1,6 @@
 /*-------------------------------------------------
 //
-//  FMODGMS v.0.4.1
+//  FMODGMS v.0.5.0
 // By: M.S.T.O.P.
 //
 //  Wrapper library that allows communication between
@@ -22,11 +22,22 @@
 
 #pragma region Global variables
 
-FMOD_RESULT result;
-const char* errorMessage;
+// System Stuff
 FMOD::System *sys = NULL;
 std::vector <FMOD::Channel*> channelList;
 std::vector <FMOD::Sound*> soundList;
+FMOD::ChannelGroup *masterGroup;
+FMOD_RESULT result;
+const char* errorMessage;
+
+// Spectrum DSP Stuff
+FMOD::DSP *fftdsp;
+float domFreq;
+int playbackRate;
+int windowSize = 128;
+int nyquist = windowSize / 2;
+std::vector <float> binValues(nyquist);
+FMOD_DSP_PARAMETER_FFT *fftParams;
 
 #pragma endregion
 
@@ -42,14 +53,111 @@ GMexport double FMODGMS_Sys_Create()
 // Initializes the system
 GMexport double FMODGMS_Sys_Initialize(double maxChan)
 {
+	//Init System
 	int mc = (int)maxChan;
 
+	for (int i = 0; i < nyquist; i++)
+	{
+		binValues[i] = 0;
+	}
+
 	result = sys->init(mc, FMOD_INIT_NORMAL, 0);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	// Init Spectrum DSP
+	result = sys->getMasterChannelGroup(&masterGroup);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = sys->createDSPByType(FMOD_DSP_TYPE_FFT, &fftdsp);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = masterGroup->addDSP(FMOD_CHANNELCONTROL_DSP_TAIL, fftdsp);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = sys->getSoftwareFormat(&playbackRate, 0, 0);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWTYPE, FMOD_DSP_FFT_WINDOW_TRIANGLE);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWSIZE, windowSize);
 	return FMODGMS_Util_ErrorChecker();
 }
 
+// Updates the FMOD system  and spectrum DSP
+GMexport double FMODGMS_Sys_Update()
+{
+	result = sys->update();
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+	
+	//Check to see if anything is playing before gathering spectrum data
+	bool playState = false;
+	masterGroup->isPlaying(&playState);
+
+	if (playState)
+	{
+		result = fftdsp->getParameterData(FMOD_DSP_FFT_SPECTRUMDATA, (void **)&fftParams, 0, 0, 0);
+		if (result != FMOD_OK)
+			return FMODGMS_Util_ErrorChecker();
+
+		int numChan = fftParams->numchannels;
+
+		for (int j = 0; j < nyquist; j++)
+		{
+			binValues[j] = 0;
+
+			for (int i = 0; i < numChan; i++)
+				binValues[j] += fftParams->spectrum[i][j];
+
+			binValues[j] /= numChan;
+		}
+	}
+
+	return FMODGMS_Util_ErrorChecker();
+}
+
+// Closes and releases the system
+GMexport double FMODGMS_Sys_Close()
+{
+	// Free sounds
+	while (!soundList.empty())
+	{
+		soundList.back()->release();
+		soundList.pop_back();
+	}
+
+	// Free DSP
+	result = masterGroup->removeDSP(fftdsp);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = fftdsp->release();
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	// Free system
+	result = sys->close();
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = sys->release();
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	return FMODGMS_Util_ErrorChecker();
+
+	//Free willy
+}
+
 // Sets the playback sample rate and speaker mode
-GMexport double FMODGMS_Sys_SetSoftwareFormat(double sampleRate, double speakermode)
+GMexport double FMODGMS_Sys_Set_SoftwareFormat(double sampleRate, double speakermode)
 {
 	/*
 	Speaker Modes
@@ -65,18 +173,17 @@ GMexport double FMODGMS_Sys_SetSoftwareFormat(double sampleRate, double speakerm
 	8 - Max
 	*/
 
-	int sr = (int)sampleRate;
+	playbackRate = (int)sampleRate;
 	FMOD_SPEAKERMODE sm = (FMOD_SPEAKERMODE)(int)speakermode;
 
-	result = sys->setSoftwareFormat(sr, sm, FMOD_MAX_CHANNEL_WIDTH);
+	result = sys->setSoftwareFormat(playbackRate, sm, FMOD_MAX_CHANNEL_WIDTH);
 	return FMODGMS_Util_ErrorChecker();
 }
 
-// Updates the FMOD system
-GMexport double FMODGMS_Sys_Update()
+// Gets the playback sample rate
+GMexport double FMODGMS_Sys_Get_SampleRate()
 {
-	result = sys->update();
-	return FMODGMS_Util_ErrorChecker();
+	return (double)playbackRate;
 }
 
 // Return total CPU usage
@@ -100,22 +207,52 @@ GMexport double FMODGMS_Sys_Get_MaxChannelIndex()
 	return channelList.size() - 1.0f;
 }
 
-// Closes and releases the system
-GMexport double FMODGMS_Sys_Close()
+#pragma endregion
+
+#pragma region FFT (Spectrum) Functions
+
+// Sets the FFT window size (winodw size = 2 * nyquist = 2 * number of bins) 
+// FMODGMS_FFT_Get_NumBins should be called after this function to ensure the game know what the new number of bins are
+// NOTE: Doesn't work yet
+GMexport double FMODGMS_FFT_Set_WindowSize(double size)
 {
-	// Free sounds
-	while (!soundList.empty())
+	windowSize = (int)size;
+	nyquist = windowSize / 2;
+	binValues.clear();
+	for (int i = 0; i < nyquist; i++)
 	{
-		soundList.back()->release();
-		soundList.pop_back();
+		binValues[i] = 0;
 	}
 
-	// Free system
-	sys->close();
-	sys->release();						
+	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWSIZE, windowSize);
 	return FMODGMS_Util_ErrorChecker();
+}
 
-	//Free willy
+// Returns the domainant frequency
+GMexport double FMODGMS_FFT_Get_DominantFrequency()
+{
+	result = fftdsp->getParameterFloat(FMOD_DSP_FFT_DOMINANT_FREQ, &domFreq, 0, 0);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+	else
+		return domFreq;
+}
+
+// Returns the value of a certain bin in the spectrum
+GMexport double FMODGMS_FFT_Get_BinValue(double index)
+{
+	unsigned int i = (unsigned int)index;
+
+	if (i < binValues.size())
+		return binValues[i];
+	else
+		return GMS_error;
+}
+
+// Returns the number of nims in the spectrum data (= nyquist = windowSize / 2)
+GMexport double FMODGMS_FFT_Get_NumBins()
+{
+	return (double)nyquist;
 }
 
 #pragma endregion
