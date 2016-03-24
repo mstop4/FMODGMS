@@ -33,7 +33,7 @@
       <store>0</store>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>123146358329582</CopyToMask>
         </Config>
       </ConfigOptions>
       <filename>DKC_Water-KM.mid</filename>
@@ -134,6 +134,7 @@
   <scripts name="scripts">
     <script>scripts\switch_track.gml</script>
   </scripts>
+  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_normal</font>
     <font>fonts\fnt_small</font>

@@ -54,6 +54,9 @@
     FMODGMS_Snd_Set_LoopPoints(sound[4],2168851,6680062);
     FMODGMS_Snd_Set_LoopMode(sound[4],1,-1);
     
+    // set default loop points for DKC_Water-KM.mid
+    if (os_type &lt;&gt; os_linux) FMODGMS_Snd_Set_LoopMode(sound[6],1,-1);
+    
     //create a channel
     channel[0] = FMODGMS_Chan_CreateChannel();
     
