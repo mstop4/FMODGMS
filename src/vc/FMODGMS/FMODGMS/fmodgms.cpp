@@ -1,6 +1,6 @@
 /*-------------------------------------------------
 //
-//  FMODGMS v.0.5.0
+//  FMODGMS v.0.5.1
 // By: M.S.T.O.P.
 //
 //  Wrapper library that allows communication between

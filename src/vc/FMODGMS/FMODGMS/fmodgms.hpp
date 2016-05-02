@@ -1,4 +1,4 @@
-// FMODGMS v.0.5.0
+// FMODGMS v.0.5.1
 // by M.S.T.O.P.
 
 #ifndef FMODGMS_HPP
