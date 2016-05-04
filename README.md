@@ -21,4 +21,4 @@ What's inside
  - _linux_ - FMODGMS source for Linux
  - _vc/FMODGMS_ - FMODGMS source for VS 2013
 
-For a list of changes and development history, [click here](../../wiki).
+For a list of changes and development history, [click here](../../wiki/Changelog).
