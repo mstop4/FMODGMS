@@ -71,6 +71,10 @@
     channel_pitch = 1;
     
     window_set_caption("The colours!");
+    
+    show_message(FMODGMS_Snd_Get_TagStringFromName(sound[4],"TITLE"));
+    show_message(FMODGMS_Snd_Get_TagTypeFromIndex(sound[4],1));
+    show_message(FMODGMS_Snd_Get_TagDataTypeFromIndex(sound[4],2));
 }
 </string>
           </argument>
@@ -408,9 +412,9 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     draw_set_color(make_color_hsv((hue+176 mod 256),128,255));
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
     draw_set_color(make_color_hsv((hue+192 mod 256),128,255));
-    draw_text(16,432,"FMODGMS version: 0.5.1");
+    draw_text(16,432,"FMODGMS version: 0.6.0");
     draw_set_color(make_color_hsv((hue+208 mod 256),128,255));
-    draw_text(16,448,"FMOD version: Studio 1.08.02");
+    draw_text(16,448,"FMOD version: Studio 1.08.04");
     
 }
 </string>

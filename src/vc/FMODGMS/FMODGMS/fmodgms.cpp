@@ -1,12 +1,14 @@
-/*-------------------------------------------------
+/*--------------------------------------------------------
+//  fmodgms.cpp
 //
-//  FMODGMS v.0.5.1
-// By: M.S.T.O.P.
+//  FMODGMS v.0.6.0
+//  By: M.S.T.O.P.
 //
 //  Wrapper library that allows communication between
-//  the FMOD low level API and GameMaker: Studio.
+//  the FMOD Studio low level API and GameMaker: Studio.
 //
---------------------------------------------------*/
+//  FMOD Studio version: 1.08.04
+----------------------------------------------------------*/
 
 #ifndef FMODGMS_CPP
 #define FMODGMS_CPP
@@ -1022,6 +1024,554 @@ GMexport const char* FMODGMS_Snd_Get_TagName(double soundIndex, double tagIndex)
 	}
 }
 
+// Get a tag's type from a given index
+GMexport const char* FMODGMS_Snd_Get_TagTypeFromIndex(double soundIndex, double tagIndex)
+{
+	int si = (int)soundIndex;
+	int sndListSize = soundList.size();
+
+	if (sndListSize > si)
+	{
+		int numTags;
+		int ti = (int)tagIndex;
+
+		soundList[si]->getNumTags(&numTags, 0);
+
+		if (numTags > ti)
+		{
+			FMOD_TAG tag;
+			soundList[si]->getTag(0, ti, &tag);
+
+			switch (tag.type)
+			{
+			case FMOD_TAGTYPE_ID3V1:
+				return "ID3v1 tag";
+				break;
+
+			case FMOD_TAGTYPE_ID3V2:
+				return "ID3v2 tag";
+				break;
+
+			case FMOD_TAGTYPE_VORBISCOMMENT:
+				return "Vorbis comment";
+				break;
+
+			case FMOD_TAGTYPE_SHOUTCAST:
+				return "Shoutcast tag";
+				break;
+
+			case FMOD_TAGTYPE_ICECAST:
+				return "Icecast tag";
+				break;
+
+			case FMOD_TAGTYPE_ASF:
+				return "ASF tag";
+				break;
+
+			case FMOD_TAGTYPE_MIDI:
+				return "MIDI tag";
+				break;
+
+			case FMOD_TAGTYPE_PLAYLIST:
+				return "Playlist tag";
+				break;
+
+			case FMOD_TAGTYPE_FMOD:
+				return "FMOD tag";
+				break;
+
+			case FMOD_TAGTYPE_USER:
+				return "User tag";
+				break;
+
+			case FMOD_TAGTYPE_MAX:
+				return "Max Number of Tag Types";
+				break;
+
+			default:
+				return "Unknown Tag Type";
+			}
+		}
+
+		else
+		{
+			errorMessage = "Tag index out of bounds.";
+			return errorMessage;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Sound index out of bounds.";
+		return errorMessage;
+	}
+}
+
+// Get a tag's data type from a given index
+GMexport const char* FMODGMS_Snd_Get_TagDataTypeFromIndex(double soundIndex, double tagIndex)
+{
+	int si = (int)soundIndex;
+	int sndListSize = soundList.size();
+
+	if (sndListSize > si)
+	{
+		int numTags;
+		int ti = (int)tagIndex;
+
+		soundList[si]->getNumTags(&numTags, 0);
+
+		if (numTags > ti)
+		{
+			FMOD_TAG tag;
+			soundList[si]->getTag(0, ti, &tag);
+
+			switch (tag.datatype)
+			{
+				case FMOD_TAGDATATYPE_BINARY:
+					return "Binary";
+					break;
+
+				case FMOD_TAGDATATYPE_INT:
+					return "Int";
+					break;
+
+				case FMOD_TAGDATATYPE_FLOAT:
+					return "Float";
+					break;
+
+				case FMOD_TAGDATATYPE_STRING:
+					return "String";
+					break;
+
+				case FMOD_TAGDATATYPE_STRING_UTF16:
+					return "String UTF-16";
+					break;
+
+				case FMOD_TAGDATATYPE_STRING_UTF16BE:
+					return "String UTF-16BE";
+					break;
+
+				case FMOD_TAGDATATYPE_STRING_UTF8:
+					return "String UTF-8";
+					break;
+
+				case FMOD_TAGDATATYPE_CDTOC:
+					return "CD Table of Contents";
+					break;
+
+				case FMOD_TAGDATATYPE_MAX:
+					return "Max Number of Data Types";
+					break;
+
+				default:
+					return "Unknown Data Type";
+			}
+		}
+
+		else
+		{
+			errorMessage = "Tag index out of bounds.";
+			return errorMessage;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Sound index out of bounds.";
+		return errorMessage;
+	}
+}
+
+// Get a tag's numerical value (int, float) from a given index
+GMexport double FMODGMS_Snd_Get_TagRealFromIndex(double soundIndex, double tagIndex)
+{
+	int si = (int)soundIndex;
+	int sndListSize = soundList.size();
+
+	if (sndListSize > si)
+	{
+		int numTags;
+		int ti = (int)tagIndex;
+
+		soundList[si]->getNumTags(&numTags, 0);
+
+		if (numTags > ti)
+		{
+			FMOD_TAG tag;
+			soundList[si]->getTag(0, ti, &tag);
+
+			if (tag.datatype == FMOD_TAGDATATYPE_INT)
+			{
+				int *i = (int*)tag.data;
+				double rt = (double)*i;
+				return rt;
+			}
+
+			else if (tag.datatype == FMOD_TAGDATATYPE_FLOAT)
+			{
+				float *f = (float*)tag.data;
+				return (double)*f;
+			}
+
+			else
+			{
+				errorMessage = "Tag is not a numerical value.";
+				return GMS_error;
+			}
+		}
+
+		else
+		{
+			errorMessage = "Tag index out of bounds.";
+			return GMS_error;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Sound index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Get a tag's string value from a given index
+GMexport const char* FMODGMS_Snd_Get_TagStringFromIndex(double soundIndex, double tagIndex)
+{
+	int si = (int)soundIndex;
+	int sndListSize = soundList.size();
+
+	if (sndListSize > si)
+	{
+		int numTags;
+		int ti = (int)tagIndex;
+
+		soundList[si]->getNumTags(&numTags, 0);
+
+		if (numTags > ti)
+		{
+			FMOD_TAG tag;
+			soundList[si]->getTag(0, ti, &tag);
+
+			if (tag.datatype >= FMOD_TAGDATATYPE_STRING && tag.datatype < FMOD_TAGDATATYPE_CDTOC)
+				return (const char*)tag.data;
+
+			else
+				errorMessage = "Tag is not a string.";
+			return errorMessage;
+		}
+
+		else
+		{
+			errorMessage = "Tag index out of bounds.";
+			return errorMessage;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Sound index out of bounds.";
+		return errorMessage;
+	}
+}
+
+// Get a tag's type from a given name
+GMexport const char* FMODGMS_Snd_Get_TagTypeFromName(double soundIndex, char* tagName)
+{
+	int si = (int)soundIndex;
+	int sndListSize = soundList.size();
+
+	if (sndListSize > si)
+	{
+		int numTags;
+		FMOD_TAG tag;
+		bool tagFound = false;
+
+		soundList[si]->getNumTags(&numTags, 0);
+
+		// iterate through tags and find the one that matches tagName
+		for (int i = 0; i < numTags; i++)
+		{
+			soundList[si]->getTag(0, i, &tag);
+
+			if (strcmp(tag.name, tagName) == 0)
+			{
+				tagFound = true;
+				break;
+			}
+		}
+
+		if (tagFound)
+		{
+			switch (tag.type)
+			{
+				case FMOD_TAGTYPE_ID3V1:
+					return "ID3v1 tag";
+					break;
+
+				case FMOD_TAGTYPE_ID3V2:
+					return "ID3v2 tag";
+					break;
+
+				case FMOD_TAGTYPE_VORBISCOMMENT:
+					return "Vorbis comment";
+					break;
+
+				case FMOD_TAGTYPE_SHOUTCAST:
+					return "Shoutcast tag";
+					break;
+
+				case FMOD_TAGTYPE_ICECAST:
+					return "Icecast tag";
+					break;
+
+				case FMOD_TAGTYPE_ASF:
+					return "ASF tag";
+					break;
+
+				case FMOD_TAGTYPE_MIDI:
+					return "MIDI tag";
+					break;
+
+				case FMOD_TAGTYPE_PLAYLIST:
+					return "Playlist tag";
+					break;
+
+				case FMOD_TAGTYPE_FMOD:
+					return "FMOD tag";
+					break;
+
+				case FMOD_TAGTYPE_USER:
+					return "User tag";
+					break;
+
+				case FMOD_TAGTYPE_MAX:
+					return "Max Number of Tag Types";
+					break;
+
+				default:
+					return "Unknown Tag Type";
+			}
+		}
+
+		else
+		{
+			errorMessage = "Tag not found.";
+			return errorMessage;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Sound index out of bounds.";
+		return errorMessage;
+	}
+}
+
+// Get a tag's data type from a given name
+GMexport const char* FMODGMS_Snd_Get_TagDataTypeFromName(double soundIndex, char* tagName)
+{
+	int si = (int)soundIndex;
+	int sndListSize = soundList.size();
+
+	if (sndListSize > si)
+	{
+		int numTags;
+		FMOD_TAG tag;
+		bool tagFound = false;
+
+		soundList[si]->getNumTags(&numTags, 0);
+
+		// iterate through tags and find the one that matches tagName
+		for (int i = 0; i < numTags; i++)
+		{
+			soundList[si]->getTag(0, i, &tag);
+
+			if (strcmp(tag.name, tagName) == 0)
+			{
+				tagFound = true;
+				break;
+			}
+		}
+
+		if (tagFound)
+		{
+			switch (tag.datatype)
+			{
+			case FMOD_TAGDATATYPE_BINARY:
+				return "Binary";
+				break;
+
+			case FMOD_TAGDATATYPE_INT:
+				return "Int";
+				break;
+
+			case FMOD_TAGDATATYPE_FLOAT:
+				return "Float";
+				break;
+
+			case FMOD_TAGDATATYPE_STRING:
+				return "String";
+				break;
+
+			case FMOD_TAGDATATYPE_STRING_UTF16:
+				return "String UTF-16";
+				break;
+
+			case FMOD_TAGDATATYPE_STRING_UTF16BE:
+				return "String UTF-16BE";
+				break;
+
+			case FMOD_TAGDATATYPE_STRING_UTF8:
+				return "String UTF-8";
+				break;
+
+			case FMOD_TAGDATATYPE_CDTOC:
+				return "CD Table of Contents";
+				break;
+
+			case FMOD_TAGDATATYPE_MAX:
+				return "Max Number of Data Types";
+				break;
+
+			default:
+				return "Unknown Data Type";
+			}
+		}
+
+		else
+		{
+			errorMessage = "Tag not found.";
+			return errorMessage;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Sound index out of bounds.";
+		return errorMessage;
+	}
+}
+
+// Get a tag's numerical value (int, float) from a given name
+GMexport double FMODGMS_Snd_Get_TagRealFromName(double soundIndex, char* tagName)
+{
+	int si = (int)soundIndex;
+	int sndListSize = soundList.size();
+
+	if (sndListSize > si)
+	{
+		int numTags;
+		FMOD_TAG tag;
+		bool tagFound = false;
+
+		soundList[si]->getNumTags(&numTags, 0);
+
+		// iterate through tags and find the one that matches tagName
+		for (int i = 0; i < numTags; i++)
+		{
+			soundList[si]->getTag(0, i, &tag);
+
+			if (strcmp(tag.name, tagName) == 0)
+			{
+				tagFound = true;
+				break;
+			}
+		}
+
+		if (tagFound)
+		{
+			if (tag.datatype == FMOD_TAGDATATYPE_INT)
+			{
+				int *i = (int*)tag.data;
+				double rt = (double)*i;
+				return rt;
+			}
+
+			else if (tag.datatype == FMOD_TAGDATATYPE_FLOAT)
+			{
+				float *f = (float*)tag.data;
+				return (double)*f;
+			}
+
+			else
+			{
+				errorMessage = "Tag is not a numerical value.";
+				return GMS_error;
+			}
+		}
+
+		else
+		{
+			errorMessage = "Tag not found.";
+			return GMS_error;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Sound index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Get a tag's string value from a given name
+GMexport const char* FMODGMS_Snd_Get_TagStringFromName(double soundIndex, char* tagName)
+{
+	int si = (int)soundIndex;
+	int sndListSize = soundList.size();
+
+	if (sndListSize > si)
+	{
+		int numTags;
+		FMOD_TAG tag;
+		bool tagFound = false;
+
+		soundList[si]->getNumTags(&numTags, 0);
+
+		// iterate through tags and find the one that matches tagName
+		for (int i = 0; i < numTags; i++)
+		{
+			soundList[si]->getTag(0, i, &tag);
+
+			if (strcmp(tag.name, tagName) == 0)
+			{
+				tagFound = true;
+				break;
+			}
+		}
+
+		if (tagFound)
+		{
+			if (tag.datatype >= FMOD_TAGDATATYPE_STRING && tag.datatype < FMOD_TAGDATATYPE_CDTOC)
+				return (const char*)tag.data;
+
+			else
+				errorMessage = "Tag is not a string.";
+			return errorMessage;
+		}
+
+		else
+		{
+			errorMessage = "Tag not found.";
+			return errorMessage;
+		}
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Sound index out of bounds.";
+		return errorMessage;
+	}
+}
+
 // Returns the type of sound
 GMexport const char* FMODGMS_Snd_Get_Type(double index)
 {
@@ -1162,7 +1712,11 @@ GMexport const char* FMODGMS_Snd_Get_Type(double index)
 			break;
 
 		case 24:
-			return "Max";
+			return "Max Number of Formats";
+			break;
+
+		default:
+			return "Unknown Format";
 		}
 	}
 

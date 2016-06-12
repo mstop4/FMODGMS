@@ -1,5 +1,14 @@
-// FMODGMS v.0.5.1
-// by M.S.T.O.P.
+/*--------------------------------------------------------
+//  fmodgms.hpp
+//
+//  FMODGMS v.0.6.0
+//  By: M.S.T.O.P.
+//
+//  Wrapper library that allows communication between
+//  the FMOD Studio low level API and GameMaker: Studio.
+//
+//  FMOD Studio version: 1.08.04
+----------------------------------------------------------*/
 
 #ifndef FMODGMS_HPP
 #define FMODGMS_HPP
@@ -35,7 +44,18 @@ GMexport double FMODGMS_Snd_Set_LoopMode(double index, double modem, double time
 GMexport double FMODGMS_Snd_Set_LoopPoints(double index, double start, double end);
 GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double which);
 GMexport double FMODGMS_Snd_Get_NumTags(double index);
+
 GMexport const char* FMODGMS_Snd_Get_TagName(double soundIndex, double tagIndex);
+GMexport const char* FMODGMS_Snd_Get_TagTypeFromIndex(double soundIndex, double tagIndex);
+GMexport const char* FMODGMS_Snd_Get_TagDataTypeFromIndex(double soundIndex, double tagIndex);
+GMexport double FMODGMS_Snd_Get_TagRealFromIndex(double soundIndex, double tagIndex);
+GMexport const char* FMODGMS_Snd_Get_TagStringFromIndex(double soundIndex, double tagIndex);
+
+GMexport const char* FMODGMS_Snd_Get_TagTypeFromName(double soundIndex, char* tagName);
+GMexport const char* FMODGMS_Snd_Get_TagDataTypeFromName(double soundIndex, char* tagName);
+GMexport double FMODGMS_Snd_Get_TagRealFromName(double soundIndex, char* tagName);
+GMexport const char* FMODGMS_Snd_Get_TagStringFromName(double soundIndex, char* tagName);
+
 GMexport const char* FMODGMS_Snd_Get_Type(double index);
 
 // Channel Functions
