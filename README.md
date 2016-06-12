@@ -15,8 +15,8 @@ What's inside
 -------------
 
 - __FMODGMS.gmez__ - FMODGMS GameMaker: Studio extension
-- __FMODGMS_Test_win.zip__ - FMODGMS test program for Windows
-- __FMODGMS_test_linux.tar.gz__ - FMODGMS test program for Linux
+- __FMODGMS_Test_win.zip__ - FMODGMS demo program for Windows
+- __FMODGMS_test_linux.tar.gz__ - FMODGMS demo program for Linux
 - __src__ - library and test program source code
  - _FMODGMS Test.gmx_ - GameMaker: Studio project for test program
  - _linux_ - FMODGMS source for Linux
