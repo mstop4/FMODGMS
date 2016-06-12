@@ -8,6 +8,7 @@ Features
 - Add custom loop points to sounds. This allows, for example, a music track to have an intro section that can seamlessly transition into an infinitely looping main section without having to break them up into two separate files.
 - Dynamically change to volume, playback frequency and relative pitch of a sound.
 - Analyze an audio stream using Fast Fourier Transform (FFT) and obtain its spectrum data.
+- Extract tag information from audio files (e.g. ID3 tags from MP3s).
 
 
 What's inside
