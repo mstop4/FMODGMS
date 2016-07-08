@@ -36,6 +36,13 @@
     // Number of bins in Spectrum data
     //show_message(FMODGMS_FFT_Set_WindowSize(128));
     numBins = FMODGMS_FFT_Get_NumBins();
+    peakDamping = 0;
+    
+    // init spectrum visualizer bins
+    for (var i=0; i&lt;numBins; i++)
+    {
+        avgBin[i] = 0;
+    } 
     
     // Load sounds
     sound[0] = FMODGMS_Snd_LoadSound(working_directory + "cronolog.s3m");
@@ -71,10 +78,6 @@
     channel_pitch = 1;
     
     window_set_caption("The colours!");
-    
-    //show_message(FMODGMS_Snd_Get_TagStringFromName(sound[4],"TITLE"));
-    //show_message(FMODGMS_Snd_Get_TagTypeFromIndex(sound[4],1));
-    //show_message(FMODGMS_Snd_Get_TagDataTypeFromIndex(sound[4],2));
 }
 </string>
           </argument>
@@ -102,6 +105,13 @@
 {
     FMODGMS_Sys_Update();
     hue = (hue + 1) mod 256;
+    
+    // update spectrum visualizer values
+    for (var i=0; i&lt;numBins; i++)
+    {
+        var bin = clamp(FMODGMS_FFT_Get_BinValue(i),0,1);
+        avgBin[i] = avgBin[i] * peakDamping + bin * (1-peakDamping);
+    }  
 }
 </string>
           </argument>
@@ -363,42 +373,34 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     } 
     
     // dominant Frequency
-    draw_text(416,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");    
+    draw_text(432,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");    
         
     // spectrum
-    
-    draw_rectangle_colour(416,144,416+numBins*5,244,c_black,c_black,$202020,$202020,false);
+    draw_rectangle_colour(432,144,432+numBins*5,244,c_black,c_black,$202020,$202020,false);
     
     for (var i=0; i&lt;numBins; i++)
     {
-        var bin = FMODGMS_FFT_Get_BinValue(i);
         var col;
         
-        if (bin &lt;= 0.5)
-            col = merge_colour(c_lime,c_yellow,bin*2);
+        if (avgBin[i] &lt;= 0.5)
+            col = merge_colour(c_lime,c_yellow,avgBin[i]*2);
         else
-            col = merge_colour(c_yellow,c_red,(bin-0.5)*2);
+            col = merge_colour(c_yellow,c_red,(avgBin[i]-0.5)*2);
     
         draw_set_colour(col);
-        draw_rectangle(416+i*5+1,244-bin*100,416+i*5+4,244,false);
+        draw_rectangle(432+i*5+1,244-avgBin[i]*100,432+i*5+4,244,false);
     }       
       
-    draw_set_color(make_color_hsv((hue+64 mod 256),128,255));
-    draw_text(16,128,"Position: " + string(FMODGMS_Chan_Get_Position(0)));
-    draw_set_color(make_color_hsv((hue+80 mod 256),128,255));
-    draw_text(16,144,"Loop Points: " + string(FMODGMS_Snd_Get_LoopPoints(sound[sound_index],0)) + " - " + string(FMODGMS_Snd_Get_LoopPoints(sound[sound_index],1)));
-    draw_set_color(make_color_hsv((hue+96 mod 256),128,255));
-    draw_text(16,160,"Order: " + string(FMODGMS_Chan_Get_ModOrder(0))); // only works with module files
-    draw_set_color(make_color_hsv((hue+112 mod 256),128,255));
-    draw_text(16,176,"Pattern: " + string(FMODGMS_Chan_Get_ModPattern(0))); // only works with module files
-    draw_set_color(make_color_hsv((hue+128 mod 256),128,255));
-    draw_text(16,192,"Row: " + string(FMODGMS_Chan_Get_ModRow(0))); // only works with module files
-    draw_set_color(make_color_hsv((hue+144 mod 256),128,255));
-    draw_text(16,208,"Volume: " + string(channel_volume));  
-    draw_set_color(make_color_hsv((hue+160 mod 256),128,255));
-    draw_text(16,224,"Playback Freq.: " + string(channel_frequency * channel_pitch) + " Hz# (" + string(channel_frequency) + " x " + string(channel_pitch) + ")");  
-    //draw_set_color(make_color_hsv((hue+176 mod 256),128,255));
-    //draw_text(16,240,"Pitch: " + string(FMODGMS_Chan_Get_Pitch(0)));  
+    // draw playback info based on filetype
+    
+    // modules (MOD, XM, S3M, IT)
+    if (sound_index &lt; 4)
+        draw_GUI_modules();
+    else if (sound_index == 4)
+        draw_GUI_mp3();
+    //the rest
+    else
+        draw_GUI_ogg();
     
     draw_set_color(c_white);
     draw_text(16,304,"Space -- Play/Stop#P - Pause/Unpause#Q/A -- Change volume#W/S -- Change frequency#E/D -- Change pitch");

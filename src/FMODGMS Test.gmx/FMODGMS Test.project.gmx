@@ -133,6 +133,9 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\switch_track.gml</script>
+    <script>scripts\draw_GUI_modules.gml</script>
+    <script>scripts\draw_GUI_mp3.gml</script>
+    <script>scripts\draw_GUI_ogg.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_normal</font>
