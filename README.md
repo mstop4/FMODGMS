@@ -10,7 +10,6 @@ Features
 - Analyze an audio stream using Fast Fourier Transform (FFT) and obtain its spectrum data.
 - Extract tag information from audio files (e.g. ID3 tags from MP3s).
 
-
 What's inside
 -------------
 
@@ -21,5 +20,11 @@ What's inside
  - _FMODGMS Test.gmx_ - GameMaker: Studio project for test program
  - _linux_ - FMODGMS source for Linux
  - _vc/FMODGMS_ - FMODGMS source for VS 2013
+
+Possible Features in the Future
+--------
+
+- More options for FFT and spectrum data functionality.
+- MAc support.
 
 For a list of changes and development history, [click here](../../wiki/Changelog).
