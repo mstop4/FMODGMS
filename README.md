@@ -25,6 +25,6 @@ Possible Features in the Future
 --------
 
 - More options for FFT and spectrum data functionality.
-- MAc support.
+- Mac support.
 
 For a list of changes and development history, [click here](../../wiki/Changelog).
