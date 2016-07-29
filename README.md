@@ -24,7 +24,9 @@ What's inside
 Possible Features in the Future
 --------
 
+- Ability to read UTF-16 ID3v2 tags.
 - More options for FFT and spectrum data functionality.
+- Android support.
 - Mac support.
 
 For a list of changes and development history, [click here](../../wiki/Changelog).
