@@ -1,6 +1,9 @@
 # FMODGMS
 FMOD Studio low-level API wrapper for GameMaker:Studio's Windows and Linux modules
 
+**FMOD Studio API version:** ***1.08.07***  
+*NOTE: FMODGMS is currently not compatible with FMOD Studio 1.08.08.*
+
 Features
 --------
 
@@ -8,7 +11,7 @@ Features
 - Add custom loop points to sounds. This allows, for example, a music track to have an intro section that can seamlessly transition into an infinitely looping main section without having to break them up into two separate files.
 - Dynamically change to volume, playback frequency and relative pitch of a sound.
 - Analyze an audio stream using Fast Fourier Transform (FFT) and obtain its spectrum data.
-- Extract tag information from audio files (e.g. ID3 tags from MP3s).
+- Extract tag information from audio files (e.g. ID3 tags from MP3s and Vorbis tags from OGGs).
 
 What's inside
 -------------
@@ -24,7 +27,6 @@ What's inside
 Possible Features in the Future
 --------
 
-- Ability to read UTF-16 ID3v2 tags.
 - More options for FFT and spectrum data functionality.
 - Android support.
 - Mac support.
