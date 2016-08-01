@@ -136,10 +136,13 @@
     <script>scripts\draw_GUI_modules.gml</script>
     <script>scripts\draw_GUI_mp3.gml</script>
     <script>scripts\draw_GUI_ogg.gml</script>
+    <script>scripts\draw_GUI_generic.gml</script>
+    <script>scripts\shift_hue.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_normal</font>
     <font>fonts\fnt_small</font>
+    <font>fonts\fnt_unicode</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_player</object>

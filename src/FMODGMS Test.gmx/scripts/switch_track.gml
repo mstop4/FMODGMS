@@ -1,4 +1,5 @@
 ///switch_track(index)
+// Switch audio track
 {
     if (sound_index <> argument0 && is_playing)
     {

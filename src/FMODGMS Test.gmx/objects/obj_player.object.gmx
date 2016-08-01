@@ -73,6 +73,7 @@
     is_playing = false;
     is_paused = false;
     hue = irandom(255);
+    hue_shift = 0;
     channel_volume = 1;
     channel_frequency = 1;
     channel_pitch = 1;
@@ -104,6 +105,7 @@
             <string>// The colours!
 {
     FMODGMS_Sys_Update();
+    hue_shift = 0;
     hue = (hue + 1) mod 256;
     
     // update spectrum visualizer values
@@ -336,29 +338,32 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
             <kind>1</kind>
             <string>/// Draw GUI
 {
+    //draw_set_font(fnt_unicode);
+    //draw_text(0,0,"鳃");
+
     draw_set_font(fnt_normal);
     draw_set_halign(fa_left);
 
     // CPU Usage
-    draw_set_color(make_color_hsv((hue+16 mod 256),128,255));
+    shift_hue(0);
     draw_text(16,32,"CPU Usage: ");
     
     draw_set_halign(fa_center);
-    draw_set_color(make_color_hsv((hue mod 256),128,255));
+    shift_hue(16);
     draw_text(210,16,string(FMODGMS_Sys_Get_CPUUsage()) + "%");
     
     draw_set_halign(fa_left);
     draw_healthbar(160,32,260,48,FMODGMS_Sys_Get_CPUUsage(),make_color_rgb(64,64,64),make_color_hsv((hue+42 mod 256),0,255),make_color_hsv((hue+42 mod 256),255,255),0,true,true);
     
     // FPS
-    draw_set_color(make_color_hsv((hue+16 mod 256),128,255));
+    shift_hue(16);
     draw_text(320,32,"FPS: " + string(fps) + "/" + string(room_speed));
     
     // Sound info
-    draw_set_color(make_color_hsv((hue+32 mod 256),128,255));
+    shift_hue(16);
     draw_text(16,64,"Audio Type: " + string(FMODGMS_Snd_Get_Type(sound[sound_index])));
     
-    draw_set_color(make_color_hsv((hue+48 mod 256),128,255));
+    shift_hue(16);
     
     //Play state
     if (!is_playing)
@@ -373,10 +378,10 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     } 
     
     // dominant Frequency
-    draw_text(432,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");    
+    draw_text(496,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");    
         
     // spectrum
-    draw_rectangle_colour(432,144,432+numBins*5,244,c_black,c_black,$202020,$202020,false);
+    draw_rectangle_colour(496,144,496+numBins*5,244,c_black,c_black,$202020,$202020,false);
     
     for (var i=0; i&lt;numBins; i++)
     {
@@ -388,7 +393,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
             col = merge_colour(c_yellow,c_red,(avgBin[i]-0.5)*2);
     
         draw_set_colour(col);
-        draw_rectangle(432+i*5+1,244-avgBin[i]*100,432+i*5+4,244,false);
+        draw_rectangle(496+i*5+1,244-avgBin[i]*100,496+i*5+4,244,false);
     }       
       
     // draw playback info based on filetype
@@ -396,11 +401,15 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     // modules (MOD, XM, S3M, IT)
     if (sound_index &lt; 4)
         draw_GUI_modules();
+    // MP3
     else if (sound_index == 4)
         draw_GUI_mp3();
+    //OGG
+    else if (sound_index == 5)
+        draw_GUI_ogg();
     //the rest
     else
-        draw_GUI_ogg();
+        draw_GUI_generic();
     
     draw_set_color(c_white);
     draw_text(16,304,"Space -- Play/Stop#P - Pause/Unpause#Q/A -- Change volume#W/S -- Change frequency#E/D -- Change pitch");
@@ -411,12 +420,12 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     else
         draw_text(416,304,"1-7 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit");
     
-    draw_set_color(make_color_hsv((hue+176 mod 256),128,255));
+    shift_hue(16);
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
-    draw_set_color(make_color_hsv((hue+192 mod 256),128,255));
-    draw_text(16,432,"FMODGMS version: 0.6.0");
-    draw_set_color(make_color_hsv((hue+208 mod 256),128,255));
-    draw_text(16,448,"FMOD version: Studio 1.08.04");
+    shift_hue(16);
+    draw_text(16,432,"FMODGMS version: 0.6.1");
+    shift_hue(16);
+    draw_text(16,448,"FMOD version: Studio 1.08.07");
     
 }
 </string>

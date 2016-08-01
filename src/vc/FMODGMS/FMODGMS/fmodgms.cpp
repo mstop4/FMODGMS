@@ -1,23 +1,26 @@
 /*--------------------------------------------------------
 //  fmodgms.cpp
 //
-//  FMODGMS v.0.6.0
+//  FMODGMS v.0.6.1
 //  By: M.S.T.O.P.
 //
 //  Wrapper library that allows communication between
 //  the FMOD Studio low level API and GameMaker: Studio.
 //
-//  FMOD Studio version: 1.08.04
+//  FMOD Studio version: 1.08.07
 ----------------------------------------------------------*/
 
 #ifndef FMODGMS_CPP
 #define FMODGMS_CPP
 
 //#include <iostream>
-//#include <string>
 #include <vector>
+#include <string>
+#include <algorithm>
+#include <iterator>
+//#include <locale>
+//#include <codecvt>
 #include <stdio.h>
-#include <string.h>
 #include "fmod.hpp"
 #include "fmod_errors.h"
 #include "fmodgms.hpp"
@@ -31,6 +34,7 @@ std::vector <FMOD::Sound*> soundList;
 FMOD::ChannelGroup *masterGroup;
 FMOD_RESULT result;
 const char* errorMessage;
+std::string tagString;
 
 // Spectrum DSP Stuff
 FMOD::DSP *fftdsp;
@@ -40,6 +44,9 @@ int windowSize = 128;
 int nyquist = windowSize / 2;
 std::vector <float> binValues(nyquist);
 FMOD_DSP_PARAMETER_FFT *fftParams;
+
+// Unicode stuff
+//std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> u16Converter;
 
 #pragma endregion
 
@@ -1256,11 +1263,43 @@ GMexport const char* FMODGMS_Snd_Get_TagStringFromIndex(double soundIndex, doubl
 			soundList[si]->getTag(0, ti, &tag);
 
 			if (tag.datatype >= FMOD_TAGDATATYPE_STRING && tag.datatype < FMOD_TAGDATATYPE_CDTOC)
-				return (const char*)tag.data;
+			{
+				// 8-bit string
+				if (tag.datatype == FMOD_TAGDATATYPE_STRING || tag.datatype == FMOD_TAGDATATYPE_STRING_UTF8)
+				{
+					return (const char*)tag.data;
+				}
+
+				// 16-bit string
+				else if (tag.datatype == FMOD_TAGDATATYPE_STRING_UTF16)
+				{
+					std::u16string u16str((char16_t*)tag.data + 1, tag.datalen / 2);
+					u16ToASCII(u16str);
+					return tagString.c_str();
+
+					/*const char16_t* chr16str = u16str.c_str();
+					tagString = u16Converter.to_bytes(chr16str);
+					return tagString.c_str();*/
+				}
+
+				else if (tag.datatype == FMOD_TAGDATATYPE_STRING_UTF16BE)
+				{
+					std::u16string u16str((char16_t*)tag.data, tag.datalen / 2);
+					u16ToASCII(u16str);
+					return tagString.c_str();
+
+					/*const char16_t* chr16str = u16str.c_str();
+					tagString = u16Converter.to_bytes(chr16str);
+					return tagString.c_str();*/
+				}
+			}
+
 
 			else
+			{
 				errorMessage = "Tag is not a string.";
-			return errorMessage;
+				return errorMessage;
+			}
 		}
 
 		else
@@ -1550,11 +1589,47 @@ GMexport const char* FMODGMS_Snd_Get_TagStringFromName(double soundIndex, char* 
 		if (tagFound)
 		{
 			if (tag.datatype >= FMOD_TAGDATATYPE_STRING && tag.datatype < FMOD_TAGDATATYPE_CDTOC)
-				return (const char*)tag.data;
+			{
+				if (tag.datatype >= FMOD_TAGDATATYPE_STRING && tag.datatype < FMOD_TAGDATATYPE_CDTOC)
+				{
+					// 8-bit string
+					if (tag.datatype == FMOD_TAGDATATYPE_STRING || tag.datatype == FMOD_TAGDATATYPE_STRING_UTF8)
+					{
+						return (const char*)tag.data;
+					}
+
+					// 16-bit string
+					else if (tag.datatype == FMOD_TAGDATATYPE_STRING_UTF16)
+					{
+						std::u16string u16str((char16_t*)tag.data + 1, tag.datalen / 2);
+						u16ToASCII(u16str);
+						return tagString.c_str();
+
+						/*const char16_t* chr16str = u16str.c_str();
+						tagString = u16Converter.to_bytes(chr16str);
+						return tagString.c_str();*/
+
+
+					}
+
+					else if (tag.datatype == FMOD_TAGDATATYPE_STRING_UTF16BE)
+					{
+						std::u16string u16str((char16_t*)tag.data, tag.datalen / 2);
+						u16ToASCII(u16str);
+						return tagString.c_str();
+
+						/*const char16_t* chr16str = u16str.c_str();
+						tagString = u16Converter.to_bytes(chr16str);
+						return tagString.c_str();*/
+					}
+				}
+			}
 
 			else
+			{
 				errorMessage = "Tag is not a string.";
-			return errorMessage;
+				return errorMessage;
+			}
 		}
 
 		else
@@ -1755,6 +1830,20 @@ double FMODGMS_Util_ErrorChecker()
 
 	else
 		return GMS_true;
+}
+
+// Helper function: converts UTF-16 characters in a string to ASCII if possible
+void u16ToASCII(std::u16string const &s)
+{
+	std::string out;
+
+	std::transform(begin(s), end(s), back_inserter(out), [](char16_t c)
+	{
+		if (c < 255) return (char)c;
+		else return '?';
+	});
+
+	tagString = out;
 }
 
 #pragma endregion

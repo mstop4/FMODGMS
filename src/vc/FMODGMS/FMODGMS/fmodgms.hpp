@@ -1,13 +1,13 @@
 /*--------------------------------------------------------
 //  fmodgms.hpp
 //
-//  FMODGMS v.0.6.0
+//  FMODGMS v.0.6.1
 //  By: M.S.T.O.P.
 //
 //  Wrapper library that allows communication between
 //  the FMOD Studio low level API and GameMaker: Studio.
 //
-//  FMOD Studio version: 1.08.04
+//  FMOD Studio version: 1.08.07
 ----------------------------------------------------------*/
 
 #ifndef FMODGMS_HPP
@@ -81,5 +81,6 @@ GMexport double FMODGMS_Chan_Get_ModRow(double channel);
 // Utility Functions
 GMexport const char* FMODGMS_Util_GetErrorMessage();
 double FMODGMS_Util_ErrorChecker();
+void u16ToASCII(std::u16string const &s);
 
 #endif // GMS_HPP
