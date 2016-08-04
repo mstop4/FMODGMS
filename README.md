@@ -1,5 +1,5 @@
 # FMODGMS
-FMOD Studio low-level API wrapper for GameMaker:Studio's Windows and Linux modules
+A **GameMaker: Studio extension** that provides **GML bindings to the [FMOD](http://www.fmod.org) Studio low-level API.** Compatible with **Windows** and **Linux** games.
 
 **FMOD Studio API version:** ***[1.08.07](http://www.fmod.org/browse-studio-api/)***  
 *NOTE: FMODGMS is currently not compatible with FMOD Studio 1.08.08.*
