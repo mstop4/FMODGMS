@@ -40,7 +40,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fmodgms.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="fmod_vc.lib">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </Library>
   </ItemGroup>
 </Project>
