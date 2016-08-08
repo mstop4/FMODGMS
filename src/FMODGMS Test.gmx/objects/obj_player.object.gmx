@@ -427,7 +427,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     shift_hue(16);
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
     shift_hue(16);
-    draw_text(16,432,"FMODGMS version: 0.6.1");
+    draw_text(16,432,"FMODGMS version: 0.6.2");
     shift_hue(16);
     draw_text(16,448,"FMOD version: Studio 1.08.07");
     
