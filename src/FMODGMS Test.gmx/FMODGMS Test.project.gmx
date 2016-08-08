@@ -137,7 +137,14 @@
     <script>scripts\draw_GUI_mp3.gml</script>
     <script>scripts\draw_GUI_ogg.gml</script>
     <script>scripts\draw_GUI_generic.gml</script>
+    <script>scripts\draw_seek_bar.gml</script>
     <script>scripts\shift_hue.gml</script>
+    <scripts name="FMODGMS">
+      <script>scripts\FMODGMS_Util_BeatsToSamples.gml</script>
+      <script>scripts\FMODGMS_Util_SecondsToSamples.gml</script>
+      <script>scripts\FMODGMS_Util_SamplesToSeconds.gml</script>
+      <script>scripts\FMODGMS_Util_SamplesToBeats.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_normal</font>

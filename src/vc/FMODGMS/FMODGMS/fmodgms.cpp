@@ -488,6 +488,27 @@ GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double whichOne)
 	}
 }
 
+// Gets the length of an audio file in PCM samples
+GMexport double FMODGMS_Snd_Get_Length(double index)
+{
+	int i = (int)index;
+	int sndListSize = soundList.size();
+
+	if (sndListSize > i && i >= 0)
+	{
+		unsigned int len;
+		soundList[i]->getLength(&len, FMOD_TIMEUNIT_PCM);
+		return (double)len;
+	}
+
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
 // Gets the channel volume of a module file
 GMexport double FMODGMS_Snd_Get_ModChannelVolume(double index, double modChannel)
 {
@@ -1968,32 +1989,6 @@ GMexport const char* FMODGMS_Snd_Get_Type(double index)
 GMexport const char* FMODGMS_Util_GetErrorMessage()
 {
 	return errorMessage;
-}
-
-// Converts time measured in seconds to samples. Can be used in conjuction with FMODGMS_Snd_Set_LoopPoints
-// for precise loop point control.
-GMexport double FMODGMS_Util_SecondsToSamples(double seconds, double samplingRate)
-{
-	return seconds * samplingRate;
-}
-
-// Converts time measured in beats to samples, assuming a constant BPM. Can be used in conjuction with FMODGMS_Snd_Set_LoopPoints
-// for precise loop point control.
-GMexport double FMODGMS_Util_BeatsToSamples(double beats, double BPM, double samplingRate)
-{
-	return samplingRate * beats / BPM * 60;
-}
-
-// Converts time measured in samples to seconds.
-GMexport double FMODGMS_Util_SamplesToSeconds(double samples, double samplingRate)
-{
-	return samples / samplingRate;
-}
-
-// Converts time measured in samples to beats, assuming a constant BPM.
-GMexport double FMODGMS_Util_SamplesToBeats(double samples, double BPM, double samplingRate)
-{
-	return samples / samplingRate * BPM / 60;
 }
 
 // Helper function: converts FMOD Results to error message strings and returns GMS_true (1.0) if 
