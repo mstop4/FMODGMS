@@ -43,10 +43,12 @@ GMexport double FMODGMS_Snd_PlaySound(double index, double channel);
 GMexport double FMODGMS_Snd_Set_LoopMode(double index, double modem, double times);
 GMexport double FMODGMS_Snd_Set_LoopPoints(double index, double startTimeInSamples, double endTimeInSamples);
 GMexport double FMODGMS_Snd_Set_ModChannelVolume(double index, double modChannel, double vol);
-GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double which);
+GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double whichOne);
+GMexport double FMODGMS_Snd_Get_Length(double index);
 GMexport double FMODGMS_Snd_Get_ModChannelVolume(double index, double modChannel);
 GMexport double FMODGMS_Snd_Get_ModNumChannels(double index);
 
+// Tag Functions
 GMexport double FMODGMS_Snd_Get_NumTags(double index);
 GMexport const char* FMODGMS_Snd_Get_TagName(double soundIndex, double tagIndex);
 GMexport const char* FMODGMS_Snd_Get_TagTypeFromIndex(double soundIndex, double tagIndex);
@@ -83,10 +85,6 @@ GMexport double FMODGMS_Chan_Get_ModRow(double channel);
 
 // Utility Functions
 GMexport const char* FMODGMS_Util_GetErrorMessage();
-GMexport double FMODGMS_Util_SecondsToSamples(double seconds, double samplingRate);
-GMexport double FMODGMS_Util_BeatsToSamples(double beats, double BPM, double samplingRate);
-GMexport double FMODGMS_Util_SamplesToSeconds(double samples, double samplingRate);
-GMexport double FMODGMS_Util_SamplesToBeats(double samples, double BPM, double samplingRate);
 
 // Internal helper functions
 double FMODGMS_Util_ErrorChecker();
