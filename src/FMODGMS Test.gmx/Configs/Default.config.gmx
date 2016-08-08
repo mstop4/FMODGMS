@@ -276,7 +276,7 @@
     <option_in_app_purchase_server_url></option_in_app_purchase_server_url>
     <option_information>FMODGMS Test Program
 
-FMODGMS version: 0.6.2
+FMODGMS version: 0.6.1
 FMOD version: Studio 1.08.07</option_information>
     <option_interpolate>False</option_interpolate>
     <option_ios_adcolony_enable_V4VC>0</option_ios_adcolony_enable_V4VC>
@@ -351,7 +351,7 @@ FMOD version: Studio 1.08.07</option_information>
     <option_linux_steam_app_id>0</option_linux_steam_app_id>
     <option_linux_sync>0</option_linux_sync>
     <option_linux_texture_page>2048</option_linux_texture_page>
-    <option_linux_version_build>1</option_linux_version_build>
+    <option_linux_version_build>0</option_linux_version_build>
     <option_linux_version_major>1</option_linux_version_major>
     <option_linux_version_minor>4</option_linux_version_minor>
     <option_loadalpha>255</option_loadalpha>
@@ -468,7 +468,7 @@ FMOD version: Studio 1.08.07</option_information>
     <option_tizen_usesplash>False</option_tizen_usesplash>
     <option_use_new_audio>True</option_use_new_audio>
     <option_variableerrors>False</option_variableerrors>
-    <option_version>1.4.1</option_version>
+    <option_version>1.4.0</option_version>
     <option_version_build>0</option_version_build>
     <option_version_company>M.S.T.O.P.</option_version_company>
     <option_version_copyright>(c) 2016 M.S.T.O.P.</option_version_copyright>
@@ -476,7 +476,7 @@ FMOD version: Studio 1.08.07</option_information>
     <option_version_major>1</option_version_major>
     <option_version_minor>4</option_version_minor>
     <option_version_product>FMODGMS Test</option_version_product>
-    <option_version_release>1</option_version_release>
+    <option_version_release>0</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
     <option_win8_advertising_enable>0</option_win8_advertising_enable>
     <option_win8_advertising_key></option_win8_advertising_key>
@@ -557,7 +557,7 @@ FMOD version: Studio 1.08.07</option_information>
     <option_windows_major_version>1</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
     <option_windows_product_info>FMODGMS Test</option_windows_product_info>
-    <option_windows_release_version>1</option_windows_release_version>
+    <option_windows_release_version>0</option_windows_release_version>
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>
     <option_windows_save_location>0</option_windows_save_location>

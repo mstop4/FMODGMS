@@ -29,8 +29,6 @@
 {
     randomize();
 
-    FMODGMS_Util_SecondsToSamples(2,44100);
-    
     // Create the system
     FMODGMS_Sys_Create();
     FMODGMS_Sys_Initialize(32);
@@ -350,14 +348,12 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     shift_hue(0);
     draw_text(16,32,"CPU Usage: ");
     
-    var cpu_usage = FMODGMS_Sys_Get_CPUUsage();
-    
     draw_set_halign(fa_center);
     shift_hue(16);
-    draw_text(210,16,string(cpu_usage) + "%");
+    draw_text(210,16,string(FMODGMS_Sys_Get_CPUUsage()) + "%");
     
     draw_set_halign(fa_left);
-    draw_healthbar(160,32,260,48,cpu_usage,make_color_rgb(64,64,64),make_color_hsv((hue+42 mod 256),0,255),make_color_hsv((hue+42 mod 256),255,255),0,true,true);
+    draw_healthbar(160,32,260,48,FMODGMS_Sys_Get_CPUUsage(),make_color_rgb(64,64,64),make_color_hsv((hue+42 mod 256),0,255),make_color_hsv((hue+42 mod 256),255,255),0,true,true);
     
     // FPS
     shift_hue(16);
