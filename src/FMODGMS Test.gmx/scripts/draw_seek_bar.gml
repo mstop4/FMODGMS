@@ -3,7 +3,7 @@
     // Draw "Seek" bar
     shift_hue(16);
     draw_text(16,144,"Position: ");
-    draw_rectangle_colour(136,144,436,160,c_gray,c_gray,c_black,c_black,false);
+    draw_rectangle_colour(136,128,436,144,c_gray,c_gray,c_black,c_black,false);
     
     var len = FMODGMS_Snd_Get_Length(sound[argument[0]]);
     
