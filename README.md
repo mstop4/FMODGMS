@@ -1,5 +1,5 @@
 # FMODGMS
-A ***GameMaker: Studio* extension** that provides **GML bindings to the [FMOD](http://www.fmod.org) Studio low-level API.** Compatible with **Windows** and **Linux** games.
+A ***GameMaker: Studio* extension** that provides **GML bindings to the [FMOD](http://www.fmod.org) Studio low-level API.** Compatible with **Windows**, **Mac** (coming soon), and **Linux** games.
 
 **FMOD Studio API version:** ***[1.08.07](http://www.fmod.org/browse-studio-api/)***  
 *NOTE: FMODGMS is currently not compatible with FMOD Studio 1.08.09.*
@@ -27,8 +27,8 @@ What's inside
 Possible Features in the Future
 --------
 
+- Mac support.
 - More options for FFT and spectrum data functionality.
 - Android support.
-- Mac support.
 
 For a list of changes and development history, [click here](../../wiki/Changelog).
