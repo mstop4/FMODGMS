@@ -12,4 +12,5 @@
     }
     
     sound_index = argument0;
+    sound_type = FMODGMS_Snd_TypeToString(FMODGMS_Snd_Get_Type(sound[sound_index]));
 }

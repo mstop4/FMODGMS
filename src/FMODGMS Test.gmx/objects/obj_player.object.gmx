@@ -72,6 +72,7 @@
     // Other Variables
     //vu_on = true;
     sound_index = 0;
+    sound_type = FMODGMS_Snd_TypeToString(FMODGMS_Snd_Get_Type(sound[sound_index]));
     is_playing = false;
     is_paused = false;
     hue = irandom(255);
@@ -365,7 +366,8 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     
     // Sound info
     shift_hue(16);
-    draw_text(16,64,"Audio Type: " + string(FMODGMS_Snd_Get_Type(sound[sound_index])));
+    
+    draw_text(16,64,"Audio Type: " + sound_type);
     
     shift_hue(16);
     
@@ -382,7 +384,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     } 
     
     // dominant Frequency
-    draw_text(496,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");    
+    //draw_text(496,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");    
         
     // spectrum
     draw_rectangle_colour(496,144,496+numBins*5,244,c_black,c_black,$202020,$202020,false);
@@ -397,7 +399,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
             col = merge_colour(c_yellow,c_red,(avgBin[i]-0.5)*2);
     
         draw_set_colour(col);
-        draw_rectangle(496+i*5+1,244-avgBin[i]*100,496+i*5+4,244,false);
+        draw_rectangle(496+i*5+1,244-avgBin[i]*1,496+i*5+4,244,false);
     }       
       
     // draw playback info based on filetype
@@ -427,9 +429,9 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     shift_hue(16);
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
     shift_hue(16);
-    draw_text(16,432,"FMODGMS version: 0.6.2");
+    draw_text(16,432,"FMODGMS version: 0.7.0");
     shift_hue(16);
-    draw_text(16,448,"FMOD version: Studio 1.08.07");
+    draw_text(16,448,"FMOD version: Studio 1.08.11");
     
 }
 </string>

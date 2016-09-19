@@ -19,6 +19,9 @@
   <maclinkerflags></maclinkerflags>
   <maccompilerflags></maccompilerflags>
   <androidinject></androidinject>
+  <androidmanifestinject></androidmanifestinject>
+  <iosplistinject></iosplistinject>
+  <androidactivityinject></androidactivityinject>
   <gradleinject></gradleinject>
   <iosSystemFrameworks/>
   <iosThirdPartyFrameworks/>
@@ -289,7 +292,7 @@
           <externalName>FMODGMS_Snd_Get_Type</externalName>
           <kind>12</kind>
           <help>FMODGMS_Snd_Get_Type(index)</help>
-          <returnType>1</returnType>
+          <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
             <arg>2</arg>
@@ -508,7 +511,7 @@
           <externalName>FMODGMS_Snd_Get_TagTypeFromIndex</externalName>
           <kind>12</kind>
           <help>FMODGMS_Snd_Get_TagTypeFromIndex(soundIndex,tagIndex)</help>
-          <returnType>1</returnType>
+          <returnType>2</returnType>
           <argCount>2</argCount>
           <args>
             <arg>2</arg>
@@ -520,7 +523,7 @@
           <externalName>FMODGMS_Snd_Get_TagDataTypeFromIndex</externalName>
           <kind>12</kind>
           <help>FMODGMS_Snd_Get_TagDataTypeFromIndex(soundIndex,tagIndex)</help>
-          <returnType>1</returnType>
+          <returnType>2</returnType>
           <argCount>2</argCount>
           <args>
             <arg>2</arg>
@@ -556,7 +559,7 @@
           <externalName>FMODGMS_Snd_Get_TagTypeFromName</externalName>
           <kind>12</kind>
           <help>FMODGMS_Snd_Get_TagTypeFromName(soundIndex,tagName)</help>
-          <returnType>1</returnType>
+          <returnType>2</returnType>
           <argCount>2</argCount>
           <args>
             <arg>2</arg>
@@ -568,7 +571,7 @@
           <externalName>FMODGMS_Snd_Get_TagDataTypeFromName</externalName>
           <kind>12</kind>
           <help>FMODGMS_Snd_Get_TagDataTypeFromName(soundIndex,tagName)</help>
-          <returnType>1</returnType>
+          <returnType>2</returnType>
           <argCount>2</argCount>
           <args>
             <arg>2</arg>
@@ -656,6 +659,231 @@
         <constant>
           <name>FMODGMS_LOOPPOINT_END</name>
           <value>1</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_UNKNOWN</name>
+          <value>0</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_AIFF</name>
+          <value>1</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_ASF</name>
+          <value>2</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_DLS</name>
+          <value>3</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_FLAC</name>
+          <value>4</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_FSB</name>
+          <value>5</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_IT</name>
+          <value>6</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_MIDI</name>
+          <value>7</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_MOD</name>
+          <value>8</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_MPEG</name>
+          <value>9</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_OGGVORBIS</name>
+          <value>10</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_PLAYLIST</name>
+          <value>11</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_RAW</name>
+          <value>12</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_S3M</name>
+          <value>13</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_USER</name>
+          <value>14</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_WAV</name>
+          <value>15</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_XM</name>
+          <value>16</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_XMA</name>
+          <value>17</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_AUDIOQUEUE</name>
+          <value>18</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_AT9</name>
+          <value>19</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_VORBIS</name>
+          <value>20</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_MEDIA_FOUNDATION</name>
+          <value>21</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_MEDIA_CODEC</name>
+          <value>22</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_FADPCM</name>
+          <value>23</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_SOUND_TYPE_MAX</name>
+          <value>24</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGDATATYPE_BINARY</name>
+          <value>0</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGDATATYPE_INT</name>
+          <value>1</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGDATATYPE_FLOAT</name>
+          <value>2</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGDATATYPE_STRING</name>
+          <value>3</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGDATATYPE_STRING_UTF16</name>
+          <value>4</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGDATATYPE_STRING_UTF16BE</name>
+          <value>5</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGDATATYPE_STRING_UTF8</name>
+          <value>6</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGDATATYPE_CDTOC</name>
+          <value>7</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGDATATYPE_MAX</name>
+          <value>8</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGTYPE_ID3V1</name>
+          <value>0</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGTYPE_ID3V2</name>
+          <value>1</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGTYPE_VORBISCOMMENT</name>
+          <value>2</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGTYPE_SHOUTCAST</name>
+          <value>3</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGTYPE_ICECAST</name>
+          <value>4</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGTYPE_ASF</name>
+          <value>5</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGTYPE_MIDI</name>
+          <value>6</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGTYPE_PLAYLIST</name>
+          <value>7</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGTYPE_FMOD</name>
+          <value>8</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGTYPE_USER</name>
+          <value>9</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_TAGTYPE_MAX</name>
+          <value>10</value>
           <hidden>0</hidden>
         </constant>
       </constants>

@@ -144,6 +144,9 @@
       <script>scripts\FMODGMS_Util_SecondsToSamples.gml</script>
       <script>scripts\FMODGMS_Util_SamplesToSeconds.gml</script>
       <script>scripts\FMODGMS_Util_SamplesToBeats.gml</script>
+      <script>scripts\FMODGMS_Snd_TypeToString.gml</script>
+      <script>scripts\FMODGMS_Snd_TagDataTypeToString.gml</script>
+      <script>scripts\FMODGMS_Snd_TagTypeToString.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
