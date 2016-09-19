@@ -1,13 +1,13 @@
 /*--------------------------------------------------------
 //  fmodgms.cpp
 //
-//  FMODGMS v.0.6.2
+//  FMODGMS v.0.7.0
 //  By: M.S.T.O.P.
 //
 //  Wrapper library that allows communication between
 //  the FMOD Studio low level API and GameMaker: Studio.
 //
-//  FMOD Studio version: 1.08.07
+//  FMOD Studio version: 1.08.11
 ----------------------------------------------------------*/
 
 #ifndef FMODGMS_CPP
@@ -18,6 +18,7 @@
 #include <string>
 #include <algorithm>
 #include <iterator>
+#include <cmath>
 //#include <locale>
 //#include <codecvt>
 #include <stdio.h>
@@ -63,7 +64,7 @@ GMexport double FMODGMS_Sys_Create()
 GMexport double FMODGMS_Sys_Initialize(double maxChan)
 {
 	//Init System
-	int mc = (int)maxChan;
+	int mc = (int)round(maxChan);
 
 	for (int i = 0; i < nyquist; i++)
 	{
@@ -182,8 +183,8 @@ GMexport double FMODGMS_Sys_Set_SoftwareFormat(double sampleRate, double speaker
 	8 - Max
 	*/
 
-	playbackRate = (int)sampleRate;
-	FMOD_SPEAKERMODE sm = (FMOD_SPEAKERMODE)(int)speakermode;
+	playbackRate = (int)round(sampleRate);
+	FMOD_SPEAKERMODE sm = (FMOD_SPEAKERMODE)(int)round(speakermode);
 
 	result = sys->setSoftwareFormat(playbackRate, sm, FMOD_MAX_CHANNEL_WIDTH);
 	return FMODGMS_Util_ErrorChecker();
@@ -225,7 +226,7 @@ GMexport double FMODGMS_Sys_Get_MaxChannelIndex()
 // NOTE: Doesn't work yet
 GMexport double FMODGMS_FFT_Set_WindowSize(double size)
 {
-	windowSize = (int)size;
+	windowSize = (int)round(size);
 	nyquist = windowSize / 2;
 	binValues.clear();
 	for (int i = 0; i < nyquist; i++)
@@ -313,7 +314,7 @@ GMexport double FMODGMS_Snd_LoadStream(char* filename)
 // Unload a sound and removes it from soundList
 GMexport double FMODGMS_Snd_Unload(double index)
 {
-	int i = (int)index;
+	int i = (int)round(index);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > i && i >= 0)
@@ -333,8 +334,8 @@ GMexport double FMODGMS_Snd_Unload(double index)
 // Plays a sound on a given channel
 GMexport double FMODGMS_Snd_PlaySound(double index, double channel)
 {
-	int i = (int)index;
-	int c = (int)channel;
+	int i = (int)round(index);
+	int c = (int)round(channel);
 	//bool *n = false;
 	int chanListSize = channelList.size();
 
@@ -363,9 +364,9 @@ GMexport double FMODGMS_Snd_PlaySound(double index, double channel)
 // Set loop mode and count for a particular sound
 GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times)
 {
-	int i = (int)index;
-	int m = (int)mode;
-	int t = (int)times;
+	int i = (int)round(index);
+	int m = (int)round(mode);
+	int t = (int)round(times);
 
 	switch (m)
 	{
@@ -397,9 +398,9 @@ GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times
 // or FMODGMS_Util_BeatsToSamples for precise loop point control.
 GMexport double FMODGMS_Snd_Set_LoopPoints(double index, double startTimeInSamples, double endTimeInSamples)
 {
-	int i = (int)index;
-	int s = (int)startTimeInSamples;
-	int e = (int)endTimeInSamples;
+	int i = (int)round(index);
+	int s = (int)round(startTimeInSamples);
+	int e = (int)round(endTimeInSamples);
 
 	result = soundList[i]->setLoopPoints(s, FMOD_TIMEUNIT_PCM, e, FMOD_TIMEUNIT_PCM);
 
@@ -409,8 +410,8 @@ GMexport double FMODGMS_Snd_Set_LoopPoints(double index, double startTimeInSampl
 // Sets the channel volume of a module file
 GMexport double FMODGMS_Snd_Set_ModChannelVolume(double index, double modChannel, double vol)
 {
-	int i = (int)index;
-	int mc = (int)modChannel;
+	int i = (int)round(index);
+	int mc = (int)round(modChannel);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > i && i >= 0)
@@ -465,7 +466,7 @@ GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double whichOne)
 	// 0 = start;
 	// 1 = end;
 
-	int i = (int)index;
+	int i = (int)round(index);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > i && i >= 0)
@@ -491,7 +492,7 @@ GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double whichOne)
 // Gets the length of an audio file in PCM samples
 GMexport double FMODGMS_Snd_Get_Length(double index)
 {
-	int i = (int)index;
+	int i = (int)round(index);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > i && i >= 0)
@@ -512,8 +513,8 @@ GMexport double FMODGMS_Snd_Get_Length(double index)
 // Gets the channel volume of a module file
 GMexport double FMODGMS_Snd_Get_ModChannelVolume(double index, double modChannel)
 {
-	int i = (int)index;
-	int mc = (int)modChannel;
+	int i = (int)round(index);
+	int mc = (int)round(modChannel);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > i && i >= 0)
@@ -565,7 +566,7 @@ GMexport double FMODGMS_Snd_Get_ModChannelVolume(double index, double modChannel
 // Gets the number of channels in a module file
 GMexport double FMODGMS_Snd_Get_ModNumChannels(double index)
 {
-	int i = (int)index;
+	int i = (int)round(index);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > i && i >= 0)
@@ -617,7 +618,7 @@ GMexport double FMODGMS_Chan_CreateChannel()
 //Deletes a channel
 GMexport double FMODGMS_Chan_RemoveChannel(double channel)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -648,7 +649,7 @@ GMexport double FMODGMS_Chan_RemoveChannel(double channel)
 // Pauses a channel
 GMexport double FMODGMS_Chan_PauseChannel(double channel)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -678,7 +679,7 @@ GMexport double FMODGMS_Chan_PauseChannel(double channel)
 //Resumes a puased channel
 GMexport double FMODGMS_Chan_ResumeChannel(double channel)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -708,7 +709,7 @@ GMexport double FMODGMS_Chan_ResumeChannel(double channel)
 // Stops a channel
 GMexport double FMODGMS_Chan_StopChannel(double channel)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -738,7 +739,7 @@ GMexport double FMODGMS_Chan_StopChannel(double channel)
 // Sets the playing position of a channel
 GMexport double FMODGMS_Chan_Set_Position(double channel, double pos)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 
 	unsigned int p;
 	if (pos < 0)
@@ -766,7 +767,7 @@ GMexport double FMODGMS_Chan_Set_Position(double channel, double pos)
 // Sets the volume of a channel
 GMexport double FMODGMS_Chan_Set_Volume(double channel, double vol)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	float v = (float)vol;
 	int chanListSize = channelList.size();
 
@@ -788,7 +789,7 @@ GMexport double FMODGMS_Chan_Set_Volume(double channel, double vol)
 //Sets playback frequency of a channel
 GMexport double FMODGMS_Chan_Set_Frequency(double channel, double freq)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	float f = (float)freq;
 	int chanListSize = channelList.size();
 
@@ -810,7 +811,7 @@ GMexport double FMODGMS_Chan_Set_Frequency(double channel, double freq)
 //Sets frequency multiplier of a channel
 GMexport double FMODGMS_Chan_Set_Pitch(double channel, double pitch)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	float p = (float)pitch;
 	int chanListSize = channelList.size();
 
@@ -880,7 +881,7 @@ GMexport double FMODGMS_Chan_Set_ModOrder(double channel, double ord)
 // Sets the row position of a channel playing a MOD
 GMexport double FMODGMS_Chan_Set_ModRow(double channel, double row)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -928,7 +929,7 @@ GMexport double FMODGMS_Chan_Set_ModRow(double channel, double row)
 // Returns the current position of the sound being played on the channel
 GMexport double FMODGMS_Chan_Get_Position(double channel)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -956,7 +957,7 @@ GMexport double FMODGMS_Chan_Get_Position(double channel)
 // Returns the volume of a channel
 GMexport double FMODGMS_Chan_Get_Volume(double channel)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -978,7 +979,7 @@ GMexport double FMODGMS_Chan_Get_Volume(double channel)
 // Returns the frequency the channel is being played at
 GMexport double FMODGMS_Chan_Get_Frequency(double channel)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -1000,7 +1001,7 @@ GMexport double FMODGMS_Chan_Get_Frequency(double channel)
 //Returns the frequency multipler of a channel
 GMexport double FMODGMS_Chan_Get_Pitch(double channel)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -1022,7 +1023,7 @@ GMexport double FMODGMS_Chan_Get_Pitch(double channel)
 // Returns current order of a module playing in a particular channel
 GMexport double FMODGMS_Chan_Get_ModOrder(double channel)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -1065,7 +1066,7 @@ GMexport double FMODGMS_Chan_Get_ModOrder(double channel)
 // Returns current pattern of a module playing in a particular channel
 GMexport double FMODGMS_Chan_Get_ModPattern(double channel)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -1108,7 +1109,7 @@ GMexport double FMODGMS_Chan_Get_ModPattern(double channel)
 // Returns current row of a module playing in a particular channel
 GMexport double FMODGMS_Chan_Get_ModRow(double channel)
 {
-	int c = (int)channel;
+	int c = (int)round(channel);
 	int chanListSize = channelList.size();
 
 	if (chanListSize > c && c >= 0)
@@ -1151,7 +1152,7 @@ GMexport double FMODGMS_Chan_Get_ModRow(double channel)
 // Get number of tags in a sound
 GMexport double FMODGMS_Snd_Get_NumTags(double index)
 {
-	int i = (int)index;
+	int i = (int)round(index);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > i && i >= 0)
@@ -1174,13 +1175,13 @@ GMexport double FMODGMS_Snd_Get_NumTags(double index)
 // Get a tag name for a particular sound
 GMexport const char* FMODGMS_Snd_Get_TagName(double soundIndex, double tagIndex)
 {
-	int si = (int)soundIndex;
+	int si = (int)round(soundIndex);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > si && si >= 0)
 	{
 		int numTags;
-		int ti = (int)tagIndex;
+		int ti = (int)round(tagIndex);
 
 		soundList[si]->getNumTags(&numTags, 0);
 
@@ -1208,15 +1209,15 @@ GMexport const char* FMODGMS_Snd_Get_TagName(double soundIndex, double tagIndex)
 }
 
 // Get a tag's type from a given index
-GMexport const char* FMODGMS_Snd_Get_TagTypeFromIndex(double soundIndex, double tagIndex)
+GMexport double FMODGMS_Snd_Get_TagTypeFromIndex(double soundIndex, double tagIndex)
 {
-	int si = (int)soundIndex;
+	int si = (int)round(soundIndex);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > si && si >= 0)
 	{
 		int numTags;
-		int ti = (int)tagIndex;
+		int ti = (int)round(tagIndex);
 
 		soundList[si]->getNumTags(&numTags, 0);
 
@@ -1225,61 +1226,13 @@ GMexport const char* FMODGMS_Snd_Get_TagTypeFromIndex(double soundIndex, double 
 			FMOD_TAG tag;
 			soundList[si]->getTag(0, ti, &tag);
 
-			switch (tag.type)
-			{
-			case FMOD_TAGTYPE_ID3V1:
-				return "ID3v1 tag";
-				break;
-
-			case FMOD_TAGTYPE_ID3V2:
-				return "ID3v2 tag";
-				break;
-
-			case FMOD_TAGTYPE_VORBISCOMMENT:
-				return "Vorbis comment";
-				break;
-
-			case FMOD_TAGTYPE_SHOUTCAST:
-				return "Shoutcast tag";
-				break;
-
-			case FMOD_TAGTYPE_ICECAST:
-				return "Icecast tag";
-				break;
-
-			case FMOD_TAGTYPE_ASF:
-				return "ASF tag";
-				break;
-
-			case FMOD_TAGTYPE_MIDI:
-				return "MIDI tag";
-				break;
-
-			case FMOD_TAGTYPE_PLAYLIST:
-				return "Playlist tag";
-				break;
-
-			case FMOD_TAGTYPE_FMOD:
-				return "FMOD tag";
-				break;
-
-			case FMOD_TAGTYPE_USER:
-				return "User tag";
-				break;
-
-			case FMOD_TAGTYPE_MAX:
-				return "Max Number of Tag Types";
-				break;
-
-			default:
-				return "Unknown Tag Type";
-			}
+			return (double)(int)tag.type;
 		}
 
 		else
 		{
 			errorMessage = "Tag index out of bounds.";
-			return errorMessage;
+			return GMS_error;
 		}
 	}
 
@@ -1287,20 +1240,20 @@ GMexport const char* FMODGMS_Snd_Get_TagTypeFromIndex(double soundIndex, double 
 	else
 	{
 		errorMessage = "Sound index out of bounds.";
-		return errorMessage;
+		return GMS_error;
 	}
 }
 
 // Get a tag's data type from a given index
-GMexport const char* FMODGMS_Snd_Get_TagDataTypeFromIndex(double soundIndex, double tagIndex)
+GMexport double FMODGMS_Snd_Get_TagDataTypeFromIndex(double soundIndex, double tagIndex)
 {
-	int si = (int)soundIndex;
+	int si = (int)round(soundIndex);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > si && si >= 0)
 	{
 		int numTags;
-		int ti = (int)tagIndex;
+		int ti = (int)round(tagIndex);
 
 		soundList[si]->getNumTags(&numTags, 0);
 
@@ -1309,53 +1262,13 @@ GMexport const char* FMODGMS_Snd_Get_TagDataTypeFromIndex(double soundIndex, dou
 			FMOD_TAG tag;
 			soundList[si]->getTag(0, ti, &tag);
 
-			switch (tag.datatype)
-			{
-				case FMOD_TAGDATATYPE_BINARY:
-					return "Binary";
-					break;
-
-				case FMOD_TAGDATATYPE_INT:
-					return "Int";
-					break;
-
-				case FMOD_TAGDATATYPE_FLOAT:
-					return "Float";
-					break;
-
-				case FMOD_TAGDATATYPE_STRING:
-					return "String";
-					break;
-
-				case FMOD_TAGDATATYPE_STRING_UTF16:
-					return "String UTF-16";
-					break;
-
-				case FMOD_TAGDATATYPE_STRING_UTF16BE:
-					return "String UTF-16BE";
-					break;
-
-				case FMOD_TAGDATATYPE_STRING_UTF8:
-					return "String UTF-8";
-					break;
-
-				case FMOD_TAGDATATYPE_CDTOC:
-					return "CD Table of Contents";
-					break;
-
-				case FMOD_TAGDATATYPE_MAX:
-					return "Max Number of Data Types";
-					break;
-
-				default:
-					return "Unknown Data Type";
-			}
+			return (double)(int)tag.datatype;
 		}
 
 		else
 		{
 			errorMessage = "Tag index out of bounds.";
-			return errorMessage;
+			return GMS_error;
 		}
 	}
 
@@ -1363,20 +1276,20 @@ GMexport const char* FMODGMS_Snd_Get_TagDataTypeFromIndex(double soundIndex, dou
 	else
 	{
 		errorMessage = "Sound index out of bounds.";
-		return errorMessage;
+		return GMS_error;
 	}
 }
 
 // Get a tag's numerical value (int, float) from a given index
 GMexport double FMODGMS_Snd_Get_TagRealFromIndex(double soundIndex, double tagIndex)
 {
-	int si = (int)soundIndex;
+	int si = (int)round(soundIndex);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > si && si >= 0)
 	{
 		int numTags;
-		int ti = (int)tagIndex;
+		int ti = (int)round(tagIndex);
 
 		soundList[si]->getNumTags(&numTags, 0);
 
@@ -1423,13 +1336,13 @@ GMexport double FMODGMS_Snd_Get_TagRealFromIndex(double soundIndex, double tagIn
 // Get a tag's string value from a given index
 GMexport const char* FMODGMS_Snd_Get_TagStringFromIndex(double soundIndex, double tagIndex)
 {
-	int si = (int)soundIndex;
+	int si = (int)round(soundIndex);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > si && si >= 0)
 	{
 		int numTags;
-		int ti = (int)tagIndex;
+		int ti = (int)round(tagIndex);
 
 		soundList[si]->getNumTags(&numTags, 0);
 
@@ -1491,12 +1404,14 @@ GMexport const char* FMODGMS_Snd_Get_TagStringFromIndex(double soundIndex, doubl
 		errorMessage = "Sound index out of bounds.";
 		return errorMessage;
 	}
+
+	return "What?";
 }
 
 // Get a tag's type from a given name
-GMexport const char* FMODGMS_Snd_Get_TagTypeFromName(double soundIndex, char* tagName)
+GMexport double FMODGMS_Snd_Get_TagTypeFromName(double soundIndex, char* tagName)
 {
-	int si = (int)soundIndex;
+	int si = (int)round(soundIndex);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > si && si >= 0)
@@ -1521,61 +1436,13 @@ GMexport const char* FMODGMS_Snd_Get_TagTypeFromName(double soundIndex, char* ta
 
 		if (tagFound)
 		{
-			switch (tag.type)
-			{
-				case FMOD_TAGTYPE_ID3V1:
-					return "ID3v1 tag";
-					break;
-
-				case FMOD_TAGTYPE_ID3V2:
-					return "ID3v2 tag";
-					break;
-
-				case FMOD_TAGTYPE_VORBISCOMMENT:
-					return "Vorbis comment";
-					break;
-
-				case FMOD_TAGTYPE_SHOUTCAST:
-					return "Shoutcast tag";
-					break;
-
-				case FMOD_TAGTYPE_ICECAST:
-					return "Icecast tag";
-					break;
-
-				case FMOD_TAGTYPE_ASF:
-					return "ASF tag";
-					break;
-
-				case FMOD_TAGTYPE_MIDI:
-					return "MIDI tag";
-					break;
-
-				case FMOD_TAGTYPE_PLAYLIST:
-					return "Playlist tag";
-					break;
-
-				case FMOD_TAGTYPE_FMOD:
-					return "FMOD tag";
-					break;
-
-				case FMOD_TAGTYPE_USER:
-					return "User tag";
-					break;
-
-				case FMOD_TAGTYPE_MAX:
-					return "Max Number of Tag Types";
-					break;
-
-				default:
-					return "Unknown Tag Type";
-			}
+			(double)(int)tag.type;
 		}
 
 		else
 		{
 			errorMessage = "Tag not found.";
-			return errorMessage;
+			return GMS_error;
 		}
 	}
 
@@ -1583,14 +1450,16 @@ GMexport const char* FMODGMS_Snd_Get_TagTypeFromName(double soundIndex, char* ta
 	else
 	{
 		errorMessage = "Sound index out of bounds.";
-		return errorMessage;
+		return GMS_error;
 	}
+
+	return GMS_error;
 }
 
 // Get a tag's data type from a given name
-GMexport const char* FMODGMS_Snd_Get_TagDataTypeFromName(double soundIndex, char* tagName)
+GMexport double FMODGMS_Snd_Get_TagDataTypeFromName(double soundIndex, char* tagName)
 {
-	int si = (int)soundIndex;
+	int si = (int)round(soundIndex);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > si && si >= 0)
@@ -1615,53 +1484,13 @@ GMexport const char* FMODGMS_Snd_Get_TagDataTypeFromName(double soundIndex, char
 
 		if (tagFound)
 		{
-			switch (tag.datatype)
-			{
-			case FMOD_TAGDATATYPE_BINARY:
-				return "Binary";
-				break;
-
-			case FMOD_TAGDATATYPE_INT:
-				return "Int";
-				break;
-
-			case FMOD_TAGDATATYPE_FLOAT:
-				return "Float";
-				break;
-
-			case FMOD_TAGDATATYPE_STRING:
-				return "String";
-				break;
-
-			case FMOD_TAGDATATYPE_STRING_UTF16:
-				return "String UTF-16";
-				break;
-
-			case FMOD_TAGDATATYPE_STRING_UTF16BE:
-				return "String UTF-16BE";
-				break;
-
-			case FMOD_TAGDATATYPE_STRING_UTF8:
-				return "String UTF-8";
-				break;
-
-			case FMOD_TAGDATATYPE_CDTOC:
-				return "CD Table of Contents";
-				break;
-
-			case FMOD_TAGDATATYPE_MAX:
-				return "Max Number of Data Types";
-				break;
-
-			default:
-				return "Unknown Data Type";
-			}
+			return (double)(int)tag.datatype;
 		}
 
 		else
 		{
 			errorMessage = "Tag not found.";
-			return errorMessage;
+			return GMS_error;
 		}
 	}
 
@@ -1669,14 +1498,14 @@ GMexport const char* FMODGMS_Snd_Get_TagDataTypeFromName(double soundIndex, char
 	else
 	{
 		errorMessage = "Sound index out of bounds.";
-		return errorMessage;
+		return GMS_error;
 	}
 }
 
 // Get a tag's numerical value (int, float) from a given name
 GMexport double FMODGMS_Snd_Get_TagRealFromName(double soundIndex, char* tagName)
 {
-	int si = (int)soundIndex;
+	int si = (int)round(soundIndex);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > si && si >= 0)
@@ -1739,7 +1568,7 @@ GMexport double FMODGMS_Snd_Get_TagRealFromName(double soundIndex, char* tagName
 // Get a tag's string value from a given name
 GMexport const char* FMODGMS_Snd_Get_TagStringFromName(double soundIndex, char* tagName)
 {
-	int si = (int)soundIndex;
+	int si = (int)round(soundIndex);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > si && si >= 0)
@@ -1821,10 +1650,12 @@ GMexport const char* FMODGMS_Snd_Get_TagStringFromName(double soundIndex, char* 
 		errorMessage = "Sound index out of bounds.";
 		return errorMessage;
 	}
+
+	return "What?";
 }
 
 // Returns the type of sound
-GMexport const char* FMODGMS_Snd_Get_Type(double index)
+GMexport double FMODGMS_Snd_Get_Type(double index)
 {
 	/*
 	Types
@@ -1856,7 +1687,7 @@ GMexport const char* FMODGMS_Snd_Get_Type(double index)
 	24 - Max
 	*/
 
-	int i = (int)index;
+	int i = (int)round(index);
 	int sndListSize = soundList.size();
 
 	if (sndListSize > i && i >= 0)
@@ -1864,121 +1695,17 @@ GMexport const char* FMODGMS_Snd_Get_Type(double index)
 		FMOD_SOUND_TYPE type;
 		soundList[i]->getFormat(&type, 0, 0, 0);
 
-		switch ((int)type)
-		{
-		case 0:
-			return "Unknown";
-			break;
-
-		case 1:
-			return "AIFF";
-			break;
-
-		case 2:
-			return "ASF - Microsoft Advanced Systems Format";
-			break;
-
-		case 3:
-			return "DLS - SoundFont / Dowloadable Sound Bank";
-			break;
-
-		case 4:
-			return "FLAC lossless codec";
-			break;
-
-		case 5:
-			return "FMOD Sample Bank";
-			break;
-
-		case 6:
-			return "IT - Impluse Tracker module";
-			break;
-
-		case 7:
-			return "MIDI Sequence";
-			break;
-
-		case 8:
-			return "MOD - Protracker / Fasttracker module";
-			break;
-
-		case 9:
-			return "MP2/MP3 - MPEG";
-			break;
-
-		case 10:
-			return "OGG - Ogg Vorbis";
-			break;
-
-		case 11:
-			return "Playlist - ASX/PLS/M3U/WAX";
-			break;
-
-		case 12:
-			return "RAW - Raw PCM data";
-			break;
-
-		case 13:
-			return "S3M - ScreamTracker 3 module";
-			break;
-
-		case 14:
-			return "User-created";
-			break;
-
-		case 15:
-			return "WAV - Microsoft Wave";
-			break;
-
-		case 16:
-			return "XM - FastTracker 2 module";
-			break;
-
-		case 17:
-			return "Xbox 360 XMA";
-			break;
-
-		case 18:
-			return "iPhone hardware decoder";
-			break;
-
-		case 19:
-			return "PS4 / PSVita ATRAC 9";
-			break;
-
-		case 20:
-			return "Vorbis";
-			break;
-
-		case 21:
-			return "Windows Store Application built-in system codecs";
-			break;
-
-		case 22:
-			return "Android MediaCodec";
-			break;
-
-		case 23:
-			return "FMOD Adaptive Differential PCM";
-			break;
-
-		case 24:
-			return "Max Number of Formats";
-			break;
-
-		default:
-			return "Unknown Format";
-		}
+		return (double)(int)type;
 	}
 
 	// index out of bounds
 	else
 	{
 		errorMessage = "Sound index out of bounds.";
-		return errorMessage;
+		return GMS_error;
 	}
 
-	return "What?";
+	return -999;
 }
 
 #pragma endregion
