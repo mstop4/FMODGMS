@@ -886,6 +886,21 @@
           <value>10</value>
           <hidden>0</hidden>
         </constant>
+        <constant>
+          <name>FMODGMS_LOOPMODE_NONE</name>
+          <value>0</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_LOOPMODE_NORMAL</name>
+          <value>1</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_LOOPMODE_BIDI</name>
+          <value>2</value>
+          <hidden>0</hidden>
+        </constant>
       </constants>
     </file>
     <file>

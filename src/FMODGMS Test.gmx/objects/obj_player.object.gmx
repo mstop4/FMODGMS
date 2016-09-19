@@ -38,12 +38,12 @@
     // Number of bins in Spectrum data
     //show_message(FMODGMS_FFT_Set_WindowSize(128));
     numBins = FMODGMS_FFT_Get_NumBins();
-    peakDamping = 0;
+    peakDamping = 0.5;
     
     // init spectrum visualizer bins
     for (var i=0; i&lt;numBins; i++)
     {
-        avgBin[i] = 0;
+        avgBin[i] = 1;
     } 
     
     // Load sounds
@@ -114,8 +114,10 @@
     // update spectrum visualizer values
     for (var i=0; i&lt;numBins; i++)
     {
-        var bin = clamp(FMODGMS_FFT_Get_BinValue(i),0,1);
-        avgBin[i] = avgBin[i] * peakDamping + bin * (1-peakDamping);
+        /*var bin = clamp(FMODGMS_FFT_Get_BinValue(i),0,1);
+        avgBin[i] = avgBin[i] * peakDamping + bin * (1-peakDamping);*/
+        
+        avgBin[i] = clamp(FMODGMS_FFT_Get_BinValue(i),0,1);
     }  
 }
 </string>
@@ -384,7 +386,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     } 
     
     // dominant Frequency
-    //draw_text(496,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");    
+    draw_text(496,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");    
         
     // spectrum
     draw_rectangle_colour(496,144,496+numBins*5,244,c_black,c_black,$202020,$202020,false);
@@ -399,7 +401,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
             col = merge_colour(c_yellow,c_red,(avgBin[i]-0.5)*2);
     
         draw_set_colour(col);
-        draw_rectangle(496+i*5+1,244-avgBin[i]*1,496+i*5+4,244,false);
+        draw_rectangle(496+i*5+1,244-avgBin[i]*200,496+i*5+4,244,false);
     }       
       
     // draw playback info based on filetype
