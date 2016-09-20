@@ -2,7 +2,7 @@
 A ***GameMaker: Studio* extension** that provides **GML bindings to the [FMOD](http://www.fmod.org) Studio low-level API.** Compatible with **Windows**, **Mac** (coming soon), and **Linux** games.
 
 **Stable:** *0.6.1* - FMOD Studio 1.08.07 - Windows, Linux  
-**Beta:** *0.7.0* - FMOD Studio 1.08.11 - Windows
+**Beta:** *0.7.0* - FMOD Studio 1.08.11 - Windows, Linux
 
 Features
 --------
