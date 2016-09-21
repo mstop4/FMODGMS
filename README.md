@@ -1,8 +1,8 @@
 # FMODGMS
 A ***GameMaker: Studio* extension** that provides **GML bindings to the [FMOD](http://www.fmod.org) Studio low-level API.** Compatible with **Windows**, **Mac** (coming soon), and **Linux** games.
 
-**Stable:** *0.6.1* - FMOD Studio 1.08.07 - Windows, Linux  
-**Beta:** *0.7.0* - FMOD Studio 1.08.11 - Windows, Linux
+**Stable:** *[0.6.1](https://github.com/mstop4/FMODGMS/releases/tag/0.6.1-b)* - FMOD Studio 1.08.07 - Windows, Linux  
+**Beta:** *[0.7.0](https://github.com/mstop4/FMODGMS/releases/tag/0.7.0-b)* - FMOD Studio 1.08.11 - Windows, Linux
 
 Features
 --------
@@ -17,8 +17,8 @@ What's inside
 -------------
 
 - __FMODGMS.gmez__ - FMODGMS GameMaker: Studio extension
-- __FMODGMS_Test_win.zip__ - FMODGMS demo program for Windows
-- __FMODGMS_test_linux.tar.gz__ - FMODGMS demo program for Linux
+- __FMODGMS_Demo_win.zip__ - FMODGMS demo program for Windows
+- __FMODGMS_Demo_linux.tar.gz__ - FMODGMS demo program for Linux
 - __src__ - library and test program source code
  - _FMODGMS Test.gmx_ - GameMaker: Studio project for test program
  - _linux_ - FMODGMS source for Linux
