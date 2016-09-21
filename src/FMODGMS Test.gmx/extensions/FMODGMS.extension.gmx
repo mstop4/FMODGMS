@@ -42,13 +42,17 @@
       <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>135266496</CopyToMask>
+          <CopyToMask>202375362</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles>
         <ProxyFile>
           <Name>libfmodgms.so</Name>
           <TargetMask>134217856</TargetMask>
+        </ProxyFile>
+        <ProxyFile>
+          <Name>libFMODGMS.dylib</Name>
+          <TargetMask>2</TargetMask>
         </ProxyFile>
       </ProxyFiles>
       <functions>
@@ -913,6 +917,22 @@
       <ConfigOptions>
         <Config name="Default">
           <CopyToMask>1048640</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles/>
+      <functions/>
+      <constants/>
+    </file>
+    <file>
+      <filename>libfmod.dylib</filename>
+      <origname>extensions\libfmod.dylib</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>67108866</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
