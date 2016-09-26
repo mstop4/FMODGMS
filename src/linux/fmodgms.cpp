@@ -1,7 +1,7 @@
 /*--------------------------------------------------------
 //  fmodgms.cpp
 //
-//  FMODGMS v.0.7.0
+//  FMODGMS v.0.7.0.1
 //  By: M.S.T.O.P.
 //
 //  Wrapper library that allows communication between
@@ -365,33 +365,44 @@ GMexport double FMODGMS_Snd_PlaySound(double index, double channel)
 GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times)
 {
 	int i = (int)round(index);
-	int m = (int)round(mode);
-	int t = (int)round(times);
+	int sndListSize = soundList.size();
 
-	switch (m)
+	if (i < sndListSize && i >= 0)
 	{
-		// loop off
-	case 0:
-		result = soundList[i]->setMode(FMOD_LOOP_OFF);
-		break;
+		int m = (int)round(mode);
+		int t = (int)round(times);
 
-		// loop on
-	case 1:
-		result = soundList[i]->setMode(FMOD_LOOP_NORMAL);
-		break;
+		switch (m)
+		{
+			// loop off
+		case 0:
+			result = soundList[i]->setMode(FMOD_LOOP_OFF);
+			break;
 
-		// loop bidi
-	case 2:
-		result = soundList[i]->setMode(FMOD_LOOP_BIDI);
-		break;
+			// loop on
+		case 1:
+			result = soundList[i]->setMode(FMOD_LOOP_NORMAL);
+			break;
 
-	default:
-		errorMessage = "Unknown loop mode";
+			// loop bidi
+		case 2:
+			result = soundList[i]->setMode(FMOD_LOOP_BIDI);
+			break;
+
+		default:
+			errorMessage = "Unknown loop mode";
+		}
+
+		result = soundList[i]->setLoopCount(t);
+
+		return FMODGMS_Util_ErrorChecker();
 	}
 
-	result = soundList[i]->setLoopCount(t);
-
-	return FMODGMS_Util_ErrorChecker();
+	else
+	{
+		errorMessage = "Index out of bounds";
+		return GMS_error;
+	}
 }
 
 // Sets the loop points for a particular sound. Can be used in conjuction with FMODGMS_Util_SecondsToSamples
@@ -399,12 +410,23 @@ GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times
 GMexport double FMODGMS_Snd_Set_LoopPoints(double index, double startTimeInSamples, double endTimeInSamples)
 {
 	int i = (int)round(index);
-	int s = (int)round(startTimeInSamples);
-	int e = (int)round(endTimeInSamples);
+	int sndListSize = soundList.size();
 
-	result = soundList[i]->setLoopPoints(s, FMOD_TIMEUNIT_PCM, e, FMOD_TIMEUNIT_PCM);
+	if (i < sndListSize && i >= 0)
+	{
+		int s = (int)round(startTimeInSamples);
+		int e = (int)round(endTimeInSamples);
 
-	return FMODGMS_Util_ErrorChecker();
+		result = soundList[i]->setLoopPoints(s, FMOD_TIMEUNIT_PCM, e, FMOD_TIMEUNIT_PCM);
+
+		return FMODGMS_Util_ErrorChecker();
+	}
+
+	else
+	{
+		errorMessage = "Index out of bounds";
+		return GMS_error;
+	}
 }
 
 // Sets the channel volume of a module file
