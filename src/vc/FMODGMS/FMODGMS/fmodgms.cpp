@@ -32,6 +32,7 @@
 FMOD::System *sys = NULL;
 std::vector <FMOD::Channel*> channelList;
 std::vector <FMOD::Sound*> soundList;
+std::vector <FMOD::DSP*> effectList;
 FMOD::ChannelGroup *masterGroup;
 FMOD_RESULT result;
 const char* errorMessage;
@@ -1171,6 +1172,69 @@ GMexport double FMODGMS_Chan_Get_ModRow(double channel)
 	}
 }
 
+//Adds an effect e to the i-th index of effect chain of a channel
+GMexport double FMODGMS_Chan_Add_Effect(double channel, double e, double i)
+{
+	int c = (int)round(channel);
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c && c >= 0)
+	{
+		int effectIndex = (int)round(e);
+		if ((effectIndex < 0) || (effectIndex >= effectList.size()))
+		{
+			errorMessage = "Invalid effect index";
+			return GMS_error;
+		}
+		FMOD::DSP* effect = effectList[effectIndex];
+
+		if (channelList[c]->addDSP(i, effect) == FMOD_OK)
+			return GMS_true;
+		else
+		{
+			errorMessage = "Could not add effect to channel";
+			return GMS_error;
+		}
+	}
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+//Removes an effect e from the effect chain of a channel
+GMexport double FMODGMS_Chan_Remove_Effect(double channel, double e)
+{
+	int c = (int)round(channel);
+	int chanListSize = channelList.size();
+
+	if (chanListSize > c && c >= 0)
+	{
+		int effectIndex = (int)round(e);
+		if ((effectIndex < 0) || (effectIndex >= effectList.size()))
+		{
+			errorMessage = "Invalid effect index";
+			return GMS_error;
+		}
+		FMOD::DSP* effect = effectList[effectIndex];
+
+		if (channelList[c]->removeDSP(effect) == FMOD_OK)
+			return GMS_true;
+		else
+		{
+			errorMessage = "Could not remove effect from channel";
+			return GMS_error;
+		}
+	}
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+
 // Get number of tags in a sound
 GMexport double FMODGMS_Snd_Get_NumTags(double index)
 {
@@ -1728,6 +1792,120 @@ GMexport double FMODGMS_Snd_Get_Type(double index)
 	}
 
 	return -999;
+}
+
+#pragma endregion
+
+
+#pragma region Effect Functions
+
+//Creates a DSP effect. For types see enum FMOD_DSP_TYPE in fmod_dsp_effects.h
+GMexport double FMODGMS_Effect_Create(double t)
+{
+	int type = (int)round(t);
+	if ((type < 0) || (type >= FMOD_DSP_TYPE_MAX))
+	{
+		errorMessage = "Invalid effect type";
+		return GMS_error;
+	}
+
+	FMOD::DSP* effect = NULL;
+	if (sys->createDSPByType((FMOD_DSP_TYPE)type, &effect) == FMOD_OK)
+	{
+		effectList.push_back(effect);
+		return effectList.size() - 1;
+	}
+
+	errorMessage = "FMOD could not create effect.";
+	return GMS_error;
+}
+
+//Sets a parameter a of effect e to value v. For parameters of different effects, see fmod_dsp_effects.h
+GMexport double FMODGMS_Effect_Set_Parameter(double e, double p, double v)
+{
+	int effectIndex = (int)round(e);
+	if ((effectIndex < 0) || (effectIndex >= effectList.size()))
+	{
+		errorMessage = "Invalid effect index";
+		return GMS_error;
+	}
+	FMOD::DSP* effect = effectList[effectIndex];
+
+	int param = (int)round(p);
+	int value = (int)round(v);
+	FMOD_DSP_PARAMETER_DATA_TYPE type;
+	FMOD_DSP_PARAMETER_DESC* desc = NULL;
+	if (effect->getParameterInfo(param, &desc) != FMOD_OK)
+	{
+		errorMessage = "Could not get effect parameter info, probably invalid param index";
+		return GMS_error;
+	}
+
+	if (desc->type == FMOD_DSP_PARAMETER_TYPE_FLOAT)
+	{
+		if (effect->setParameterFloat(param, (float)value) == FMOD_OK)
+			return GMS_true;
+	}
+	else if (desc->type == FMOD_DSP_PARAMETER_TYPE_INT)
+	{
+		if (effect->setParameterInt(param, (int)round(value)) == FMOD_OK)
+			return GMS_true;
+	}
+	else if (desc->type == FMOD_DSP_PARAMETER_TYPE_BOOL)
+	{
+		if (effect->setParameterBool(param, (bool)round(value)) == FMOD_OK)
+			return GMS_true;
+	}
+	else
+	{
+		errorMessage = "Unsupported effect parameter type";
+		return GMS_error;
+	}
+	
+	errorMessage = "Could not get effect parameter";
+	return GMS_error;
+}
+
+//Frees an effect from the memory
+GMexport double FMODGMS_Effect_Remove(double e)
+{
+	int effectIndex = (int)round(e);
+	if ((effectIndex < 0) || (effectIndex >= effectList.size()))
+	{
+		errorMessage = "Invalid effect index";
+		return GMS_error;
+	}
+	FMOD::DSP* effect = effectList[effectIndex];
+	if (effect->release() == FMOD_OK)
+	{
+		effectList[effectIndex] = NULL;
+		return GMS_true;
+	}
+
+	errorMessage = "Could not remove effect, is it still attached to some audio?";
+	return GMS_error;
+}
+
+//Frees all existing effects
+GMexport double FMODGMS_Effect_RemoveAll()
+{
+	bool success = true;
+	for (int i = 0; i < effectList.size(); i++)
+	{
+		if (effectList[i] != NULL)
+		{
+			if (FMODGMS_Effect_Remove(i) != FMOD_OK)
+				success = false;
+		}
+	}
+	if (success == false)
+	{
+		errorMessage = "Failed to remove some effects, are they still attached to some audio?";
+		return GMS_error;
+	}
+
+	effectList.clear();
+	return GMS_true;
 }
 
 #pragma endregion

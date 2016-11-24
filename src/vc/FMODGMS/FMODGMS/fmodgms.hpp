@@ -82,6 +82,14 @@ GMexport double FMODGMS_Chan_Get_Pitch(double channel);
 GMexport double FMODGMS_Chan_Get_ModOrder(double channel);
 GMexport double FMODGMS_Chan_Get_ModPattern(double channel);
 GMexport double FMODGMS_Chan_Get_ModRow(double channel);
+GMexport double FMODGMS_Chan_Add_Effect(double channel, double effect, double index);
+GMexport double FMODGMS_Chan_Remove_Effect(double channel, double effect);
+
+//DSP Effect Functions
+GMexport double FMODGMS_Effect_Create(double type);
+GMexport double FMODGMS_Effect_Set_Parameter(double effect, double param, double value);
+GMexport double FMODGMS_Effect_Remove(double effect);
+GMexport double FMODGMS_Effect_RemoveAll();
 
 // Utility Functions
 GMexport const char* FMODGMS_Util_GetErrorMessage();

@@ -80,6 +80,8 @@
     channel_volume = 1;
     channel_frequency = 1;
     channel_pitch = 1;
+    effect = -1;
+    effectIndex = -1;
     
     window_set_caption("The colours!");
 }
@@ -375,15 +377,21 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     
     //Play state
     if (!is_playing)
-        draw_text(16,112,"State: Stopped");
-        
+        draw_text(16,96,"State: Stopped");
     else
     {
         if (is_paused)
-            draw_text(16,112,"State: Paused");
+            draw_text(16,96,"State: Paused");
         else
-            draw_text(16,112,"State: Playing");            
+            draw_text(16,96,"State: Playing");            
     } 
+    
+    shift_hue(16);
+    
+    // Effect
+    draw_text(16,112,"Active Effect: " + FMODGMS_Effect_TypeToString(effectIndex));  
+    
+    shift_hue(16);
     
     // dominant Frequency
     draw_text(496,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");    
@@ -420,20 +428,20 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
         draw_GUI_generic();
     
     draw_set_color(c_white);
-    draw_text(16,304,"Space -- Play/Stop#P - Pause/Unpause#Q/A -- Change volume#W/S -- Change frequency#E/D -- Change pitch");
+    draw_text(16,304,"Space -- Play/Stop#P -- Pause/Unpause#Q/A -- Change volume#W/S -- Change frequency#E/D -- Change pitch");
     
     // Disallow MIDI demo in Linux build
     if (os_type == os_linux)
-        draw_text(416,304,"1-6 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit");
+        draw_text(416,304,"1-6 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit#M -- Add random effect#K -- Remove Effect");
     else
-        draw_text(416,304,"1-7 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit");
+        draw_text(416,304,"1-7 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit#M -- Add random effect#K -- Remove Effect");
     
     shift_hue(16);
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
     shift_hue(16);
-    draw_text(16,432,"FMODGMS version: 0.7.0");
+    draw_text(16,432,"FMODGMS version: 0.7.0"); //Please assign new version num :)
     shift_hue(16);
-    draw_text(16,448,"FMOD version: Studio 1.08.11");
+    draw_text(16,448,"FMOD version: Studio 1.08.14");
     
 }
 </string>
@@ -495,6 +503,68 @@ if (is_playing)
         is_paused = false;
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="77">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>FMODGMS_Chan_Remove_Effect(0,effect);
+FMODGMS_Effect_RemoveAll();
+
+effectIndex = choose(   FMODGMS_EFFECT_CHORUS,
+                        FMODGMS_EFFECT_DISTORTION,
+                        FMODGMS_EFFECT_ECHO,
+                        FMODGMS_EFFECT_FLANGE,
+                        FMODGMS_EFFECT_HIGHPASS,
+                        FMODGMS_EFFECT_LOWPASS,
+                        FMODGMS_EFFECT_REVERB,
+                        FMODGMS_EFFECT_TREMOLO);
+                        
+effect = FMODGMS_Effect_Create(effectIndex);
+//FMODGMS_Effect_Set_Parameter(effect, 0, 0);
+FMODGMS_Chan_Add_Effect(0,effect,0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="75">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>FMODGMS_Chan_Remove_Effect(0,effect);
+FMODGMS_Effect_RemoveAll();
+effectIndex = -1;
 </string>
           </argument>
         </arguments>

@@ -80,6 +80,7 @@
     <option_android_push_id></option_android_push_id>
     <option_android_scale>-1</option_android_scale>
     <option_android_set_device_id></option_android_set_device_id>
+    <option_android_sleep_margin>4</option_android_sleep_margin>
     <option_android_splash_png>Configs\Default\android\splash.png</option_android_splash_png>
     <option_android_splash_time>0</option_android_splash_time>
     <option_android_support_lib_version>23.1.1</option_android_support_lib_version>
@@ -279,8 +280,8 @@
     <option_in_app_purchase_server_url></option_in_app_purchase_server_url>
     <option_information>FMODGMS Test Program
 
-FMODGMS version: 0.6.2
-FMOD version: Studio 1.08.07</option_information>
+FMODGMS version: 0.7.0 //Assign new version
+FMOD version: Studio 1.08.14</option_information>
     <option_interpolate>False</option_interpolate>
     <option_ios_adcolony_enable_V4VC>0</option_ios_adcolony_enable_V4VC>
     <option_ios_advertising_enable>0</option_ios_advertising_enable>
@@ -335,6 +336,7 @@ FMOD version: Studio 1.08.07</option_information>
     <option_ios_set_device_id></option_ios_set_device_id>
     <option_ios_splash_png>Configs\Default\ios\splash.png</option_ios_splash_png>
     <option_ios_splash_time>0</option_ios_splash_time>
+    <option_ios_team_id></option_ios_team_id>
     <option_ios_texture_page>1024</option_ios_texture_page>
     <option_ios_use_test_ads>0</option_ios_use_test_ads>
     <option_lastchanged></option_lastchanged>
@@ -487,7 +489,7 @@ FMOD version: Studio 1.08.07</option_information>
     <option_use_fast_collision>False</option_use_fast_collision>
     <option_use_new_audio>True</option_use_new_audio>
     <option_variableerrors>False</option_variableerrors>
-    <option_version>1.4.1</option_version>
+    <option_version>1.4.3</option_version>
     <option_version_build>0</option_version_build>
     <option_version_company>M.S.T.O.P.</option_version_company>
     <option_version_copyright>(c) 2016 M.S.T.O.P.</option_version_copyright>
@@ -495,7 +497,7 @@ FMOD version: Studio 1.08.07</option_information>
     <option_version_major>1</option_version_major>
     <option_version_minor>4</option_version_minor>
     <option_version_product>FMODGMS Test</option_version_product>
-    <option_version_release>2</option_version_release>
+    <option_version_release>3</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
     <option_win8_advertising_enable>0</option_win8_advertising_enable>
     <option_win8_advertising_key></option_win8_advertising_key>
@@ -576,7 +578,7 @@ FMOD version: Studio 1.08.07</option_information>
     <option_windows_major_version>1</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
     <option_windows_product_info>FMODGMS Test</option_windows_product_info>
-    <option_windows_release_version>2</option_windows_release_version>
+    <option_windows_release_version>3</option_windows_release_version>
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>
     <option_windows_save_location>0</option_windows_save_location>
