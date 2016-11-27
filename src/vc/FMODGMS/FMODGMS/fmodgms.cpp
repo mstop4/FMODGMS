@@ -117,7 +117,7 @@ GMexport double FMODGMS_Sys_Update()
 		result = fftdsp->getParameterData(FMOD_DSP_FFT_SPECTRUMDATA, (void **)&fftParams, 0, 0, 0);
 		if (result != FMOD_OK)
 			return FMODGMS_Util_ErrorChecker();
-
+		
 		int numChan = fftParams->numchannels;
 
 		for (int j = 0; j < nyquist; j++)
@@ -264,6 +264,18 @@ GMexport double FMODGMS_FFT_Get_BinValue(double index)
 GMexport double FMODGMS_FFT_Get_NumBins()
 {
 	return (double)nyquist;
+}
+
+//Normalizes the current spectrum data, use before getting if desirable
+GMexport double FMODGMS_FFT_Normalize()
+{
+	auto maxIterator = std::max_element(&binValues[0], &binValues[nyquist - 1]);
+	float maxVol = *maxIterator;
+	for (int i = 0; i < windowSize; i++)
+	{
+		binValues[i] = binValues[i] / maxVol;
+	}
+	return FMODGMS_Util_ErrorChecker();
 }
 
 #pragma endregion
@@ -1181,15 +1193,15 @@ GMexport double FMODGMS_Chan_Add_Effect(double channel, double e, double i)
 	if (chanListSize > c && c >= 0)
 	{
 		int effectIndex = (int)round(e);
-		if ((effectIndex < 0) || (effectIndex >= effectList.size()))
+		if ((effectIndex < 0) || (effectIndex >= (int)effectList.size()))
 		{
 			errorMessage = "Invalid effect index";
 			return GMS_error;
 		}
 		FMOD::DSP* effect = effectList[effectIndex];
 
-		if (channelList[c]->addDSP(i, effect) == FMOD_OK)
-			return GMS_true;
+		if (channelList[c]->addDSP((int)round(i), effect) == FMOD_OK)
+			return FMODGMS_Util_ErrorChecker();
 		else
 		{
 			errorMessage = "Could not add effect to channel";
@@ -1212,7 +1224,7 @@ GMexport double FMODGMS_Chan_Remove_Effect(double channel, double e)
 	if (chanListSize > c && c >= 0)
 	{
 		int effectIndex = (int)round(e);
-		if ((effectIndex < 0) || (effectIndex >= effectList.size()))
+		if ((effectIndex < 0) || (effectIndex >= (int)effectList.size()))
 		{
 			errorMessage = "Invalid effect index";
 			return GMS_error;
@@ -1220,7 +1232,7 @@ GMexport double FMODGMS_Chan_Remove_Effect(double channel, double e)
 		FMOD::DSP* effect = effectList[effectIndex];
 
 		if (channelList[c]->removeDSP(effect) == FMOD_OK)
-			return GMS_true;
+			return FMODGMS_Util_ErrorChecker();
 		else
 		{
 			errorMessage = "Could not remove effect from channel";
@@ -1824,7 +1836,7 @@ GMexport double FMODGMS_Effect_Create(double t)
 GMexport double FMODGMS_Effect_Set_Parameter(double e, double p, double v)
 {
 	int effectIndex = (int)round(e);
-	if ((effectIndex < 0) || (effectIndex >= effectList.size()))
+	if ((effectIndex < 0) || (effectIndex >= (int)effectList.size()))
 	{
 		errorMessage = "Invalid effect index";
 		return GMS_error;
@@ -1833,7 +1845,6 @@ GMexport double FMODGMS_Effect_Set_Parameter(double e, double p, double v)
 
 	int param = (int)round(p);
 	int value = (int)round(v);
-	FMOD_DSP_PARAMETER_DATA_TYPE type;
 	FMOD_DSP_PARAMETER_DESC* desc = NULL;
 	if (effect->getParameterInfo(param, &desc) != FMOD_OK)
 	{
@@ -1844,17 +1855,17 @@ GMexport double FMODGMS_Effect_Set_Parameter(double e, double p, double v)
 	if (desc->type == FMOD_DSP_PARAMETER_TYPE_FLOAT)
 	{
 		if (effect->setParameterFloat(param, (float)value) == FMOD_OK)
-			return GMS_true;
+			return FMODGMS_Util_ErrorChecker();
 	}
 	else if (desc->type == FMOD_DSP_PARAMETER_TYPE_INT)
 	{
 		if (effect->setParameterInt(param, (int)round(value)) == FMOD_OK)
-			return GMS_true;
+			return FMODGMS_Util_ErrorChecker();
 	}
 	else if (desc->type == FMOD_DSP_PARAMETER_TYPE_BOOL)
 	{
-		if (effect->setParameterBool(param, (bool)round(value)) == FMOD_OK)
-			return GMS_true;
+		if (effect->setParameterBool(param, (bool)(value > 0.5)) == FMOD_OK)
+			return FMODGMS_Util_ErrorChecker();
 	}
 	else
 	{
@@ -1870,7 +1881,7 @@ GMexport double FMODGMS_Effect_Set_Parameter(double e, double p, double v)
 GMexport double FMODGMS_Effect_Remove(double e)
 {
 	int effectIndex = (int)round(e);
-	if ((effectIndex < 0) || (effectIndex >= effectList.size()))
+	if ((effectIndex < 0) || (effectIndex >= (int)effectList.size()))
 	{
 		errorMessage = "Invalid effect index";
 		return GMS_error;
@@ -1879,7 +1890,7 @@ GMexport double FMODGMS_Effect_Remove(double e)
 	if (effect->release() == FMOD_OK)
 	{
 		effectList[effectIndex] = NULL;
-		return GMS_true;
+		return FMODGMS_Util_ErrorChecker();
 	}
 
 	errorMessage = "Could not remove effect, is it still attached to some audio?";
@@ -1890,7 +1901,7 @@ GMexport double FMODGMS_Effect_Remove(double e)
 GMexport double FMODGMS_Effect_RemoveAll()
 {
 	bool success = true;
-	for (int i = 0; i < effectList.size(); i++)
+	for (int i = 0; i < (int)effectList.size(); i++)
 	{
 		if (effectList[i] != NULL)
 		{
@@ -1905,7 +1916,7 @@ GMexport double FMODGMS_Effect_RemoveAll()
 	}
 
 	effectList.clear();
-	return GMS_true;
+	return FMODGMS_Util_ErrorChecker();
 }
 
 #pragma endregion

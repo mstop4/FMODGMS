@@ -34,6 +34,7 @@ GMexport double FMODGMS_FFT_Set_WindowSize(double size);
 GMexport double FMODGMS_FFT_Get_DominantFrequency();
 GMexport double FMODGMS_FFT_Get_BinValue(double index);
 GMexport double FMODGMS_FFT_Get_NumBins();
+GMexport double FMODGMS_FFT_Normalize();
 
 // Sound Functions
 GMexport double FMODGMS_Snd_LoadSound(char* filename);

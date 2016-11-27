@@ -727,6 +727,15 @@
           <argCount>0</argCount>
           <args/>
         </function>
+        <function>
+          <name>FMODGMS_FFT_Normalize</name>
+          <externalName>FMODGMS_FFT_Normalize</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_FFT_Normalize()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
       </functions>
       <constants>
         <constant>

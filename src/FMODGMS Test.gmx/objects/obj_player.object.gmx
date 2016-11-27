@@ -113,6 +113,9 @@
     hue_shift = 0;
     hue = (hue + 1) mod 256;
     
+    if (keyboard_check(ord('N')))
+        show_debug_message(FMODGMS_FFT_Normalize());
+    
     // update spectrum visualizer values
     for (var i=0; i&lt;numBins; i++)
     {
@@ -362,6 +365,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     draw_text(210,16,string(cpu_usage) + "%");
     
     draw_set_halign(fa_left);
+    
     draw_healthbar(160,32,260,48,cpu_usage,make_color_rgb(64,64,64),make_color_hsv((hue+42 mod 256),0,255),make_color_hsv((hue+42 mod 256),255,255),0,true,true);
     
     // FPS
@@ -399,6 +403,11 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     // spectrum
     draw_rectangle_colour(496,144,496+numBins*5,244,c_black,c_black,$202020,$202020,false);
     
+    if (keyboard_check(ord('N')))
+        max_bar_height = 100;
+    else
+        max_bar_height = 200;
+        
     for (var i=0; i&lt;numBins; i++)
     {
         var col;
@@ -409,7 +418,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
             col = merge_colour(c_yellow,c_red,(avgBin[i]-0.5)*2);
     
         draw_set_colour(col);
-        draw_rectangle(496+i*5+1,244-avgBin[i]*200,496+i*5+4,244,false);
+        draw_rectangle(496+i*5+1,244-avgBin[i]*max_bar_height,496+i*5+4,244,false);
     }       
       
     // draw playback info based on filetype
