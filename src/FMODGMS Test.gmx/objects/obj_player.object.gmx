@@ -114,7 +114,7 @@
     hue = (hue + 1) mod 256;
     
     if (keyboard_check(ord('N')))
-        show_debug_message(FMODGMS_FFT_Normalize());
+        FMODGMS_FFT_Normalize();
     
     // update spectrum visualizer values
     for (var i=0; i&lt;numBins; i++)
@@ -398,10 +398,16 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     shift_hue(16);
     
     // dominant Frequency
-    draw_text(496,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");    
-        
-    // spectrum
+    draw_text(496,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");  
+
+    // spectrum &amp; level
     draw_rectangle_colour(496,144,496+numBins*5,244,c_black,c_black,$202020,$202020,false);
+    
+    if (is_playing)
+    {
+        draw_set_colour(c_dkgray);
+        draw_circle(760,185,FMODGMS_Chan_Get_Level(0)*100,0);
+    }
     
     if (keyboard_check(ord('N')))
         max_bar_height = 100;
@@ -419,7 +425,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     
         draw_set_colour(col);
         draw_rectangle(496+i*5+1,244-avgBin[i]*max_bar_height,496+i*5+4,244,false);
-    }       
+    }   
       
     // draw playback info based on filetype
     
@@ -441,9 +447,9 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     
     // Disallow MIDI demo in Linux build
     if (os_type == os_linux)
-        draw_text(416,304,"1-6 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit#M -- Add random effect#K -- Remove Effect");
+        draw_text(416,304,"1-6 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit#L -- Add random effect#K -- Remove Effect");
     else
-        draw_text(416,304,"1-7 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit#M -- Add random effect#K -- Remove Effect");
+        draw_text(416,304,"1-7 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit#L -- Add random effect#K -- Remove Effect");
     
     shift_hue(16);
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
@@ -534,9 +540,35 @@ if (is_playing)
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>//toggle mute
+FMODGMS_Chan_Set_Mute(0,!FMODGMS_Chan_Get_Mute(0));
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="76">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>FMODGMS_Chan_Remove_Effect(0,effect);
 FMODGMS_Effect_RemoveAll();
 
+prevEffect = effectIndex
+do
 effectIndex = choose(   FMODGMS_EFFECT_CHORUS,
                         FMODGMS_EFFECT_DISTORTION,
                         FMODGMS_EFFECT_ECHO,
@@ -545,6 +577,8 @@ effectIndex = choose(   FMODGMS_EFFECT_CHORUS,
                         FMODGMS_EFFECT_LOWPASS,
                         FMODGMS_EFFECT_REVERB,
                         FMODGMS_EFFECT_TREMOLO);
+until (prevEffect != effectIndex);
+
                         
 effect = FMODGMS_Effect_Create(effectIndex);
 //FMODGMS_Effect_Set_Parameter(effect, 0, 0);

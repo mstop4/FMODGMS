@@ -736,6 +736,40 @@
           <argCount>0</argCount>
           <args/>
         </function>
+        <function>
+          <name>FMODGMS_Chan_Get_Level</name>
+          <externalName>FMODGMS_Chan_Get_Level</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Get_Level(channel)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Get_Mute</name>
+          <externalName>FMODGMS_Chan_Get_Mute</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Get_Mute(channel)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Set_Mute</name>
+          <externalName>FMODGMS_Chan_Set_Mute</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Set_Mute(channel, mute)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
       </functions>
       <constants>
         <constant>
