@@ -1,13 +1,13 @@
 /*--------------------------------------------------------
 //  fmodgms.cpp
 //
-//  FMODGMS v.0.7.0.1
+//  FMODGMS v.0.7.1
 //  By: M.S.T.O.P.
 //
-//  Wrapper library that allows communication between
-//  the FMOD Studio low level API and GameMaker: Studio.
+//  GML bindings to the FMOD Studio low-level API for
+//  GameMaker:Studio.
 //
-//  FMOD Studio version: 1.08.11
+//  FMOD Studio version: 1.08.15
 ----------------------------------------------------------*/
 
 #ifndef FMODGMS_CPP

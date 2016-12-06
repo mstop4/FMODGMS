@@ -82,6 +82,7 @@
     channel_pitch = 1;
     effect = -1;
     effectIndex = -1;
+    normalize_spectrum = false;
     
     window_set_caption("The colours!");
 }
@@ -113,7 +114,8 @@
     hue_shift = 0;
     hue = (hue + 1) mod 256;
     
-    if (keyboard_check(ord('N')))
+    // normalize spectrum
+    if (normalize_spectrum)
         FMODGMS_FFT_Normalize();
     
     // update spectrum visualizer values
@@ -400,15 +402,17 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     // dominant Frequency
     draw_text(496,112,"Dominant Freq.: " + string(FMODGMS_FFT_Get_DominantFrequency()) + " Hz");  
 
-    // spectrum &amp; level
+    // spectrum background
     draw_rectangle_colour(496,144,496+numBins*5,244,c_black,c_black,$202020,$202020,false);
     
+    // channel level
     if (is_playing)
     {
         draw_set_colour(c_dkgray);
         draw_circle(760,185,FMODGMS_Chan_Get_Level(0)*100,0);
     }
     
+    // spectrum bars
     if (keyboard_check(ord('N')))
         max_bar_height = 100;
     else
@@ -454,9 +458,9 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     shift_hue(16);
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
     shift_hue(16);
-    draw_text(16,432,"FMODGMS version: 0.7.0"); //Please assign new version num :)
+    draw_text(16,432,"FMODGMS version: 0.7.1");
     shift_hue(16);
-    draw_text(16,448,"FMOD version: Studio 1.08.14");
+    draw_text(16,448,"FMOD version: Studio 1.08.15");
     
 }
 </string>
@@ -518,6 +522,29 @@ if (is_playing)
         is_paused = false;
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="78">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>normalize_spectrum = !normalize_spectrum;
 </string>
           </argument>
         </arguments>

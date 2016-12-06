@@ -151,6 +151,7 @@
       <script>scripts\ReadMe_Effects.gml</script>
     </scripts>
   </scripts>
+  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_normal</font>
     <font>fonts\fnt_small</font>
