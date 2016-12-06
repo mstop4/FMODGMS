@@ -34,6 +34,7 @@ GMexport double FMODGMS_FFT_Set_WindowSize(double size);
 GMexport double FMODGMS_FFT_Get_DominantFrequency();
 GMexport double FMODGMS_FFT_Get_BinValue(double index);
 GMexport double FMODGMS_FFT_Get_NumBins();
+GMexport double FMODGMS_FFT_Normalize();
 
 // Sound Functions
 GMexport double FMODGMS_Snd_LoadSound(char* filename);
@@ -75,6 +76,7 @@ GMexport double FMODGMS_Chan_Set_Frequency(double channel, double freq);
 GMexport double FMODGMS_Chan_Set_Pitch(double channel, double pitch);
 GMexport double FMODGMS_Chan_Set_ModOrder(double channel, double ord);
 GMexport double FMODGMS_Chan_Set_ModRow(double channel, double row);
+GMexport double FMODGMS_Chan_Set_Mute(double channel, double mute);
 GMexport double FMODGMS_Chan_Get_Position(double channel);
 GMexport double FMODGMS_Chan_Get_Volume(double channel);
 GMexport double FMODGMS_Chan_Get_Frequency(double channel);
@@ -82,6 +84,17 @@ GMexport double FMODGMS_Chan_Get_Pitch(double channel);
 GMexport double FMODGMS_Chan_Get_ModOrder(double channel);
 GMexport double FMODGMS_Chan_Get_ModPattern(double channel);
 GMexport double FMODGMS_Chan_Get_ModRow(double channel);
+GMexport double FMODGMS_Chan_Get_Mute(double channel);
+GMexport double FMODGMS_Chan_Add_Effect(double channel, double effect, double index);
+GMexport double FMODGMS_Chan_Remove_Effect(double channel, double effect);
+GMexport double FMODGMS_Chan_Get_Level(double channel);
+
+//DSP Effect Functions
+GMexport double FMODGMS_Effect_Create(double type);
+GMexport double FMODGMS_Effect_Set_Parameter(double effect, double param, double value);
+GMexport double FMODGMS_Effect_Get_Parameter(double effect, double param);
+GMexport double FMODGMS_Effect_Remove(double effect);
+GMexport double FMODGMS_Effect_RemoveAll();
 
 // Utility Functions
 GMexport const char* FMODGMS_Util_GetErrorMessage();

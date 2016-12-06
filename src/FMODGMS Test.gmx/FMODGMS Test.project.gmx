@@ -147,6 +147,8 @@
       <script>scripts\FMODGMS_Snd_TypeToString.gml</script>
       <script>scripts\FMODGMS_Snd_TagDataTypeToString.gml</script>
       <script>scripts\FMODGMS_Snd_TagTypeToString.gml</script>
+      <script>scripts\FMODGMS_Effect_TypeToString.gml</script>
+      <script>scripts\ReadMe_Effects.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">

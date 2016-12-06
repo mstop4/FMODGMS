@@ -3,7 +3,7 @@
   <name>FMODGMS</name>
   <version>0.6.2</version>
   <packageID></packageID>
-  <ProductID>ACBD3CFF4E539AD869A0E8E3B4B022DD</ProductID>
+  <ProductID></ProductID>
   <date>13/02/2016</date>
   <license>Free to use, also for commercial games.</license>
   <description></description>
@@ -31,6 +31,11 @@
     <Resource>Scripts\FMODGMS\FMODGMS_Util_SecondsToSamples</Resource>
     <Resource>Scripts\FMODGMS\FMODGMS_Util_SamplesToSeconds</Resource>
     <Resource>Scripts\FMODGMS\FMODGMS_Util_SamplesToBeats</Resource>
+    <Resource>Scripts\FMODGMS\FMODGMS_Snd_TypeToString</Resource>
+    <Resource>Scripts\FMODGMS\FMODGMS_Snd_TagDataTypeToString</Resource>
+    <Resource>Scripts\FMODGMS\FMODGMS_Snd_TagTypeToString</Resource>
+    <Resource>Scripts\FMODGMS\ReadMe_EffectParameters</Resource>
+    <Resource>Scripts\FMODGMS\FMODGMS_Effect_TypeToString</Resource>
   </IncludedResources>
   <files>
     <file>
@@ -653,6 +658,118 @@
             <arg>2</arg>
           </args>
         </function>
+        <function>
+          <name>FMODGMS_Chan_Add_Effect</name>
+          <externalName>FMODGMS_Chan_Add_Effect</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Add_Effect(channel, effect, index)</help>
+          <returnType>2</returnType>
+          <argCount>3</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Remove_Effect</name>
+          <externalName>FMODGMS_Chan_Remove_Effect</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Remove_Effect(channel, effect)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Effect_Create</name>
+          <externalName>FMODGMS_Effect_Create</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Effect_Create(type)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Effect_Set_Parameter</name>
+          <externalName>FMODGMS_Effect_Set_Parameter</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Effect_Set_Parameter(effect, parameter, value)</help>
+          <returnType>2</returnType>
+          <argCount>3</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Effect_Remove</name>
+          <externalName>FMODGMS_Effect_Remove</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Effect_Remove(effect)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Effect_RemoveAll</name>
+          <externalName>FMODGMS_Effect_RemoveAll</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Effect_RemoveAll()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>FMODGMS_FFT_Normalize</name>
+          <externalName>FMODGMS_FFT_Normalize</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_FFT_Normalize()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Get_Level</name>
+          <externalName>FMODGMS_Chan_Get_Level</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Get_Level(channel)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Get_Mute</name>
+          <externalName>FMODGMS_Chan_Get_Mute</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Get_Mute(channel)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>FMODGMS_Chan_Set_Mute</name>
+          <externalName>FMODGMS_Chan_Set_Mute</externalName>
+          <kind>12</kind>
+          <help>FMODGMS_Chan_Set_Mute(channel, mute)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
       </functions>
       <constants>
         <constant>
@@ -903,6 +1020,51 @@
         <constant>
           <name>FMODGMS_LOOPMODE_BIDI</name>
           <value>2</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_EFFECT_LOWPASS</name>
+          <value>3</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_EFFECT_HIGHPASS</name>
+          <value>5</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_EFFECT_ECHO</name>
+          <value>6</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_EFFECT_FLANGE</name>
+          <value>8</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_EFFECT_DISTORTION</name>
+          <value>9</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_EFFECT_CHORUS</name>
+          <value>14</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_EFFECT_REVERB</name>
+          <value>19</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_EFFECT_TREMOLO</name>
+          <value>22</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>FMODGMS_EFFECT_PITCHSHIFT</name>
+          <value>13</value>
           <hidden>0</hidden>
         </constant>
       </constants>
