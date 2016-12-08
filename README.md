@@ -1,8 +1,8 @@
 # FMODGMS
 A ***GameMaker: Studio* extension** that provides **GML bindings to the [FMOD](http://www.fmod.org) Studio low-level API.** Compatible with **Windows**, **Mac** (coming soon), and **Linux** games.
 
-**Stable:** *[0.6.1](https://github.com/mstop4/FMODGMS/releases/tag/0.6.1-b)* - FMOD Studio 1.08.07 - Windows, Linux  
-**Beta:** *[0.7.1](https://github.com/mstop4/FMODGMS)* - FMOD Studio 1.08.15 - Windows, Linux
+**Stable:** *[0.7.1](https://github.com/mstop4/FMODGMS/releases/tag/0.7.1)* - FMOD Studio 1.08.15 - Windows, Linux  
+**Beta:** None <!--*[0.7.1](https://github.com/mstop4/FMODGMS/releases/tag/0.7.1)* - FMOD Studio 1.08.15 - Windows, Linux-->
 
 Features
 --------
@@ -11,7 +11,7 @@ Features
 - Add custom loop points to sounds. This allows, for example, a music track to have an intro section that can seamlessly transition into an infinitely looping main section without having to break them up into two separate files.
 - Dynamically change to volume, playback frequency and relative pitch of a sound.
 - Analyze an audio stream using Fast Fourier Transform (FFT) and obtain its spectrum data.
-- Support for DSPs
+- Support for DSP effects such as flange, reverb and filters.
 - Extract tag information from audio files (e.g. ID3 tags from MP3s and Vorbis tags from OGGs).
 
 What's inside
