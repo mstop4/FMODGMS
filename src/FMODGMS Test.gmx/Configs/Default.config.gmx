@@ -289,6 +289,7 @@ FMOD version: Studio 1.08.15</option_information>
     <option_ios_advertising_type>iAds</option_ios_advertising_type>
     <option_ios_app_id></option_ios_app_id>
     <option_ios_build_version>0</option_ios_build_version>
+    <option_ios_certificate></option_ios_certificate>
     <option_ios_device_type>3</option_ios_device_type>
     <option_ios_display_name>BASSGMS Test</option_ios_display_name>
     <option_ios_facebook_app_display_name></option_ios_facebook_app_display_name>

@@ -1,6 +1,7 @@
 /*--------------------------------------------------------
 //  fmodgms.cpp
 //
+//  FMODGMS v.0.8.0
 //  By: M.S.T.O.P.
 //
 //  GML bindings to the FMOD Studio low-level API for
