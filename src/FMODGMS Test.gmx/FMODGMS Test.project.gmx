@@ -148,10 +148,11 @@
       <script>scripts\FMODGMS_Snd_TagDataTypeToString.gml</script>
       <script>scripts\FMODGMS_Snd_TagTypeToString.gml</script>
       <script>scripts\FMODGMS_Effect_TypeToString.gml</script>
+      <script>scripts\FMODGMS_Sys_OutputModeToString.gml</script>
+      <script>scripts\FMODGMS_Sys_Set_OutputModeWithCheck.gml</script>
       <script>scripts\ReadMe_Effects.gml</script>
     </scripts>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\fnt_normal</font>
     <font>fonts\fnt_small</font>

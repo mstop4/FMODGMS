@@ -1,7 +1,7 @@
 /*--------------------------------------------------------
 //  fmodgms.hpp
 //
-//  FMODGMS v.0.7.1
+//  FMODGMS v.0.8.0
 //  By: M.S.T.O.P.
 //
 //  GML bindings to the FMOD Studio low-level API for
@@ -23,9 +23,12 @@ GMexport double FMODGMS_Sys_Create();
 GMexport double FMODGMS_Sys_Initialize(double maxChan);
 GMexport double FMODGMS_Sys_Update();
 GMexport double FMODGMS_Sys_Close();
+GMexport double FMODGMS_Sys_Set_OutputMode(double outputType);
 GMexport double FMODGMS_Sys_Set_SoftwareFormat(double sampleRate, double speakermode);
 GMexport double FMODGMS_Sys_Get_SampleRate();
+GMexport double FMODGMS_Sys_Get_SpeakerMode();
 GMexport double FMODGMS_Sys_Get_CPUUsage();
+GMexport double FMODGMS_Sys_Get_OutputMode();
 GMexport double FMODGMS_Sys_Get_MaxSoundIndex();
 GMexport double FMODGMS_Sys_Get_MaxChannelIndex();
 

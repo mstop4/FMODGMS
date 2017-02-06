@@ -33,8 +33,15 @@
     
     // Create the system
     FMODGMS_Sys_Create();
+    
+    // Uncomment for ASIO in Windows
+    
+    //FMODGMS_Sys_Set_OutputMode(FMODGMS_OUTPUTTYPE_ASIO);
+    
     FMODGMS_Sys_Initialize(32);
     
+    output_mode = FMODGMS_Sys_OutputModeToString(FMODGMS_Sys_Get_OutputMode());
+
     // Number of bins in Spectrum data
     //show_message(FMODGMS_FFT_Set_WindowSize(128));
     numBins = FMODGMS_FFT_Get_NumBins();
@@ -366,12 +373,16 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     shift_hue(16);
     draw_text(210,16,string(cpu_usage) + "%");
     
-    draw_set_halign(fa_left);
-    
     draw_healthbar(160,32,260,48,cpu_usage,make_color_rgb(64,64,64),make_color_hsv((hue+42 mod 256),0,255),make_color_hsv((hue+42 mod 256),255,255),0,true,true);
+    
+    // Output Mode
+    shift_hue(16);
+    draw_set_halign(fa_right);
+    draw_text(room_width-32,32,"Output Mode: " + output_mode);
     
     // FPS
     shift_hue(16);
+    draw_set_halign(fa_left);
     draw_text(320,32,"FPS: " + string(fps) + "/" + string(room_speed));
     
     // Sound info
@@ -458,7 +469,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     shift_hue(16);
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
     shift_hue(16);
-    draw_text(16,432,"FMODGMS version: 0.7.1");
+    draw_text(16,432,"FMODGMS version: 0.8.0");
     shift_hue(16);
     draw_text(16,448,"FMOD version: Studio 1.08.15");
     

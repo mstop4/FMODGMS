@@ -1,7 +1,6 @@
 /*--------------------------------------------------------
 //  fmodgms.cpp
 //
-//  FMODGMS v.0.7.1
 //  By: M.S.T.O.P.
 //
 //  GML bindings to the FMOD Studio low-level API for
@@ -41,7 +40,7 @@ std::string tagString;
 // Spectrum DSP Stuff
 FMOD::DSP *fftdsp;
 float domFreq;
-int playbackRate;
+int playbackRate = 48000;
 int windowSize = 128;
 int nyquist = windowSize / 2;
 std::vector <float> binValues(nyquist);
@@ -167,6 +166,41 @@ GMexport double FMODGMS_Sys_Close()
 	//Free willy
 }
 
+// Sets the output mode for the platform
+GMexport double FMODGMS_Sys_Set_OutputMode(double outputType)
+{
+	/*
+	Output Types
+
+	0 - Auto Detect (All, default)
+	1 - Unknown (All) - shoudld only be used with FMODGMS_Sys_Get_OutputMode
+	2 - No sound (All)
+	3 - WAV Writer (All)
+	4 - No sound, non-realtime (All)
+	5 - WAV Writer, non-realtime (All)
+	6 - Direct Sound (Windows, default for XP or lower)
+	7 - Windows Multimedia (Windows)
+	8 - Windows Audio Session API (Windows, default for Vista or higher)
+	9 - ASIO 2.0 (Windows)
+	10 - Pulse Audio (Linux, default if available)
+	11 - Advanced Linux Sound Architecture (Linux, default if above isn't available)
+	12 - Core Audio (Mac/iOS default)
+	13 - XAudio (Xbox 360 default)
+	14 - Audio Out (PS3 default)
+	15 - Java Audio Track (Android, default for 2.2 or lower)
+	16 - OpenSL ES (Android, default for 2.3 or higher)
+	17 - AX (Wii U default)
+	18 - Audio Out (PS4/PSVita default)
+	19 - Audio3D (PS4)
+	20 - Dolby Atmos WASAPI (Windows)
+	21 - Max
+	*/
+
+	FMOD_OUTPUTTYPE ot = (FMOD_OUTPUTTYPE)(int)round(outputType);
+	result = sys->setOutput(ot);
+	return FMODGMS_Util_ErrorChecker();
+}
+
 // Sets the playback sample rate and speaker mode
 GMexport double FMODGMS_Sys_Set_SoftwareFormat(double sampleRate, double speakermode)
 {
@@ -191,13 +225,22 @@ GMexport double FMODGMS_Sys_Set_SoftwareFormat(double sampleRate, double speaker
 	return FMODGMS_Util_ErrorChecker();
 }
 
+// Gets the speaker mode used by the system
+GMexport double FMODGMS_Sys_Get_SpeakerMode()
+{
+	FMOD_SPEAKERMODE speakermode;
+	sys->getSoftwareFormat(0, &speakermode, 0);
+
+	return (double)speakermode;
+}
+
 // Gets the playback sample rate
 GMexport double FMODGMS_Sys_Get_SampleRate()
 {
 	return (double)playbackRate;
 }
 
-// Return total CPU usage
+// Gets the total CPU usage
 GMexport double FMODGMS_Sys_Get_CPUUsage()
 {
 	float totalCPU;
@@ -206,7 +249,16 @@ GMexport double FMODGMS_Sys_Get_CPUUsage()
 	return totalCPU;
 }
 
-// Returns the highest index in soundList (number of sounds - 1)
+// Gets the system's output type
+GMexport double FMODGMS_Sys_Get_OutputMode()
+{
+	FMOD_OUTPUTTYPE output;
+	sys->getOutput(&output);
+
+	return (double)output;
+}
+
+// Gets the highest index in soundList (number of sounds - 1)
 GMexport double FMODGMS_Sys_Get_MaxSoundIndex()
 {
 	return soundList.size() - 1.0f;
