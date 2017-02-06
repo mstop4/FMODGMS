@@ -1,0 +1,8 @@
+title: FMODGMS
+description: GML bindings to the FMOD Studio low-level API for GameMaker:Studio. Compatible with Windows and Linux games.
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-hacker
+
+gems:
+  - jekyll-mentions
