@@ -1,7 +1,7 @@
 /*--------------------------------------------------------
 //  fmodgms.cpp
 //
-//  FMODGMS v.0.8.0
+//  FMODGMS v.0.8.1
 //  By: M.S.T.O.P.
 //
 //  GML bindings to the FMOD Studio low-level API for
@@ -75,30 +75,6 @@ GMexport double FMODGMS_Sys_Initialize(double maxChan)
 	result = sys->init(mc, FMOD_INIT_NORMAL, 0);
 	if (result != FMOD_OK)
 		return FMODGMS_Util_ErrorChecker();
-
-	// Init Spectrum DSP
-	result = sys->getMasterChannelGroup(&masterGroup);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
-	result = sys->createDSPByType(FMOD_DSP_TYPE_FFT, &fftdsp);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
-	result = masterGroup->addDSP(FMOD_CHANNELCONTROL_DSP_TAIL, fftdsp);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
-	result = sys->getSoftwareFormat(&playbackRate, 0, 0);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
-	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWTYPE, FMOD_DSP_FFT_WINDOW_TRIANGLE);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
-	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWSIZE, windowSize);
-	return FMODGMS_Util_ErrorChecker();
 }
 
 // Updates the FMOD system  and spectrum DSP
@@ -226,6 +202,16 @@ GMexport double FMODGMS_Sys_Set_SoftwareFormat(double sampleRate, double speaker
 	return FMODGMS_Util_ErrorChecker();
 }
 
+// Changes the DSP buffer size and quantity (defaults: size = 1024, num = 4)
+GMexport double FMODGMS_Sys_Set_DSPBufferSize(double size, double numBuffers)
+{
+	unsigned int s = (unsigned int)round(size);
+	int nb = (int)round(numBuffers);
+
+	result = sys->setDSPBufferSize(s, nb);
+	return FMODGMS_Util_ErrorChecker();
+}
+
 // Gets the speaker mode used by the system
 GMexport double FMODGMS_Sys_Get_SpeakerMode()
 {
@@ -271,9 +257,56 @@ GMexport double FMODGMS_Sys_Get_MaxChannelIndex()
 	return channelList.size() - 1.0f;
 }
 
+// Returns the DSP buffer size
+GMexport double FMODGMS_Sys_Get_DSPBufferSize()
+{
+	unsigned int size;
+	sys->getDSPBufferSize(&size, 0);
+
+	return (double)size;
+}
+
+// Returns the number of DSP buffers
+GMexport double FMODGMS_Sys_Get_NumDSPBuffers()
+{
+	int numBuffers;
+	sys->getDSPBufferSize(0, &numBuffers);
+
+	return (double)numBuffers;
+}
+
 #pragma endregion
 
 #pragma region FFT (Spectrum) Functions
+
+// Init Spectrum DSP
+GMexport double FMODGMS_FFT_Init(double wSize)
+{
+	windowSize = (int)round(wSize);
+
+	result = sys->getMasterChannelGroup(&masterGroup);
+	if (result != FMOD_OK)
+	return FMODGMS_Util_ErrorChecker();
+
+	result = sys->createDSPByType(FMOD_DSP_TYPE_FFT, &fftdsp);
+	if (result != FMOD_OK)
+	return FMODGMS_Util_ErrorChecker();
+
+	result = masterGroup->addDSP(FMOD_CHANNELCONTROL_DSP_TAIL, fftdsp);
+	if (result != FMOD_OK)
+	return FMODGMS_Util_ErrorChecker();
+
+	result = sys->getSoftwareFormat(&playbackRate, 0, 0);
+	if (result != FMOD_OK)
+	return FMODGMS_Util_ErrorChecker();
+
+	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWTYPE, FMOD_DSP_FFT_WINDOW_TRIANGLE);
+	if (result != FMOD_OK)
+	return FMODGMS_Util_ErrorChecker();
+
+	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWSIZE, windowSize);
+	return FMODGMS_Util_ErrorChecker();
+}
 
 // Sets the FFT window size (winodw size = 2 * nyquist = 2 * number of bins) 
 // FMODGMS_FFT_Get_NumBins should be called after this function to ensure the game know what the new number of bins are
@@ -2114,6 +2147,12 @@ GMexport double FMODGMS_Effect_RemoveAll()
 GMexport const char* FMODGMS_Util_GetErrorMessage()
 {
 	return errorMessage;
+}
+
+// Returns a string so that GM:S can check if FMODGMS has laoded properly or not
+GMexport const char* FMODGMS_Util_Handshake()
+{
+	return "FMODGMS is working.";
 }
 
 // Helper function: converts FMOD Results to error message strings and returns GMS_true (1.0) if 

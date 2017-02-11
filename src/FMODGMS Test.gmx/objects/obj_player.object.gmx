@@ -31,6 +31,17 @@
 
     FMODGMS_Util_SecondsToSamples(2,44100);
     
+    // Check to see if FMODGMS has loaded properly
+    if (FMODGMS_Util_Handshake() == "FMODGMS is working.")
+    {
+        show_message_async("FMODGMS loaded.");
+    }    
+    
+    else
+    {
+        show_message_async("FMODGMS is not working.");
+    }
+    
     // Create the system
     FMODGMS_Sys_Create();
     
@@ -39,6 +50,9 @@
     //FMODGMS_Sys_Set_OutputMode(FMODGMS_OUTPUTTYPE_ASIO);
     
     FMODGMS_Sys_Initialize(32);
+    
+    // Initialize the spectrum visualizer
+    FMODGMS_FFT_Init(128);
     
     output_mode = FMODGMS_Sys_OutputModeToString(FMODGMS_Sys_Get_OutputMode());
 
@@ -469,7 +483,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     shift_hue(16);
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
     shift_hue(16);
-    draw_text(16,432,"FMODGMS version: 0.8.0");
+    draw_text(16,432,"FMODGMS version: 0.8.1");
     shift_hue(16);
     draw_text(16,448,"FMOD version: Studio 1.08.15");
     

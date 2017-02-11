@@ -1,7 +1,7 @@
 /*--------------------------------------------------------
 //  fmodgms.hpp
 //
-//  FMODGMS v.0.8.0
+//  FMODGMS v.0.8.1
 //  By: M.S.T.O.P.
 //
 //  GML bindings to the FMOD Studio low-level API for
@@ -25,14 +25,18 @@ GMexport double FMODGMS_Sys_Update();
 GMexport double FMODGMS_Sys_Close();
 GMexport double FMODGMS_Sys_Set_OutputMode(double outputType);
 GMexport double FMODGMS_Sys_Set_SoftwareFormat(double sampleRate, double speakermode);
+GMexport double FMODGMS_Sys_Set_DSPBufferSize(double size, double numBuffers);
 GMexport double FMODGMS_Sys_Get_SampleRate();
 GMexport double FMODGMS_Sys_Get_SpeakerMode();
 GMexport double FMODGMS_Sys_Get_CPUUsage();
 GMexport double FMODGMS_Sys_Get_OutputMode();
+GMexport double FMODGMS_Sys_Get_DSPBufferSize();
+GMexport double FMODGMS_Sys_Get_NumDSPBuffers();
 GMexport double FMODGMS_Sys_Get_MaxSoundIndex();
 GMexport double FMODGMS_Sys_Get_MaxChannelIndex();
 
 // FFT (Spectrum) Functions
+GMexport double FMODGMS_FFT_Init(double wSize);
 GMexport double FMODGMS_FFT_Set_WindowSize(double size);
 GMexport double FMODGMS_FFT_Get_DominantFrequency();
 GMexport double FMODGMS_FFT_Get_BinValue(double index);
@@ -44,7 +48,7 @@ GMexport double FMODGMS_Snd_LoadSound(char* filename);
 GMexport double FMODGMS_Snd_LoadStream(char* filename);
 GMexport double FMODGMS_Snd_Unload(double index);
 GMexport double FMODGMS_Snd_PlaySound(double index, double channel);
-GMexport double FMODGMS_Snd_Set_LoopMode(double index, double modem, double times);
+GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times);
 GMexport double FMODGMS_Snd_Set_LoopPoints(double index, double startTimeInSamples, double endTimeInSamples);
 GMexport double FMODGMS_Snd_Set_ModChannelVolume(double index, double modChannel, double vol);
 GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double whichOne);
@@ -101,6 +105,7 @@ GMexport double FMODGMS_Effect_RemoveAll();
 
 // Utility Functions
 GMexport const char* FMODGMS_Util_GetErrorMessage();
+GMexport const char* FMODGMS_Util_Handshake();
 
 // Internal helper functions
 double FMODGMS_Util_ErrorChecker();
