@@ -3,7 +3,7 @@
   <name>FMODGMS</name>
   <version>0.8.1</version>
   <packageID></packageID>
-  <ProductID></ProductID>
+  <ProductID>F79C97955FD1AF4686EB4EF4EF90F0DB</ProductID>
   <date>13/02/2016</date>
   <license>Free to use, also for commercial games.</license>
   <description></description>
@@ -805,7 +805,7 @@
           <kind>12</kind>
           <help>FMODGMS_Util_Handshake()</help>
           <returnType>1</returnType>
-          <argCount>0</argCount>
+          <argCount>-1</argCount>
           <args/>
         </function>
         <function>

@@ -33,22 +33,20 @@
     
     // Check to see if FMODGMS has loaded properly
     if (FMODGMS_Util_Handshake() == "FMODGMS is working.")
-    {
-        show_message_async("FMODGMS loaded.");
-    }    
+        show_message_async("Success! FMODGMS has been loaded.");
     
     else
-    {
-        show_message_async("FMODGMS is not working.");
-    }
+        show_message_async("Error! FMODGMS was not loaded prorperly.");
     
     // Create the system
     FMODGMS_Sys_Create();
     
-    // Uncomment for ASIO in Windows
+    // Use ASIO on Windows, because we can.
+    // Comment out the two lines below to use the default output mode.
+    if (os_type == os_windows)
+        FMODGMS_Sys_Set_OutputMode(FMODGMS_OUTPUTTYPE_ASIO);
     
-    //FMODGMS_Sys_Set_OutputMode(FMODGMS_OUTPUTTYPE_ASIO);
-    
+    // Initialize the system
     FMODGMS_Sys_Initialize(32);
     
     // Initialize the spectrum visualizer
@@ -485,7 +483,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     shift_hue(16);
     draw_text(16,432,"FMODGMS version: 0.8.1");
     shift_hue(16);
-    draw_text(16,448,"FMOD version: Studio 1.08.15");
+    draw_text(16,448,"FMOD version: Studio 1.09.01");
     
 }
 </string>
