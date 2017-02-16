@@ -7,7 +7,7 @@
 //  GML bindings to the FMOD Studio low-level API for
 //  GameMaker:Studio.
 //
-//  FMOD Studio version: 1.08.15
+//  FMOD Studio version: 1.09.01
 ----------------------------------------------------------*/
 
 #ifndef FMODGMS_CPP
@@ -73,8 +73,9 @@ GMexport double FMODGMS_Sys_Initialize(double maxChan)
 	}
 
 	result = sys->init(mc, FMOD_INIT_NORMAL, 0);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
+	
+	//if (result != FMOD_OK)
+	return FMODGMS_Util_ErrorChecker();
 }
 
 // Updates the FMOD system  and spectrum DSP
@@ -286,26 +287,26 @@ GMexport double FMODGMS_FFT_Init(double wSize)
 
 	result = sys->getMasterChannelGroup(&masterGroup);
 	if (result != FMOD_OK)
-	return FMODGMS_Util_ErrorChecker();
+		return FMODGMS_Util_ErrorChecker();
 
 	result = sys->createDSPByType(FMOD_DSP_TYPE_FFT, &fftdsp);
 	if (result != FMOD_OK)
-	return FMODGMS_Util_ErrorChecker();
+		return FMODGMS_Util_ErrorChecker();
 
 	result = masterGroup->addDSP(FMOD_CHANNELCONTROL_DSP_TAIL, fftdsp);
 	if (result != FMOD_OK)
-	return FMODGMS_Util_ErrorChecker();
+		return FMODGMS_Util_ErrorChecker();
 
 	result = sys->getSoftwareFormat(&playbackRate, 0, 0);
 	if (result != FMOD_OK)
-	return FMODGMS_Util_ErrorChecker();
+		return FMODGMS_Util_ErrorChecker();
 
 	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWTYPE, FMOD_DSP_FFT_WINDOW_TRIANGLE);
 	if (result != FMOD_OK)
-	return FMODGMS_Util_ErrorChecker();
+		return FMODGMS_Util_ErrorChecker();
 
 	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWSIZE, windowSize);
-	return FMODGMS_Util_ErrorChecker();
+		return FMODGMS_Util_ErrorChecker();
 }
 
 // Sets the FFT window size (winodw size = 2 * nyquist = 2 * number of bins) 

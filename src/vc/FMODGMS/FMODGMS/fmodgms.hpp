@@ -7,7 +7,7 @@
 //  GML bindings to the FMOD Studio low-level API for
 //  GameMaker:Studio.
 //
-//  FMOD Studio version: 1.08.15
+//  FMOD Studio version: 1.09.01
 ----------------------------------------------------------*/
 
 #ifndef FMODGMS_HPP
