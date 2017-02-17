@@ -1,8 +1,10 @@
 # FMODGMS
 
 <p align="center">
+
     <img src="https://github.com/mstop4/FMODGMS/blob/master/img/fmodgms%20screen.PNG" width=75%>
     <img src="https://github.com/mstop4/FMODGMS/blob/master/img/fmodgms%20ubuntu.png" width=75%>
+    
 </p>
 
 A ***GameMaker: Studio* extension** that provides **GML bindings to the [FMOD](http://www.fmod.org) Studio low-level API.** Compatible with **Windows**, and **Linux** games.
