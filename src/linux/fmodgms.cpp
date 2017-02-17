@@ -1,13 +1,13 @@
 /*--------------------------------------------------------
 //  fmodgms.cpp
 //
-//  FMODGMS v.0.7.1
+//  FMODGMS v.0.8.0
 //  By: M.S.T.O.P.
 //
 //  GML bindings to the FMOD Studio low-level API for
 //  GameMaker:Studio.
 //
-//  FMOD Studio version: 1.08.15
+//  FMOD Studio version: 1.09.01
 ----------------------------------------------------------*/
 
 #ifndef FMODGMS_CPP
@@ -41,7 +41,7 @@ std::string tagString;
 // Spectrum DSP Stuff
 FMOD::DSP *fftdsp;
 float domFreq;
-int playbackRate;
+int playbackRate = 48000;
 int windowSize = 128;
 int nyquist = windowSize / 2;
 std::vector <float> binValues(nyquist);
@@ -73,31 +73,8 @@ GMexport double FMODGMS_Sys_Initialize(double maxChan)
 	}
 
 	result = sys->init(mc, FMOD_INIT_NORMAL, 0);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
-	// Init Spectrum DSP
-	result = sys->getMasterChannelGroup(&masterGroup);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
-	result = sys->createDSPByType(FMOD_DSP_TYPE_FFT, &fftdsp);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
-	result = masterGroup->addDSP(FMOD_CHANNELCONTROL_DSP_TAIL, fftdsp);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
-	result = sys->getSoftwareFormat(&playbackRate, 0, 0);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
-	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWTYPE, FMOD_DSP_FFT_WINDOW_TRIANGLE);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
-	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWSIZE, windowSize);
+	
+	//if (result != FMOD_OK)
 	return FMODGMS_Util_ErrorChecker();
 }
 
@@ -167,6 +144,41 @@ GMexport double FMODGMS_Sys_Close()
 	//Free willy
 }
 
+// Sets the output mode for the platform
+GMexport double FMODGMS_Sys_Set_OutputMode(double outputType)
+{
+	/*
+	Output Types
+
+	0 - Auto Detect (All, default)
+	1 - Unknown (All) - shoudld only be used with FMODGMS_Sys_Get_OutputMode
+	2 - No sound (All)
+	3 - WAV Writer (All)
+	4 - No sound, non-realtime (All)
+	5 - WAV Writer, non-realtime (All)
+	6 - Direct Sound (Windows, default for XP or lower)
+	7 - Windows Multimedia (Windows)
+	8 - Windows Audio Session API (Windows, default for Vista or higher)
+	9 - ASIO 2.0 (Windows)
+	10 - Pulse Audio (Linux, default if available)
+	11 - Advanced Linux Sound Architecture (Linux, default if above isn't available)
+	12 - Core Audio (Mac/iOS default)
+	13 - XAudio (Xbox 360 default)
+	14 - Audio Out (PS3 default)
+	15 - Java Audio Track (Android, default for 2.2 or lower)
+	16 - OpenSL ES (Android, default for 2.3 or higher)
+	17 - AX (Wii U default)
+	18 - Audio Out (PS4/PSVita default)
+	19 - Audio3D (PS4)
+	20 - Dolby Atmos WASAPI (Windows)
+	21 - Max
+	*/
+
+	FMOD_OUTPUTTYPE ot = (FMOD_OUTPUTTYPE)(int)round(outputType);
+	result = sys->setOutput(ot);
+	return FMODGMS_Util_ErrorChecker();
+}
+
 // Sets the playback sample rate and speaker mode
 GMexport double FMODGMS_Sys_Set_SoftwareFormat(double sampleRate, double speakermode)
 {
@@ -191,13 +203,32 @@ GMexport double FMODGMS_Sys_Set_SoftwareFormat(double sampleRate, double speaker
 	return FMODGMS_Util_ErrorChecker();
 }
 
+// Changes the DSP buffer size and quantity (defaults: size = 1024, num = 4)
+GMexport double FMODGMS_Sys_Set_DSPBufferSize(double size, double numBuffers)
+{
+	unsigned int s = (unsigned int)round(size);
+	int nb = (int)round(numBuffers);
+
+	result = sys->setDSPBufferSize(s, nb);
+	return FMODGMS_Util_ErrorChecker();
+}
+
+// Gets the speaker mode used by the system
+GMexport double FMODGMS_Sys_Get_SpeakerMode()
+{
+	FMOD_SPEAKERMODE speakermode;
+	sys->getSoftwareFormat(0, &speakermode, 0);
+
+	return (double)speakermode;
+}
+
 // Gets the playback sample rate
 GMexport double FMODGMS_Sys_Get_SampleRate()
 {
 	return (double)playbackRate;
 }
 
-// Return total CPU usage
+// Gets the total CPU usage
 GMexport double FMODGMS_Sys_Get_CPUUsage()
 {
 	float totalCPU;
@@ -206,7 +237,16 @@ GMexport double FMODGMS_Sys_Get_CPUUsage()
 	return totalCPU;
 }
 
-// Returns the highest index in soundList (number of sounds - 1)
+// Gets the system's output type
+GMexport double FMODGMS_Sys_Get_OutputMode()
+{
+	FMOD_OUTPUTTYPE output;
+	sys->getOutput(&output);
+
+	return (double)output;
+}
+
+// Gets the highest index in soundList (number of sounds - 1)
 GMexport double FMODGMS_Sys_Get_MaxSoundIndex()
 {
 	return soundList.size() - 1.0f;
@@ -218,9 +258,56 @@ GMexport double FMODGMS_Sys_Get_MaxChannelIndex()
 	return channelList.size() - 1.0f;
 }
 
+// Returns the DSP buffer size
+GMexport double FMODGMS_Sys_Get_DSPBufferSize()
+{
+	unsigned int size;
+	sys->getDSPBufferSize(&size, 0);
+
+	return (double)size;
+}
+
+// Returns the number of DSP buffers
+GMexport double FMODGMS_Sys_Get_NumDSPBuffers()
+{
+	int numBuffers;
+	sys->getDSPBufferSize(0, &numBuffers);
+
+	return (double)numBuffers;
+}
+
 #pragma endregion
 
 #pragma region FFT (Spectrum) Functions
+
+// Init Spectrum DSP
+GMexport double FMODGMS_FFT_Init(double wSize)
+{
+	windowSize = (int)round(wSize);
+
+	result = sys->getMasterChannelGroup(&masterGroup);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = sys->createDSPByType(FMOD_DSP_TYPE_FFT, &fftdsp);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = masterGroup->addDSP(FMOD_CHANNELCONTROL_DSP_TAIL, fftdsp);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = sys->getSoftwareFormat(&playbackRate, 0, 0);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWTYPE, FMOD_DSP_FFT_WINDOW_TRIANGLE);
+	if (result != FMOD_OK)
+		return FMODGMS_Util_ErrorChecker();
+
+	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWSIZE, windowSize);
+		return FMODGMS_Util_ErrorChecker();
+}
 
 // Sets the FFT window size (winodw size = 2 * nyquist = 2 * number of bins) 
 // FMODGMS_FFT_Get_NumBins should be called after this function to ensure the game know what the new number of bins are
@@ -2061,6 +2148,12 @@ GMexport double FMODGMS_Effect_RemoveAll()
 GMexport const char* FMODGMS_Util_GetErrorMessage()
 {
 	return errorMessage;
+}
+
+// Returns a string so that GM:S can check if FMODGMS has laoded properly or not
+GMexport const char* FMODGMS_Util_Handshake()
+{
+	return "FMODGMS is working.";
 }
 
 // Helper function: converts FMOD Results to error message strings and returns GMS_true (1.0) if 

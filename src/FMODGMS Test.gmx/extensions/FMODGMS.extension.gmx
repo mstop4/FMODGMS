@@ -3,7 +3,7 @@
   <name>FMODGMS</name>
   <version>0.8.1</version>
   <packageID></packageID>
-  <ProductID>F79C97955FD1AF4686EB4EF4EF90F0DB</ProductID>
+  <ProductID></ProductID>
   <date>13/02/2016</date>
   <license>Free to use, also for commercial games.</license>
   <description></description>
@@ -52,12 +52,12 @@
       </ConfigOptions>
       <ProxyFiles>
         <ProxyFile>
-          <Name>libfmodgms.so</Name>
-          <TargetMask>134217856</TargetMask>
-        </ProxyFile>
-        <ProxyFile>
           <Name>libFMODGMS.dylib</Name>
           <TargetMask>2</TargetMask>
+        </ProxyFile>
+        <ProxyFile>
+          <Name>libfmodgms.so</Name>
+          <TargetMask>134217856</TargetMask>
         </ProxyFile>
       </ProxyFiles>
       <functions>
