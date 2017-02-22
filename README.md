@@ -23,6 +23,7 @@ Features
 - Analyze an audio stream using Fast Fourier Transform (FFT) and obtain its spectrum data.
 - Support for DSP effects such as flange, reverb and filters.
 - Extract tag information from audio files (e.g. ID3 tags from MP3s and Vorbis tags from OGGs).
+- Supports various audio output modes (e.g. ASIO, WASAPI, ALSA).
 
 What's inside
 -------------
