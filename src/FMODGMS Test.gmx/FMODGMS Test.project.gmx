@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="17" name="datafiles">
+  <datafiles number="34" name="datafiles">
     <datafile>
       <name>cronolog.s3m</name>
       <exists>-1</exists>
@@ -123,6 +123,40 @@
       </ConfigOptions>
       <filename>looptest.ogg</filename>
     </datafile>
+    <datafile>
+      <name>Fury.dls</name>
+      <exists>-1</exists>
+      <size>24756772</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Fury.dls</filename>
+    </datafile>
+    <datafile>
+      <name>FFMQMine-V2.0[2].mid</name>
+      <exists>-1</exists>
+      <size>54249</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>FFMQMine-V2.0[2].mid</filename>
+    </datafile>
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\FMODGMS</extension>
@@ -137,6 +171,7 @@
     <script>scripts\draw_GUI_mp3.gml</script>
     <script>scripts\draw_GUI_ogg.gml</script>
     <script>scripts\draw_GUI_generic.gml</script>
+    <script>scripts\draw_GUI_midi_dls.gml</script>
     <script>scripts\draw_seek_bar.gml</script>
     <script>scripts\shift_hue.gml</script>
     <scripts name="FMODGMS">
