@@ -30,20 +30,20 @@ Features
 What's inside
 -------------
 
-- __FMODGMS.gmez__ - FMODGMS GameMaker: Studio extension
-- __FMODGMS_Demo_win.zip__ - FMODGMS demo program for Windows
-- __FMODGMS_Demo_linux.tar.gz__ - FMODGMS demo program for Linux
-- __src__ - library and test program source code
- - _FMODGMS Test.gmx_ - GameMaker: Studio project for test program
- - _linux_ - FMODGMS source for Linux
- - _vc/FMODGMS_ - FMODGMS source for VS 2013
+- **FMODGMS.gmez** - FMODGMS GameMaker: Studio extension
+- **FMODGMS_Demo_win.zip** - FMODGMS demo program for Windows
+- **FMODGMS_Demo_linux.tar.gz** - FMODGMS demo program for Linux
+- **src** - library and test program source code
+ - *gms/FMODGMS Test.gmx* - GameMaker: Studio project for demo program
+ - *gms2/FMODGMS Test* - GameMaker Studio 2 project for demo program
+ - *linux* - FMODGMS source for Linux
+ - *vc/FMODGMS* - FMODGMS source for VS 2013
 
 Possible Features in the Future
 --------
 
 - Mac support.
 - More options for FFT and spectrum data functionality.
-- More MIDI support.
 - Android support.
 
 For a list of changes and development history, [click here](../../wiki/Changelog).
