@@ -9,8 +9,8 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 
 ---
 
-**Stable:** *[0.7.1](https://github.com/mstop4/FMODGMS/releases/tag/0.7.1)* - FMOD Studio 1.08.15 - Windows, Linux  
-**Beta:** *[0.8.0](https://github.com/mstop4/FMODGMS/releases/tag/0.8.0)* - FMOD Studio 1.09.01 - Windows, Linux
+**Stable:** *[0.8.0](https://github.com/mstop4/FMODGMS/releases/tag/0.8.0)* - FMOD Studio 1.09.01 - Windows, Linux
+**Beta:** *0.8.1* - FMOD Studio 1.09.01 - Windows
 
 **NOTE:** *This extension only works with* GameMaker Studio 2 *if you export your game as an executable and run it outside of* GMS2 *. For some reason, it does not work properly if the game is run within GMS2 itself (i.e. during testing).*
 
@@ -18,6 +18,7 @@ Features
 --------
 
 - Load and play a wide variety of audio formats not natively supported by *GameMaker:Studio* (e.g. MP3, MIDI, MOD, S3M, XM, IT, etc.).
+- Play MIDI files using DLS sound banks.
 - Add custom loop points to sounds. This allows, for example, a music track to have an intro section that can seamlessly transition into an infinitely looping main section without having to break them up into two separate files.
 - Dynamically change to volume, playback frequency and relative pitch of a sound.
 - Analyze an audio stream using Fast Fourier Transform (FFT) and obtain its spectrum data.
