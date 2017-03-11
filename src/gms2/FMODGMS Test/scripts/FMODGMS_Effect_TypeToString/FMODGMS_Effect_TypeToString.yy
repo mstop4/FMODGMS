@@ -1,5 +1,5 @@
 {
-    "id": "e1f0dc96-4501-4e9b-ad00-ab6b2c91abb0",
+    "id": "4c88ee73-4a49-42cc-ada1-d0b09cec61cb",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "FMODGMS_Effect_TypeToString",

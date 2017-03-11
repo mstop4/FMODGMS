@@ -1,5 +1,5 @@
 {
-    "id": "c380327e-22d4-4d89-9c0b-0553f0ec4649",
+    "id": "ad2075df-58e1-4cc4-b231-76deb6f1de5b",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "action_fullscreen",

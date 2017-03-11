@@ -1,0 +1,12 @@
+Converting GML script : ${project_dir}\objects\obj_player\Draw_0.gml
+Converted string : line 74 : 'N' -> "N"
+
+Font fnt_unicode has been converted to font family Arial Unicode MS (Regular). Font has been regenerated, small inconsistencies may occur.
+Font fnt_small has been converted to font family C64 Pro (Regular). Font has been regenerated, small inconsistencies may occur.
+Font fnt_normal has been converted to font family C64 Pro (Regular). Font has been regenerated, small inconsistencies may occur.
+macOS icon ${options_dir}\mac\icons\icon512.png written out as 32-bit.
+game speed set to 60
+added compatibility script action/action_end_game.gml
+added compatibility script action/action_fullscreen.gml
+added compatibility script action/__init_action.gml
+added compatibility script __init_global.gml

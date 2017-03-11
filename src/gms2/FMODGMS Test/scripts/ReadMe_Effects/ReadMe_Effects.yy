@@ -1,5 +1,5 @@
 {
-    "id": "72c14318-fc40-41c2-b49d-ccd9acb492a2",
+    "id": "820e1a87-f2c5-434d-b04c-0e7b00c659ca",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "ReadMe_Effects",

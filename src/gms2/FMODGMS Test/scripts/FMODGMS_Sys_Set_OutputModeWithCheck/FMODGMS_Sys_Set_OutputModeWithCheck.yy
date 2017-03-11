@@ -1,5 +1,5 @@
 {
-    "id": "87615147-20a5-4e0b-8b1d-7f9197f039cb",
+    "id": "70bca5b5-e4ad-4337-bc1d-ea69c158f9ee",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "FMODGMS_Sys_Set_OutputModeWithCheck",

@@ -1,11 +1,11 @@
 {
-    "id": "ebeedcc8-390e-4a40-8d7e-1bd500b5058d",
+    "id": "fbb05ac5-ebb4-4e87-8ebe-162888bc38d5",
     "modelName": "GMFolder",
     "mvc": "1.1",
-    "name": "ebeedcc8-390e-4a40-8d7e-1bd500b5058d",
+    "name": "fbb05ac5-ebb4-4e87-8ebe-162888bc38d5",
     "children": [
-        "f6a14a38-e2e6-4ff4-a93a-af2225dca544",
-        "67936f25-e528-4dc0-b0b4-c0b4cd9c1b61"
+        "0070a4de-85ea-4e76-adb0-a7aacb3a42c7",
+        "c0b49bbf-99cc-4b9e-a3d0-9190532b5ae3"
     ],
     "filterType": "GMScript",
     "folderName": "compatibility",

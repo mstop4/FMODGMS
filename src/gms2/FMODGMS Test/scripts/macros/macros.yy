@@ -1,5 +1,5 @@
 {
-    "id": "95a18412-3020-4eba-80d8-f0b7317ec911",
+    "id": "1117a6d9-b8f8-43b7-9e16-6ebdc5cecd31",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "macros",

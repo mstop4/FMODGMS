@@ -1,5 +1,5 @@
 {
-    "id": "2e367e7f-0d8e-4bd3-9f59-e3a3ed64e11a",
+    "id": "e632eece-826b-4d9f-b548-195d34171d9f",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "action_end_game",

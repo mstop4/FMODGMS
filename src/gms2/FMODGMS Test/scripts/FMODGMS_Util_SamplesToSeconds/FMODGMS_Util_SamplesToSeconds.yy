@@ -1,5 +1,5 @@
 {
-    "id": "eb63c99a-2f90-444c-8ea0-1e6c5ed223f4",
+    "id": "5c235d1d-85d0-4e4e-bef4-6e74f582620c",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "FMODGMS_Util_SamplesToSeconds",

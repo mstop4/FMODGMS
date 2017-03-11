@@ -16,7 +16,7 @@
     "option_windows_installer_finished": "${options_dir}\\windows\\Runner_finish.bmp",
     "option_windows_installer_header": "${options_dir}\\windows\\Runner_header.bmp",
     "option_windows_interpolate_pixels": false,
-    "option_windows_license": "${base_options_dir}\\windows\\installer\\license.txt",
+    "option_windows_license": "${options_dir}\\windows\\installer\\license.txt",
     "option_windows_nsis_file": "${options_dir}\\windows\\installer\\runnerinstaller.nsi",
     "option_windows_product_info": "FMODGMS Demo",
     "option_windows_resize_window": false,

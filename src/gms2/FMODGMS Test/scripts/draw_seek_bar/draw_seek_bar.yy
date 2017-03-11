@@ -1,5 +1,5 @@
 {
-    "id": "e898e59e-73e1-40a4-9e79-80831a426889",
+    "id": "ea6a6d7f-b0c8-46f4-b6e9-e19591d28fe3",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "draw_seek_bar",
