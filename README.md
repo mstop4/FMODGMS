@@ -1,7 +1,7 @@
 # FMODGMS
 
 <p align="center">
-    <img src="https://github.com/mstop4/FMODGMS/blob/master/img/fmodgms%20screen.PNG" width=75%>
+    <img src="https://github.com/mstop4/FMODGMS/blob/master/img/fmodgms2.PNG" width=75%>
     <img src="https://github.com/mstop4/FMODGMS/blob/master/img/fmodgms%20ubuntu.png" width=75%>
 </p>
 
