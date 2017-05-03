@@ -13,7 +13,19 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 
 **Beta:** *0.8.1* - FMOD Studio 1.09.01 - Windows
 
-**NOTE:** *This extension only works with* GameMaker Studio 2 *if you export your game as an executable and run it outside of* GMS2 *. For some reason, it does not work properly if the game is run within GMS2 itself (i.e. during testing).*
+**NOTE:** *This extension mostly works with* GameMaker Studio 2. *As of v2.0.5.77, there is only one case where the extension fails to load on Windows machines. Ubuntu is to be tested.* 
+
+## **FMODGMS** compatibility with **GameMaker Studio 2**
+
+| Windows           | VM | YYC |
+|-------------------|----|-----|
+| Run               | ✖️  | ✔️   |
+| Create Executable | ✔️  | ✔️   |
+
+| Ubuntu           | VM | YYC |
+|-------------------|----|-----|
+| Run               | ?  | ?   |
+| Create Executable | ?  | ?   |
 
 Features
 --------
