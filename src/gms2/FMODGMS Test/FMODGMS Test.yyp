@@ -287,6 +287,14 @@
             }
         },
         {
+            "Key": "75ac291e-7061-4bcb-8e8a-3b3545332d41",
+            "Value": {
+                "id": "70884604-7941-4197-a28e-8128c0440f96",
+                "resourcePath": "options\\html5\\options_html5.yy",
+                "resourceType": "GMHtml5Options"
+            }
+        },
+        {
             "Key": "7ff829bf-f2b6-498e-a18e-fdececfe96bf",
             "Value": {
                 "id": "e3ebd99b-e228-48cc-885f-f76f44137dfe",
@@ -308,6 +316,14 @@
                 "id": "c5f7c766-7d2f-4117-903b-1fa3ecb214e8",
                 "resourcePath": "scripts\\ReadMe_Effects\\ReadMe_Effects.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8427047f-9ef8-4c77-89f3-9c20623d07b6",
+            "Value": {
+                "id": "5a242dbc-df81-4935-8554-54f777f67c05",
+                "resourcePath": "options\\ios\\options_ios.yy",
+                "resourceType": "GMiOSOptions"
             }
         },
         {
@@ -487,6 +503,14 @@
             }
         },
         {
+            "Key": "e42bf5cc-3f46-4d67-a6d0-a4885a11ac3f",
+            "Value": {
+                "id": "7b2bcf7b-9d5e-4bf2-891d-0d8cb6b2ab25",
+                "resourcePath": "options\\android\\options_android.yy",
+                "resourceType": "GMAndroidOptions"
+            }
+        },
+        {
             "Key": "e632eece-826b-4d9f-b548-195d34171d9f",
             "Value": {
                 "id": "116af5a5-f7c3-49c8-99b6-f92635d54882",
@@ -537,6 +561,10 @@
     ],
     "script_order": [
         "1117a6d9-b8f8-43b7-9e16-6ebdc5cecd31",
+        "e632eece-826b-4d9f-b548-195d34171d9f",
+        "ad2075df-58e1-4cc4-b231-76deb6f1de5b",
+        "bc80f1b6-aac0-4cd1-bbaa-9b8a6ed21e32",
+        "c0b49bbf-99cc-4b9e-a3d0-9190532b5ae3",
         "6b5eb6ad-1464-4a45-a967-1c4d9c1afd79",
         "ce91d912-4904-468e-86cf-c07273ea518f",
         "077d1df0-a965-4cc1-b6e2-0167eda97a0b",
@@ -555,11 +583,7 @@
         "4c88ee73-4a49-42cc-ada1-d0b09cec61cb",
         "2aa4d029-8792-4ae0-99b1-1524f9a0d99a",
         "70bca5b5-e4ad-4337-bc1d-ea69c158f9ee",
-        "820e1a87-f2c5-434d-b04c-0e7b00c659ca",
-        "e632eece-826b-4d9f-b548-195d34171d9f",
-        "ad2075df-58e1-4cc4-b231-76deb6f1de5b",
-        "bc80f1b6-aac0-4cd1-bbaa-9b8a6ed21e32",
-        "c0b49bbf-99cc-4b9e-a3d0-9190532b5ae3"
+        "820e1a87-f2c5-434d-b04c-0e7b00c659ca"
     ],
     "tutorial": ""
 }

@@ -25,6 +25,7 @@
     "androidsourcedir": "",
     "author": "",
     "classname": "",
+    "copyToTargets": -1,
     "date": "2017-19-10 06:03:27",
     "description": "",
     "extensionName": "",
@@ -33,12 +34,6 @@
             "id": "86316e1c-5d45-4b6a-997c-373af9e644e5",
             "modelName": "GMExtensionFile",
             "mvc": "1.0",
-            "ConfigOptions": [
-                {
-                    "Key": "default",
-                    "Value": 202375362
-                }
-            ],
             "ProxyFiles": [
                 {
                     "id": "59c5b335-fc7d-4a6d-ad72-f6b63e42c2e3",
@@ -705,6 +700,7 @@
                     "value": "21"
                 }
             ],
+            "copyToTargets": 202375362,
             "filename": "FMODGMS.dll",
             "final": "",
             "functions": [
@@ -1868,7 +1864,6 @@
             ],
             "init": "",
             "kind": 1,
-            "maskTarget": 0,
             "order": [
                 
             ],
@@ -1879,18 +1874,13 @@
             "id": "96367664-5042-4e5d-b85f-3f5f16417bc6",
             "modelName": "GMExtensionFile",
             "mvc": "1.0",
-            "ConfigOptions": [
-                {
-                    "Key": "default",
-                    "Value": 1048640
-                }
-            ],
             "ProxyFiles": [
                 
             ],
             "constants": [
                 
             ],
+            "copyToTargets": 1048640,
             "filename": "fmod.dll",
             "final": "",
             "functions": [
@@ -1898,7 +1888,6 @@
             ],
             "init": "",
             "kind": 1,
-            "maskTarget": 0,
             "order": [
                 
             ],
@@ -1909,18 +1898,13 @@
             "id": "0dbbdb6d-1595-4712-8d7c-01fb39dc98a2",
             "modelName": "GMExtensionFile",
             "mvc": "1.0",
-            "ConfigOptions": [
-                {
-                    "Key": "default",
-                    "Value": 67108866
-                }
-            ],
             "ProxyFiles": [
                 
             ],
             "constants": [
                 
             ],
+            "copyToTargets": 67108866,
             "filename": "libfmod.dylib",
             "final": "",
             "functions": [
@@ -1928,7 +1912,6 @@
             ],
             "init": "",
             "kind": 1,
-            "maskTarget": 0,
             "order": [
                 
             ],
