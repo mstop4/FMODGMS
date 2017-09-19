@@ -11,7 +11,7 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 
 **Stable:** *[0.8.0](https://github.com/mstop4/FMODGMS/releases/tag/0.8.0)* - FMOD Studio 1.09.01 - Windows, Linux
 
-**Beta:** *0.8.1* - FMOD Studio 1.09.01 - Windows
+**Development:** *0.9.0* - FMOD Studio 1.09.08 - Windows
 
 **NOTE:** *As of v2.1.0.212, this extension works properly with GameMaker Studio 2. Ubuntu still needs to be tested.* 
 
