@@ -7,11 +7,11 @@
 *.yy linguist-vendored
 *.nsi linguist-vendored
 
-fmod.h linguist-vendored
-fmod.hpp linguist-vendored
-fmod_codec.h linguist-vendored
-fmod_common.hpp linguist-vendored
-fmod_dsp.h linguist-vendored
-fmod_dsp_effects.h linguist-vendored
-fmod_errors.h linguist-vendored
-fmod_output.h linguist-vendored
+FMODGMS/src/vc/FMODGMS/fmod.h linguist-vendored
+FMODGMS/src/vc/FMODGMS/fmod.hpp linguist-vendored
+FMODGMS/src/vc/FMODGMS/fmod_codec.h linguist-vendored
+FMODGMS/src/vc/FMODGMS/fmod_common.hpp linguist-vendored
+FMODGMS/src/vc/FMODGMS/fmod_dsp.h linguist-vendored
+FMODGMS/src/vc/FMODGMS/fmod_dsp_effects.h linguist-vendored
+FMODGMS/src/vc/FMODGMS/fmod_errors.h linguist-vendored
+FMODGMS/src/vc/FMODGMS/fmod_output.h linguist-vendored
