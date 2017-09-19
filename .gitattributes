@@ -6,21 +6,3 @@
 # Ignore files for language bar
 *.yy linguist-vendored
 *.nsi linguist-vendored
-
-FMODGMS/src/vc/FMODGMS/fmod.h linguist-vendored
-FMODGMS/src/vc/FMODGMS/fmod.hpp linguist-vendored
-FMODGMS/src/vc/FMODGMS/fmod_codec.h linguist-vendored
-FMODGMS/src/vc/FMODGMS/fmod_common.hpp linguist-vendored
-FMODGMS/src/vc/FMODGMS/fmod_dsp.h linguist-vendored
-FMODGMS/src/vc/FMODGMS/fmod_dsp_effects.h linguist-vendored
-FMODGMS/src/vc/FMODGMS/fmod_errors.h linguist-vendored
-FMODGMS/src/vc/FMODGMS/fmod_output.h linguist-vendored
-
-FMODGMS/src/linux/fmod.h linguist-vendored
-FMODGMS/src/linux/fmod.hpp linguist-vendored
-FMODGMS/src/linux/fmod_codec.h linguist-vendored
-FMODGMS/src/linux/fmod_common.hpp linguist-vendored
-FMODGMS/src/linux/fmod_dsp.h linguist-vendored
-FMODGMS/src/linux/fmod_dsp_effects.h linguist-vendored
-FMODGMS/src/linux/fmod_errors.h linguist-vendored
-FMODGMS/src/linux/fmod_output.h linguist-vendored
