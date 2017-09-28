@@ -45,6 +45,7 @@ GMexport double FMODGMS_FFT_Normalize();
 
 // Sound Functions
 GMexport double FMODGMS_Snd_LoadSound(char* filename);
+GMexport double FMODGMS_Snd_LoadSound_Ext(char* location, double mode, uint64_t* exInfo);
 GMexport double FMODGMS_Snd_LoadStream(char* filename);
 GMexport double FMODGMS_Snd_Unload(double index);
 GMexport double FMODGMS_Snd_PlaySound(double index, double channel);
@@ -55,6 +56,7 @@ GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double whichOne);
 GMexport double FMODGMS_Snd_Get_Length(double index);
 GMexport double FMODGMS_Snd_Get_ModChannelVolume(double index, double modChannel);
 GMexport double FMODGMS_Snd_Get_ModNumChannels(double index);
+GMexport double FMODGMS_Snd_Get_ReadData(double index, double pos, double length, void* buffer);
 
 // Tag Functions
 GMexport double FMODGMS_Snd_Get_NumTags(double index);

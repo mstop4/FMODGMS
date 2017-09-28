@@ -37,6 +37,7 @@ FMOD::ChannelGroup *masterGroup;
 FMOD_RESULT result;
 const char* errorMessage;
 std::string tagString;
+FMOD_TIMEUNIT timeUnit = FMOD_TIMEUNIT_PCM;
 
 // Spectrum DSP Stuff
 FMOD::DSP *fftdsp;
@@ -306,7 +307,7 @@ GMexport double FMODGMS_FFT_Init(double wSize)
 		return FMODGMS_Util_ErrorChecker();
 
 	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWSIZE, windowSize);
-		return FMODGMS_Util_ErrorChecker();
+	return FMODGMS_Util_ErrorChecker();
 }
 
 // Sets the FFT window size (winodw size = 2 * nyquist = 2 * number of bins) 
@@ -353,7 +354,7 @@ GMexport double FMODGMS_FFT_Get_NumBins()
 	return (double)nyquist;
 }
 
-//Normalizes the current spectrum data, use before getting if desirable
+// Normalizes the current spectrum data, use before getting if desirable
 GMexport double FMODGMS_FFT_Normalize()
 {
 	auto maxIterator = std::max_element(&binValues[0], &binValues[nyquist - 1]);
@@ -387,7 +388,7 @@ GMexport double FMODGMS_Snd_LoadSound(char* filename)
 
 	// No? Then don't index the new sound
 	else
-		return -1;
+		return GMS_error;
 }
 
 // Loads a sound toa stream and indexes it in soundList
@@ -408,7 +409,82 @@ GMexport double FMODGMS_Snd_LoadStream(char* filename)
 
 	// No? Then don't index the new sound
 	else
-		return -1;
+		return GMS_error;
+}
+
+// Loads a sound, with optional advanced parameters, and indexes it in soundList.
+//
+// mode is FMOD_MODE bit flags.
+//
+// exInfo is an pointer to a buffer with data for FMOD_CREATESOUNDEXINFO.
+// Optional. To use all default values, pass 0 to the exInfo parameter itself.
+// The buffer must be 8 byte aligned. Values should be unsigned.
+// It must contain every value for FMOD_CREATESOUNDEXINFO in correct order as documented in fmod.
+// Use value 0 for default settings.
+GMexport double FMODGMS_Snd_LoadSound_Ext(char* location, double mode, uint64_t* exInfo)
+{
+	FMOD::Sound *sound = NULL;
+	FMOD_MODE _mode = FMOD_DEFAULT | (unsigned int)(mode+0.5);
+
+	//if exInfo is used, transfer data to struct and pass to createSound
+	if (exInfo != 0)
+	{
+		FMOD_CREATESOUNDEXINFO _exInfo;
+		_exInfo.cbsize =				(int)sizeof(_exInfo);
+		_exInfo.length =				(unsigned int)exInfo[0];
+		_exInfo.fileoffset =			(unsigned int)exInfo[1];
+		_exInfo.numchannels =			(int)exInfo[2];
+		_exInfo.defaultfrequency =		(int)exInfo[3];
+		_exInfo.format =				(FMOD_SOUND_FORMAT)exInfo[4];
+		_exInfo.decodebuffersize =		(unsigned int)exInfo[5];
+		_exInfo.initialsubsound =		(int)exInfo[6];
+		_exInfo.numsubsounds =			(int)exInfo[7];
+		_exInfo.inclusionlist =			(int*)exInfo[8];
+		_exInfo.inclusionlistnum =		(int)exInfo[9];
+		_exInfo.pcmreadcallback =		0; //not supported
+		_exInfo.pcmsetposcallback =		0; //not supported
+		_exInfo.nonblockcallback =		0; //not supported
+		_exInfo.dlsname =				(const char*)exInfo[13];
+		_exInfo.encryptionkey =			(const char*)exInfo[14];
+		_exInfo.maxpolyphony =			(int)exInfo[15];
+		_exInfo.userdata =				(void*)exInfo[16];
+		_exInfo.suggestedsoundtype =	(FMOD_SOUND_TYPE)exInfo[17];
+		_exInfo.fileuseropen =			0; //not supported
+		_exInfo.fileuserclose =			0; //not supported
+		_exInfo.fileuserread =			0; //not supported
+		_exInfo.fileuserseek =			0; //not supported
+		_exInfo.fileuserasyncread =		0; //not supported
+		_exInfo.fileuserasynccancel =	0; //not supported
+		_exInfo.fileuserdata =			(void*)exInfo[24];
+		_exInfo.filebuffersize =		(int)exInfo[25];
+		_exInfo.channelorder =			(FMOD_CHANNELORDER)exInfo[26];
+		_exInfo.channelmask =			(FMOD_CHANNELMASK)exInfo[27];
+		_exInfo.initialsoundgroup =		0; //not supported
+		_exInfo.initialseekposition =	(unsigned int)exInfo[29];
+		_exInfo.initialseekpostype =	(FMOD_TIMEUNIT)exInfo[30];
+		_exInfo.ignoresetfilesystem =	(int)exInfo[31];
+		_exInfo.audioqueuepolicy =		(unsigned int)exInfo[32];
+		_exInfo.minmidigranularity =	(unsigned int)exInfo[33];
+		_exInfo.nonblockthreadid =		(unsigned int)exInfo[34];
+		_exInfo.fsbguid =				0; //not supported
+		result = sys->createSound(location, _mode, &_exInfo, &sound);
+	}
+	else
+		result = sys->createSound(location, _mode, NULL, &sound);
+	
+	// we cool?
+	double isOK = FMODGMS_Util_ErrorChecker();
+
+	// Yes, index the sound
+	if (isOK == GMS_true)
+	{
+		soundList.push_back(sound);
+		return soundList.size() - 1;
+	}
+
+	// No? Then don't index the new sound
+	else
+		return GMS_error;
 }
 
 // Unload a sound and removes it from soundList
@@ -718,6 +794,43 @@ GMexport double FMODGMS_Snd_Get_ModNumChannels(double index)
 	// index out of bounds
 	else
 	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Populates a buffer with raw samples from a section of the sound (from pos to pos+length, in pcm samples).
+// Raw samples are normally unsigned 16 bit int, 2 byte aligned
+// Return value, if not error, is how many samples were read (may be less than length if for example reaching end of sound).
+// NB: You should read the remarks in fmod's documentation for this function before using it.
+GMexport double FMODGMS_Snd_Get_ReadData(double index, double pos, double length, void* buffer)
+{
+	int i = (int)(index+0.5);
+	int sndListSize = soundList.size();
+
+	if (sndListSize > i && i >= 0)
+	{
+		//seek to pos
+		result = soundList[i]->seekData((unsigned int)(pos + 0.5));
+		if (result != FMOD_OK)
+		{
+			errorMessage = "Failed to seek to pos";
+			return GMS_error;
+		}
+			
+		//read sound and populate buffer
+		unsigned int read = 0;
+		result = soundList[i]->readData(buffer, (unsigned int)(length + 0.5), &read);
+		if (result != FMOD_OK && result != FMOD_ERR_FILE_EOF)
+		{
+			errorMessage = "Failed to read data.";
+				return GMS_error;
+		}
+		return (double)read;
+	}
+	else
+	{
+		// index out of bounds
 		errorMessage = "Index out of bounds.";
 		return GMS_error;
 	}
@@ -1982,7 +2095,6 @@ GMexport double FMODGMS_Snd_Get_Type(double index)
 }
 
 #pragma endregion
-
 
 #pragma region Effect Functions
 
