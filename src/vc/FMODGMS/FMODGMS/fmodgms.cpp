@@ -37,7 +37,6 @@ FMOD::ChannelGroup *masterGroup;
 FMOD_RESULT result;
 const char* errorMessage;
 std::string tagString;
-FMOD_TIMEUNIT timeUnit = FMOD_TIMEUNIT_PCM;
 
 // Spectrum DSP Stuff
 FMOD::DSP *fftdsp;
@@ -803,37 +802,49 @@ GMexport double FMODGMS_Snd_Get_ModNumChannels(double index)
 // Raw samples are normally unsigned 16 bit int, 2 byte aligned
 // Return value, if not error, is how many samples were read (may be less than length if for example reaching end of sound).
 // NB: You should read the remarks in fmod's documentation for this function before using it.
-GMexport double FMODGMS_Snd_Get_ReadData(double index, double pos, double length, void* buffer)
+GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, void* buffer)
 {
 	int i = (int)(index+0.5);
 	int sndListSize = soundList.size();
 
-	if (sndListSize > i && i >= 0)
+	//check for parameter validity
+	if (sndListSize < i || i < 0)
 	{
-		//seek to pos
-		result = soundList[i]->seekData((unsigned int)(pos + 0.5));
-		if (result != FMOD_OK)
-		{
-			errorMessage = "Failed to seek to pos";
-			return GMS_error;
-		}
-			
-		//read sound and populate buffer
-		unsigned int read = 0;
-		result = soundList[i]->readData(buffer, (unsigned int)(length + 0.5), &read);
-		if (result != FMOD_OK && result != FMOD_ERR_FILE_EOF)
-		{
-			errorMessage = "Failed to read data.";
-				return GMS_error;
-		}
-		return (double)read;
-	}
-	else
-	{
-		// index out of bounds
 		errorMessage = "Index out of bounds.";
 		return GMS_error;
 	}
+	unsigned int maxLength = 0;
+	soundList[i]->getLength(&maxLength, FMOD_TIMEUNIT_PCM);
+	if (length > maxLength || length < 0)
+	{
+		errorMessage = "Invalid length";
+		return GMS_error;
+	}
+	if (pos > maxLength || pos < 0)
+	{
+		errorMessage = "Invalid position";
+		return GMS_error;
+	}
+	unsigned int _pos = (unsigned int)(pos + 0.5);
+	unsigned int _length = (unsigned int)(length + 0.5);
+
+	//seek to pos
+	result = soundList[i]->seekData(_pos);
+	if (result != FMOD_OK)
+	{
+		errorMessage = "Failed to seek to pos";
+		return GMS_error;
+	}
+			
+	//read sound and populate buffer
+	unsigned int read = 0;
+	result = soundList[i]->readData(buffer, (unsigned int)(length + 0.5), &read);
+	if (result != FMOD_OK && result != FMOD_ERR_FILE_EOF)
+	{
+		errorMessage = "Failed to read data.";
+			return GMS_error;
+	}
+	return (double)read;
 }
 
 #pragma endregion
