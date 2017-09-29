@@ -2142,7 +2142,6 @@ GMexport double FMODGMS_Effect_Set_Parameter(double e, double p, double v)
 	FMOD::DSP* effect = effectList[effectIndex];
 
 	int param = (int)round(p);
-	int value = (int)round(v);
 	FMOD_DSP_PARAMETER_DESC* desc = NULL;
 	if (effect->getParameterInfo(param, &desc) != FMOD_OK)
 	{
@@ -2152,17 +2151,17 @@ GMexport double FMODGMS_Effect_Set_Parameter(double e, double p, double v)
 
 	if (desc->type == FMOD_DSP_PARAMETER_TYPE_FLOAT)
 	{
-		if (effect->setParameterFloat(param, (float)value) == FMOD_OK)
+		if (effect->setParameterFloat(param, (float)v) == FMOD_OK)
 			return FMODGMS_Util_ErrorChecker();
 	}
 	else if (desc->type == FMOD_DSP_PARAMETER_TYPE_INT)
 	{
-		if (effect->setParameterInt(param, (int)round(value)) == FMOD_OK)
+		if (effect->setParameterInt(param, (int)round(v)) == FMOD_OK)
 			return FMODGMS_Util_ErrorChecker();
 	}
 	else if (desc->type == FMOD_DSP_PARAMETER_TYPE_BOOL)
 	{
-		if (effect->setParameterBool(param, (bool)(value > 0.5)) == FMOD_OK)
+		if (effect->setParameterBool(param, (bool)(v > 0.5)) == FMOD_OK)
 			return FMODGMS_Util_ErrorChecker();
 	}
 	else
