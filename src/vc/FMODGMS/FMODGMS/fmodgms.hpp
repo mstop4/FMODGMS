@@ -56,6 +56,9 @@ GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double whichOne);
 GMexport double FMODGMS_Snd_Get_Length(double index);
 GMexport double FMODGMS_Snd_Get_ModChannelVolume(double index, double modChannel);
 GMexport double FMODGMS_Snd_Get_ModNumChannels(double index);
+GMexport double FMODGMS_Snd_Get_NumChannels(double index);
+GMexport double FMODGMS_Snd_Get_BitsPerSample(double index);
+GMexport double FMODGMS_Snd_Get_DefaultFrequency(double index);
 GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, void* buffer);
 
 // Tag Functions

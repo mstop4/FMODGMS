@@ -798,9 +798,90 @@ GMexport double FMODGMS_Snd_Get_ModNumChannels(double index)
 	}
 }
 
-// Populates a buffer with raw samples from a section of the sound (from pos to pos+length, in pcm samples).
-// Raw samples are normally unsigned 16 bit int, 2 byte aligned
-// Return value, if not error, is how many samples were read (may be less than length if for example reaching end of sound).
+//Gets number of channels (e.g 2 for left and right) of sound
+GMexport double FMODGMS_Snd_Get_NumChannels(double index)
+{
+	int i = (int)(index+0.5);
+	int sndListSize = soundList.size();
+
+	if (sndListSize > i && i >= 0)
+	{
+		int channels;
+
+		result = soundList[i]->getFormat(NULL, NULL, &channels, NULL);
+		if (result == FMOD_OK)
+			return (double)channels;
+		else
+		{
+			errorMessage = "Failed to get data";
+			return GMS_error;
+		}
+		
+	}
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+//Gets number of bits per sample (resolution) of sound
+GMexport double FMODGMS_Snd_Get_BitsPerSample(double index)
+{
+	int i = (int)(index + 0.5);
+	int sndListSize = soundList.size();
+
+	if (sndListSize > i && i >= 0)
+	{
+		int bits;
+
+		result = soundList[i]->getFormat(NULL, NULL, NULL, &bits);
+		if (result == FMOD_OK)
+			return (double)bits;
+		else
+		{
+			errorMessage = "Failed to get data";
+			return GMS_error;
+		}
+
+	}
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+//Gets default frequency (samples per second) of sound
+GMexport double FMODGMS_Snd_Get_DefaultFrequency(double index)
+{
+	int i = (int)(index + 0.5);
+	int sndListSize = soundList.size();
+
+	if (sndListSize > i && i >= 0)
+	{
+		float freq;
+
+		result = soundList[i]->getDefaults(&freq, NULL);
+		if (result == FMOD_OK)
+			return (double)freq;
+		else
+		{
+			errorMessage = "Failed to get data";
+			return GMS_error;
+		}
+
+	}
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Populates a buffer with raw data in PCM format from a section of the sound.
+// pos and length are in unit bytes.
+// Return value, if not error, is how many bytes were read (may be less than length if for example reaching end of sound).
 // NB: You should read the remarks in fmod's documentation for this function before using it.
 GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, void* buffer)
 {
