@@ -82,6 +82,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="fmodgms.cpp" />
+    <ClCompile Include="kissfft\kiss_fft.c" />
+    <ClCompile Include="kissfft\kiss_fftr.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fmod.h" />
@@ -93,6 +95,9 @@
     <ClInclude Include="fmod_dsp_effects.h" />
     <ClInclude Include="fmod_errors.h" />
     <ClInclude Include="fmod_output.h" />
+    <ClInclude Include="kissfft\kiss_fft.h" />
+    <ClInclude Include="kissfft\kiss_fftr.h" />
+    <ClInclude Include="kissfft\_kiss_fft_guts.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="fmod_vc.lib" />

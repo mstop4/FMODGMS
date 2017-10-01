@@ -13,6 +13,8 @@
 #ifndef FMODGMS_HPP
 #define FMODGMS_HPP
 
+#include "kissfft/kiss_fftr.h"
+
 #define GMexport extern "C" __declspec (dllexport)
 #define GMS_true 1
 #define GMS_false 0
@@ -111,6 +113,7 @@ GMexport double FMODGMS_Effect_RemoveAll();
 // Utility Functions
 GMexport const char* FMODGMS_Util_GetErrorMessage();
 GMexport const char* FMODGMS_Util_Handshake();
+GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPoints);
 
 // Internal helper functions
 double FMODGMS_Util_ErrorChecker();

@@ -895,7 +895,7 @@ GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, vo
 		return GMS_error;
 	}
 	unsigned int maxLength = 0;
-	soundList[i]->getLength(&maxLength, FMOD_TIMEUNIT_PCM);
+	soundList[i]->getLength(&maxLength, FMOD_TIMEUNIT_PCMBYTES);
 	if (length > maxLength || length < 0)
 	{
 		errorMessage = "Invalid length";
@@ -923,7 +923,7 @@ GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, vo
 	if (result != FMOD_OK && result != FMOD_ERR_FILE_EOF)
 	{
 		errorMessage = "Failed to read data.";
-			return GMS_error;
+		return GMS_error;
 	}
 	return (double)read;
 }
@@ -2357,6 +2357,48 @@ GMexport const char* FMODGMS_Util_GetErrorMessage()
 GMexport const char* FMODGMS_Util_Handshake()
 {
 	return "FMODGMS is working.";
+}
+
+// Simple wrapper for KissFFT (real-optimized). Can be used for applying FFT on an offline chunk of samples
+// buffers must be 4 byte aligned GM buffers, with raw samples of type float32
+// If not error, return value is the loudness level
+GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPoints)
+{
+	int _numPoints = (int)(numPoints + 0.5);
+	if (_numPoints <= 0 || (_numPoints & 1) == 1)
+	{
+		errorMessage = "numPoints must be even and positive.";
+		return GMS_error;
+	}
+
+	//apply hann window (and measure loudness)
+	double loudness = 0;
+	float* bufferInTemp = new float[_numPoints];
+	bufferInTemp[0] = bufferIn[0] * powf(sinf((float)3.141592*0 / (_numPoints - 0)), 2);
+	for (int i = 1; i < _numPoints; i++)
+	{
+		bufferInTemp[i] = bufferIn[i]*powf(sinf((float)3.141592*i/(_numPoints-1)),2);
+		loudness += abs(bufferInTemp[i] - bufferInTemp[i - 1]);
+	}
+
+	//alloc memory and do fft
+	kiss_fftr_cfg cfg = kiss_fftr_alloc(_numPoints, 0, NULL, NULL);
+	if (cfg == NULL)
+	{
+		errorMessage = "Failed to allocate memory.";
+		delete bufferInTemp;
+		return GMS_error;
+	}
+	kiss_fft_cpx* bufferOutTemp = new kiss_fft_cpx[_numPoints/2];
+	kiss_fftr(cfg, bufferInTemp, bufferOutTemp);
+	for (int i = 0; i < _numPoints / 2; i++)
+	{
+		bufferOut[i] = sqrt(bufferOutTemp[i].i*bufferOutTemp[i].i + bufferOutTemp[i].r*bufferOutTemp[i].r)/_numPoints;
+	}
+	delete bufferOutTemp;
+	delete bufferInTemp;
+
+	return loudness/_numPoints;
 }
 
 // Helper function: converts FMOD Results to error message strings and returns GMS_true (1.0) if 
