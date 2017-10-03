@@ -916,6 +916,8 @@ GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, vo
 		errorMessage = "Failed to seek to pos";
 		return GMS_error;
 	}
+
+	sys->update();
 			
 	//read sound and populate buffer
 	unsigned int read = 0;
@@ -925,6 +927,7 @@ GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, vo
 		errorMessage = "Failed to read data.";
 		return GMS_error;
 	}
+
 	return (double)read;
 }
 
@@ -2361,11 +2364,13 @@ GMexport const char* FMODGMS_Util_Handshake()
 
 // Simple wrapper for KissFFT (real-optimized). Can be used for applying FFT on an offline chunk of samples
 // buffers must be 4 byte aligned GM buffers, with raw samples of type float32
-// If not error, return value is the loudness level
-GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPoints)
+// Outbuffer receives one fourth of the input buffer size (real values up to max frequency, half nyquist)
+// numPoints must be EVEN and 4096 or less
+// If not error, return value is the RMS loudness level
+GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPoints, double normalize)
 {
 	int _numPoints = (int)(numPoints + 0.5);
-	if (_numPoints <= 0 || (_numPoints & 1) == 1)
+	if (_numPoints <= 0 || (_numPoints & 1) == 1 || _numPoints > 4096)
 	{
 		errorMessage = "numPoints must be even and positive.";
 		return GMS_error;
@@ -2373,12 +2378,11 @@ GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPo
 
 	//apply hann window (and measure loudness)
 	double loudness = 0;
-	float* bufferInTemp = new float[_numPoints];
-	bufferInTemp[0] = bufferIn[0] * powf(sinf((float)3.141592*0 / (_numPoints - 0)), 2);
+	float bufferInTemp[4096];
 	for (int i = 1; i < _numPoints; i++)
 	{
 		bufferInTemp[i] = bufferIn[i]*powf(sinf((float)3.141592*i/(_numPoints-1)),2);
-		loudness += abs(bufferInTemp[i] - bufferInTemp[i - 1]);
+		loudness += pow(bufferInTemp[i], 2);
 	}
 
 	//alloc memory and do fft
@@ -2386,19 +2390,32 @@ GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPo
 	if (cfg == NULL)
 	{
 		errorMessage = "Failed to allocate memory.";
-		delete bufferInTemp;
 		return GMS_error;
 	}
-	kiss_fft_cpx* bufferOutTemp = new kiss_fft_cpx[_numPoints/2];
+	int numPointsQuarter = (int)(_numPoints / 4. + 0.5);
+	kiss_fft_cpx bufferOutTemp[1024];
 	kiss_fftr(cfg, bufferInTemp, bufferOutTemp);
-	for (int i = 0; i < _numPoints / 2; i++)
+	for (int i = 0; i < numPointsQuarter; i++)
 	{
-		bufferOut[i] = sqrt(bufferOutTemp[i].i*bufferOutTemp[i].i + bufferOutTemp[i].r*bufferOutTemp[i].r)/_numPoints;
+		bufferOut[i] = (sqrt(bufferOutTemp[i].i*bufferOutTemp[i].i + bufferOutTemp[i].r*bufferOutTemp[i].r)/_numPoints);
 	}
-	delete bufferOutTemp;
-	delete bufferInTemp;
-
-	return loudness/_numPoints;
+	
+	//optional normalizing
+	if (normalize > 0.5)
+	{
+		float normalizeFactor = 1;
+		for (int i = 0; i < numPointsQuarter; i++)
+		{
+			if (bufferOut[i] > normalizeFactor)
+				normalizeFactor = bufferOut[i];
+		}
+		for (int i = 0; i < numPointsQuarter; i++)
+		{
+			bufferOut[i] /= normalizeFactor;
+		}
+	}
+	
+	return sqrt(loudness/_numPoints);
 }
 
 // Helper function: converts FMOD Results to error message strings and returns GMS_true (1.0) if 

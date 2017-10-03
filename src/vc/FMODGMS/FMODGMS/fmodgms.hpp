@@ -113,7 +113,7 @@ GMexport double FMODGMS_Effect_RemoveAll();
 // Utility Functions
 GMexport const char* FMODGMS_Util_GetErrorMessage();
 GMexport const char* FMODGMS_Util_Handshake();
-GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPoints);
+GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPoints, double normalize);
 
 // Internal helper functions
 double FMODGMS_Util_ErrorChecker();
