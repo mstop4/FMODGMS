@@ -39,7 +39,7 @@ const char* errorMessage;
 std::string tagString;
 
 // Spectrum DSP Stuff
-FMOD::DSP *fftdsp;
+FMOD::DSP *fftdsp = NULL;
 float domFreq;
 int playbackRate = 48000;
 int windowSize = 128;
@@ -73,6 +73,8 @@ GMexport double FMODGMS_Sys_Initialize(double maxChan)
 	}
 
 	result = sys->init(mc, FMOD_INIT_NORMAL, 0);
+
+	fftdsp = NULL;
 	
 	//if (result != FMOD_OK)
 	return FMODGMS_Util_ErrorChecker();
@@ -89,7 +91,7 @@ GMexport double FMODGMS_Sys_Update()
 	bool playState = false;
 	masterGroup->isPlaying(&playState);
 
-	if (playState)
+	if (playState && fftdsp != NULL)
 	{
 		result = fftdsp->getParameterData(FMOD_DSP_FFT_SPECTRUMDATA, (void **)&fftParams, 0, 0, 0);
 		if (result != FMOD_OK)
@@ -122,14 +124,17 @@ GMexport double FMODGMS_Sys_Close()
 	}
 
 	// Free DSP
-	result = masterGroup->removeDSP(fftdsp);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
+	if (fftdsp != NULL)
+	{
+		result = masterGroup->removeDSP(fftdsp);
+		if (result != FMOD_OK)
+			return FMODGMS_Util_ErrorChecker();
 
-	result = fftdsp->release();
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
+		result = fftdsp->release();
+		if (result != FMOD_OK)
+			return FMODGMS_Util_ErrorChecker();
+	}
+	
 	// Free system
 	result = sys->close();
 	if (result != FMOD_OK)
@@ -314,6 +319,11 @@ GMexport double FMODGMS_FFT_Init(double wSize)
 // NOTE: Doesn't work yet
 GMexport double FMODGMS_FFT_Set_WindowSize(double size)
 {
+	if (fftdsp == NULL)
+	{
+		errorMessage = "FFT not initialized";
+		return GMS_error;
+	}
 	windowSize = (int)round(size);
 	nyquist = windowSize / 2;
 	binValues.clear();
@@ -329,6 +339,11 @@ GMexport double FMODGMS_FFT_Set_WindowSize(double size)
 // Returns the domainant frequency
 GMexport double FMODGMS_FFT_Get_DominantFrequency()
 {
+	if (fftdsp == NULL)
+	{
+		errorMessage = "FFT not initialized";
+		return GMS_error;
+	}
 	result = fftdsp->getParameterFloat(FMOD_DSP_FFT_DOMINANT_FREQ, &domFreq, 0, 0);
 	if (result != FMOD_OK)
 		return FMODGMS_Util_ErrorChecker();
@@ -339,6 +354,11 @@ GMexport double FMODGMS_FFT_Get_DominantFrequency()
 // Returns the value of a certain bin in the spectrum
 GMexport double FMODGMS_FFT_Get_BinValue(double index)
 {
+	if (fftdsp == NULL)
+	{
+		errorMessage = "FFT not initialized";
+		return GMS_error;
+	}
 	unsigned int i = (unsigned int)index;
 
 	if (i < binValues.size())
@@ -350,12 +370,22 @@ GMexport double FMODGMS_FFT_Get_BinValue(double index)
 // Returns the number of nims in the spectrum data (= nyquist = windowSize / 2)
 GMexport double FMODGMS_FFT_Get_NumBins()
 {
+	if (fftdsp == NULL)
+	{
+		errorMessage = "FFT not initialized";
+		return GMS_error;
+	}
 	return (double)nyquist;
 }
 
 // Normalizes the current spectrum data, use before getting if desirable
 GMexport double FMODGMS_FFT_Normalize()
 {
+	if (fftdsp == NULL)
+	{
+		errorMessage = "FFT not initialized";
+		return GMS_error;
+	}
 	auto maxIterator = std::max_element(&binValues[0], &binValues[nyquist - 1]);
 	float maxVol = *maxIterator;
 	for (int i = 0; i < windowSize; i++)
@@ -2364,9 +2394,9 @@ GMexport const char* FMODGMS_Util_Handshake()
 
 // Simple wrapper for KissFFT (real-optimized). Can be used for applying FFT on an offline chunk of samples
 // buffers must be 4 byte aligned GM buffers, with raw samples of type float32
-// Outbuffer receives one fourth of the input buffer size (real values up to max frequency, half nyquist)
+// bufferOut receives one fourth of the input buffer size (real values up to max frequency, half nyquist))
 // numPoints must be EVEN and 4096 or less
-// If not error, return value is the RMS loudness level
+// If not error, return value is the RMS loudness level of the sample chunk
 GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPoints, double normalize)
 {
 	int _numPoints = (int)(numPoints + 0.5);
@@ -2385,7 +2415,7 @@ GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPo
 		loudness += pow(bufferInTemp[i], 2);
 	}
 
-	//alloc memory and do fft
+	//do fft
 	kiss_fftr_cfg cfg = kiss_fftr_alloc(_numPoints, 0, NULL, NULL);
 	if (cfg == NULL)
 	{
