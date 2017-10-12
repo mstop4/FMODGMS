@@ -119,9 +119,9 @@
     shift_hue(16);
     draw_text(16,416,string_hash_to_newline("FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P."));
     shift_hue(16);
-    draw_text(16,432,string_hash_to_newline("FMODGMS version: 0.8.0"));
+    draw_text(16,432,string_hash_to_newline("FMODGMS version: 0.8.0*"));
     shift_hue(16);
-    draw_text(16,448,string_hash_to_newline("FMOD version: Studio 1.09.01"));
+    draw_text(16,448,string_hash_to_newline("FMOD version: Studio 1.10.0"));
     
 }
 

@@ -39,7 +39,7 @@ const char* errorMessage;
 std::string tagString;
 
 // Spectrum DSP Stuff
-FMOD::DSP *fftdsp;
+FMOD::DSP *fftdsp = NULL;
 float domFreq;
 int playbackRate = 48000;
 int windowSize = 128;
@@ -73,6 +73,8 @@ GMexport double FMODGMS_Sys_Initialize(double maxChan)
 	}
 
 	result = sys->init(mc, FMOD_INIT_NORMAL, 0);
+
+	fftdsp = NULL;
 	
 	//if (result != FMOD_OK)
 	return FMODGMS_Util_ErrorChecker();
@@ -89,7 +91,7 @@ GMexport double FMODGMS_Sys_Update()
 	bool playState = false;
 	masterGroup->isPlaying(&playState);
 
-	if (playState)
+	if (playState && fftdsp != NULL)
 	{
 		result = fftdsp->getParameterData(FMOD_DSP_FFT_SPECTRUMDATA, (void **)&fftParams, 0, 0, 0);
 		if (result != FMOD_OK)
@@ -122,14 +124,17 @@ GMexport double FMODGMS_Sys_Close()
 	}
 
 	// Free DSP
-	result = masterGroup->removeDSP(fftdsp);
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
+	if (fftdsp != NULL)
+	{
+		result = masterGroup->removeDSP(fftdsp);
+		if (result != FMOD_OK)
+			return FMODGMS_Util_ErrorChecker();
 
-	result = fftdsp->release();
-	if (result != FMOD_OK)
-		return FMODGMS_Util_ErrorChecker();
-
+		result = fftdsp->release();
+		if (result != FMOD_OK)
+			return FMODGMS_Util_ErrorChecker();
+	}
+	
 	// Free system
 	result = sys->close();
 	if (result != FMOD_OK)
@@ -306,7 +311,7 @@ GMexport double FMODGMS_FFT_Init(double wSize)
 		return FMODGMS_Util_ErrorChecker();
 
 	result = fftdsp->setParameterInt(FMOD_DSP_FFT_WINDOWSIZE, windowSize);
-		return FMODGMS_Util_ErrorChecker();
+	return FMODGMS_Util_ErrorChecker();
 }
 
 // Sets the FFT window size (winodw size = 2 * nyquist = 2 * number of bins) 
@@ -314,6 +319,11 @@ GMexport double FMODGMS_FFT_Init(double wSize)
 // NOTE: Doesn't work yet
 GMexport double FMODGMS_FFT_Set_WindowSize(double size)
 {
+	if (fftdsp == NULL)
+	{
+		errorMessage = "FFT not initialized";
+		return GMS_error;
+	}
 	windowSize = (int)round(size);
 	nyquist = windowSize / 2;
 	binValues.clear();
@@ -329,6 +339,11 @@ GMexport double FMODGMS_FFT_Set_WindowSize(double size)
 // Returns the domainant frequency
 GMexport double FMODGMS_FFT_Get_DominantFrequency()
 {
+	if (fftdsp == NULL)
+	{
+		errorMessage = "FFT not initialized";
+		return GMS_error;
+	}
 	result = fftdsp->getParameterFloat(FMOD_DSP_FFT_DOMINANT_FREQ, &domFreq, 0, 0);
 	if (result != FMOD_OK)
 		return FMODGMS_Util_ErrorChecker();
@@ -339,6 +354,11 @@ GMexport double FMODGMS_FFT_Get_DominantFrequency()
 // Returns the value of a certain bin in the spectrum
 GMexport double FMODGMS_FFT_Get_BinValue(double index)
 {
+	if (fftdsp == NULL)
+	{
+		errorMessage = "FFT not initialized";
+		return GMS_error;
+	}
 	unsigned int i = (unsigned int)index;
 
 	if (i < binValues.size())
@@ -350,12 +370,22 @@ GMexport double FMODGMS_FFT_Get_BinValue(double index)
 // Returns the number of nims in the spectrum data (= nyquist = windowSize / 2)
 GMexport double FMODGMS_FFT_Get_NumBins()
 {
+	if (fftdsp == NULL)
+	{
+		errorMessage = "FFT not initialized";
+		return GMS_error;
+	}
 	return (double)nyquist;
 }
 
-//Normalizes the current spectrum data, use before getting if desirable
+// Normalizes the current spectrum data, use before getting if desirable
 GMexport double FMODGMS_FFT_Normalize()
 {
+	if (fftdsp == NULL)
+	{
+		errorMessage = "FFT not initialized";
+		return GMS_error;
+	}
 	auto maxIterator = std::max_element(&binValues[0], &binValues[nyquist - 1]);
 	float maxVol = *maxIterator;
 	for (int i = 0; i < windowSize; i++)
@@ -387,7 +417,7 @@ GMexport double FMODGMS_Snd_LoadSound(char* filename)
 
 	// No? Then don't index the new sound
 	else
-		return -1;
+		return GMS_error;
 }
 
 // Loads a sound toa stream and indexes it in soundList
@@ -408,7 +438,82 @@ GMexport double FMODGMS_Snd_LoadStream(char* filename)
 
 	// No? Then don't index the new sound
 	else
-		return -1;
+		return GMS_error;
+}
+
+// Loads a sound, with optional advanced parameters, and indexes it in soundList.
+//
+// mode is FMOD_MODE bit flags.
+//
+// exInfo is an pointer to a buffer with data for FMOD_CREATESOUNDEXINFO.
+// Optional. To use all default values, pass 0 to the exInfo parameter itself.
+// The buffer must be 8 byte aligned. Values should be unsigned.
+// It must contain every value for FMOD_CREATESOUNDEXINFO in correct order as documented in fmod.
+// Use value 0 for default settings.
+GMexport double FMODGMS_Snd_LoadSound_Ext(char* location, double mode, uint64_t* exInfo)
+{
+	FMOD::Sound *sound = NULL;
+	FMOD_MODE _mode = FMOD_DEFAULT | (unsigned int)(mode+0.5);
+
+	//if exInfo is used, transfer data to struct and pass to createSound
+	if (exInfo != 0)
+	{
+		FMOD_CREATESOUNDEXINFO _exInfo;
+		_exInfo.cbsize =				(int)sizeof(_exInfo);
+		_exInfo.length =				(unsigned int)exInfo[0];
+		_exInfo.fileoffset =			(unsigned int)exInfo[1];
+		_exInfo.numchannels =			(int)exInfo[2];
+		_exInfo.defaultfrequency =		(int)exInfo[3];
+		_exInfo.format =				(FMOD_SOUND_FORMAT)exInfo[4];
+		_exInfo.decodebuffersize =		(unsigned int)exInfo[5];
+		_exInfo.initialsubsound =		(int)exInfo[6];
+		_exInfo.numsubsounds =			(int)exInfo[7];
+		_exInfo.inclusionlist =			(int*)exInfo[8];
+		_exInfo.inclusionlistnum =		(int)exInfo[9];
+		_exInfo.pcmreadcallback =		0; //not supported
+		_exInfo.pcmsetposcallback =		0; //not supported
+		_exInfo.nonblockcallback =		0; //not supported
+		_exInfo.dlsname =				(const char*)exInfo[13];
+		_exInfo.encryptionkey =			(const char*)exInfo[14];
+		_exInfo.maxpolyphony =			(int)exInfo[15];
+		_exInfo.userdata =				(void*)exInfo[16];
+		_exInfo.suggestedsoundtype =	(FMOD_SOUND_TYPE)exInfo[17];
+		_exInfo.fileuseropen =			0; //not supported
+		_exInfo.fileuserclose =			0; //not supported
+		_exInfo.fileuserread =			0; //not supported
+		_exInfo.fileuserseek =			0; //not supported
+		_exInfo.fileuserasyncread =		0; //not supported
+		_exInfo.fileuserasynccancel =	0; //not supported
+		_exInfo.fileuserdata =			(void*)exInfo[24];
+		_exInfo.filebuffersize =		(int)exInfo[25];
+		_exInfo.channelorder =			(FMOD_CHANNELORDER)exInfo[26];
+		_exInfo.channelmask =			(FMOD_CHANNELMASK)exInfo[27];
+		_exInfo.initialsoundgroup =		0; //not supported
+		_exInfo.initialseekposition =	(unsigned int)exInfo[29];
+		_exInfo.initialseekpostype =	(FMOD_TIMEUNIT)exInfo[30];
+		_exInfo.ignoresetfilesystem =	(int)exInfo[31];
+		_exInfo.audioqueuepolicy =		(unsigned int)exInfo[32];
+		_exInfo.minmidigranularity =	(unsigned int)exInfo[33];
+		_exInfo.nonblockthreadid =		(unsigned int)exInfo[34];
+		_exInfo.fsbguid =				0; //not supported
+		result = sys->createSound(location, _mode, &_exInfo, &sound);
+	}
+	else
+		result = sys->createSound(location, _mode, NULL, &sound);
+	
+	// we cool?
+	double isOK = FMODGMS_Util_ErrorChecker();
+
+	// Yes, index the sound
+	if (isOK == GMS_true)
+	{
+		soundList.push_back(sound);
+		return soundList.size() - 1;
+	}
+
+	// No? Then don't index the new sound
+	else
+		return GMS_error;
 }
 
 // Unload a sound and removes it from soundList
@@ -721,6 +826,139 @@ GMexport double FMODGMS_Snd_Get_ModNumChannels(double index)
 		errorMessage = "Index out of bounds.";
 		return GMS_error;
 	}
+}
+
+//Gets number of channels (e.g 2 for left and right) of sound
+GMexport double FMODGMS_Snd_Get_NumChannels(double index)
+{
+	int i = (int)(index+0.5);
+	int sndListSize = soundList.size();
+
+	if (sndListSize > i && i >= 0)
+	{
+		int channels;
+
+		result = soundList[i]->getFormat(NULL, NULL, &channels, NULL);
+		if (result == FMOD_OK)
+			return (double)channels;
+		else
+		{
+			errorMessage = "Failed to get data";
+			return GMS_error;
+		}
+		
+	}
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+//Gets number of bits per sample (resolution) of sound
+GMexport double FMODGMS_Snd_Get_BitsPerSample(double index)
+{
+	int i = (int)(index + 0.5);
+	int sndListSize = soundList.size();
+
+	if (sndListSize > i && i >= 0)
+	{
+		int bits;
+
+		result = soundList[i]->getFormat(NULL, NULL, NULL, &bits);
+		if (result == FMOD_OK)
+			return (double)bits;
+		else
+		{
+			errorMessage = "Failed to get data";
+			return GMS_error;
+		}
+
+	}
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+//Gets default frequency (samples per second) of sound
+GMexport double FMODGMS_Snd_Get_DefaultFrequency(double index)
+{
+	int i = (int)(index + 0.5);
+	int sndListSize = soundList.size();
+
+	if (sndListSize > i && i >= 0)
+	{
+		float freq;
+
+		result = soundList[i]->getDefaults(&freq, NULL);
+		if (result == FMOD_OK)
+			return (double)freq;
+		else
+		{
+			errorMessage = "Failed to get data";
+			return GMS_error;
+		}
+
+	}
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
+// Populates a buffer with raw data in PCM format from a section of the sound.
+// pos and length are in unit bytes.
+// Return value, if not error, is how many bytes were read (may be less than length if for example reaching end of sound).
+// NB: You should read the remarks in fmod's documentation for this function before using it.
+GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, void* buffer)
+{
+	int i = (int)(index+0.5);
+	int sndListSize = soundList.size();
+
+	//check for parameter validity
+	if (sndListSize < i || i < 0)
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+	unsigned int maxLength = 0;
+	soundList[i]->getLength(&maxLength, FMOD_TIMEUNIT_PCMBYTES);
+	if (length > maxLength || length < 0)
+	{
+		errorMessage = "Invalid length";
+		return GMS_error;
+	}
+	if (pos > maxLength || pos < 0)
+	{
+		errorMessage = "Invalid position";
+		return GMS_error;
+	}
+	unsigned int _pos = (unsigned int)(pos + 0.5);
+	unsigned int _length = (unsigned int)(length + 0.5);
+
+	//seek to pos
+	result = soundList[i]->seekData(_pos);
+	if (result != FMOD_OK)
+	{
+		errorMessage = "Failed to seek to pos";
+		return GMS_error;
+	}
+
+	sys->update();
+			
+	//read sound and populate buffer
+	unsigned int read = 0;
+	result = soundList[i]->readData(buffer, (unsigned int)(length + 0.5), &read);
+	if (result != FMOD_OK && result != FMOD_ERR_FILE_EOF)
+	{
+		errorMessage = "Failed to read data.";
+		return GMS_error;
+	}
+
+	return (double)read;
 }
 
 #pragma endregion
@@ -1983,7 +2221,6 @@ GMexport double FMODGMS_Snd_Get_Type(double index)
 
 #pragma endregion
 
-
 #pragma region Effect Functions
 
 //Creates a DSP effect. For types see enum FMOD_DSP_TYPE in fmod_dsp_effects.h
@@ -2019,7 +2256,6 @@ GMexport double FMODGMS_Effect_Set_Parameter(double e, double p, double v)
 	FMOD::DSP* effect = effectList[effectIndex];
 
 	int param = (int)round(p);
-	int value = (int)round(v);
 	FMOD_DSP_PARAMETER_DESC* desc = NULL;
 	if (effect->getParameterInfo(param, &desc) != FMOD_OK)
 	{
@@ -2029,17 +2265,17 @@ GMexport double FMODGMS_Effect_Set_Parameter(double e, double p, double v)
 
 	if (desc->type == FMOD_DSP_PARAMETER_TYPE_FLOAT)
 	{
-		if (effect->setParameterFloat(param, (float)value) == FMOD_OK)
+		if (effect->setParameterFloat(param, (float)v) == FMOD_OK)
 			return FMODGMS_Util_ErrorChecker();
 	}
 	else if (desc->type == FMOD_DSP_PARAMETER_TYPE_INT)
 	{
-		if (effect->setParameterInt(param, (int)round(value)) == FMOD_OK)
+		if (effect->setParameterInt(param, (int)round(v)) == FMOD_OK)
 			return FMODGMS_Util_ErrorChecker();
 	}
 	else if (desc->type == FMOD_DSP_PARAMETER_TYPE_BOOL)
 	{
-		if (effect->setParameterBool(param, (bool)(value > 0.5)) == FMOD_OK)
+		if (effect->setParameterBool(param, (bool)(v > 0.5)) == FMOD_OK)
 			return FMODGMS_Util_ErrorChecker();
 	}
 	else
@@ -2154,6 +2390,64 @@ GMexport const char* FMODGMS_Util_GetErrorMessage()
 GMexport const char* FMODGMS_Util_Handshake()
 {
 	return "FMODGMS is working.";
+}
+
+// Simple wrapper for KissFFT (real-optimized). Can be used for applying FFT on an offline chunk of samples
+// buffers must be 4 byte aligned GM buffers, with raw samples of type float32
+// bufferOut receives one fourth of the input buffer size (real values up to max frequency, half nyquist))
+// numPoints must be EVEN and 4096 or less
+// If not error, return value is the RMS loudness level of the sample chunk
+GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPoints, double normalize)
+{
+	int _numPoints = (int)(numPoints + 0.5);
+	if (_numPoints <= 0 || (_numPoints & 1) == 1 || _numPoints > 4096)
+	{
+		errorMessage = "numPoints must be even and positive.";
+		return GMS_error;
+	}
+
+	//apply hann window (and measure loudness)
+	double loudness = 0;
+	float bufferInTemp[4096];
+	for (int i = 0; i < _numPoints; i++)
+	{
+		bufferInTemp[i] = bufferIn[i]*powf(sinf((float)3.141592*i/(_numPoints-1)),2);
+		loudness += pow(bufferInTemp[i], 2);
+	}
+
+	//do fft
+	kiss_fftr_cfg cfg = kiss_fftr_alloc(_numPoints, 0, NULL, NULL);
+	if (cfg == NULL)
+	{
+		errorMessage = "Failed to allocate memory.";
+		return GMS_error;
+	}
+	int numPointsQuarter = (int)(_numPoints / 4. + 0.5);
+	kiss_fft_cpx bufferOutTemp[1024];
+	kiss_fftr(cfg, bufferInTemp, bufferOutTemp);
+	for (int i = 0; i < numPointsQuarter; i++)
+	{
+		bufferOut[i] = (sqrt(bufferOutTemp[i].i*bufferOutTemp[i].i + bufferOutTemp[i].r*bufferOutTemp[i].r)/_numPoints);
+	}
+	
+	//optional normalizing
+	if (normalize > 0.5)
+	{
+		float normalizeFactor = 1;
+		for (int i = 0; i < numPointsQuarter; i++)
+		{
+			if (bufferOut[i] > normalizeFactor)
+				normalizeFactor = bufferOut[i];
+		}
+		for (int i = 0; i < numPointsQuarter; i++)
+		{
+			bufferOut[i] /= normalizeFactor;
+		}
+	}
+	
+	kiss_fftr_free(cfg);
+
+	return sqrt(loudness/_numPoints);
 }
 
 // Helper function: converts FMOD Results to error message strings and returns GMS_true (1.0) if 

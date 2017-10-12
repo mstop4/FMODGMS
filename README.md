@@ -19,12 +19,12 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 * *GMS 2 Runtime:* v.2.1.0.144
 * *GM:S 1 IDE:* v.1.4.773
 
-### **Development: - 0.9.0**
+### **Latest: - 0.9.0**
 
 * *Platforms:* Windows
-* *FMOD Studio API:* 1.09.08
-* *GMS 2 IDE:* v.2.1.0.012  
-* *GMS 2 Runtime:* v.2.1.0.144
+* *FMOD Studio API:* 1.10.0
+* *GMS 2 IDE:* v.2.1.0.241 
+* *GMS 2 Runtime:* v.2.1.0.158
 * *GM:S 1 IDE:* v.1.4.773
 
 Features

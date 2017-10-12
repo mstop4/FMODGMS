@@ -13,6 +13,8 @@
 #ifndef FMODGMS_HPP
 #define FMODGMS_HPP
 
+#include "kissfft/kiss_fftr.h"
+
 #define GMexport extern "C" __declspec (dllexport)
 #define GMS_true 1
 #define GMS_false 0
@@ -45,6 +47,7 @@ GMexport double FMODGMS_FFT_Normalize();
 
 // Sound Functions
 GMexport double FMODGMS_Snd_LoadSound(char* filename);
+GMexport double FMODGMS_Snd_LoadSound_Ext(char* location, double mode, uint64_t* exInfo);
 GMexport double FMODGMS_Snd_LoadStream(char* filename);
 GMexport double FMODGMS_Snd_Unload(double index);
 GMexport double FMODGMS_Snd_PlaySound(double index, double channel);
@@ -55,6 +58,10 @@ GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double whichOne);
 GMexport double FMODGMS_Snd_Get_Length(double index);
 GMexport double FMODGMS_Snd_Get_ModChannelVolume(double index, double modChannel);
 GMexport double FMODGMS_Snd_Get_ModNumChannels(double index);
+GMexport double FMODGMS_Snd_Get_NumChannels(double index);
+GMexport double FMODGMS_Snd_Get_BitsPerSample(double index);
+GMexport double FMODGMS_Snd_Get_DefaultFrequency(double index);
+GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, void* buffer);
 
 // Tag Functions
 GMexport double FMODGMS_Snd_Get_NumTags(double index);
@@ -106,6 +113,7 @@ GMexport double FMODGMS_Effect_RemoveAll();
 // Utility Functions
 GMexport const char* FMODGMS_Util_GetErrorMessage();
 GMexport const char* FMODGMS_Util_Handshake();
+GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPoints, double normalize);
 
 // Internal helper functions
 double FMODGMS_Util_ErrorChecker();
