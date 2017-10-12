@@ -2409,7 +2409,7 @@ GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPo
 	//apply hann window (and measure loudness)
 	double loudness = 0;
 	float bufferInTemp[4096];
-	for (int i = 1; i < _numPoints; i++)
+	for (int i = 0; i < _numPoints; i++)
 	{
 		bufferInTemp[i] = bufferIn[i]*powf(sinf((float)3.141592*i/(_numPoints-1)),2);
 		loudness += pow(bufferInTemp[i], 2);
@@ -2445,6 +2445,8 @@ GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPo
 		}
 	}
 	
+	kiss_fftr_free(cfg);
+
 	return sqrt(loudness/_numPoints);
 }
 
