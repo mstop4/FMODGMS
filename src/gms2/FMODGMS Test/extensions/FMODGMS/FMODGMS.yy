@@ -2331,5 +2331,5 @@
     "packageID": "",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
-    "version": "0.8.0"
+    "version": "0.9.0"
 }
