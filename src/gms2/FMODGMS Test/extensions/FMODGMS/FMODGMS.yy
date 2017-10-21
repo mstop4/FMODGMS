@@ -2175,6 +2175,21 @@
                     "kind": 1,
                     "name": "FMODGMS_Snd_Remove_DLS",
                     "returnType": 2
+                },
+                {
+                    "id": "01a1bae8-3ac3-48a4-9957-8f6f25c85b0d",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        
+                    ],
+                    "externalName": "FMODGMS_Snd_Get_DLS",
+                    "help": "FMODGMS_Snd_Get_DLS()",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "FMODGMS_Snd_Get_DLS",
+                    "returnType": 1
                 }
             ],
             "init": "",
@@ -2259,7 +2274,8 @@
                 "f1c89c05-bffb-449b-9c2b-c1a8548255a3",
                 "f0a386b3-8099-4cb4-9c1c-986822098f11",
                 "04aeffbb-c5b1-4aa5-a81c-1213d5ae0aa9",
-                "6f8841ab-126b-4119-8a7f-c0b71364db96"
+                "6f8841ab-126b-4119-8a7f-c0b71364db96",
+                "01a1bae8-3ac3-48a4-9957-8f6f25c85b0d"
             ],
             "origname": "extensions\\FMODGMS.dll",
             "uncompress": false

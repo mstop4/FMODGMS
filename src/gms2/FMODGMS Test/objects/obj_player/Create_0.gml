@@ -87,6 +87,6 @@
     effectIndex = -1;
     normalize_spectrum = false;
     
-    window_set_caption("The colours!");
+    window_set_caption("FMODGMS Player Demo - The colours!");
 }
 

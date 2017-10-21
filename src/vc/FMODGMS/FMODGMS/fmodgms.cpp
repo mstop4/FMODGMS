@@ -38,6 +38,10 @@ FMOD_RESULT result;
 const char* errorMessage;
 std::string tagString;
 
+// DLS stuff
+FMOD_CREATESOUNDEXINFO *soundParams = new FMOD_CREATESOUNDEXINFO();
+std::string dlsName;
+
 // Spectrum DSP Stuff
 FMOD::DSP *fftdsp = NULL;
 float domFreq;
@@ -74,6 +78,8 @@ GMexport double FMODGMS_Sys_Initialize(double maxChan)
 
 	result = sys->init(mc, FMOD_INIT_NORMAL, 0);
 
+	soundParams->cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
+	soundParams->dlsname = 0;
 	fftdsp = NULL;
 	
 	//if (result != FMOD_OK)
@@ -403,7 +409,7 @@ GMexport double FMODGMS_FFT_Normalize()
 GMexport double FMODGMS_Snd_LoadSound(char* filename)
 {
 	FMOD::Sound *sound = NULL;
-	result = sys->createSound(filename, FMOD_DEFAULT, 0, &sound);
+	result = sys->createSound(filename, FMOD_DEFAULT, soundParams, &sound);
 
 	// we cool?
 	double isOK = FMODGMS_Util_ErrorChecker();
@@ -424,7 +430,7 @@ GMexport double FMODGMS_Snd_LoadSound(char* filename)
 GMexport double FMODGMS_Snd_LoadStream(char* filename)
 {
 	FMOD::Sound *sound;
-	result = sys->createStream(filename, FMOD_DEFAULT, 0, &sound);
+	result = sys->createStream(filename, FMOD_DEFAULT, soundParams, &sound);
 
 	// we cool?
 	double isOK = FMODGMS_Util_ErrorChecker();
@@ -566,6 +572,25 @@ GMexport double FMODGMS_Snd_PlaySound(double index, double channel)
 	return FMODGMS_Util_ErrorChecker();
 }
 
+// Sets to current active DLS bank to be loaded with subsequent MIDI files
+// --------------
+// TODO: This function should incorporate the use of FMODGMS_Snd_LoadSound_Ext
+// instead of using it own private FMOD_CREATESOUNDEXINFO object
+// --------------
+GMexport double FMODGMS_Snd_Set_DLS(char* filename)
+{
+	dlsName = filename;
+	soundParams->dlsname = dlsName.c_str();
+	return FMODGMS_Util_ErrorChecker();
+}
+
+// Reverts DLS bank back to default
+GMexport double FMODGMS_Snd_Remove_DLS()
+{
+	soundParams->dlsname = 0;
+	return FMODGMS_Util_ErrorChecker();
+}
+
 // Set loop mode and count for a particular sound
 GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times)
 {
@@ -684,6 +709,12 @@ GMexport double FMODGMS_Snd_Set_ModChannelVolume(double index, double modChannel
 		errorMessage = "Index out of bounds.";
 		return GMS_error;
 	}
+}
+
+// Get the currently set DLS bank
+GMexport const char* FMODGMS_Snd_Get_DLS()
+{
+	return soundParams->dlsname;
 }
 
 // Gets the loop points for a particular sound.

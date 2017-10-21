@@ -51,9 +51,12 @@ GMexport double FMODGMS_Snd_LoadSound_Ext(char* location, double mode, uint64_t*
 GMexport double FMODGMS_Snd_LoadStream(char* filename);
 GMexport double FMODGMS_Snd_Unload(double index);
 GMexport double FMODGMS_Snd_PlaySound(double index, double channel);
+GMexport double FMODGMS_Snd_Set_DLS(char* filename);
+GMexport double FMODGMS_Snd_Remove_DLS();
 GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times);
 GMexport double FMODGMS_Snd_Set_LoopPoints(double index, double startTimeInSamples, double endTimeInSamples);
 GMexport double FMODGMS_Snd_Set_ModChannelVolume(double index, double modChannel, double vol);
+GMexport const char* FMODGMS_Snd_Get_DLS();
 GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double whichOne);
 GMexport double FMODGMS_Snd_Get_Length(double index);
 GMexport double FMODGMS_Snd_Get_ModChannelVolume(double index, double modChannel);

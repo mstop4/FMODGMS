@@ -114,7 +114,7 @@
     effectIndex = -1;
     normalize_spectrum = false;
     
-    window_set_caption("The colours!");
+    window_set_caption("FMODGMS Player Demo - The colours!");
 }
 </string>
           </argument>
@@ -511,9 +511,9 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
     shift_hue(16);
     draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
     shift_hue(16);
-    draw_text(16,432,"FMODGMS version: 0.8.0");
+    draw_text(16,432,"FMODGMS version: 0.9.0");
     shift_hue(16);
-    draw_text(16,448,"FMOD version: Studio 1.09.01");
+    draw_text(16,448,"FMOD version: Studio 1.10.00");
     
 }
 </string>
