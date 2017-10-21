@@ -509,7 +509,7 @@ FMODGMS_Chan_Set_Volume(0,channel_volume);
         draw_text(416,304,"1-7 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit#L -- Add random effect#K -- Remove Effect");
     
     shift_hue(16);
-    draw_text(16,416,"FMODGMS Test Program " +  GM_version + " - by M.S.T.O.P.");
+    draw_text(16,416,"FMODGMS Player Demo " +  GM_version + " - by M.S.T.O.P.");
     shift_hue(16);
     draw_text(16,432,"FMODGMS version: 0.9.0");
     shift_hue(16);

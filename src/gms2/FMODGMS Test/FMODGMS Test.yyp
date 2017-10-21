@@ -167,6 +167,14 @@
             }
         },
         {
+            "Key": "3f798044-6f78-4e3c-83e0-e754414253f4",
+            "Value": {
+                "id": "629f1ca4-b27b-4eb9-81dc-28ef713142e6",
+                "resourcePath": "extensions\\FMODGMS\\FMODGMS.yy",
+                "resourceType": "GMExtension"
+            }
+        },
+        {
             "Key": "407fdc42-4dfd-412e-9d39-a7a09890d8e9",
             "Value": {
                 "id": "ac06c1f8-e16f-4718-9755-e3a752f2044d",

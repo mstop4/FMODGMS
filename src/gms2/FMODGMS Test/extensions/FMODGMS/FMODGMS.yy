@@ -1,5 +1,5 @@
 {
-    "id": "235efa4c-856d-4c2a-8958-a86521e68782",
+    "id": "3f798044-6f78-4e3c-83e0-e754414253f4",
     "modelName": "GMExtension",
     "mvc": "1.0",
     "name": "FMODGMS",
@@ -17,7 +17,7 @@
     "androidPermissions": [
         
     ],
-    "androidProps": false,
+    "androidProps": true,
     "androidactivityinject": "",
     "androidclassname": "",
     "androidinject": "",
@@ -25,34 +25,34 @@
     "androidsourcedir": "",
     "author": "",
     "classname": "",
-    "copyToTargets": 70,
-    "date": "2017-47-16 09:09:13",
+    "copyToTargets": 9223372036854775807,
+    "date": "2017-42-20 10:10:56",
     "description": "",
     "extensionName": "",
     "files": [
         {
-            "id": "1dfd88d6-5c70-450f-a7ad-06944a8908ab",
+            "id": "b09de441-27bd-4337-b41e-cfe9b88b4a71",
             "modelName": "GMExtensionFile",
             "mvc": "1.0",
             "ProxyFiles": [
                 {
-                    "id": "6e2e3ac6-185c-4fa5-968c-0bc42ecfc716",
+                    "id": "58b9a537-ab58-4ea6-a58d-2b97ab8f15b4",
                     "modelName": "GMProxyFile",
                     "mvc": "1.0",
-                    "TargetMask": 1,
+                    "TargetMask": 2,
                     "proxyName": "libFMODGMS.dylib"
                 },
                 {
-                    "id": "aa6069bc-1772-4654-8d2f-b245c8c4e627",
+                    "id": "ea5fec1a-c716-4f7f-8041-cc1ba5f29fe1",
                     "modelName": "GMProxyFile",
                     "mvc": "1.0",
-                    "TargetMask": 7,
+                    "TargetMask": 134217856,
                     "proxyName": "libfmodgms.so"
                 }
             ],
             "constants": [
                 {
-                    "id": "04171199-ff44-47b5-b32d-3810ea121d8b",
+                    "id": "140a7d8b-b5e7-461e-b07d-483d3809d2fb",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_LOOPPOINT_START",
@@ -60,7 +60,7 @@
                     "value": "0"
                 },
                 {
-                    "id": "1a467fa1-70f0-4da0-bcd8-ff349222f85a",
+                    "id": "f1b0f17e-7d83-46db-9a7a-685aebeb67dc",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_LOOPPOINT_END",
@@ -68,7 +68,7 @@
                     "value": "1"
                 },
                 {
-                    "id": "c783d199-64d9-4ece-9bd7-16f446045565",
+                    "id": "458b685a-d0ff-4c1f-bb04-6a7e911645c6",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_UNKNOWN",
@@ -76,7 +76,7 @@
                     "value": "0"
                 },
                 {
-                    "id": "c2667e27-2a73-4471-8c63-1d49196530cd",
+                    "id": "11b08b7b-8a2a-4e1f-a5c9-866cbdfe0830",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_AIFF",
@@ -84,7 +84,7 @@
                     "value": "1"
                 },
                 {
-                    "id": "13162292-0fc0-4ffa-b766-66d67dcad228",
+                    "id": "2aba56c8-54f5-4e74-b9e2-4ad631e5fece",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_ASF",
@@ -92,7 +92,7 @@
                     "value": "2"
                 },
                 {
-                    "id": "b5f783a7-9116-4fde-a621-b20683caed97",
+                    "id": "4c954cd4-fabd-4c29-bf9f-d749c001e0c5",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_DLS",
@@ -100,7 +100,7 @@
                     "value": "3"
                 },
                 {
-                    "id": "1a23ff3b-c14d-44f7-891a-75d5728599c8",
+                    "id": "74a96be5-ee6a-4fcd-a4cb-982e02829dab",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_FLAC",
@@ -108,7 +108,7 @@
                     "value": "4"
                 },
                 {
-                    "id": "2fe1b70b-04c3-4866-a03f-f60a906e592f",
+                    "id": "bafadb1d-9f08-4ab1-9a96-91027ed93ce1",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_FSB",
@@ -116,7 +116,7 @@
                     "value": "5"
                 },
                 {
-                    "id": "783b50ff-10e6-465f-a09d-59f4ea1af275",
+                    "id": "f1e45bbd-0e2a-4b95-a032-33d79a4e1c60",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_IT",
@@ -124,7 +124,7 @@
                     "value": "6"
                 },
                 {
-                    "id": "4ac05ccb-d67e-4c74-ac05-bffb47b98b30",
+                    "id": "6146f845-c89b-4f2e-8f15-b4629f9aec5d",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_MIDI",
@@ -132,7 +132,7 @@
                     "value": "7"
                 },
                 {
-                    "id": "85146fa7-c250-42f7-b4d6-4bf01395bf1e",
+                    "id": "051b3479-126d-41cc-8619-88eae7a78f91",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_MOD",
@@ -140,7 +140,7 @@
                     "value": "8"
                 },
                 {
-                    "id": "5f7098e7-70ff-4c07-9a09-9908dda4edc6",
+                    "id": "c58c0c9c-9d55-4179-930c-c29aae9205a7",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_MPEG",
@@ -148,7 +148,7 @@
                     "value": "9"
                 },
                 {
-                    "id": "514a3edd-45cc-45d8-8870-ea31b3bbfa2e",
+                    "id": "2db14c03-374a-4b02-9397-7c0b4c7aae8a",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_OGGVORBIS",
@@ -156,7 +156,7 @@
                     "value": "10"
                 },
                 {
-                    "id": "2337b75d-236d-4d34-8f79-ef5ae7189cc9",
+                    "id": "8b368b39-7e3b-47b9-a221-15cc994aa6b1",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_PLAYLIST",
@@ -164,7 +164,7 @@
                     "value": "11"
                 },
                 {
-                    "id": "61c55901-ebae-40a4-a4d6-d50b5d268029",
+                    "id": "b65a4eb7-c7df-4e0b-b5d9-53dfe0f7fba7",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_RAW",
@@ -172,7 +172,7 @@
                     "value": "12"
                 },
                 {
-                    "id": "64653c05-c7f4-45b5-b678-86f260ca0ab3",
+                    "id": "e0ef5459-d6c8-4290-9e0e-e33a22bf5848",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_S3M",
@@ -180,7 +180,7 @@
                     "value": "13"
                 },
                 {
-                    "id": "7cf2e090-0afd-4d70-aac3-34fd9de9906d",
+                    "id": "e4903338-cdb1-4277-a949-29b757c0c840",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_USER",
@@ -188,7 +188,7 @@
                     "value": "14"
                 },
                 {
-                    "id": "42078aef-77e3-43b0-9a6c-90ddfeacc71c",
+                    "id": "bb4860f5-78c4-4c6d-8eb9-c7e6be1b7d5a",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_WAV",
@@ -196,7 +196,7 @@
                     "value": "15"
                 },
                 {
-                    "id": "6dd1cb2b-c059-47ce-9adb-53e758a1bd56",
+                    "id": "5c55c427-389a-41f6-ba84-6b36ea9a3ebd",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_XM",
@@ -204,7 +204,7 @@
                     "value": "16"
                 },
                 {
-                    "id": "5bb5fc36-3f8a-4a41-a91d-a2c061f65335",
+                    "id": "bc7845e0-7eb1-49ad-a8fe-83df82a09083",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_XMA",
@@ -212,7 +212,7 @@
                     "value": "17"
                 },
                 {
-                    "id": "c463e5fa-caaa-44f7-b4d1-128d07e3dece",
+                    "id": "c6daa686-e5d2-4fcd-abda-b23921120904",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_AUDIOQUEUE",
@@ -220,7 +220,7 @@
                     "value": "18"
                 },
                 {
-                    "id": "737337dc-5e8d-4bdd-a791-d3fffe28db07",
+                    "id": "0a918873-6a86-43a5-9f7f-e45fe9c4851a",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_AT9",
@@ -228,7 +228,7 @@
                     "value": "19"
                 },
                 {
-                    "id": "54cfc52f-d4b4-4789-a6eb-cf6eb0503ca0",
+                    "id": "40cbae5c-359c-4b3a-b7aa-de095392c44f",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_VORBIS",
@@ -236,7 +236,7 @@
                     "value": "20"
                 },
                 {
-                    "id": "72891281-4656-46d4-8b11-565cee025b98",
+                    "id": "342246ab-d5a0-4fc9-b5c5-bc17de739ba8",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_MEDIA_FOUNDATION",
@@ -244,7 +244,7 @@
                     "value": "21"
                 },
                 {
-                    "id": "0e91268f-de8b-4589-9d5a-ab2f9fbc77d7",
+                    "id": "92d2243c-6ae9-4356-95a2-01a25616c2a6",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_MEDIA_CODEC",
@@ -252,7 +252,7 @@
                     "value": "22"
                 },
                 {
-                    "id": "377bb5d0-2d80-499b-a17d-90c1ef8e16de",
+                    "id": "de4c35aa-6dd5-4482-9d4f-2fe4de317f74",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_FADPCM",
@@ -260,7 +260,7 @@
                     "value": "23"
                 },
                 {
-                    "id": "8051f284-405c-4504-8439-0bae8fdf36a3",
+                    "id": "331caeda-645e-4bda-afdb-72259e3c4593",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_SOUND_TYPE_MAX",
@@ -268,7 +268,7 @@
                     "value": "24"
                 },
                 {
-                    "id": "d43b20cc-a7b9-4b21-a9b9-6b0eb9b5931a",
+                    "id": "15ede2bd-f3fa-4cff-aa28-465403edf066",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGDATATYPE_BINARY",
@@ -276,7 +276,7 @@
                     "value": "0"
                 },
                 {
-                    "id": "9231699e-3572-4817-987d-71788c8cf84e",
+                    "id": "625d7f03-1990-4163-aa22-0c1045055ecb",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGDATATYPE_INT",
@@ -284,7 +284,7 @@
                     "value": "1"
                 },
                 {
-                    "id": "7bb2f3e8-b0d6-4924-8464-c6e9c876c3ea",
+                    "id": "9c38b8f8-22ab-43c2-b6d5-d09c25101c75",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGDATATYPE_FLOAT",
@@ -292,7 +292,7 @@
                     "value": "2"
                 },
                 {
-                    "id": "5cd8a95c-2cf4-409c-97a6-9b0b6a3ae382",
+                    "id": "aa6b70f7-461a-4193-b98f-15cc3a2023dc",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGDATATYPE_STRING",
@@ -300,7 +300,7 @@
                     "value": "3"
                 },
                 {
-                    "id": "b6855377-cc5e-4d1c-bd8a-f5ad397372a2",
+                    "id": "824b7bf5-7691-4629-aaf5-2b5d2992d0bd",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGDATATYPE_STRING_UTF16",
@@ -308,7 +308,7 @@
                     "value": "4"
                 },
                 {
-                    "id": "f52e66fb-667c-48cd-8db5-b994ba2b5df3",
+                    "id": "9daf2475-2d05-4848-818a-021666408753",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGDATATYPE_STRING_UTF16BE",
@@ -316,7 +316,7 @@
                     "value": "5"
                 },
                 {
-                    "id": "b4f592e4-ffaf-449a-86a0-c99b49eb8833",
+                    "id": "d316f1be-8c9a-43a3-b109-0e655ca1672b",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGDATATYPE_STRING_UTF8",
@@ -324,7 +324,7 @@
                     "value": "6"
                 },
                 {
-                    "id": "0e3c974a-47f7-4860-b306-8ab3cae9b975",
+                    "id": "52c04ac7-dac7-441e-a864-32c6a5bd3e0e",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGDATATYPE_CDTOC",
@@ -332,7 +332,7 @@
                     "value": "7"
                 },
                 {
-                    "id": "3f7e82a2-34f7-45e8-a77d-0d5d247f8e52",
+                    "id": "8d97ce47-b455-4247-b9ef-4bc0d4cb2645",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGDATATYPE_MAX",
@@ -340,7 +340,7 @@
                     "value": "8"
                 },
                 {
-                    "id": "633dfa8a-1d3c-449d-8d80-3ff29b865b8f",
+                    "id": "edf33fac-f145-4ee0-aa28-0e2d8c0cc28c",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGTYPE_ID3V1",
@@ -348,7 +348,7 @@
                     "value": "0"
                 },
                 {
-                    "id": "739271f9-96e0-4112-a6b6-fbccf03348bb",
+                    "id": "52f2b754-5beb-431f-ac3b-b21099b1e7fd",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGTYPE_ID3V2",
@@ -356,7 +356,7 @@
                     "value": "1"
                 },
                 {
-                    "id": "c082bc02-6161-43f3-8987-05490d3c849c",
+                    "id": "5cf27c7f-8583-49d1-bbfd-e1fdb9cd9a99",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGTYPE_VORBISCOMMENT",
@@ -364,7 +364,7 @@
                     "value": "2"
                 },
                 {
-                    "id": "0d10bb2a-75e0-44df-80f8-a3a7ce4283c8",
+                    "id": "074185fc-e0ab-476a-b6e5-81c7ced99098",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGTYPE_SHOUTCAST",
@@ -372,7 +372,7 @@
                     "value": "3"
                 },
                 {
-                    "id": "2087efa3-c5b1-4581-80f6-761f38c02927",
+                    "id": "acbc0e62-6f15-473d-900c-3b8124d57c13",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGTYPE_ICECAST",
@@ -380,7 +380,7 @@
                     "value": "4"
                 },
                 {
-                    "id": "629538e8-86c3-4b82-9fab-2bebb7f87f3e",
+                    "id": "a517b9e8-07ba-47c6-8382-b94c2af99208",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGTYPE_ASF",
@@ -388,7 +388,7 @@
                     "value": "5"
                 },
                 {
-                    "id": "40622cb8-88b8-4378-a36e-967b77464282",
+                    "id": "aa459528-f5bb-4b6a-8640-20d3ad31d821",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGTYPE_MIDI",
@@ -396,7 +396,7 @@
                     "value": "6"
                 },
                 {
-                    "id": "c3605e7e-8542-414a-86cc-8db573d1354c",
+                    "id": "4367538a-15a1-4a1e-bdde-e6069aabf23d",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGTYPE_PLAYLIST",
@@ -404,7 +404,7 @@
                     "value": "7"
                 },
                 {
-                    "id": "d5dfdf8a-32a2-4071-a892-085eaf6d5478",
+                    "id": "029dc030-cc1c-4026-a3c5-2716af475c89",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGTYPE_FMOD",
@@ -412,7 +412,7 @@
                     "value": "8"
                 },
                 {
-                    "id": "6e98cd1e-16c2-4cd4-86c7-b45f9ecb4f12",
+                    "id": "72adff54-a85b-4a34-a910-23374d2f43e1",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGTYPE_USER",
@@ -420,7 +420,7 @@
                     "value": "9"
                 },
                 {
-                    "id": "c1661591-6e50-4788-833e-cd61810ea32a",
+                    "id": "d4fc458f-b35a-4449-9f0f-dd9b5128c867",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_TAGTYPE_MAX",
@@ -428,7 +428,7 @@
                     "value": "10"
                 },
                 {
-                    "id": "cbe46a86-51ba-414c-a72d-b967469ca473",
+                    "id": "15f99453-a533-4eec-ad86-33db0b56099e",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_LOOPMODE_NONE",
@@ -436,7 +436,7 @@
                     "value": "0"
                 },
                 {
-                    "id": "0d50bb04-6ad3-4c40-9ac5-46dfd05a8974",
+                    "id": "f2aa4786-0ae8-4deb-8970-ea592d8ecfad",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_LOOPMODE_NORMAL",
@@ -444,7 +444,7 @@
                     "value": "1"
                 },
                 {
-                    "id": "447b09b4-b2fd-43e7-8c3d-2a1e40e53307",
+                    "id": "2c84661b-266a-4da1-916b-67f29e350d4e",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_LOOPMODE_BIDI",
@@ -452,7 +452,7 @@
                     "value": "2"
                 },
                 {
-                    "id": "ac6822b2-0088-4d7d-913e-ef74e6b3e575",
+                    "id": "1e3a234a-a353-4dfe-a236-c194b676beee",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_EFFECT_LOWPASS",
@@ -460,7 +460,7 @@
                     "value": "3"
                 },
                 {
-                    "id": "aa732ee0-cce2-4818-887d-986981f897ad",
+                    "id": "17b73958-3084-49ff-a123-546db9ae8848",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_EFFECT_HIGHPASS",
@@ -468,7 +468,7 @@
                     "value": "5"
                 },
                 {
-                    "id": "7571faa4-f136-4bed-aa2f-93065efde20b",
+                    "id": "4f04a70d-9d00-4c6f-beca-a4bb0bc05c8f",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_EFFECT_ECHO",
@@ -476,7 +476,7 @@
                     "value": "6"
                 },
                 {
-                    "id": "08bd4712-0e1c-4e5c-b541-04e41902c9f4",
+                    "id": "d6b7ac72-eb0e-40d2-9e19-20b254ebd658",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_EFFECT_FLANGE",
@@ -484,7 +484,7 @@
                     "value": "8"
                 },
                 {
-                    "id": "330427f9-701f-49ce-a52c-d64112bb5bda",
+                    "id": "30df272d-15c1-4945-ba88-a8914615d803",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_EFFECT_DISTORTION",
@@ -492,7 +492,7 @@
                     "value": "9"
                 },
                 {
-                    "id": "61ed88bf-6016-4743-8c1a-29233ec83e8a",
+                    "id": "1aba47a5-de3c-4877-963e-95346d64bab6",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_EFFECT_CHORUS",
@@ -500,7 +500,7 @@
                     "value": "14"
                 },
                 {
-                    "id": "457456bf-dac6-47ac-967c-2f5dd774f453",
+                    "id": "6f0b40cb-6880-4392-ac83-20d5245baf27",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_EFFECT_REVERB",
@@ -508,7 +508,7 @@
                     "value": "19"
                 },
                 {
-                    "id": "7edb2bc2-692b-42f2-a443-e81a087c08ae",
+                    "id": "9e9dc634-1512-4c66-acae-2350f35458cd",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_EFFECT_TREMOLO",
@@ -516,7 +516,7 @@
                     "value": "22"
                 },
                 {
-                    "id": "075e0824-e99b-41aa-bc57-ac27eb5a6444",
+                    "id": "71bd1502-9ac4-47d3-9454-c16edae6d0d8",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_EFFECT_PITCHSHIFT",
@@ -524,7 +524,7 @@
                     "value": "13"
                 },
                 {
-                    "id": "589631b2-0dd6-49df-b111-76a240a03efd",
+                    "id": "93ba3a1d-d424-4999-abee-94acb5c9dc1e",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_AUTODETECT",
@@ -532,7 +532,7 @@
                     "value": "0"
                 },
                 {
-                    "id": "8fbc3a8a-8a9b-4fc6-810b-629ccf7a01f7",
+                    "id": "67165a09-56aa-40d8-a26e-6c6107e8d366",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_UNKNOWN",
@@ -540,7 +540,7 @@
                     "value": "1"
                 },
                 {
-                    "id": "099f58fa-eea6-4b7b-a41c-b15d99c20398",
+                    "id": "383de9d3-97fe-4d90-9ad4-a11a8f11d022",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_NOSOUND",
@@ -548,7 +548,7 @@
                     "value": "2"
                 },
                 {
-                    "id": "03b45747-a0ef-49cc-85db-bac0ab5d79f7",
+                    "id": "571eb655-310d-44ab-ad14-56562b63df52",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_WAVWRITER",
@@ -556,7 +556,7 @@
                     "value": "3"
                 },
                 {
-                    "id": "b78dd60d-bca8-4c2b-bc15-b81af791e877",
+                    "id": "b0e7bf13-38b8-4c7f-929f-cfbab3f8b787",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_NOSOUND_NRT",
@@ -564,7 +564,7 @@
                     "value": "4"
                 },
                 {
-                    "id": "2f81f9fe-6023-46d8-b407-137ba812620e",
+                    "id": "7dbcef7e-fcb3-4cd8-a888-a00704f0261e",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_WAVWRITER_NRT",
@@ -572,7 +572,7 @@
                     "value": "5"
                 },
                 {
-                    "id": "fc7674f5-5ce6-4a7c-b75b-63697725ebde",
+                    "id": "ddb64ddd-66e8-4e26-8385-1becf2ab0dd9",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_DSOUND",
@@ -580,7 +580,7 @@
                     "value": "6"
                 },
                 {
-                    "id": "22788b16-f048-440e-a8ba-8719e1ff62f8",
+                    "id": "bb95fb8a-0141-48b9-a9bd-c6e0c206b012",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_WINMM",
@@ -588,7 +588,7 @@
                     "value": "7"
                 },
                 {
-                    "id": "0cbab0c4-4693-4664-ba6a-485dac45109a",
+                    "id": "9f9a2687-38c2-4870-a0ff-ccc9f572d343",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_WASAPI",
@@ -596,7 +596,7 @@
                     "value": "8"
                 },
                 {
-                    "id": "aef4e5d3-fab2-47c5-afa2-ad30fb0a568d",
+                    "id": "a02899f3-81eb-486a-ab7a-3ac993f60a8f",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_ASIO",
@@ -604,7 +604,7 @@
                     "value": "9"
                 },
                 {
-                    "id": "e28bffb7-b313-4cb8-a481-4307314f57ca",
+                    "id": "ebf9d8ea-233d-4315-996e-33800c6c45dd",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_PULSEAUDIO",
@@ -612,7 +612,7 @@
                     "value": "10"
                 },
                 {
-                    "id": "72ae3258-a869-4e55-b742-d22f7e540fed",
+                    "id": "839638cf-f6be-4fef-bcf1-666dc7c77a47",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_ALSA",
@@ -620,7 +620,7 @@
                     "value": "11"
                 },
                 {
-                    "id": "2cf20b3d-5d58-42fe-9b97-4a52310e19d4",
+                    "id": "fea59500-e585-40d5-a2da-86f2a926f67c",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_COREAUDIO",
@@ -628,7 +628,7 @@
                     "value": "12"
                 },
                 {
-                    "id": "87a15fb8-19cc-4bdb-a406-f7f95bdae14b",
+                    "id": "a8f3a9e5-08a3-4cf5-b87c-f3fe080ea125",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_XAUDIO",
@@ -636,7 +636,7 @@
                     "value": "13"
                 },
                 {
-                    "id": "be42b512-dc54-4515-87be-b4de8f49a902",
+                    "id": "fb49024f-5a9f-4a67-94a1-66a8f9ca1e63",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_PS3",
@@ -644,7 +644,7 @@
                     "value": "14"
                 },
                 {
-                    "id": "e5a7eac0-a795-46a6-b378-3d697137c350",
+                    "id": "3049a981-ca29-4288-be81-9e864e525016",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_AUDIOTRACK",
@@ -652,7 +652,7 @@
                     "value": "15"
                 },
                 {
-                    "id": "63d5452c-a285-4fe5-b56a-e504e88de0ea",
+                    "id": "6de56f4b-e0ef-45af-bf4d-66d52e88b3f9",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_OPENSL",
@@ -660,7 +660,7 @@
                     "value": "16"
                 },
                 {
-                    "id": "bf9d9e5a-3ed5-4a9a-8cfb-24c0a29da878",
+                    "id": "8fdd330e-fa8c-4e0e-97e3-24060980da94",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_WIIU",
@@ -668,7 +668,7 @@
                     "value": "17"
                 },
                 {
-                    "id": "c106e334-4760-4f01-8d4e-c70d483e9b66",
+                    "id": "c0393bd6-3b9a-4283-a34c-9d55e80b2dc4",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_AUDIOOUT",
@@ -676,7 +676,7 @@
                     "value": "18"
                 },
                 {
-                    "id": "f2b615f7-dffa-4f84-b83d-b96bcfb6fcee",
+                    "id": "190b5a7f-f354-49d8-8935-d351c89e598c",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_AUDIO3D",
@@ -684,7 +684,7 @@
                     "value": "19"
                 },
                 {
-                    "id": "adb78789-5ff7-4fa5-8c61-509717e0dd40",
+                    "id": "3e8af56f-360f-4900-8d37-3c3062594a5a",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_ATMOS",
@@ -692,244 +692,12 @@
                     "value": "20"
                 },
                 {
-                    "id": "615fc17d-5314-4c77-a8a3-adfd8548a381",
+                    "id": "270a8b98-1ee8-48b4-b731-b8f310ed01cb",
                     "modelName": "GMExtensionConstant",
                     "mvc": "1.0",
                     "constantName": "FMODGMS_OUTPUTTYPE_MAX",
                     "hidden": false,
                     "value": "21"
-                },
-                {
-                    "id": "964682c5-c577-49d2-9531-a551efded234",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_DEFAULT",
-                    "hidden": false,
-                    "value": "$00000000"
-                },
-                {
-                    "id": "368234cd-3cc5-4f73-944a-3a49ae97f365",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_LOOP_OFF",
-                    "hidden": false,
-                    "value": "$00000001"
-                },
-                {
-                    "id": "e290a968-0fa2-4059-a378-51365483ce43",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_LOOP_NORMAL",
-                    "hidden": false,
-                    "value": "$00000002"
-                },
-                {
-                    "id": "9480b38c-81be-412b-954f-f437aafefee2",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_LOOP_BIDI",
-                    "hidden": false,
-                    "value": "$00000004"
-                },
-                {
-                    "id": "4e93c80a-3125-43b3-9608-0923fd8af06c",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_2D",
-                    "hidden": false,
-                    "value": "$00000008"
-                },
-                {
-                    "id": "04505453-12f9-40d2-aba0-468ed0b9b65b",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_3D",
-                    "hidden": false,
-                    "value": "$00000010"
-                },
-                {
-                    "id": "f9384f14-d6aa-493e-82de-feee222b2858",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_CREATESTREAM",
-                    "hidden": false,
-                    "value": "$00000080"
-                },
-                {
-                    "id": "68a31f44-cfe8-455a-91fc-ead1d40d8db9",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_CREATESAMPLE",
-                    "hidden": false,
-                    "value": "$00000100"
-                },
-                {
-                    "id": "a9ae5481-257b-48bd-b936-867c836faf3e",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_CREATECOMPRESSEDSAMPLE",
-                    "hidden": false,
-                    "value": "$00000200"
-                },
-                {
-                    "id": "b638a9da-0704-474f-82c7-af7388d81232",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_OPENUSER",
-                    "hidden": false,
-                    "value": "$00000400"
-                },
-                {
-                    "id": "6a5d0e57-5a3f-42cb-bd33-0406ec30c7b5",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_OPENMEMORY",
-                    "hidden": false,
-                    "value": "$00000800"
-                },
-                {
-                    "id": "6e1003e7-18f5-41b2-bff8-739e594a8586",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_OPENMEMORY_POINT",
-                    "hidden": false,
-                    "value": "$10000000"
-                },
-                {
-                    "id": "972594d0-421d-4443-8d9d-80e56ff7253c",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_OPENRAW",
-                    "hidden": false,
-                    "value": "$00001000"
-                },
-                {
-                    "id": "3444f429-ea6a-41b1-b207-398f19380317",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_OPENONLY",
-                    "hidden": false,
-                    "value": "$00002000"
-                },
-                {
-                    "id": "008c829b-3657-4f03-942a-f7e59c39137e",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_ACCURATETIME",
-                    "hidden": false,
-                    "value": "$00004000"
-                },
-                {
-                    "id": "f0906ffe-0698-4b65-837b-c48ab8be2295",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_MPEGSEARCH",
-                    "hidden": false,
-                    "value": "$00008000"
-                },
-                {
-                    "id": "3d279ba6-65b3-49c0-8e1f-7e1d84543f88",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_NONBLOCKING",
-                    "hidden": false,
-                    "value": "$00010000"
-                },
-                {
-                    "id": "cc47192e-018d-443c-a4fb-9dcd0bb287f8",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_UNIQUE",
-                    "hidden": false,
-                    "value": "$00020000"
-                },
-                {
-                    "id": "36781a82-76b3-4f8d-a4ea-af296f59c7b4",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_3D_HEADRELATIVE",
-                    "hidden": false,
-                    "value": "$00040000"
-                },
-                {
-                    "id": "7c59e29b-83ea-4675-bc38-57ea19beff65",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_3D_WORLDRELATIVE",
-                    "hidden": false,
-                    "value": "$00080000"
-                },
-                {
-                    "id": "c813f379-4500-46aa-a278-426d058dd813",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_3D_INVERSEROLLOFF",
-                    "hidden": false,
-                    "value": "$00100000"
-                },
-                {
-                    "id": "a7a22b97-8aaa-407c-a69b-be409e569dd5",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_3D_LINEARSQUAREROLLOFF",
-                    "hidden": false,
-                    "value": "$00200000"
-                },
-                {
-                    "id": "413adf79-47bd-430d-924a-942ff1af9505",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_3D_INVERSETAPEREDROLLOFF",
-                    "hidden": false,
-                    "value": "$00400000"
-                },
-                {
-                    "id": "5bd8af47-9650-415d-986b-17fcbb1786da",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_3D_CUSTOMROLLOFF",
-                    "hidden": false,
-                    "value": "$04000000"
-                },
-                {
-                    "id": "8c53d299-ea30-451d-9ef3-61fd8a065505",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_3D_IGNOREGEOMETRY",
-                    "hidden": false,
-                    "value": "$40000000"
-                },
-                {
-                    "id": "d13c32d8-8cad-42f2-b9cf-3bf40a05eb62",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_IGNORETAGS",
-                    "hidden": false,
-                    "value": "$02000000"
-                },
-                {
-                    "id": "3f3c273b-4ccb-49b8-9ac7-d126cb1f5e8f",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_LOWMEM",
-                    "hidden": false,
-                    "value": "$08000000"
-                },
-                {
-                    "id": "4d731686-78dc-4fd6-9d4a-a08127ae886b",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_LOADSECONDARYRAM",
-                    "hidden": false,
-                    "value": "$20000000"
-                },
-                {
-                    "id": "a46691e8-39ad-4287-bd12-72125a78b1c0",
-                    "modelName": "GMExtensionConstant",
-                    "mvc": "1.0",
-                    "constantName": "FMODGMS_MODE_VIRTUAL_PLAYFROMSTART",
-                    "hidden": false,
-                    "value": "$80000000"
                 }
             ],
             "copyToTargets": 202375362,
@@ -937,7 +705,7 @@
             "final": "",
             "functions": [
                 {
-                    "id": "21d81fb3-d55e-42a2-961f-a4d9f6827d74",
+                    "id": "449607e9-bc3a-4f4d-b034-10aa0e812e00",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -952,7 +720,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "8f96c13d-fc2d-471d-9178-2894a53afdf5",
+                    "id": "540fa44e-1d0a-4c33-b4a8-91d68218b3da",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -967,7 +735,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "fb062ac2-430e-4987-bd7b-bb2512e48f7d",
+                    "id": "79661931-3466-4817-919b-f45a7b16dcfa",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -982,7 +750,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "0a975baf-7fae-44d6-a2f9-b91b9eaaccf1",
+                    "id": "afc3e245-d602-4c9d-98a9-90222686c312",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -997,7 +765,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "d50402ac-db65-4dcd-afb8-8f614f07af32",
+                    "id": "7e3f35b9-958c-4ad1-b511-8468b47bc287",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1012,7 +780,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "362b1172-9988-4514-a87d-5e1fbe7bb6ab",
+                    "id": "ca0ef188-5557-438c-a1be-cf5d9318e1e7",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1027,7 +795,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "68befe7d-a6fa-4ca4-9ce0-872b13da17b8",
+                    "id": "eeac5d8e-a6d2-42ac-b440-d154f8db5295",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1043,7 +811,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "e51be4bc-749f-4fa6-9274-4809905e87ff",
+                    "id": "c81fe60f-a82b-470f-b1e9-44bf57e1e376",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 3,
@@ -1060,7 +828,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "dbfdd8dc-3130-4376-9406-a0657de22234",
+                    "id": "fc8ccd71-ec74-4cde-8656-997c5cd2afea",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 3,
@@ -1077,7 +845,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "ff2237c1-874f-46df-890c-1ae7da564112",
+                    "id": "f0c0af7f-4c2d-4df7-8271-8839022d131f",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1093,7 +861,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "27e855d3-bb1d-415f-bacc-27f4726f4e81",
+                    "id": "e1a88a57-6a84-44aa-a2ff-f79ae081d2df",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -1108,7 +876,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "0e1851be-f7d5-49b4-9a28-eeadb4d21df5",
+                    "id": "44bae3e3-4be0-4469-8421-62e238b0c1c7",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1123,7 +891,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "db028eef-33c6-463b-958a-1a8775e2600b",
+                    "id": "0600cce7-d650-4771-821c-3560968e1bcb",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": -1,
@@ -1138,7 +906,7 @@
                     "returnType": 1
                 },
                 {
-                    "id": "9cd91dc7-25e4-4f6d-950d-c92d9f0c0125",
+                    "id": "9e44a9c0-e64f-4ce9-b814-a18cb2bb6f34",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -1153,7 +921,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "06c30adf-055c-476e-8f0e-98c8d92b2882",
+                    "id": "493060e9-43e7-462b-837f-eb0b3320a413",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -1168,7 +936,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "72b1d097-29c8-4bf9-99e7-b995dd031539",
+                    "id": "ef4aaaa5-6fd4-4c35-8f8b-116d1a3b7789",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -1183,7 +951,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "97207f33-fbfe-4c1f-9b80-38f523561303",
+                    "id": "7369225c-1d86-4c1d-b654-33549f149804",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1198,7 +966,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "5a746e54-9a30-43ce-a4cd-264ee632fff5",
+                    "id": "1e37ebe9-18b2-49a9-8f36-34076fa0025b",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1214,7 +982,7 @@
                     "returnType": 1
                 },
                 {
-                    "id": "4a0938ad-9bcc-434a-b9f3-a6668bd3fed8",
+                    "id": "17c527c6-3dbc-42bd-b20d-ec215bbcb808",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1229,7 +997,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "07bf5c3c-b097-4629-8755-6df2413dfc52",
+                    "id": "7ae465a4-2ccc-4d9d-bcdf-07bca5d264e6",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1244,7 +1012,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "6c366640-49c3-4b50-85d2-4779ae4b3794",
+                    "id": "5b8bb40b-90bd-4ac6-8c1c-90eeae46988b",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1259,7 +1027,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "863e6aaf-96c2-4e69-9a54-94b7778254b0",
+                    "id": "ff13b45a-bf25-435d-819e-3ef3289b6e5a",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1274,7 +1042,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "437b6e34-c806-4e32-9f57-582f6a6f583b",
+                    "id": "49e689f9-66b4-4208-94e2-07ae291b0aea",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1289,7 +1057,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "0ec7d967-81e6-4632-a639-fb6e51c5aaa6",
+                    "id": "4cd56fe1-f2c9-4321-a69c-2019e3da8210",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1304,7 +1072,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "7d9a8438-adb8-4a8e-a1a7-feee670839f1",
+                    "id": "75352993-aa68-4318-b033-13aec82e5995",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1319,7 +1087,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "0eac28be-4cd4-47a7-8b24-8512e1470a8c",
+                    "id": "66fa33c1-7ae5-43fe-906b-cb9faed15c48",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1334,7 +1102,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "69f7edb6-d8df-4395-8786-2260599a7237",
+                    "id": "24c928b0-e79a-417e-9c2e-8002b99412b9",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -1349,7 +1117,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "d94c8db4-d068-4a27-ac7d-bc7bc295fa2f",
+                    "id": "32b91675-ad42-47f0-9f7e-bd1e8217e497",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1365,7 +1133,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "79a3a833-6201-411d-a0e8-7edb548cf83e",
+                    "id": "2dff56dd-0e28-4c6d-b317-93c16fc80920",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1381,7 +1149,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "9b58c945-6d62-4c21-b062-35d9edd53c9f",
+                    "id": "26377536-19d5-4d0d-b0f3-0678859d0c42",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1397,7 +1165,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "520312cc-3772-40fd-a17a-b98745787c58",
+                    "id": "5ae83b43-f6be-4069-83de-84c041d0154c",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1413,7 +1181,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "708c21d4-9bbd-4d8e-884d-f3c9aea08af9",
+                    "id": "95305d8d-3fb1-4245-8412-6fbcfc3dedf4",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1429,7 +1197,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "da755ca1-95fe-4239-a93e-5b4ad1ef0432",
+                    "id": "2f261e9c-5db1-4cde-afbd-ac177469e43f",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1445,7 +1213,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "6315d5f4-349e-4a73-a0aa-e77e9aaff023",
+                    "id": "f91d6705-0a5e-4115-8c19-4021f2e308bf",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1460,7 +1228,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "11b3b381-fe41-427b-bb1f-5fbc0169d311",
+                    "id": "6b379ee6-5f53-43ba-9d7e-9dc379084f93",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1475,7 +1243,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "10f7cb4e-035f-4f58-b20b-6bb72d9328eb",
+                    "id": "36dcaa29-8b16-4efe-a0bb-12339cf35bc7",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1490,7 +1258,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "19e2417e-c3c1-48c8-ae25-3d2919c5a5a9",
+                    "id": "98310788-314d-49a5-9612-0419d7976fd9",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1506,7 +1274,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "1b1b8794-fbd9-406f-bceb-fb0735a370f3",
+                    "id": "5904f4db-7be2-401f-a11e-b1850ea38fc6",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -1521,7 +1289,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "39fc26bf-8724-4d97-95b3-260bfa6f35f7",
+                    "id": "f21df79e-f717-465a-85a5-7346888e02ca",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": -1,
@@ -1536,7 +1304,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "65158e29-721d-4ccf-b032-05f3b3e82e98",
+                    "id": "22e683e4-8e94-4f59-a552-b7ef62301694",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1551,7 +1319,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "7b3474f6-2647-4483-aa5f-8ce1e3d42f61",
+                    "id": "855656dd-0a28-4959-9475-d9ac16fa0ec8",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -1566,7 +1334,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "1ffe9078-6a95-48ac-8005-8300aca15762",
+                    "id": "ee7e73d4-0ef4-49e9-9ee2-5b6aaa583050",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1581,7 +1349,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "a2fddf59-e052-4304-9eb6-c9dcfd3da037",
+                    "id": "7e79c739-eed4-4f53-800a-aba73ba8d1ec",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1597,7 +1365,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "55614641-908d-4c4c-8a20-41aa8ed65ccf",
+                    "id": "15a803d8-886b-44e8-878b-b70b15e2b483",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1613,7 +1381,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "9ab7d0ac-eb5b-4b8a-b97d-161cc6dd38fd",
+                    "id": "68ac18b6-4989-4f0e-8aaa-b39cecb8ab03",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1629,7 +1397,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "1c24d1e4-f2a5-471d-a087-16e22ac82c3e",
+                    "id": "b2dbfae4-c55d-46b8-9175-8d94cf9f4f17",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1645,7 +1413,7 @@
                     "returnType": 1
                 },
                 {
-                    "id": "6f45f2e0-009c-4f8f-8577-e8a2888d60a7",
+                    "id": "6a4fc80e-25ec-4c9d-916d-cc1acdac9921",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1661,7 +1429,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "fd26b08b-3ea7-4a5b-9882-152810514d6d",
+                    "id": "c23b68ff-2206-4cf8-a241-c92bc5b1fdab",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1677,7 +1445,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "9083c061-14a8-476a-96db-eb4b2b98b591",
+                    "id": "1434eadd-818a-45ae-b5e3-e0bcd377d689",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1693,7 +1461,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "fda1cf30-cca6-4cdd-ac33-8b3803ff9adb",
+                    "id": "787eac15-cd8f-435c-a401-a735a532ac40",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1709,7 +1477,7 @@
                     "returnType": 1
                 },
                 {
-                    "id": "51daf6d7-5d3d-4bfc-9c4c-5a691bba2538",
+                    "id": "5cb1676c-98a8-4483-be6c-1bfa1e293080",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 3,
@@ -1726,7 +1494,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "20c6765f-3c25-4c6f-b338-82761107e17b",
+                    "id": "0434c0b5-a955-4d01-a092-690ef78b4949",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1742,7 +1510,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "e5b9cbe8-9b80-4034-b8ce-b8adfc8c50bf",
+                    "id": "ebdb9681-e08c-49a6-a649-68221b24c141",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1757,7 +1525,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "19421785-3feb-438f-8a72-7cedfee4d1b8",
+                    "id": "b7694207-9f7e-4e59-a799-e963258ef64c",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1772,7 +1540,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "221702b1-9831-48cb-beca-5b8ec4f40ef0",
+                    "id": "661a953c-f206-42bb-8feb-6ed79e2e81a5",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 3,
@@ -1789,7 +1557,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "8c10240f-7004-4652-8c4e-1c613cf0f57e",
+                    "id": "454decc7-4544-4af3-bc46-b67081e1b2bb",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1805,7 +1573,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "43793169-f0b8-4129-bb0c-4fe6861773ea",
+                    "id": "43c43e6a-1edc-4935-b9e4-72292a89aa1d",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1820,7 +1588,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "3e93f99f-baad-4d5a-ab51-13389416d60c",
+                    "id": "8f89c3b2-5129-4c52-9a34-71da5df1709e",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 3,
@@ -1837,7 +1605,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "38f4e54d-dfaf-44b7-b406-f1956b6f7898",
+                    "id": "ec1f02db-1c70-439b-9fe5-8992eb633bcf",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1852,7 +1620,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "236d6673-e66e-4cbc-9c80-392df8c47e99",
+                    "id": "058749ea-16fe-4e35-b802-a7ee59f8f0d1",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -1867,7 +1635,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "9e0ec69e-0165-4dce-9994-e25332c9f667",
+                    "id": "09de1ff7-c5d4-42e6-b370-e8af60412a19",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -1882,7 +1650,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "8db23a7c-d1d2-4b4c-8e36-72593b95a66a",
+                    "id": "3b5105dc-83ff-4e96-b88b-34c1625b26cf",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1897,7 +1665,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "63cced69-3ff2-4d06-bd22-1fc3624c6a1a",
+                    "id": "b24fcde2-90eb-4c0e-83d5-9076a5933ec8",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1912,7 +1680,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "4478f0d6-3867-46bf-bfdc-28d3a04f56ec",
+                    "id": "fcc5d10d-6582-43a7-84d6-e18916afdd02",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -1928,7 +1696,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "82079860-60e8-467e-96a5-033199b8e518",
+                    "id": "58b6839e-80bc-4e2c-8343-d42d2de7aa9c",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -1943,7 +1711,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "64609d99-98a3-4e2a-afc4-fa9be65e484f",
+                    "id": "7c757f9f-3e44-4976-a606-d7b28f7b3488",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -1958,7 +1726,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "af3980a9-88f2-4331-86b2-09bddee31924",
+                    "id": "fcf85016-ca06-4236-ab51-1af108e329ef",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -1973,7 +1741,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "a9131593-4043-43db-a4af-d86c98025293",
+                    "id": "9d1611e0-eae4-4169-a62a-62c568d7a011",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": -1,
@@ -1988,7 +1756,7 @@
                     "returnType": 1
                 },
                 {
-                    "id": "e8b1eb86-06ce-4767-877e-81668e4d73ea",
+                    "id": "b7df138c-452b-4ea9-aaca-0dc074a0fe62",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 1,
@@ -2003,7 +1771,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "397fdf04-3060-4149-b151-acbea8de65ba",
+                    "id": "e97522d5-7775-420b-a966-6dae094c54b7",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
@@ -2019,7 +1787,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "105a0fd0-55bc-4b1b-8c85-0953dd6faf8c",
+                    "id": "1eba14b8-2486-4fee-b453-04b6e74f79ff",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -2034,7 +1802,7 @@
                     "returnType": 2
                 },
                 {
-                    "id": "45206c13-b07d-49c0-b606-2ec94f48ae93",
+                    "id": "e34fb631-a66e-4895-ab43-f1fa0045fb81",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -2049,120 +1817,22 @@
                     "returnType": 2
                 },
                 {
-                    "id": "b0d6b537-18b3-42be-9d59-e9170154af76",
+                    "id": "45e87644-5d05-44e9-bb8a-55619950b3d7",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 0,
-                    "args": [
-                        2,
-                        2,
-                        2,
-                        1
-                    ],
-                    "externalName": "FMODGMS_Snd_ReadData",
-                    "help": "FMODGMS_Snd_ReadData(index, position, length, buffer)",
-                    "hidden": false,
-                    "kind": 1,
-                    "name": "FMODGMS_Snd_ReadData",
-                    "returnType": 2
-                },
-                {
-                    "id": "cec11b67-bca2-443b-b485-15a770d3c8d0",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 0,
-                    "args": [
-                        1,
-                        2,
-                        1
-                    ],
-                    "externalName": "FMODGMS_Snd_LoadSound_Ext",
-                    "help": "FMODGMS_Snd_LoadSound_Ext(location, mode, exInfo)",
-                    "hidden": false,
-                    "kind": 1,
-                    "name": "FMODGMS_Snd_LoadSound_Ext",
-                    "returnType": 2
-                },
-                {
-                    "id": "cbfaa3ea-04c6-41a5-8537-2292450029c9",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 0,
-                    "args": [
-                        2
-                    ],
-                    "externalName": "FMODGMS_Snd_Get_BitsPerSample",
-                    "help": "FMODGMS_Snd_Get_BitsPerSample(sound)",
-                    "hidden": false,
-                    "kind": 1,
-                    "name": "FMODGMS_Snd_Get_BitsPerSample",
-                    "returnType": 2
-                },
-                {
-                    "id": "1d2a1564-ed47-4478-82af-9b847935da12",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 0,
-                    "args": [
-                        2
-                    ],
-                    "externalName": "FMODGMS_Snd_Get_DefaultFrequency",
-                    "help": "FMODGMS_Snd_Get_DefaultFrequency(sound)",
-                    "hidden": false,
-                    "kind": 1,
-                    "name": "FMODGMS_Snd_Get_DefaultFrequency",
-                    "returnType": 2
-                },
-                {
-                    "id": "f1c89c05-bffb-449b-9c2b-c1a8548255a3",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 0,
-                    "args": [
-                        2
-                    ],
-                    "externalName": "FMODGMS_Snd_Get_NumChannels",
-                    "help": "FMODGMS_Snd_Get_NumChannels(sound)",
-                    "hidden": false,
-                    "kind": 1,
-                    "name": "FMODGMS_Snd_Get_NumChannels",
-                    "returnType": 2
-                },
-                {
-                    "id": "f0a386b3-8099-4cb4-9c1c-986822098f11",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 0,
-                    "args": [
-                        1,
-                        1,
-                        2,
-                        2
-                    ],
-                    "externalName": "FMODGMS_Util_FFT",
-                    "help": "FMODGMS_Util_FFT(bufferIn, bufferOut, numPoints, normalize)",
-                    "hidden": false,
-                    "kind": 1,
-                    "name": "FMODGMS_Util_FFT",
-                    "returnType": 2
-                },
-                {
-                    "id": "04aeffbb-c5b1-4aa5-a81c-1213d5ae0aa9",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": 0,
+                    "argCount": 1,
                     "args": [
                         1
                     ],
                     "externalName": "FMODGMS_Snd_Set_DLS",
                     "help": "FMODGMS_Snd_Set_DLS(filename)",
                     "hidden": false,
-                    "kind": 1,
+                    "kind": 12,
                     "name": "FMODGMS_Snd_Set_DLS",
                     "returnType": 2
                 },
                 {
-                    "id": "6f8841ab-126b-4119-8a7f-c0b71364db96",
+                    "id": "4c906d1c-02ca-455d-afd9-0ffd6bb859de",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 0,
@@ -2172,22 +1842,22 @@
                     "externalName": "FMODGMS_Snd_Remove_DLS",
                     "help": "FMODGMS_Snd_Remove_DLS()",
                     "hidden": false,
-                    "kind": 1,
+                    "kind": 12,
                     "name": "FMODGMS_Snd_Remove_DLS",
                     "returnType": 2
                 },
                 {
-                    "id": "01a1bae8-3ac3-48a4-9957-8f6f25c85b0d",
+                    "id": "b5e49fcd-7126-4291-8b80-56412f15a0a4",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 0,
+                    "argCount": -1,
                     "args": [
                         
                     ],
                     "externalName": "FMODGMS_Snd_Get_DLS",
                     "help": "FMODGMS_Snd_Get_DLS()",
                     "hidden": false,
-                    "kind": 1,
+                    "kind": 12,
                     "name": "FMODGMS_Snd_Get_DLS",
                     "returnType": 1
                 }
@@ -2195,93 +1865,13 @@
             "init": "",
             "kind": 1,
             "order": [
-                "21d81fb3-d55e-42a2-961f-a4d9f6827d74",
-                "8f96c13d-fc2d-471d-9178-2894a53afdf5",
-                "fb062ac2-430e-4987-bd7b-bb2512e48f7d",
-                "0a975baf-7fae-44d6-a2f9-b91b9eaaccf1",
-                "d50402ac-db65-4dcd-afb8-8f614f07af32",
-                "362b1172-9988-4514-a87d-5e1fbe7bb6ab",
-                "68befe7d-a6fa-4ca4-9ce0-872b13da17b8",
-                "e51be4bc-749f-4fa6-9274-4809905e87ff",
-                "dbfdd8dc-3130-4376-9406-a0657de22234",
-                "ff2237c1-874f-46df-890c-1ae7da564112",
-                "27e855d3-bb1d-415f-bacc-27f4726f4e81",
-                "0e1851be-f7d5-49b4-9a28-eeadb4d21df5",
-                "db028eef-33c6-463b-958a-1a8775e2600b",
-                "9cd91dc7-25e4-4f6d-950d-c92d9f0c0125",
-                "06c30adf-055c-476e-8f0e-98c8d92b2882",
-                "72b1d097-29c8-4bf9-99e7-b995dd031539",
-                "97207f33-fbfe-4c1f-9b80-38f523561303",
-                "5a746e54-9a30-43ce-a4cd-264ee632fff5",
-                "4a0938ad-9bcc-434a-b9f3-a6668bd3fed8",
-                "07bf5c3c-b097-4629-8755-6df2413dfc52",
-                "6c366640-49c3-4b50-85d2-4779ae4b3794",
-                "863e6aaf-96c2-4e69-9a54-94b7778254b0",
-                "437b6e34-c806-4e32-9f57-582f6a6f583b",
-                "0ec7d967-81e6-4632-a639-fb6e51c5aaa6",
-                "7d9a8438-adb8-4a8e-a1a7-feee670839f1",
-                "0eac28be-4cd4-47a7-8b24-8512e1470a8c",
-                "69f7edb6-d8df-4395-8786-2260599a7237",
-                "d94c8db4-d068-4a27-ac7d-bc7bc295fa2f",
-                "79a3a833-6201-411d-a0e8-7edb548cf83e",
-                "9b58c945-6d62-4c21-b062-35d9edd53c9f",
-                "520312cc-3772-40fd-a17a-b98745787c58",
-                "708c21d4-9bbd-4d8e-884d-f3c9aea08af9",
-                "da755ca1-95fe-4239-a93e-5b4ad1ef0432",
-                "6315d5f4-349e-4a73-a0aa-e77e9aaff023",
-                "11b3b381-fe41-427b-bb1f-5fbc0169d311",
-                "10f7cb4e-035f-4f58-b20b-6bb72d9328eb",
-                "19e2417e-c3c1-48c8-ae25-3d2919c5a5a9",
-                "1b1b8794-fbd9-406f-bceb-fb0735a370f3",
-                "39fc26bf-8724-4d97-95b3-260bfa6f35f7",
-                "65158e29-721d-4ccf-b032-05f3b3e82e98",
-                "7b3474f6-2647-4483-aa5f-8ce1e3d42f61",
-                "1ffe9078-6a95-48ac-8005-8300aca15762",
-                "a2fddf59-e052-4304-9eb6-c9dcfd3da037",
-                "55614641-908d-4c4c-8a20-41aa8ed65ccf",
-                "9ab7d0ac-eb5b-4b8a-b97d-161cc6dd38fd",
-                "1c24d1e4-f2a5-471d-a087-16e22ac82c3e",
-                "6f45f2e0-009c-4f8f-8577-e8a2888d60a7",
-                "fd26b08b-3ea7-4a5b-9882-152810514d6d",
-                "9083c061-14a8-476a-96db-eb4b2b98b591",
-                "fda1cf30-cca6-4cdd-ac33-8b3803ff9adb",
-                "51daf6d7-5d3d-4bfc-9c4c-5a691bba2538",
-                "20c6765f-3c25-4c6f-b338-82761107e17b",
-                "e5b9cbe8-9b80-4034-b8ce-b8adfc8c50bf",
-                "19421785-3feb-438f-8a72-7cedfee4d1b8",
-                "221702b1-9831-48cb-beca-5b8ec4f40ef0",
-                "8c10240f-7004-4652-8c4e-1c613cf0f57e",
-                "43793169-f0b8-4129-bb0c-4fe6861773ea",
-                "3e93f99f-baad-4d5a-ab51-13389416d60c",
-                "38f4e54d-dfaf-44b7-b406-f1956b6f7898",
-                "236d6673-e66e-4cbc-9c80-392df8c47e99",
-                "9e0ec69e-0165-4dce-9994-e25332c9f667",
-                "8db23a7c-d1d2-4b4c-8e36-72593b95a66a",
-                "63cced69-3ff2-4d06-bd22-1fc3624c6a1a",
-                "4478f0d6-3867-46bf-bfdc-28d3a04f56ec",
-                "82079860-60e8-467e-96a5-033199b8e518",
-                "64609d99-98a3-4e2a-afc4-fa9be65e484f",
-                "af3980a9-88f2-4331-86b2-09bddee31924",
-                "a9131593-4043-43db-a4af-d86c98025293",
-                "e8b1eb86-06ce-4767-877e-81668e4d73ea",
-                "397fdf04-3060-4149-b151-acbea8de65ba",
-                "105a0fd0-55bc-4b1b-8c85-0953dd6faf8c",
-                "45206c13-b07d-49c0-b606-2ec94f48ae93",
-                "b0d6b537-18b3-42be-9d59-e9170154af76",
-                "cec11b67-bca2-443b-b485-15a770d3c8d0",
-                "cbfaa3ea-04c6-41a5-8537-2292450029c9",
-                "1d2a1564-ed47-4478-82af-9b847935da12",
-                "f1c89c05-bffb-449b-9c2b-c1a8548255a3",
-                "f0a386b3-8099-4cb4-9c1c-986822098f11",
-                "04aeffbb-c5b1-4aa5-a81c-1213d5ae0aa9",
-                "6f8841ab-126b-4119-8a7f-c0b71364db96",
-                "01a1bae8-3ac3-48a4-9957-8f6f25c85b0d"
+                
             ],
             "origname": "extensions\\FMODGMS.dll",
             "uncompress": false
         },
         {
-            "id": "b4597348-18a9-430e-a567-82dc61709f63",
+            "id": "47f5814f-72b1-4e2d-bc61-476bd94bb3dd",
             "modelName": "GMExtensionFile",
             "mvc": "1.0",
             "ProxyFiles": [
@@ -2305,7 +1895,7 @@
             "uncompress": false
         },
         {
-            "id": "e1758f92-3450-4465-a343-cefff847ee09",
+            "id": "c2fcd111-a288-4a46-8974-453633b26931",
             "modelName": "GMExtensionFile",
             "mvc": "1.0",
             "ProxyFiles": [
@@ -2332,7 +1922,7 @@
     "gradleinject": "",
     "helpfile": "",
     "installdir": "",
-    "iosProps": false,
+    "iosProps": true,
     "iosSystemFrameworkEntries": [
         
     ],
@@ -2347,5 +1937,5 @@
     "packageID": "",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
-    "version": "0.9.0"
+    "version": "0.8.1"
 }
