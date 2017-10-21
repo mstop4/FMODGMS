@@ -11,21 +11,13 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 
 ## **Status**
 
-### **Stable - [0.8.0](https://github.com/mstop4/FMODGMS/releases/tag/0.8.0)**  
+### **Stable/Latest - [0.9.0](https://github.com/mstop4/FMODGMS/releases/tag/0.9.0)**  
 
 * *Platforms:* Windows, Ubuntu
-* *FMOD Studio API:* 1.09.01
-* *GMS 2 IDE:* v.2.1.0.012  
-* *GMS 2 Runtime:* v.2.1.0.144
-* *GM:S 1 IDE:* v.1.4.773
+* *FMOD Studio API:* 1.10.00
+* *GMS 2 Runtime:* v.2.1.1.158
+* *GM:S Runtime:* v.1.4.1773
 
-### **Latest: - 0.9.0**
-
-* *Platforms:* Windows
-* *FMOD Studio API:* 1.10.0
-* *GMS 2 IDE:* v.2.1.0.241 
-* *GMS 2 Runtime:* v.2.1.0.158
-* *GM:S 1 IDE:* v.1.4.773
 
 Features
 --------
@@ -43,13 +35,13 @@ What's inside
 -------------
 
 - **FMODGMS.gmez** - FMODGMS GameMaker: Studio extension
-- **FMODGMS_Demo_win.zip** - FMODGMS demo program for Windows
-- **FMODGMS_Demo_linux.tar.gz** - FMODGMS demo program for Linux
-- **src** - library and test program source code
- - *gms/FMODGMS Test.gmx* - GameMaker: Studio project for demo program
- - *gms2/FMODGMS Test* - GameMaker Studio 2 project for demo program
+- **FMODGMS_Demo_win.zip** - FMODGMS player demo for Windows
+- **FMODGMS_Demo_linux.tar.gz** - FMODGMS player demo for Linux
+- **src** - library and player demo source code
+ - *gms/FMODGMS Test.gmx* - GameMaker: Studio project for player demo
+ - *gms2/FMODGMS Test* - GameMaker Studio 2 project for player demo
  - *linux* - FMODGMS source for Linux
- - *vc/FMODGMS* - FMODGMS source for VS 2013
+ - *vc/FMODGMS* - FMODGMS source for Windows as a Visual Studio project
 
 Possible Features in the Future
 --------
