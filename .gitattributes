@@ -2,7 +2,5 @@
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
 * text=auto
-
-# Ignore files for language bar
-*.yy linguist-vendored
-*.nsi linguist-vendored
+*.yy linguist-language=Game Maker Language
+*.nsi linguist-language=Game Maker Language
