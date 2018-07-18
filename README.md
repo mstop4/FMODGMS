@@ -11,7 +11,13 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 
 ## **Status**
 
-### **Stable/Latest - [0.9.0](https://github.com/mstop4/FMODGMS/releases/tag/v0.9.0)**  
+### **Latest - [0.9.1] ###
+* *Platforms:* Windows, Ubuntu
+* *FMOD Studio API:* 1.10.07
+* *GMS 2 Runtime:* v.2.1.4.218
+* *GM:S Runtime:* v.1.4.1804
+
+### **Stable - [0.9.0](https://github.com/mstop4/FMODGMS/releases/tag/v0.9.0)**  
 
 * *Platforms:* Windows, Ubuntu
 * *FMOD Studio API:* 1.10.00
