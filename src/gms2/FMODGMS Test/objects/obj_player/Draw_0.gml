@@ -117,11 +117,9 @@
         draw_text(416,304,string_hash_to_newline("1-7 -- Switch track#F4 -- Toggle fullscreen#Esc -- Quit#L -- Add random effect#K -- Remove Effect"));
     
     shift_hue(16);
-    draw_text(16,416,string_hash_to_newline("FMODGMS Player Demo " +  GM_version + " - by M.S.T.O.P."));
+    draw_text(16,416,"FMODGMS Player Demo " +  GM_version + " - by M.S.T.O.P.");
     shift_hue(16);
-    draw_text(16,432,string_hash_to_newline("FMODGMS version: 0.9.0"));
+    draw_text(16,432,"FMODGMS version: 0.9.1");
     shift_hue(16);
-    draw_text(16,448,string_hash_to_newline("FMOD version: Studio 1.10.0"));
-    
+    draw_text(16,448,"FMOD version: Studio 1.10.07");
 }
-
