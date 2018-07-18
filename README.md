@@ -47,12 +47,12 @@ What's inside
 - **FMODGMS_Starter.yyz** - A minimal FMODGMS project for GMS 2.
 - **FMODGMS_Starter.gmz** - A minimal FMODGMS project for GM:S 1.4.
 - **src** - library, player demo, and unpackage starter project source code
- - *gms/FMODGMS Test.gmx* - GM:S 1.4 project for player demo
- - *gms/FMODGMS Starter.gmx* - GM:S 1.4 starter project
- - *gms2/FMODGMS Test* - GMS 2 project for player demo
- - *gms2/FMODGMS Starter* - GMS 2 starter project
- - *linux* - FMODGMS source for Linux
- - *vc/FMODGMS* - FMODGMS source for Windows as a Visual Studio project
+  - *gms/FMODGMS Test.gmx* - GM:S 1.4 project for player demo
+  - *gms/FMODGMS Starter.gmx* - GM:S 1.4 starter project
+  - *gms2/FMODGMS Test* - GMS 2 project for player demo
+  - *gms2/FMODGMS Starter* - GMS 2 starter project
+  - *linux* - FMODGMS source for Linux
+  - *vc/FMODGMS* - FMODGMS source for Windows as a Visual Studio project
 
 Possible Features in the Future
 --------
