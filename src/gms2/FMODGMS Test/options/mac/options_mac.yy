@@ -9,7 +9,7 @@
     "option_mac_app_category": "None",
     "option_mac_app_id": "*",
     "option_mac_build_app_store": false,
-    "option_mac_copyright": "(c) 2016-2017 M.S.T.O.P.",
+    "option_mac_copyright": "",
     "option_mac_display_cursor": true,
     "option_mac_display_name": "FMODGMS Demo",
     "option_mac_enable_retina": false,
@@ -26,7 +26,7 @@
     "option_mac_team_id": "",
     "option_mac_texture_page": "2048x2048",
     "option_mac_version": {
-        "build": 1,
+        "build": 2,
         "major": 1,
         "minor": 5,
         "revision": 0

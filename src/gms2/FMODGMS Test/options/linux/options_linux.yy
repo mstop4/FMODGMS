@@ -4,6 +4,7 @@
     "mvc": "1.0",
     "name": "Linux",
     "option_linux_allow_fullscreen": true,
+    "option_linux_display_cursor": false,
     "option_linux_display_name": "FMODGMS Demo",
     "option_linux_display_splash": false,
     "option_linux_enable_steam": false,
@@ -20,7 +21,7 @@
     "option_linux_sync": false,
     "option_linux_texture_page": "2048x2048",
     "option_linux_version": {
-        "build": 1,
+        "build": 2,
         "major": 1,
         "minor": 5,
         "revision": 0

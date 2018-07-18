@@ -1,6 +1,6 @@
 /* ========================================================================================== */
 /* FMOD Studio - Built-in effects header file.                                                */
-/* Copyright (c), Firelight Technologies Pty, Ltd. 2004-2017.                                 */
+/* Copyright (c), Firelight Technologies Pty, Ltd. 2004-2018.                                 */
 /*                                                                                            */
 /* In this header you can find parameter structures for FMOD system registered DSP effects    */
 /* and generators.                                                                            */
@@ -230,7 +230,8 @@ typedef enum
 */
 typedef enum FMOD_DSP_FADER
 {
-    FMOD_DSP_FADER_GAIN,    /* (Type:float) - Signal gain in dB. -80.0 to 10.0. Default = 0.0. */
+    FMOD_DSP_FADER_GAIN,            /* (Type:float) - Signal gain in dB. -80.0 to 10.0. Default = 0.0. */
+    FMOD_DSP_FADER_OVERALL_GAIN,    /* (Type:data)  - Overall gain. For information only, not set by user. Data of type FMOD_DSP_PARAMETER_DATA_TYPE_OVERALLGAIN to provide to FMOD, to allow FMOD to know the DSP is scaling the signal for virtualization purposes. */
 } FMOD_DSP_FADER;
 
 
@@ -486,7 +487,7 @@ typedef enum
     Parameter types for the FMOD_DSP_TYPE_CHORUS filter.
 
     [REMARKS]
-    Chorous is an effect where the sound is more 'spacious' due to 1 to 3 versions of the sound being played along side the original signal but with the pitch of each copy modulating on a sine wave.<br>
+    Chorus is an effect where the sound is more 'spacious' due to 1 to 3 versions of the sound being played along side the original signal but with the pitch of each copy modulating on a sine wave.<br>
 
     [SEE_ALSO]
     DSP::setParameterFloat
