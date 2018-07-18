@@ -1,5 +1,5 @@
 {
-    "id": "d5bf118d-ea4c-4858-a98c-eefc21ed6078",
+    "id": "7e59ac58-ffde-4cf4-9f52-1536b2f52ff4",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "FMODGMS_Snd_TagDataTypeToString",
