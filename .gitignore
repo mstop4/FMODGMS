@@ -158,3 +158,5 @@ $RECYCLE.BIN/
 # Object files in Linux
 *.o
 *.so
+
+*.stackdump
