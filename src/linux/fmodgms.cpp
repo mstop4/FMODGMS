@@ -982,7 +982,7 @@ GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, vo
 			
 	//read sound and populate buffer
 	unsigned int read = 0;
-	result = soundList[i]->readData(buffer, (unsigned int)(length + 0.5), &read);
+	result = soundList[i]->readData(buffer, _length, &read);
 	if (result != FMOD_OK && result != FMOD_ERR_FILE_EOF)
 	{
 		errorMessage = "Failed to read data.";
@@ -1978,7 +1978,7 @@ GMexport double FMODGMS_Snd_Get_TagTypeFromName(double soundIndex, char* tagName
 
 		if (tagFound)
 		{
-			(double)(int)tag.type;
+			return (double)(int)tag.type;
 		}
 
 		else
