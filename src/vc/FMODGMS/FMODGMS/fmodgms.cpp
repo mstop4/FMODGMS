@@ -1,8 +1,7 @@
 /*--------------------------------------------------------
 //  fmodgms.cpp
 //
-//  FMODGMS v.0.9.1
-//  By: M.S.T.O.P.
+//  FMODGMS v.0.10.0
 //
 //  GML bindings to the FMOD Studio low-level API for
 //  GameMaker:Studio.
@@ -966,7 +965,7 @@ GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, vo
 			
 	//read sound and populate buffer
 	unsigned int read = 0;
-	result = soundList[i]->readData(buffer, (unsigned int)(length + 0.5), &read);
+	result = soundList[i]->readData(buffer, _length, &read);
 	if (result != FMOD_OK && result != FMOD_ERR_FILE_EOF)
 	{
 		errorMessage = "Failed to read data.";

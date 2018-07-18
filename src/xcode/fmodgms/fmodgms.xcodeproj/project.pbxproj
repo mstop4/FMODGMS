@@ -1,0 +1,345 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E9CD3FA208FC3A0004E705B /* fmod_codec.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3EF208FC3A0004E705B /* fmod_codec.h */; };
+		8E9CD3FB208FC3A0004E705B /* fmod_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F0208FC3A0004E705B /* fmod_common.h */; };
+		8E9CD3FC208FC3A0004E705B /* fmod_dsp_effects.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F1208FC3A0004E705B /* fmod_dsp_effects.h */; };
+		8E9CD3FD208FC3A0004E705B /* fmod_dsp.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F2208FC3A0004E705B /* fmod_dsp.h */; };
+		8E9CD3FE208FC3A0004E705B /* fmod_errors.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F3208FC3A0004E705B /* fmod_errors.h */; };
+		8E9CD3FF208FC3A0004E705B /* fmod_output.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F4208FC3A0004E705B /* fmod_output.h */; };
+		8E9CD400208FC3A0004E705B /* fmod.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F5208FC3A0004E705B /* fmod.h */; };
+		8E9CD401208FC3A0004E705B /* fmod.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F6208FC3A0004E705B /* fmod.hpp */; };
+		8E9CD402208FC3A0004E705B /* fmodgms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E9CD3F7208FC3A0004E705B /* fmodgms.cpp */; };
+		8E9CD403208FC3A0004E705B /* fmodgms.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F8208FC3A0004E705B /* fmodgms.hpp */; };
+		8EBA52E72097A0A400A893F6 /* libfmodL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EBA52E62097A0A400A893F6 /* libfmodL.dylib */; };
+		8EEA5BFC20964EAD0065D6DD /* libfmod.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEA5BFB20964EAD0065D6DD /* libfmod.dylib */; };
+		8EEA5C022096507D0065D6DD /* _kiss_fft_guts.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EEA5BFD2096507D0065D6DD /* _kiss_fft_guts.h */; };
+		8EEA5C032096507D0065D6DD /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA5BFE2096507D0065D6DD /* kiss_fft.c */; };
+		8EEA5C042096507D0065D6DD /* kiss_fft.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EEA5BFF2096507D0065D6DD /* kiss_fft.h */; };
+		8EEA5C052096507D0065D6DD /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA5C002096507D0065D6DD /* kiss_fftr.c */; };
+		8EEA5C062096507D0065D6DD /* kiss_fftr.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EEA5C012096507D0065D6DD /* kiss_fftr.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8E9CD411208FC76F004E705B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8E9CD3E8208FC340004E705B /* libfmodgms.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libfmodgms.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E9CD3EF208FC3A0004E705B /* fmod_codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_codec.h; path = ../../linux/fmod_codec.h; sourceTree = "<group>"; };
+		8E9CD3F0208FC3A0004E705B /* fmod_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_common.h; path = ../../linux/fmod_common.h; sourceTree = "<group>"; };
+		8E9CD3F1208FC3A0004E705B /* fmod_dsp_effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_dsp_effects.h; path = ../../linux/fmod_dsp_effects.h; sourceTree = "<group>"; };
+		8E9CD3F2208FC3A0004E705B /* fmod_dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_dsp.h; path = ../../linux/fmod_dsp.h; sourceTree = "<group>"; };
+		8E9CD3F3208FC3A0004E705B /* fmod_errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_errors.h; path = ../../linux/fmod_errors.h; sourceTree = "<group>"; };
+		8E9CD3F4208FC3A0004E705B /* fmod_output.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_output.h; path = ../../linux/fmod_output.h; sourceTree = "<group>"; };
+		8E9CD3F5208FC3A0004E705B /* fmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod.h; path = ../../linux/fmod.h; sourceTree = "<group>"; };
+		8E9CD3F6208FC3A0004E705B /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmod.hpp; path = ../../linux/fmod.hpp; sourceTree = "<group>"; };
+		8E9CD3F7208FC3A0004E705B /* fmodgms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fmodgms.cpp; path = ../../linux/fmodgms.cpp; sourceTree = "<group>"; };
+		8E9CD3F8208FC3A0004E705B /* fmodgms.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmodgms.hpp; path = ../../linux/fmodgms.hpp; sourceTree = "<group>"; };
+		8EBA52E62097A0A400A893F6 /* libfmodL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodL.dylib; sourceTree = "<group>"; };
+		8EEA5BFB20964EAD0065D6DD /* libfmod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmod.dylib; sourceTree = "<group>"; };
+		8EEA5BFD2096507D0065D6DD /* _kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _kiss_fft_guts.h; path = ../../linux/kissfft/_kiss_fft_guts.h; sourceTree = "<group>"; };
+		8EEA5BFE2096507D0065D6DD /* kiss_fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = kiss_fft.c; path = ../../linux/kissfft/kiss_fft.c; sourceTree = "<group>"; };
+		8EEA5BFF2096507D0065D6DD /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kiss_fft.h; path = ../../linux/kissfft/kiss_fft.h; sourceTree = "<group>"; };
+		8EEA5C002096507D0065D6DD /* kiss_fftr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = kiss_fftr.c; path = ../../linux/kissfft/kiss_fftr.c; sourceTree = "<group>"; };
+		8EEA5C012096507D0065D6DD /* kiss_fftr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kiss_fftr.h; path = ../../linux/kissfft/kiss_fftr.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E9CD3E5208FC33F004E705B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EEA5BFC20964EAD0065D6DD /* libfmod.dylib in Frameworks */,
+				8EBA52E72097A0A400A893F6 /* libfmodL.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E9CD3DF208FC33F004E705B = {
+			isa = PBXGroup;
+			children = (
+				8E9CD3E9208FC340004E705B /* Products */,
+				8E9CD3EF208FC3A0004E705B /* fmod_codec.h */,
+				8E9CD3F0208FC3A0004E705B /* fmod_common.h */,
+				8E9CD3F1208FC3A0004E705B /* fmod_dsp_effects.h */,
+				8E9CD3F2208FC3A0004E705B /* fmod_dsp.h */,
+				8E9CD3F3208FC3A0004E705B /* fmod_errors.h */,
+				8E9CD3F4208FC3A0004E705B /* fmod_output.h */,
+				8E9CD3F5208FC3A0004E705B /* fmod.h */,
+				8E9CD3F6208FC3A0004E705B /* fmod.hpp */,
+				8E9CD3F7208FC3A0004E705B /* fmodgms.cpp */,
+				8E9CD3F8208FC3A0004E705B /* fmodgms.hpp */,
+				8EEA5BFD2096507D0065D6DD /* _kiss_fft_guts.h */,
+				8EEA5BFE2096507D0065D6DD /* kiss_fft.c */,
+				8EEA5BFF2096507D0065D6DD /* kiss_fft.h */,
+				8EEA5C002096507D0065D6DD /* kiss_fftr.c */,
+				8EEA5C012096507D0065D6DD /* kiss_fftr.h */,
+				8EEA5BFB20964EAD0065D6DD /* libfmod.dylib */,
+				8EBA52E62097A0A400A893F6 /* libfmodL.dylib */,
+			);
+			sourceTree = "<group>";
+		};
+		8E9CD3E9208FC340004E705B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E9CD3E8208FC340004E705B /* libfmodgms.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8E9CD3E6208FC33F004E705B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EEA5C042096507D0065D6DD /* kiss_fft.h in Headers */,
+				8E9CD400208FC3A0004E705B /* fmod.h in Headers */,
+				8E9CD3FE208FC3A0004E705B /* fmod_errors.h in Headers */,
+				8E9CD3FF208FC3A0004E705B /* fmod_output.h in Headers */,
+				8E9CD3FD208FC3A0004E705B /* fmod_dsp.h in Headers */,
+				8E9CD401208FC3A0004E705B /* fmod.hpp in Headers */,
+				8E9CD3FC208FC3A0004E705B /* fmod_dsp_effects.h in Headers */,
+				8EEA5C022096507D0065D6DD /* _kiss_fft_guts.h in Headers */,
+				8EEA5C062096507D0065D6DD /* kiss_fftr.h in Headers */,
+				8E9CD3FA208FC3A0004E705B /* fmod_codec.h in Headers */,
+				8E9CD3FB208FC3A0004E705B /* fmod_common.h in Headers */,
+				8E9CD403208FC3A0004E705B /* fmodgms.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8E9CD3E7208FC33F004E705B /* fmodgms */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E9CD3EC208FC340004E705B /* Build configuration list for PBXNativeTarget "fmodgms" */;
+			buildPhases = (
+				8E9CD3E4208FC33F004E705B /* Sources */,
+				8E9CD3E6208FC33F004E705B /* Headers */,
+				8E9CD3E5208FC33F004E705B /* Frameworks */,
+				8E9CD411208FC76F004E705B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = fmodgms;
+			productName = fmodgms;
+			productReference = 8E9CD3E8208FC340004E705B /* libfmodgms.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E9CD3E0208FC33F004E705B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Gitle Mikkelsen";
+				TargetAttributes = {
+					8E9CD3E7208FC33F004E705B = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 8E9CD3E3208FC33F004E705B /* Build configuration list for PBXProject "fmodgms" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8E9CD3DF208FC33F004E705B;
+			productRefGroup = 8E9CD3E9208FC340004E705B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E9CD3E7208FC33F004E705B /* fmodgms */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E9CD3E4208FC33F004E705B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EEA5C032096507D0065D6DD /* kiss_fft.c in Sources */,
+				8E9CD402208FC3A0004E705B /* fmodgms.cpp in Sources */,
+				8EEA5C052096507D0065D6DD /* kiss_fftr.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8E9CD3EA208FC340004E705B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8E9CD3EB208FC340004E705B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8E9CD3ED208FC340004E705B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "-";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Resources";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8E9CD3EE208FC340004E705B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "-";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Resources";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E9CD3E3208FC33F004E705B /* Build configuration list for PBXProject "fmodgms" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E9CD3EA208FC340004E705B /* Debug */,
+				8E9CD3EB208FC340004E705B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E9CD3EC208FC340004E705B /* Build configuration list for PBXNativeTarget "fmodgms" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E9CD3ED208FC340004E705B /* Debug */,
+				8E9CD3EE208FC340004E705B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E9CD3E0208FC33F004E705B /* Project object */;
+}
