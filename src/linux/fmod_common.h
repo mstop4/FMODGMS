@@ -1,7 +1,7 @@
 /*$ preserve start $*/
 
 /* ================================================================================================== */
-/* FMOD Studio - Common C/C++ header file. Copyright (c), Firelight Technologies Pty, Ltd. 2004-2017. */
+/* FMOD Studio - Common C/C++ header file. Copyright (c), Firelight Technologies Pty, Ltd. 2004-2018. */
 /*                                                                                                    */
 /* This header is included by fmod.hpp (C++ interface) and fmod.h (C interface) therefore is the      */
 /* base header for all FMOD headers.                                                                  */
@@ -15,7 +15,7 @@
     0xaaaabbcc -> aaaa = major version number.  bb = minor version number.  cc = development version number.
 */
 
-#define FMOD_VERSION    0x00011000
+#define FMOD_VERSION    0x00011007
 
 /*
     Compiler specific settings.
@@ -207,8 +207,8 @@ typedef enum
     Structure describing a point in 3D space.
 
     [REMARKS]
-    FMOD uses a left handed co-ordinate system by default.<br>
-    To use a right handed co-ordinate system specify FMOD_INIT_3D_RIGHTHANDED from FMOD_INITFLAGS in System::init.
+    FMOD uses a left handed coordinate system by default.<br>
+    To use a right handed coordinate system specify FMOD_INIT_3D_RIGHTHANDED from FMOD_INITFLAGS in System::init.
 
     [SEE_ALSO]      
     System::set3DListenerAttributes
@@ -233,9 +233,9 @@ typedef enum
 */
 typedef struct
 {
-    float x;        /* X co-ordinate in 3D space. */
-    float y;        /* Y co-ordinate in 3D space. */
-    float z;        /* Z co-ordinate in 3D space. */
+    float x;        /* X coordinate in 3D space. */
+    float y;        /* Y coordinate in 3D space. */
+    float z;        /* Z coordinate in 3D space. */
 } FMOD_VECTOR;
 
 
@@ -246,6 +246,7 @@ typedef struct
     Structure describing a position, velocity and orientation.
 
     [REMARKS]
+    Attributes should use your chosen coordinate system, see [3D sounds](overview/3dsound.html) for more information.
 
     [SEE_ALSO]
     FMOD_VECTOR
@@ -489,71 +490,60 @@ typedef enum
     FMOD_SPEAKERMODE_RAW<br>
     ---------------------<br>
     This mode is for output devices that are not specifically mono/stereo/quad/surround/5.1 or 7.1, but are multichannel.<br>
-    Use System::setSoftwareFormat to specify the number of speakers you want to address, otherwise it will default to 2 (stereo).<br>
-    Sound channels map to speakers sequentially, so a mono sound maps to output speaker 0, stereo sound maps to output speaker 0 & 1.<br>
-    The user assumes knowledge of the speaker order.  FMOD_SPEAKER enumerations may not apply, so raw channel indices should be used.<br>
-    Multichannel sounds map input channels to output channels 1:1. <br>
-    Channel::setPan and Channel::setPanLevels do not work.<br>
-    Speaker levels must be manually set with Channel::setPanMatrix.<br>
+    <li>Use System::setSoftwareFormat to specify the number of speakers you want to address, otherwise it will default to 2 (stereo).<br>
+    <li>Sound channels map to speakers sequentially, so a mono sound maps to output speaker 0, stereo sound maps to output speaker 0 & 1.<br>
+    <li>The user assumes knowledge of the speaker order.  FMOD_SPEAKER enumerations may not apply, so raw channel indices should be used.<br>
+    <li>Multichannel sounds map input channels to output channels 1:1. <br>
+    <li>Speaker levels must be manually set with Channel::setMixMatrix.<br>
+    <li>Channel::setPan and Channel::setMixLevelsOutput do not work.<br>
     <br>
     FMOD_SPEAKERMODE_MONO<br>
     ---------------------<br>
     This mode is for a 1 speaker arrangement.<br>
-    Panning does not work in this speaker mode.<br>
-    Mono, stereo and multichannel sounds have each sound channel played on the one speaker unity.<br>
-    Mix behavior for multichannel sounds can be set with Channel::setPanMatrix.<br>
-    Channel::setPanLevels does not work.<br>
+    <li>Panning does not work in this speaker mode.<br>
+    <li>Mono, stereo and multichannel sounds have each sound channel played on the one speaker at unity.<br>
+    <li>Mix behavior for multichannel sounds can be set with Channel::setMixMatrix.<br>
     <br>
     FMOD_SPEAKERMODE_STEREO<br>
     -----------------------<br>
     This mode is for 2 speaker arrangements that have a left and right speaker.<br>
     <li>Mono sounds default to an even distribution between left and right.  They can be panned with Channel::setPan.<br>
-    <li>Stereo sounds default to the middle, or full left in the left speaker and full right in the right speaker.  
-    <li>They can be cross faded with Channel::setPan.<br>
+    <li>Stereo sounds default to the middle, or full left in the left speaker and full right in the right speaker.  They can be cross faded with Channel::setPan.<br>
     <li>Multichannel sounds have each sound channel played on each speaker at unity.<br>
-    <li>Mix behavior for multichannel sounds can be set with Channel::setPanMatrix.<br>
-    <li>Channel::setPanLevels works but only front left and right parameters are used, the rest are ignored.<br>
+    <li>Mix behavior for multichannel sounds can be set with Channel::setMixMatrix.<br>
     <br>
     FMOD_SPEAKERMODE_QUAD<br>
     ------------------------<br>
     This mode is for 4 speaker arrangements that have a front left, front right, surround left and a surround right speaker.<br>
     <li>Mono sounds default to an even distribution between front left and front right.  They can be panned with Channel::setPan.<br>
-    <li>Stereo sounds default to the left sound channel played on the front left, and the right sound channel played on the front right.<br>
-    <li>They can be cross faded with Channel::setPan.<br>
+    <li>Stereo sounds default to the left sound channel played on the front left, and the right sound channel played on the front right.  They can be cross faded with Channel::setPan.<br>
     <li>Multichannel sounds default to all of their sound channels being played on each speaker in order of input.<br>
-    <li>Mix behavior for multichannel sounds can be set with Channel::setPanMatrix.<br>
-    <li>Channel::setPanLevels works but rear left, rear right, center and lfe are ignored.<br>
+    <li>Mix behavior for multichannel sounds can be set with Channel::setMixMatrix.<br>
     <br>
     FMOD_SPEAKERMODE_SURROUND<br>
     ------------------------<br>
     This mode is for 5 speaker arrangements that have a left/right/center/surround left/surround right.<br>
     <li>Mono sounds default to the center speaker.  They can be panned with Channel::setPan.<br>
-    <li>Stereo sounds default to the left sound channel played on the front left, and the right sound channel played on the front right.  
-    <li>They can be cross faded with Channel::setPan.<br>
+    <li>Stereo sounds default to the left sound channel played on the front left, and the right sound channel played on the front right.  They can be cross faded with Channel::setPan.<br>
     <li>Multichannel sounds default to all of their sound channels being played on each speaker in order of input.  
-    <li>Mix behavior for multichannel sounds can be set with Channel::setPanMatrix.<br>
-    <li>Channel::setPanLevels works but rear left / rear right are ignored.<br>
+    <li>Mix behavior for multichannel sounds can be set with Channel::setMixMatrix.<br>
     <br>
     FMOD_SPEAKERMODE_5POINT1<br>
     ---------------------------------------------------------<br>
     This mode is for 5.1 speaker arrangements that have a left/right/center/surround left/surround right and a subwoofer speaker.<br>
     <li>Mono sounds default to the center speaker.  They can be panned with Channel::setPan.<br>
-    <li>Stereo sounds default to the left sound channel played on the front left, and the right sound channel played on the front right.  
-    <li>They can be cross faded with Channel::setPan.<br>
+    <li>Stereo sounds default to the left sound channel played on the front left, and the right sound channel played on the front right.  They can be cross faded with Channel::setPan.<br>
     <li>Multichannel sounds default to all of their sound channels being played on each speaker in order of input.  
-    <li>Mix behavior for multichannel sounds can be set with Channel::setPanMatrix.<br>
-    <li>Channel::setPanLevels works but rear left / rear right are ignored.<br>
+    <li>Mix behavior for multichannel sounds can be set with Channel::setMixMatrix.<br>
     <br>
     FMOD_SPEAKERMODE_7POINT1<br>
     ------------------------<br>
     This mode is for 7.1 speaker arrangements that have a left/right/center/surround left/surround right/rear left/rear right 
     and a subwoofer speaker.<br>
     <li>Mono sounds default to the center speaker.  They can be panned with Channel::setPan.<br>
-    <li>Stereo sounds default to the left sound channel played on the front left, and the right sound channel played on the front right.  
-    <li>They can be cross faded with Channel::setPan.<br>
+    <li>Stereo sounds default to the left sound channel played on the front left, and the right sound channel played on the front right.  They can be cross faded with Channel::setPan.<br>
     <li>Multichannel sounds default to all of their sound channels being played on each speaker in order of input.  
-    <li>Mix behavior for multichannel sounds can be set with Channel::setPanMatrix.<br>
-    <li>Channel::setPanLevels works and every parameter is used to set the balance of a sound in any speaker.<br>
+    <li>Mix behavior for multichannel sounds can be set with Channel::setMixMatrix.<br>
     <br>
 
     [SEE_ALSO]
@@ -818,8 +808,8 @@ typedef struct FMOD_PLUGINLIST
 #define FMOD_INIT_NORMAL                     0x00000000 /* Initialize normally */
 #define FMOD_INIT_STREAM_FROM_UPDATE         0x00000001 /* No stream thread is created internally.  Streams are driven from System::update.  Mainly used with non-realtime outputs. */
 #define FMOD_INIT_MIX_FROM_UPDATE            0x00000002 /* No mixer thread is created internally. Mixing is driven from System::update. Only applies to polling based output modes such as FMOD_OUTPUTTYPE_NOSOUND, FMOD_OUTPUTTYPE_WAVWRITER, FMOD_OUTPUTTYPE_DSOUND, FMOD_OUTPUTTYPE_WINMM,FMOD_OUTPUTTYPE_XAUDIO. */
-#define FMOD_INIT_3D_RIGHTHANDED             0x00000004 /* FMOD will treat +X as right, +Y as up and +Z as backwards (towards you). */
-#define FMOD_INIT_CHANNEL_LOWPASS            0x00000100 /* All FMOD_3D based voices will add a software lowpass filter effect into the DSP chain which is automatically used when Channel::set3DOcclusion is used or the geometry API.   This also causes sounds to sound duller when the sound goes behind the listener, as a fake HRTF style effect.  Use System::setAdvancedSettings to disable or adjust cutoff frequency for this feature. */
+#define FMOD_INIT_3D_RIGHTHANDED             0x00000004 /* 3D calculations will be performed in right-handed coordinates. */
+#define FMOD_INIT_CHANNEL_LOWPASS            0x00000100 /* Enables usage of Channel::setLowPassGain,  Channel::set3DOcclusion, or automatic usage by the Geometry API.  All voices will add a software lowpass filter effect into the DSP chain which is idle unless one of the previous functions/features are used. */
 #define FMOD_INIT_CHANNEL_DISTANCEFILTER     0x00000200 /* All FMOD_3D based voices will add a software lowpass and highpass filter effect into the DSP chain which will act as a distance-automated bandpass filter. Use System::setAdvancedSettings to adjust the center frequency. */
 #define FMOD_INIT_PROFILE_ENABLE             0x00010000 /* Enable TCP/IP based host which allows FMOD Designer or FMOD Profiler to connect to it, and view memory, CPU and the DSP network graph in real-time. */
 #define FMOD_INIT_VOL0_BECOMES_VIRTUAL       0x00020000 /* Any sounds that are 0 volume will go virtual and not be processed except for having their positions updated virtually.  Use System::setAdvancedSettings to adjust what volume besides zero to switch to virtual at. */
@@ -952,7 +942,7 @@ typedef enum
 #define FMOD_CREATESTREAM              0x00000080  /* Decompress at runtime, streaming from the source provided (ie from disk).  Overrides FMOD_CREATESAMPLE and FMOD_CREATECOMPRESSEDSAMPLE.  Note a stream can only be played once at a time due to a stream only having 1 stream buffer and file handle.  Open multiple streams to have them play concurrently. */
 #define FMOD_CREATESAMPLE              0x00000100  /* Decompress at loadtime, decompressing or decoding whole file into memory as the target sample format (ie PCM).  Fastest for playback and most flexible.  */
 #define FMOD_CREATECOMPRESSEDSAMPLE    0x00000200  /* Load MP2/MP3/FADPCM/IMAADPCM/Vorbis/AT9 or XMA into memory and leave it compressed.  Vorbis/AT9/FADPCM encoding only supported in the .FSB container format.  During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'.  Overrides FMOD_CREATESAMPLE.  If the sound data is not one of the supported formats, it will behave as if it was created with FMOD_CREATESAMPLE and decode the sound into PCM. */
-#define FMOD_OPENUSER                  0x00000400  /* Opens a user created static sample or stream. Use FMOD_CREATESOUNDEXINFO to specify format and/or read callbacks.  If a user created 'sample' is created with no read callback, the sample will be empty.  Use Sound::lock and Sound::unlock to place sound data into the sound if this is the case. */
+#define FMOD_OPENUSER                  0x00000400  /* Opens a user created static sample or stream. Use FMOD_CREATESOUNDEXINFO to specify format, defaultfrequency, numchannels, and optionally a read callback.  If a user created 'sample' is created with no read callback, the sample will be empty.  Use Sound::lock and Sound::unlock to place sound data into the sound if this is the case. */
 #define FMOD_OPENMEMORY                0x00000800  /* "name_or_data" will be interpreted as a pointer to memory instead of filename for creating sounds.  Use FMOD_CREATESOUNDEXINFO to specify length.  If used with FMOD_CREATESAMPLE or FMOD_CREATECOMPRESSEDSAMPLE, FMOD duplicates the memory into its own buffers.  Your own buffer can be freed after open.  If used with FMOD_CREATESTREAM, FMOD will stream out of the buffer whose pointer you passed in.  In this case, your own buffer should not be freed until you have finished with and released the stream.*/
 #define FMOD_OPENMEMORY_POINT          0x10000000  /* "name_or_data" will be interpreted as a pointer to memory instead of filename for creating sounds.  Use FMOD_CREATESOUNDEXINFO to specify length.  This differs to FMOD_OPENMEMORY in that it uses the memory as is, without duplicating the memory into its own buffers.  Cannot be freed after open, only after Sound::release.   Will not work if the data is compressed and FMOD_CREATECOMPRESSEDSAMPLE is not used. */
 #define FMOD_OPENRAW                   0x00001000  /* Will ignore file format and treat as raw pcm.  Use FMOD_CREATESOUNDEXINFO to specify format.  Requires at least defaultfrequency, numchannels and format to be specified before it will open.  Must be little endian data. */
@@ -1311,9 +1301,14 @@ typedef enum
     List of tag types that could be stored within a sound.  These include id3 tags, metadata from netstreams and vorbis/asf data.
 
     [REMARKS]
+    FMOD_TAGTYPE_MIDI remarks.  A midi file contains 16 channels.  Not all of them are used, or in order.  Use the tag 'Channel mask' 
+    and 'Number of channels' to find the channels used, to use with Sound::setMusicChannelVolume / Sound::getMusicChannelVolume.
+    For example if the mask is 1001b, there are 2 channels, and channel 0 and channel 3 are the 2 channels used with the above functions.
 
     [SEE_ALSO]      
     Sound::getTag
+    FMOD_TAGDATATYPE
+    FMOD_TAG
 ]
 */
 typedef enum
@@ -1342,21 +1337,24 @@ typedef enum
     List of data types that can be returned by Sound::getTag
 
     [REMARKS]
+    See FMOD_TAG structure for tag length in bytes.
 
     [SEE_ALSO]      
     Sound::getTag
+    FMOD_TAGTYPE
+    FMOD_TAG
 ]
 */
 typedef enum
 {
-    FMOD_TAGDATATYPE_BINARY = 0,
-    FMOD_TAGDATATYPE_INT,
-    FMOD_TAGDATATYPE_FLOAT,
-    FMOD_TAGDATATYPE_STRING,
-    FMOD_TAGDATATYPE_STRING_UTF16,
-    FMOD_TAGDATATYPE_STRING_UTF16BE,
-    FMOD_TAGDATATYPE_STRING_UTF8,
-    FMOD_TAGDATATYPE_CDTOC,
+    FMOD_TAGDATATYPE_BINARY = 0,        /* Raw binary data. see FMOD_TAG structure for length of data in bytes. */
+    FMOD_TAGDATATYPE_INT,               /* Integer - Note this integer could be 8bit / 16bit / 32bit / 64bit.  See FMOD_TAG structure for integer size (1 vs 2 vs 4 vs 8 bytes). */
+    FMOD_TAGDATATYPE_FLOAT,             /* IEEE floating point number.  See FMOD_TAG structure to confirm if the float data is 32bit or 64bit (4 vs 8 bytes). */
+    FMOD_TAGDATATYPE_STRING,            /* 8bit ASCII char string.  See FMOD_TAG structure for string length in bytes. */
+    FMOD_TAGDATATYPE_STRING_UTF16,      /* 16bit UTF string. Assume little endian byte order.  See FMOD_TAG structure for string length in bytes.*/
+    FMOD_TAGDATATYPE_STRING_UTF16BE,    /* 16bit UTF string  Big endian byte order.  See FMOD_TAG structure for string length in bytes.*/
+    FMOD_TAGDATATYPE_STRING_UTF8,       /* 8 bit UTF string. See FMOD_TAG structure for string length in bytes. */
+    FMOD_TAGDATATYPE_CDTOC,             /* Obsolute / unused. */
 
     FMOD_TAGDATATYPE_MAX,               /* Maximum number of tag datatypes supported. */
     FMOD_TAGDATATYPE_FORCEINT = 65536   /* Makes sure this enum is signed 32bit. */
@@ -1385,7 +1383,7 @@ typedef struct FMOD_TAG
     FMOD_TAGDATATYPE  datatype;     /* [r] The type of data that this tag contains */
     char             *name;         /* [r] The name of this tag i.e. "TITLE", "ARTIST" etc. */
     void             *data;         /* [r] Pointer to the tag data - its format is determined by the datatype member */
-    unsigned int      datalen;      /* [r] Length of the data contained in this tag */
+    unsigned int      datalen;      /* [r] Length of the data contained in this tag, in bytes. */
     FMOD_BOOL         updated;      /* [r] True if this tag has been updated since last being accessed with Sound::getTag */
 } FMOD_TAG;
 
@@ -1699,14 +1697,14 @@ typedef struct FMOD_ADVANCEDSETTINGS
     int                 ASIONumChannels;            /* [r/w] Optional. Specify 0 to ignore. Number of channels available on the ASIO device. */
     char              **ASIOChannelList;            /* [r/w] Optional. Specify 0 to ignore. Pointer to an array of strings (number of entries defined by ASIONumChannels) with ASIO channel names. */
     FMOD_SPEAKER       *ASIOSpeakerList;            /* [r/w] Optional. Specify 0 to ignore. Pointer to a list of speakers that the ASIO channels map to.  This can be called after System::init to remap ASIO output. */
-    float               HRTFMinAngle;               /* [r/w] Optional.                      For use with FMOD_INIT_HRTF_LOWPASS.  The angle range (0-360) of a 3D sound in relation to the listener, at which the HRTF function begins to have an effect. 0 = in front of the listener. 180 = from 90 degrees to the left of the listener to 90 degrees to the right. 360 = behind the listener. Default = 180.0. */
-    float               HRTFMaxAngle;               /* [r/w] Optional.                      For use with FMOD_INIT_HRTF_LOWPASS.  The angle range (0-360) of a 3D sound in relation to the listener, at which the HRTF function has maximum effect. 0 = front of the listener. 180 = from 90 degrees to the left of the listener to 90 degrees to the right. 360 = behind the listener. Default = 360.0. */
-    float               HRTFFreq;                   /* [r/w] Optional. Specify 0 to ignore. For use with FMOD_INIT_HRTF_LOWPASS.  The cutoff frequency of the HRTF's lowpass filter function when at maximum effect. (i.e. at HRTFMaxAngle).  Default = 4000.0. */
+    float               HRTFMinAngle;               /* [r/w] Unsupported.  Deprecated API feature. */
+    float               HRTFMaxAngle;               /* [r/w] Unsupported.  Deprecated API feature. */
+    float               HRTFFreq;                   /* [r/w] Unsupported.  Deprecated API feature. */
     float               vol0virtualvol;             /* [r/w] Optional. Specify 0 to ignore. For use with FMOD_INIT_VOL0_BECOMES_VIRTUAL.  If this flag is used, and the volume is below this, then the sound will become virtual.  Use this value to raise the threshold to a different point where a sound goes virtual. */
     unsigned int        defaultDecodeBufferSize;    /* [r/w] Optional. Specify 0 to ignore. For streams. This determines the default size of the double buffer (in milliseconds) that a stream uses.  Default = 400ms */
     unsigned short      profilePort;                /* [r/w] Optional. Specify 0 to ignore. For use with FMOD_INIT_PROFILE_ENABLE.  Specify the port to listen on for connections by the profiler application. */
     unsigned int        geometryMaxFadeTime;        /* [r/w] Optional. Specify 0 to ignore. The maximum time in miliseconds it takes for a channel to fade to the new level when its occlusion changes. */
-    float               distanceFilterCenterFreq;   /* [r/w] Optional. Specify 0 to ignore. For use with FMOD_INIT_DISTANCE_FILTERING.  The default center frequency in Hz for the distance filtering effect. Default = 1500.0. */
+    float               distanceFilterCenterFreq;   /* [r/w] Optional. Specify 0 to ignore. For use with FMOD_INIT_CHANNEL_DISTANCEFILTER.  The default center frequency in Hz for the distance filtering effect. Default = 1500.0. */
     int                 reverb3Dinstance;           /* [r/w] Optional. Specify 0 to ignore. Out of 0 to 3, 3d reverb spheres will create a phyical reverb unit on this instance slot.  See FMOD_REVERB_PROPERTIES. */
     int                 DSPBufferPoolSize;          /* [r/w] Optional. Specify 0 to ignore. Number of buffers in DSP buffer pool.  Each buffer will be DSPBlockSize * sizeof(float) * SpeakerModeChannelCount.  ie 7.1 @ 1024 DSP block size = 8 * 1024 * 4 = 32kb.  Default = 8. */
     unsigned int        stackSizeStream;            /* [r/w] Optional. Specify 0 to ignore. Specify the stack size for the FMOD Stream thread in bytes.  Useful for custom codecs that use excess stack.  Default 49,152 (48kb) */
