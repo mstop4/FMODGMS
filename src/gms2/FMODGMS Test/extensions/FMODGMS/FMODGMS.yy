@@ -36,13 +36,6 @@
             "mvc": "1.0",
             "ProxyFiles": [
                 {
-                    "id": "58b9a537-ab58-4ea6-a58d-2b97ab8f15b4",
-                    "modelName": "GMProxyFile",
-                    "mvc": "1.0",
-                    "TargetMask": 2,
-                    "proxyName": "libFMODGMS.dylib"
-                },
-                {
                     "id": "ea5fec1a-c716-4f7f-8041-cc1ba5f29fe1",
                     "modelName": "GMProxyFile",
                     "mvc": "1.0",
