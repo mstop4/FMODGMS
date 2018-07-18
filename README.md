@@ -40,12 +40,17 @@ Features
 What's inside
 -------------
 
-- **FMODGMS.gmez** - FMODGMS GameMaker: Studio extension
+- **FMODGMS_x64.gmez** - FMODGMS GameMaker: Studio extension for GMS 2.
+- **FMODGMS_x86.gmez** - FMODGMS GameMaker: Studio extension for GM:S 1.4. Contains a 32-bit build of the Linux library for compatibility.
 - **FMODGMS_Demo_win.zip** - FMODGMS player demo for Windows
 - **FMODGMS_Demo_linux.tar.gz** - FMODGMS player demo for Linux
-- **src** - library and player demo source code
- - *gms/FMODGMS Test.gmx* - GameMaker: Studio project for player demo
- - *gms2/FMODGMS Test* - GameMaker Studio 2 project for player demo
+- **FMODGMS_Starter.yyz** - A minimal FMODGMS project for GMS 2.
+- **FMODGMS_Starter.gmz** - A minimal FMODGMS project for GM:S 1.4.
+- **src** - library, player demo, and unpackage starter project source code
+ - *gms/FMODGMS Test.gmx* - GM:S 1.4 project for player demo
+ - *gms/FMODGMS Starter.gmx* - GM:S 1.4 starter project
+ - *gms2/FMODGMS Test* - GMS 2 project for player demo
+ - *gms2/FMODGMS Starter* - GMS 2 starter project
  - *linux* - FMODGMS source for Linux
  - *vc/FMODGMS* - FMODGMS source for Windows as a Visual Studio project
 
