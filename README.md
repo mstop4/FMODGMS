@@ -11,19 +11,17 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 
 ## **Status**
 
-### **Latest - [0.9.1](https://github.com/mstop4/FMODGMS/tree/v091-win)**
-* *Platforms:* Windows, Ubuntu
+### **Latest - [0.10.0](https://github.com/mstop4/FMODGMS/tree/v091-mac)**
+* *Platforms:* Windows, macOS, Ubuntu
 * *FMOD Studio API:* 1.10.07
 * *GMS 2 Runtime:* v.2.1.4.218
 * *GM:S Runtime:* v.1.4.1804
 
-### **Stable - [0.9.0](https://github.com/mstop4/FMODGMS/releases/tag/v0.9.0)**  
-
+### **Stable - [0.9.1](https://github.com/mstop4/FMODGMS/releases/tag/v0.9.1)**
 * *Platforms:* Windows, Ubuntu
-* *FMOD Studio API:* 1.10.00
-* *GMS 2 Runtime:* v.2.1.1.158
-* *GM:S Runtime:* v.1.4.1773
-
+* *FMOD Studio API:* 1.10.07
+* *GMS 2 Runtime:* v.2.1.4.218
+* *GM:S Runtime:* v.1.4.1804
 
 Features
 --------
@@ -47,12 +45,12 @@ What's inside
 - **FMODGMS_Starter.yyz** - A minimal FMODGMS project for GMS 2.
 - **FMODGMS_Starter.gmz** - A minimal FMODGMS project for GM:S 1.4.
 - **src** - library, player demo, and unpackage starter project source code
- - *gms/FMODGMS Test.gmx* - GM:S 1.4 project for player demo
- - *gms/FMODGMS Starter.gmx* - GM:S 1.4 starter project
- - *gms2/FMODGMS Test* - GMS 2 project for player demo
- - *gms2/FMODGMS Starter* - GMS 2 starter project
- - *linux* - FMODGMS source for Linux
- - *vc/FMODGMS* - FMODGMS source for Windows as a Visual Studio project
+  - *gms/FMODGMS Test.gmx* - GM:S 1.4 project for player demo
+  - *gms/FMODGMS Starter.gmx* - GM:S 1.4 starter project
+  - *gms2/FMODGMS Test* - GMS 2 project for player demo
+  - *gms2/FMODGMS Starter* - GMS 2 starter project
+  - *linux* - FMODGMS source for Linux
+  - *vc/FMODGMS* - FMODGMS source for Windows as a Visual Studio project
 
 Possible Features in the Future
 --------
