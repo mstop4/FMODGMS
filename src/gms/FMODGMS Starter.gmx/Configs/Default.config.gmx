@@ -365,7 +365,7 @@
     <option_loadimage>nil</option_loadimage>
     <option_loadtransparent>false</option_loadtransparent>
     <option_mac_app_category></option_mac_app_category>
-    <option_mac_app_id></option_mac_app_id>
+    <option_mac_app_id>com.quadolorgames.fmodstarter</option_mac_app_id>
     <option_mac_appstore_incoming_allow>0</option_mac_appstore_incoming_allow>
     <option_mac_appstore_outgoing_allow>0</option_mac_appstore_outgoing_allow>
     <option_mac_build_version>0</option_mac_build_version>
