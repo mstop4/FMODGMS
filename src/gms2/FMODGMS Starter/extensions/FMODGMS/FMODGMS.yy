@@ -1954,7 +1954,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": 1048640,
+            "copyToTargets": 64,
             "filename": "fmod.dll",
             "final": "",
             "functions": [
