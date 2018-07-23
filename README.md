@@ -60,3 +60,10 @@ Possible Features in the Future
 - Android support.
 
 For a list of changes and development history, [click here](../../wiki/Changelog).
+
+Contributors
+---------
+
+* [M.S.T.O.P. (mstop4)](https://github.com/mstop4)
+* [Gitle Mikkelsen (Grix)](https://github.com/Grix)
+* [rissole](https://github.com/rissole)
