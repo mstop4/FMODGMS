@@ -39,14 +39,14 @@
                     "id": "54e4cb38-d564-4170-bbdf-6e40e98ef67b",
                     "modelName": "GMProxyFile",
                     "mvc": "1.0",
-                    "TargetMask": 2,
+                    "TargetMask": 1,
                     "proxyName": "libFMODGMS.dylib"
                 },
                 {
                     "id": "3c3f20d1-01f6-4703-a09e-450eac6f53e0",
                     "modelName": "GMProxyFile",
                     "mvc": "1.0",
-                    "TargetMask": 134217856,
+                    "TargetMask": 7,
                     "proxyName": "libfmodgms.so"
                 }
             ],
@@ -1865,7 +1865,81 @@
             "init": "",
             "kind": 1,
             "order": [
-                
+                "f302400c-335c-4403-acc5-116c828653e3",
+                "5127c556-ca14-48de-a14d-9b7080353093",
+                "2b2b00ca-4a6d-4647-952e-e72dace07f99",
+                "d6b798f7-2566-4b16-bb99-d57a41dde6a5",
+                "3cdbc6e2-0905-4cbe-89f6-69f8bf9df8e3",
+                "03cdb9ae-9ec0-4f4c-911e-069b26b7f140",
+                "8542d640-eee9-45e7-ac9a-385db72949b4",
+                "28f4513a-c36a-4e19-a1ee-7670664fa36f",
+                "265f3aeb-5530-4687-8869-b91fca5a3c05",
+                "ef07ec46-8162-46fc-9b5c-9cdf6108bb02",
+                "5215430e-6407-46bd-8a56-4e532b7fac8a",
+                "b150a8f3-abce-432a-a64b-6ffc62e04ba4",
+                "838d3131-8b8b-4512-b5da-6a7e41d9419a",
+                "0f45267b-647c-40a6-aeca-f2a120725b37",
+                "ebd2ccf5-ba19-4f29-b531-8fdcdeddfe9e",
+                "168a7959-1a1a-40d9-8876-2b2adce4fab2",
+                "99a5e6f5-a981-4fe8-b3f1-fd3feaded796",
+                "3c73a1ad-8207-42f2-a412-c261e3401818",
+                "122aa20e-a195-4cca-964d-8c1999ce5621",
+                "64a09e05-d6fe-41d9-a32b-73a77ec9b1d2",
+                "bb42fb1f-42d1-4158-8478-dfa87393c78a",
+                "682fa418-9d60-45d1-b857-3516fb1c77e5",
+                "c9876d04-ed10-4e4b-a7f1-1c0637c9a63f",
+                "cd81da21-8d2e-406e-aedc-16fd69f89ce4",
+                "af0f4c14-8ad8-4eb8-b38e-18faba74f979",
+                "70aa9e20-be1b-4e8e-8c8c-5d17c2d3d6ee",
+                "ba077dd3-150a-48be-bf98-f6e2692c10e3",
+                "9e83c3f8-92aa-4b28-8326-4890697195ec",
+                "de50ce4e-2034-45ba-8d2a-9bf0de86281c",
+                "0c90587a-bb88-4c7b-ba61-afb6c567458e",
+                "e893e06b-418a-43e8-878c-b845631459a6",
+                "afabc1f8-0c74-4706-918f-4712e29671b8",
+                "4bfce83d-2d35-4adb-916b-e0649341f1ac",
+                "03ac2bc4-a5b9-40a8-bf0c-42b87d109853",
+                "4cc3b5b4-40bf-4ade-b800-1aebc86e082d",
+                "9186c3d7-6526-4a42-8759-8265d3fd6396",
+                "976d66c4-b963-46ad-bdec-96804c1e8ccc",
+                "023dbbeb-5720-4da1-b302-6e195a0380f9",
+                "b86284ff-dc66-472f-a40a-c2e989321a6c",
+                "854f4aa5-cb47-407a-a875-24cb6335764e",
+                "d746dcd5-8ebb-40d1-9377-bbe592e96eae",
+                "c24bebf3-6dd1-44da-8f3a-f22eab7b20bd",
+                "8e4249c2-d208-4c08-849c-42dddc1c9856",
+                "a55e47dc-a6e9-40c1-8cef-aabd169ddc87",
+                "5fe2e10b-0dd5-4fed-bdfc-af2da69e5059",
+                "43d6b719-835c-469b-9833-b459ae660b98",
+                "0460c7b8-dec6-4960-82d3-d567d6b76b9e",
+                "efd13cab-6f97-4e14-b71d-dedaed682be5",
+                "24682855-d02d-445b-be14-571b3c0bdcbd",
+                "c696f205-5d92-4405-8458-738769466fd8",
+                "11321747-cec6-46ba-b4d5-c269b1128183",
+                "ec6dc973-fa36-4b04-940d-53188114fead",
+                "8acd38d0-d93a-4245-b6c6-419ea3a59d11",
+                "829cc23d-7c13-4389-b799-19d00799e80e",
+                "537609c1-98f5-4938-b219-37ba5e6c09fc",
+                "6467c5e5-a5ad-41c3-8fd6-cd4720e65b1a",
+                "d0e0d97d-60a0-4171-92e8-146700cc1e62",
+                "c97aec1b-7f28-429e-816a-8908b7926292",
+                "67117eef-df50-4933-893b-8ae8965d62e3",
+                "e42c1c3c-dbd3-4f7d-af5c-863e4dd24703",
+                "7eaf6d7a-c5e3-429f-ac6d-56bedcd2e352",
+                "04413ead-4879-490d-a5ce-8b0c44551a2c",
+                "7607787e-5706-43c8-a17e-c91da0ba2b12",
+                "4242796b-1103-4b71-9b2c-c0916220a00f",
+                "e482b8f5-4d2c-4e64-b2df-50258b93c1ad",
+                "23e4b156-dcb1-49d2-a104-2b1129fb3f9f",
+                "cca17441-7d2d-45e9-85a3-1cafe0e9715a",
+                "c40a62f4-fc37-4169-85de-a0a5b9ade554",
+                "f3f127ee-8446-407d-84a3-963674209bae",
+                "71c49393-9c49-494d-a3f7-9336e720400f",
+                "87019c66-6eef-4264-bfe4-67c06a31239a",
+                "742f5861-0bbd-4bbd-8864-0df3d9790a66",
+                "3e5b1854-abc5-4ea7-ac3e-26f5dc5e5f51",
+                "a493d888-c235-4791-812b-754608781690",
+                "55c61bc5-8339-42ec-83fb-c37cad5ebc7f"
             ],
             "origname": "extensions\\FMODGMS.dll",
             "uncompress": false
@@ -1895,30 +1969,6 @@
             "uncompress": false
         },
         {
-            "id": "225feb6d-fa02-4df8-a3c2-d8dcb0c25cbc",
-            "modelName": "GMExtensionFile",
-            "mvc": "1.0",
-            "ProxyFiles": [
-                
-            ],
-            "constants": [
-                
-            ],
-            "copyToTargets": 67108866,
-            "filename": "libfmod.dylib",
-            "final": "",
-            "functions": [
-                
-            ],
-            "init": "",
-            "kind": 1,
-            "order": [
-                
-            ],
-            "origname": "extensions\\libfmod.dylib",
-            "uncompress": false
-        },
-        {
             "id": "2921ec09-f48d-4a47-ab45-ae1ca462ae1c",
             "modelName": "GMExtensionFile",
             "mvc": "1.0",
@@ -1929,13 +1979,37 @@
                 
             ],
             "copyToTargets": 128,
-            "filename": "libfmod.so.10.7",
+            "filename": "libfmod.so.10",
             "final": "",
             "functions": [
                 
             ],
             "init": "",
             "kind": 4,
+            "order": [
+                
+            ],
+            "origname": "",
+            "uncompress": false
+        },
+        {
+            "id": "ab52e8a0-1b08-4294-9e9a-e72452741047",
+            "modelName": "GMExtensionFile",
+            "mvc": "1.0",
+            "ProxyFiles": [
+                
+            ],
+            "constants": [
+                
+            ],
+            "copyToTargets": -1,
+            "filename": "libfmod.dylib",
+            "final": "",
+            "functions": [
+                
+            ],
+            "init": "",
+            "kind": 1,
             "order": [
                 
             ],

@@ -23,4 +23,4 @@ channel = FMODGMS_Chan_CreateChannel();
 is_playing = false;
 is_paused = false;
 
-window_set_caption("FMODGMS Starter Proejct - No colours... :(");
+window_set_caption("FMODGMS Starter Project - No colours... :(");
