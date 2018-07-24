@@ -5,7 +5,7 @@
     <img src="https://github.com/mstop4/FMODGMS/blob/master/img/fmodgms%20ubuntu.png" width=75%>
 </p>
 
-A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML bindings to the [FMOD](http://www.fmod.org) Studio low-level API.** Compatible with **Windows**, and **Linux** games.
+A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML bindings to the [FMOD](http://www.fmod.org) Studio low-level API.** Can be use in **Windows**, **macOS**, and **Linux** games.
 
 ---
 
@@ -16,8 +16,8 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 
 |              | Windows | macOS | Ubuntu |
 | ------------ | ------- |------ | ------ |
-| GM:S 1.4 VM  |✔️      |🚧     | 🚧     |
-| GM:S 1.4 YYC |✔️      |🚧     | 🚧     |
+| GM:S 1.4 VM  |✔️      |🚧     | ✔️     |
+| GM:S 1.4 YYC |✔️      |🚧     | ✔️     |
 | GMS 2.1 VM   |✔️      |🚧     | ✔️     |
 | GMS 2.1 YYC |✔️      |✔️     | ✔️     |
 
@@ -66,6 +66,7 @@ What's inside
   - *gms2/FMODGMS Test* - GMS 2 project for player demo
   - *gms2/FMODGMS Starter* - GMS 2 starter project
   - *linux* - FMODGMS source for Linux
+  - *xcode* - Xcode project for macOS. Shares code with Linux.
   - *vc/FMODGMS* - FMODGMS source for Windows as a Visual Studio project
 
 Possible Features in the Future
