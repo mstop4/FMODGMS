@@ -2095,6 +2095,30 @@
             ],
             "origname": "",
             "uncompress": false
+        },
+        {
+            "id": "28e074c3-6bd2-43f6-b092-ac5b906e217a",
+            "modelName": "GMExtensionFile",
+            "mvc": "1.0",
+            "ProxyFiles": [
+                
+            ],
+            "constants": [
+                
+            ],
+            "copyToTargets": -1,
+            "filename": "libfmod.so.10",
+            "final": "",
+            "functions": [
+                
+            ],
+            "init": "",
+            "kind": 4,
+            "order": [
+                
+            ],
+            "origname": "",
+            "uncompress": false
         }
     ],
     "gradleinject": "",
