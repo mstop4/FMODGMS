@@ -16,9 +16,15 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 
 |              | Windows | macOS | Ubuntu |
 | ------------ | ------- |------ | ------ |
+<<<<<<< HEAD
 | GM:S 1.4 VM  |✔️      |⚠️<sup>1</sup>    | ✔️     |
 | GM:S 1.4 YYC |✔️      |🚧     | ✔️     |
 | GMS 2.1 VM   |✔️      |⚠️<sup>1</sup>    | ✔️     |
+=======
+| GM:S 1.4 VM  |✔️      |🚧     | ✔️     |
+| GM:S 1.4 YYC |✔️      |🚧     | ✔️     |
+| GMS 2.1 VM   |✔️      |🚧     | ✔️     |
+>>>>>>> 2e5ca99ebfd8ea291e0384e55770a707c415b3e2
 | GMS 2.1 YYC |✔️      |✔️     | ✔️     |
 
 <sub>1. Works with "Create Executable" only, not "Run" or "Debug"
