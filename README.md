@@ -17,8 +17,8 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 |              | Windows | macOS | Ubuntu |
 | ------------ | ------- |------ | ------ |
 | GM:S 1.4 VM  |✔️      |🚧     | 🚧     |
-| GM:S 1.4 YYC |✔️      |🚧     | ✔️     |
-| GMS 2.1 VM   |✔️      |🚧     | 🚧     |
+| GM:S 1.4 YYC |✔️      |🚧     | 🚧     |
+| GMS 2.1 VM   |✔️      |🚧     | ✔️     |
 | GM:S 2.1 YYC |✔️      |✔️     | ✔️     |
 
 * *FMOD Studio API:* 1.10.07
