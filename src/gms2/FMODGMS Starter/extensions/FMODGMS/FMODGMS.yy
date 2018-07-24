@@ -17,7 +17,7 @@
     "androidPermissions": [
         
     ],
-    "androidProps": true,
+    "androidProps": false,
     "androidactivityinject": "",
     "androidclassname": "",
     "androidinject": "",
@@ -2002,7 +2002,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": -1,
+            "copyToTargets": 2,
             "filename": "libfmod.dylib",
             "final": "",
             "functions": [
@@ -2020,7 +2020,7 @@
     "gradleinject": "",
     "helpfile": "",
     "installdir": "",
-    "iosProps": true,
+    "iosProps": false,
     "iosSystemFrameworkEntries": [
         
     ],
