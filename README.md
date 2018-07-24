@@ -12,7 +12,7 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 ## **Status**
 
 ### **Latest - [0.10.0](https://github.com/mstop4/FMODGMS/tree/v0100)**
-* *Platforms:* Windows, macOS, Ubuntu
+* *Platforms:* Windows, macOS (GMS2 YYC), Ubuntu (GMS2)
 * *FMOD Studio API:* 1.10.07
 * *GMS 2 Runtime:* v.2.1.4.218
 * *GM:S Runtime:* v.1.4.1804
@@ -55,7 +55,6 @@ What's inside
 Possible Features in the Future
 --------
 
-- Mac support.
 - More options for FFT and spectrum data functionality.
 - Android support.
 
