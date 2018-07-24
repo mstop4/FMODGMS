@@ -12,13 +12,29 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 ## **Status**
 
 ### **Latest - [0.10.0](https://github.com/mstop4/FMODGMS/tree/v0100)**
-* *Platforms:* Windows, macOS (GMS2 YYC), Ubuntu (GMS2)
+* *Platform coverage:*
+
+|              | Windows | macOS | Ubuntu |
+| ------------ | ------- |------ | ------ |
+| GM:S 1.4 VM  |✔️      |🚧     | 🚧     |
+| GM:S 1.4 YYC |✔️      |🚧     | ✔️     |
+| GMS 2.1 VM   |✔️      |❌     | 🚧     |
+| GM:S 2.1 YYC |✔️      |✔️     | ✔️     |
+
 * *FMOD Studio API:* 1.10.07
 * *GMS 2 Runtime:* v.2.1.4.218
 * *GM:S Runtime:* v.1.4.1804
 
 ### **Stable - [0.9.1](https://github.com/mstop4/FMODGMS/releases/tag/v0.9.1)**
-* *Platforms:* Windows, Ubuntu
+* *Platform coverage*:
+
+|              | Windows | macOS | Ubuntu |
+| ------------ | ------- |------ | ------ |
+| GM:S 1.4 VM  |✔️      |❌     | ✔️     |
+| GM:S 1.4 YYC |✔️      |❌     | ✔️     |
+| GMS 2.1 VM   |✔️      |❌     | ✔️     |
+| GM:S 2.1 YYC |✔️      |❌     | ✔️     |
+
 * *FMOD Studio API:* 1.10.07
 * *GMS 2 Runtime:* v.2.1.4.218
 * *GM:S Runtime:* v.1.4.1804
