@@ -1322,5 +1322,21 @@
       <functions/>
       <constants/>
     </file>
+    <file>
+      <filename>libfmod.so.10</filename>
+      <origname>extensions\libfmod.so.10</origname>
+      <init></init>
+      <final></final>
+      <kind>4</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>134217856</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles/>
+      <functions/>
+      <constants/>
+    </file>
   </files>
 </extension>

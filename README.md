@@ -16,10 +16,12 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 
 |              | Windows | macOS | Ubuntu |
 | ------------ | ------- |------ | ------ |
-| GM:S 1.4 VM  |✔️      |🚧     | ✔️     |
+| GM:S 1.4 VM  |✔️      |⚠️<sup>1</sup>    | ✔️     |
 | GM:S 1.4 YYC |✔️      |🚧     | ✔️     |
-| GMS 2.1 VM   |✔️      |🚧     | ✔️     |
+| GMS 2.1 VM   |✔️      |⚠️<sup>1</sup>    | ✔️     |
 | GMS 2.1 YYC |✔️      |✔️     | ✔️     |
+
+<sub>1. Works with "Create Executable" only, not "Run" or "Debug"
 
 * *FMOD Studio API:* 1.10.07
 * *GMS 2 Runtime:* v.2.1.4.218

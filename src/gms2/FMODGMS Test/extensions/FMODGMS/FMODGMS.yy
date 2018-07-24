@@ -17,7 +17,7 @@
     "androidPermissions": [
         
     ],
-    "androidProps": true,
+    "androidProps": false,
     "androidactivityinject": "",
     "androidclassname": "",
     "androidinject": "",
@@ -25,7 +25,7 @@
     "androidsourcedir": "",
     "author": "",
     "classname": "",
-    "copyToTargets": 9223372036854775807,
+    "copyToTargets": 194,
     "date": "2017-42-20 10:10:56",
     "description": "",
     "extensionName": "",
@@ -2097,7 +2097,7 @@
             "uncompress": false
         },
         {
-            "id": "90389a09-b95d-48dc-98c9-c668fe3da61b",
+            "id": "28e074c3-6bd2-43f6-b092-ac5b906e217a",
             "modelName": "GMExtensionFile",
             "mvc": "1.0",
             "ProxyFiles": [
@@ -2106,14 +2106,14 @@
             "constants": [
                 
             ],
-            "copyToTargets": 2,
-            "filename": "libfmodL.dylib",
+            "copyToTargets": 128,
+            "filename": "libfmod.so.10",
             "final": "",
             "functions": [
                 
             ],
             "init": "",
-            "kind": 1,
+            "kind": 4,
             "order": [
                 
             ],
@@ -2124,7 +2124,7 @@
     "gradleinject": "",
     "helpfile": "",
     "installdir": "",
-    "iosProps": true,
+    "iosProps": false,
     "iosSystemFrameworkEntries": [
         
     ],
@@ -2139,5 +2139,5 @@
     "packageID": "",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
-    "version": "0.8.1"
+    "version": "0.10.0"
 }

@@ -17,7 +17,6 @@
 		8E9CD401208FC3A0004E705B /* fmod.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F6208FC3A0004E705B /* fmod.hpp */; };
 		8E9CD402208FC3A0004E705B /* fmodgms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E9CD3F7208FC3A0004E705B /* fmodgms.cpp */; };
 		8E9CD403208FC3A0004E705B /* fmodgms.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F8208FC3A0004E705B /* fmodgms.hpp */; };
-		8EBA52E72097A0A400A893F6 /* libfmodL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EBA52E62097A0A400A893F6 /* libfmodL.dylib */; };
 		8EEA5BFC20964EAD0065D6DD /* libfmod.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEA5BFB20964EAD0065D6DD /* libfmod.dylib */; };
 		8EEA5C022096507D0065D6DD /* _kiss_fft_guts.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EEA5BFD2096507D0065D6DD /* _kiss_fft_guts.h */; };
 		8EEA5C032096507D0065D6DD /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA5BFE2096507D0065D6DD /* kiss_fft.c */; };
@@ -50,7 +49,6 @@
 		8E9CD3F6208FC3A0004E705B /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmod.hpp; path = ../../linux/fmod.hpp; sourceTree = "<group>"; };
 		8E9CD3F7208FC3A0004E705B /* fmodgms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fmodgms.cpp; path = ../../linux/fmodgms.cpp; sourceTree = "<group>"; };
 		8E9CD3F8208FC3A0004E705B /* fmodgms.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmodgms.hpp; path = ../../linux/fmodgms.hpp; sourceTree = "<group>"; };
-		8EBA52E62097A0A400A893F6 /* libfmodL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodL.dylib; sourceTree = "<group>"; };
 		8EEA5BFB20964EAD0065D6DD /* libfmod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmod.dylib; sourceTree = "<group>"; };
 		8EEA5BFD2096507D0065D6DD /* _kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _kiss_fft_guts.h; path = ../../linux/kissfft/_kiss_fft_guts.h; sourceTree = "<group>"; };
 		8EEA5BFE2096507D0065D6DD /* kiss_fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = kiss_fft.c; path = ../../linux/kissfft/kiss_fft.c; sourceTree = "<group>"; };
@@ -65,7 +63,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EEA5BFC20964EAD0065D6DD /* libfmod.dylib in Frameworks */,
-				8EBA52E72097A0A400A893F6 /* libfmodL.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,7 +89,6 @@
 				8EEA5C002096507D0065D6DD /* kiss_fftr.c */,
 				8EEA5C012096507D0065D6DD /* kiss_fftr.h */,
 				8EEA5BFB20964EAD0065D6DD /* libfmod.dylib */,
-				8EBA52E62097A0A400A893F6 /* libfmodL.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -198,7 +194,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -245,7 +241,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -285,6 +281,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "-";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -304,6 +301,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "-";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

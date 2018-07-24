@@ -16,5 +16,5 @@ else
 
 draw_text(16,304,"Space -- Play/Stop\nP -- Pause/Unpause");
 
-draw_text(16,432,"FMODGMS version: 0.9.1");
+draw_text(16,432,"FMODGMS version: 0.10.0");
 draw_text(16,448,"FMOD version: Studio 1.10.07");
