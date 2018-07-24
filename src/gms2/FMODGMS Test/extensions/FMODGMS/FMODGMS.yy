@@ -17,7 +17,7 @@
     "androidPermissions": [
         
     ],
-    "androidProps": true,
+    "androidProps": false,
     "androidactivityinject": "",
     "androidclassname": "",
     "androidinject": "",
@@ -25,7 +25,7 @@
     "androidsourcedir": "",
     "author": "",
     "classname": "",
-    "copyToTargets": 9223372036854775807,
+    "copyToTargets": 194,
     "date": "2017-42-20 10:10:56",
     "description": "",
     "extensionName": "",
@@ -2106,7 +2106,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": -1,
+            "copyToTargets": 128,
             "filename": "libfmod.so.10",
             "final": "",
             "functions": [
@@ -2124,7 +2124,7 @@
     "gradleinject": "",
     "helpfile": "",
     "installdir": "",
-    "iosProps": true,
+    "iosProps": false,
     "iosSystemFrameworkEntries": [
         
     ],
@@ -2139,5 +2139,5 @@
     "packageID": "",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
-    "version": "0.8.1"
+    "version": "0.10.0"
 }
