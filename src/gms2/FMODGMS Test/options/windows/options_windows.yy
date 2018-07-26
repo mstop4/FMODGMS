@@ -10,7 +10,7 @@
     "option_windows_copyright_info": "",
     "option_windows_description_info": "FMODGMS Demo Program",
     "option_windows_display_cursor": true,
-    "option_windows_display_name": "FMODGMS Test",
+    "option_windows_display_name": "FMODGMS Demo",
     "option_windows_enable_steam": false,
     "option_windows_executable_name": "${project_name}",
     "option_windows_icon": "${options_dir}\\windows\\runner_icon.ico",
