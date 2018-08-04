@@ -24,7 +24,7 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 <sub>1. Works with "Create Executable" only, not "Run" or "Debug"
 
 * *FMOD Studio API:* 1.10.07
-* *GMS 2 Runtime:* v.2.1.4.218
+* *GMS 2 Runtime:* v.2.1.5.246
 * *GM:S Runtime:* v.1.4.1804
 
 ### **Stable - [0.9.1](https://github.com/mstop4/FMODGMS/releases/tag/v0.9.1)**
