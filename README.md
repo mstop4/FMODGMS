@@ -71,6 +71,34 @@ What's inside
   - *xcode* - Xcode project for macOS. Shares code with Linux.
   - *vc/FMODGMS* - FMODGMS source for Windows as a Visual Studio project
 
+Basic Usage
+--------
+
+```
+// Optional: Check to see if FMODGMS has loaded properly
+if (FMODGMS_Util_Handshake() == "FMODGMS is working.")
+    show_message_async("Success! FMODGMS has been loaded.");
+else {
+    show_message_async("Error! FMODGMS was not loaded prorperly.");
+    exit;
+}
+
+// Create the system
+FMODGMS_Sys_Create();
+
+// Initialize the system
+FMODGMS_Sys_Initialize(32);
+
+// Load sound
+sound = FMODGMS_Snd_LoadSound(working_directory + "sound.ogg");
+
+// Create a channel
+channel = FMODGMS_Chan_CreateChannel();
+
+// Play sound
+FMODGMS_Snd_PlaySound(sound,channel);
+```
+
 Possible Features in the Future
 --------
 
