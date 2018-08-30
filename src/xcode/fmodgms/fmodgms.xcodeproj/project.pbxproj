@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E9CD3FA208FC3A0004E705B /* fmod_codec.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3EF208FC3A0004E705B /* fmod_codec.h */; };
-		8E9CD3FB208FC3A0004E705B /* fmod_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F0208FC3A0004E705B /* fmod_common.h */; };
-		8E9CD3FC208FC3A0004E705B /* fmod_dsp_effects.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F1208FC3A0004E705B /* fmod_dsp_effects.h */; };
-		8E9CD3FD208FC3A0004E705B /* fmod_dsp.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F2208FC3A0004E705B /* fmod_dsp.h */; };
-		8E9CD3FE208FC3A0004E705B /* fmod_errors.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F3208FC3A0004E705B /* fmod_errors.h */; };
-		8E9CD3FF208FC3A0004E705B /* fmod_output.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F4208FC3A0004E705B /* fmod_output.h */; };
-		8E9CD400208FC3A0004E705B /* fmod.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F5208FC3A0004E705B /* fmod.h */; };
-		8E9CD401208FC3A0004E705B /* fmod.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F6208FC3A0004E705B /* fmod.hpp */; };
-		8E9CD402208FC3A0004E705B /* fmodgms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E9CD3F7208FC3A0004E705B /* fmodgms.cpp */; };
-		8E9CD403208FC3A0004E705B /* fmodgms.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CD3F8208FC3A0004E705B /* fmodgms.hpp */; };
 		8EEA5BFC20964EAD0065D6DD /* libfmod.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEA5BFB20964EAD0065D6DD /* libfmod.dylib */; };
-		8EEA5C022096507D0065D6DD /* _kiss_fft_guts.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EEA5BFD2096507D0065D6DD /* _kiss_fft_guts.h */; };
-		8EEA5C032096507D0065D6DD /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA5BFE2096507D0065D6DD /* kiss_fft.c */; };
-		8EEA5C042096507D0065D6DD /* kiss_fft.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EEA5BFF2096507D0065D6DD /* kiss_fft.h */; };
-		8EEA5C052096507D0065D6DD /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA5C002096507D0065D6DD /* kiss_fftr.c */; };
-		8EEA5C062096507D0065D6DD /* kiss_fftr.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EEA5C012096507D0065D6DD /* kiss_fftr.h */; };
+		C987CD192138A29900BECBC7 /* fmod_dsp.h in Headers */ = {isa = PBXBuildFile; fileRef = C987CD0F2138A29800BECBC7 /* fmod_dsp.h */; };
+		C987CD1A2138A29900BECBC7 /* fmod.hpp in Headers */ = {isa = PBXBuildFile; fileRef = C987CD102138A29800BECBC7 /* fmod.hpp */; };
+		C987CD1B2138A29900BECBC7 /* fmod_codec.h in Headers */ = {isa = PBXBuildFile; fileRef = C987CD112138A29800BECBC7 /* fmod_codec.h */; };
+		C987CD1C2138A29900BECBC7 /* fmodgms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C987CD122138A29800BECBC7 /* fmodgms.cpp */; };
+		C987CD1D2138A29900BECBC7 /* fmod_errors.h in Headers */ = {isa = PBXBuildFile; fileRef = C987CD132138A29800BECBC7 /* fmod_errors.h */; };
+		C987CD1E2138A29900BECBC7 /* fmod.h in Headers */ = {isa = PBXBuildFile; fileRef = C987CD142138A29800BECBC7 /* fmod.h */; };
+		C987CD1F2138A29900BECBC7 /* fmod_common.h in Headers */ = {isa = PBXBuildFile; fileRef = C987CD152138A29800BECBC7 /* fmod_common.h */; };
+		C987CD202138A29900BECBC7 /* fmod_output.h in Headers */ = {isa = PBXBuildFile; fileRef = C987CD162138A29800BECBC7 /* fmod_output.h */; };
+		C987CD212138A29900BECBC7 /* fmodgms.hpp in Headers */ = {isa = PBXBuildFile; fileRef = C987CD172138A29900BECBC7 /* fmodgms.hpp */; };
+		C987CD222138A29900BECBC7 /* fmod_dsp_effects.h in Headers */ = {isa = PBXBuildFile; fileRef = C987CD182138A29900BECBC7 /* fmod_dsp_effects.h */; };
+		C987CD282138A2B300BECBC7 /* kiss_fftr.h in Headers */ = {isa = PBXBuildFile; fileRef = C987CD232138A2B300BECBC7 /* kiss_fftr.h */; };
+		C987CD292138A2B300BECBC7 /* _kiss_fft_guts.h in Headers */ = {isa = PBXBuildFile; fileRef = C987CD242138A2B300BECBC7 /* _kiss_fft_guts.h */; };
+		C987CD2A2138A2B300BECBC7 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = C987CD252138A2B300BECBC7 /* kiss_fft.c */; };
+		C987CD2B2138A2B300BECBC7 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = C987CD262138A2B300BECBC7 /* kiss_fftr.c */; };
+		C987CD2C2138A2B300BECBC7 /* kiss_fft.h in Headers */ = {isa = PBXBuildFile; fileRef = C987CD272138A2B300BECBC7 /* kiss_fft.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,22 +39,22 @@
 
 /* Begin PBXFileReference section */
 		8E9CD3E8208FC340004E705B /* libfmodgms.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libfmodgms.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E9CD3EF208FC3A0004E705B /* fmod_codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_codec.h; path = ../../linux/fmod_codec.h; sourceTree = "<group>"; };
-		8E9CD3F0208FC3A0004E705B /* fmod_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_common.h; path = ../../linux/fmod_common.h; sourceTree = "<group>"; };
-		8E9CD3F1208FC3A0004E705B /* fmod_dsp_effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_dsp_effects.h; path = ../../linux/fmod_dsp_effects.h; sourceTree = "<group>"; };
-		8E9CD3F2208FC3A0004E705B /* fmod_dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_dsp.h; path = ../../linux/fmod_dsp.h; sourceTree = "<group>"; };
-		8E9CD3F3208FC3A0004E705B /* fmod_errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_errors.h; path = ../../linux/fmod_errors.h; sourceTree = "<group>"; };
-		8E9CD3F4208FC3A0004E705B /* fmod_output.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_output.h; path = ../../linux/fmod_output.h; sourceTree = "<group>"; };
-		8E9CD3F5208FC3A0004E705B /* fmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod.h; path = ../../linux/fmod.h; sourceTree = "<group>"; };
-		8E9CD3F6208FC3A0004E705B /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmod.hpp; path = ../../linux/fmod.hpp; sourceTree = "<group>"; };
-		8E9CD3F7208FC3A0004E705B /* fmodgms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fmodgms.cpp; path = ../../linux/fmodgms.cpp; sourceTree = "<group>"; };
-		8E9CD3F8208FC3A0004E705B /* fmodgms.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmodgms.hpp; path = ../../linux/fmodgms.hpp; sourceTree = "<group>"; };
 		8EEA5BFB20964EAD0065D6DD /* libfmod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmod.dylib; sourceTree = "<group>"; };
-		8EEA5BFD2096507D0065D6DD /* _kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _kiss_fft_guts.h; path = ../../linux/kissfft/_kiss_fft_guts.h; sourceTree = "<group>"; };
-		8EEA5BFE2096507D0065D6DD /* kiss_fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = kiss_fft.c; path = ../../linux/kissfft/kiss_fft.c; sourceTree = "<group>"; };
-		8EEA5BFF2096507D0065D6DD /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kiss_fft.h; path = ../../linux/kissfft/kiss_fft.h; sourceTree = "<group>"; };
-		8EEA5C002096507D0065D6DD /* kiss_fftr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = kiss_fftr.c; path = ../../linux/kissfft/kiss_fftr.c; sourceTree = "<group>"; };
-		8EEA5C012096507D0065D6DD /* kiss_fftr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kiss_fftr.h; path = ../../linux/kissfft/kiss_fftr.h; sourceTree = "<group>"; };
+		C987CD0F2138A29800BECBC7 /* fmod_dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_dsp.h; path = ../../code/fmod_dsp.h; sourceTree = "<group>"; };
+		C987CD102138A29800BECBC7 /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmod.hpp; path = ../../code/fmod.hpp; sourceTree = "<group>"; };
+		C987CD112138A29800BECBC7 /* fmod_codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_codec.h; path = ../../code/fmod_codec.h; sourceTree = "<group>"; };
+		C987CD122138A29800BECBC7 /* fmodgms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fmodgms.cpp; path = ../../code/fmodgms.cpp; sourceTree = "<group>"; };
+		C987CD132138A29800BECBC7 /* fmod_errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_errors.h; path = ../../code/fmod_errors.h; sourceTree = "<group>"; };
+		C987CD142138A29800BECBC7 /* fmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod.h; path = ../../code/fmod.h; sourceTree = "<group>"; };
+		C987CD152138A29800BECBC7 /* fmod_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_common.h; path = ../../code/fmod_common.h; sourceTree = "<group>"; };
+		C987CD162138A29800BECBC7 /* fmod_output.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_output.h; path = ../../code/fmod_output.h; sourceTree = "<group>"; };
+		C987CD172138A29900BECBC7 /* fmodgms.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = fmodgms.hpp; path = ../../code/fmodgms.hpp; sourceTree = "<group>"; };
+		C987CD182138A29900BECBC7 /* fmod_dsp_effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmod_dsp_effects.h; path = ../../code/fmod_dsp_effects.h; sourceTree = "<group>"; };
+		C987CD232138A2B300BECBC7 /* kiss_fftr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kiss_fftr.h; path = ../../code/kissfft/kiss_fftr.h; sourceTree = "<group>"; };
+		C987CD242138A2B300BECBC7 /* _kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _kiss_fft_guts.h; path = ../../code/kissfft/_kiss_fft_guts.h; sourceTree = "<group>"; };
+		C987CD252138A2B300BECBC7 /* kiss_fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = kiss_fft.c; path = ../../code/kissfft/kiss_fft.c; sourceTree = "<group>"; };
+		C987CD262138A2B300BECBC7 /* kiss_fftr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = kiss_fftr.c; path = ../../code/kissfft/kiss_fftr.c; sourceTree = "<group>"; };
+		C987CD272138A2B300BECBC7 /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kiss_fft.h; path = ../../code/kissfft/kiss_fft.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,21 +73,21 @@
 			isa = PBXGroup;
 			children = (
 				8E9CD3E9208FC340004E705B /* Products */,
-				8E9CD3EF208FC3A0004E705B /* fmod_codec.h */,
-				8E9CD3F0208FC3A0004E705B /* fmod_common.h */,
-				8E9CD3F1208FC3A0004E705B /* fmod_dsp_effects.h */,
-				8E9CD3F2208FC3A0004E705B /* fmod_dsp.h */,
-				8E9CD3F3208FC3A0004E705B /* fmod_errors.h */,
-				8E9CD3F4208FC3A0004E705B /* fmod_output.h */,
-				8E9CD3F5208FC3A0004E705B /* fmod.h */,
-				8E9CD3F6208FC3A0004E705B /* fmod.hpp */,
-				8E9CD3F7208FC3A0004E705B /* fmodgms.cpp */,
-				8E9CD3F8208FC3A0004E705B /* fmodgms.hpp */,
-				8EEA5BFD2096507D0065D6DD /* _kiss_fft_guts.h */,
-				8EEA5BFE2096507D0065D6DD /* kiss_fft.c */,
-				8EEA5BFF2096507D0065D6DD /* kiss_fft.h */,
-				8EEA5C002096507D0065D6DD /* kiss_fftr.c */,
-				8EEA5C012096507D0065D6DD /* kiss_fftr.h */,
+				C987CD242138A2B300BECBC7 /* _kiss_fft_guts.h */,
+				C987CD252138A2B300BECBC7 /* kiss_fft.c */,
+				C987CD272138A2B300BECBC7 /* kiss_fft.h */,
+				C987CD262138A2B300BECBC7 /* kiss_fftr.c */,
+				C987CD232138A2B300BECBC7 /* kiss_fftr.h */,
+				C987CD112138A29800BECBC7 /* fmod_codec.h */,
+				C987CD152138A29800BECBC7 /* fmod_common.h */,
+				C987CD182138A29900BECBC7 /* fmod_dsp_effects.h */,
+				C987CD162138A29800BECBC7 /* fmod_output.h */,
+				C987CD132138A29800BECBC7 /* fmod_errors.h */,
+				C987CD142138A29800BECBC7 /* fmod.h */,
+				C987CD0F2138A29800BECBC7 /* fmod_dsp.h */,
+				C987CD102138A29800BECBC7 /* fmod.hpp */,
+				C987CD122138A29800BECBC7 /* fmodgms.cpp */,
+				C987CD172138A29900BECBC7 /* fmodgms.hpp */,
 				8EEA5BFB20964EAD0065D6DD /* libfmod.dylib */,
 			);
 			sourceTree = "<group>";
@@ -107,18 +107,18 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EEA5C042096507D0065D6DD /* kiss_fft.h in Headers */,
-				8E9CD400208FC3A0004E705B /* fmod.h in Headers */,
-				8E9CD3FE208FC3A0004E705B /* fmod_errors.h in Headers */,
-				8E9CD3FF208FC3A0004E705B /* fmod_output.h in Headers */,
-				8E9CD3FD208FC3A0004E705B /* fmod_dsp.h in Headers */,
-				8E9CD401208FC3A0004E705B /* fmod.hpp in Headers */,
-				8E9CD3FC208FC3A0004E705B /* fmod_dsp_effects.h in Headers */,
-				8EEA5C022096507D0065D6DD /* _kiss_fft_guts.h in Headers */,
-				8EEA5C062096507D0065D6DD /* kiss_fftr.h in Headers */,
-				8E9CD3FA208FC3A0004E705B /* fmod_codec.h in Headers */,
-				8E9CD3FB208FC3A0004E705B /* fmod_common.h in Headers */,
-				8E9CD403208FC3A0004E705B /* fmodgms.hpp in Headers */,
+				C987CD2C2138A2B300BECBC7 /* kiss_fft.h in Headers */,
+				C987CD222138A29900BECBC7 /* fmod_dsp_effects.h in Headers */,
+				C987CD192138A29900BECBC7 /* fmod_dsp.h in Headers */,
+				C987CD212138A29900BECBC7 /* fmodgms.hpp in Headers */,
+				C987CD1F2138A29900BECBC7 /* fmod_common.h in Headers */,
+				C987CD1D2138A29900BECBC7 /* fmod_errors.h in Headers */,
+				C987CD292138A2B300BECBC7 /* _kiss_fft_guts.h in Headers */,
+				C987CD1B2138A29900BECBC7 /* fmod_codec.h in Headers */,
+				C987CD282138A2B300BECBC7 /* kiss_fftr.h in Headers */,
+				C987CD202138A29900BECBC7 /* fmod_output.h in Headers */,
+				C987CD1E2138A29900BECBC7 /* fmod.h in Headers */,
+				C987CD1A2138A29900BECBC7 /* fmod.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,9 +180,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EEA5C032096507D0065D6DD /* kiss_fft.c in Sources */,
-				8E9CD402208FC3A0004E705B /* fmodgms.cpp in Sources */,
-				8EEA5C052096507D0065D6DD /* kiss_fftr.c in Sources */,
+				C987CD2A2138A2B300BECBC7 /* kiss_fft.c in Sources */,
+				C987CD2B2138A2B300BECBC7 /* kiss_fftr.c in Sources */,
+				C987CD1C2138A29900BECBC7 /* fmodgms.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +283,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "-";
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
@@ -303,6 +304,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "-";
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
