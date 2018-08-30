@@ -57,6 +57,7 @@ GMexport double FMODGMS_Snd_Unload(double index);
 GMexport double FMODGMS_Snd_PlaySound(double index, double channel);
 GMexport double FMODGMS_Snd_Set_DLS(char* filename);
 GMexport double FMODGMS_Snd_Remove_DLS();
+GMexport double FMODGMS_Snd_Set_DecodeBufferSize(double size);
 GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times);
 GMexport double FMODGMS_Snd_Set_LoopPoints(double index, double startTimeInSamples, double endTimeInSamples);
 GMexport double FMODGMS_Snd_Set_ModChannelVolume(double index, double modChannel, double vol);

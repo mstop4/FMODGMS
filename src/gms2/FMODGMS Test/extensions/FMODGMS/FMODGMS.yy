@@ -1958,6 +1958,21 @@
                     "kind": 1,
                     "name": "FMODGMS_Util_FFT",
                     "returnType": 2
+                },
+                {
+                    "id": "f317a8ac-6610-46ef-b1ac-8ae541566fac",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        2
+                    ],
+                    "externalName": "FMODGMS_Snd_Set_DecodeBufferSize",
+                    "help": "FMODGMS_Snd_Set_DecodeBufferSize(size)",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "FMODGMS_Snd_Set_DecodeBufferSize",
+                    "returnType": 2
                 }
             ],
             "init": "",
@@ -2043,7 +2058,8 @@
                 "cbfaa3ea-04c6-41a5-8537-2292450029c9",
                 "1d2a1564-ed47-4478-82af-9b847935da12",
                 "f1c89c05-bffb-449b-9c2b-c1a8548255a3",
-                "f0a386b3-8099-4cb4-9c1c-986822098f11"
+                "f0a386b3-8099-4cb4-9c1c-986822098f11",
+                "f317a8ac-6610-46ef-b1ac-8ae541566fac"
             ],
             "origname": "extensions\\FMODGMS.dll",
             "uncompress": false
@@ -2139,5 +2155,16 @@
     "packageID": "",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
-    "version": "0.10.0"
+    "tvosProps": false,
+    "tvosSystemFrameworkEntries": [
+        
+    ],
+    "tvosThirdPartyFrameworkEntries": [
+        
+    ],
+    "tvosclassname": null,
+    "tvosmaccompilerflags": null,
+    "tvosmaclinkerflags": null,
+    "tvosplistinject": null,
+    "version": "0.10.1"
 }

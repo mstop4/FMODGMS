@@ -119,7 +119,7 @@
     shift_hue(16);
     draw_text(16,416,"FMODGMS Player Demo " +  GM_version + " - by M.S.T.O.P.");
     shift_hue(16);
-    draw_text(16,432,"FMODGMS version: 0.10.0");
+    draw_text(16,432,"FMODGMS version: 0.10.1");
     shift_hue(16);
     draw_text(16,448,"FMOD version: Studio 1.10.07");
 }

@@ -585,6 +585,15 @@ GMexport double FMODGMS_Snd_Remove_DLS()
 	return FMODGMS_Util_ErrorChecker();
 }
 
+// Sets decode buffer size. Mainly used to get a more accurate poisition from channels playing MOD/XM/S3M/IT modules.
+GMexport double FMODGMS_Snd_Set_DecodeBufferSize(double size)
+{
+	int s = (int)round(size);
+	soundParams->decodebuffersize = s;
+
+	return FMODGMS_Util_ErrorChecker();
+}
+
 // Set loop mode and count for a particular sound
 GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times)
 {

@@ -24,6 +24,9 @@
     FMODGMS_FFT_Init(128);
     
     output_mode = FMODGMS_Sys_OutputModeToString(FMODGMS_Sys_Get_OutputMode());
+	
+	// Set decode buffer length
+	FMODGMS_Snd_Set_DecodeBufferSize(3200);
 
     // Number of bins in Spectrum data
     //show_message(FMODGMS_FFT_Set_WindowSize(128));
