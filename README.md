@@ -62,14 +62,15 @@ What's inside
 - **FMODGMS_Demo_linux.tar.gz** - FMODGMS player demo for Linux
 - **FMODGMS_Starter.yyz** - A minimal FMODGMS project for GMS 2.
 - **FMODGMS_Starter.gmz** - A minimal FMODGMS project for GM:S 1.4.
-- **src** - library, player demo, and unpackage starter project source code
+- **src** - Library, player demo, and unpackage starter project source code
+  - *code* - Library source code
   - *gms/FMODGMS Test.gmx* - GM:S 1.4 project for player demo
   - *gms/FMODGMS Starter.gmx* - GM:S 1.4 starter project
   - *gms2/FMODGMS Test* - GMS 2 project for player demo
   - *gms2/FMODGMS Starter* - GMS 2 starter project
-  - *linux* - FMODGMS source for Linux
-  - *xcode* - Xcode project for macOS. Shares code with Linux.
-  - *vc/FMODGMS* - FMODGMS source for Windows as a Visual Studio project
+  - *linux* - Scripts for building Linux library.
+  - *xcode* - Xcode project for macOS.
+  - *vc/FMODGMS* - Visual Studio project for Windows.
 
 Basic Usage
 --------
