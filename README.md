@@ -11,7 +11,7 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 
 ## **Status**
 
-### **Latest - [0.10.0](https://github.com/mstop4/FMODGMS/tree/v0100)**
+### **Latest - [0.10.1](https://github.com/mstop4/FMODGMS/tree/v0.10.1)**
 * *Platform coverage:*
 
 |              | Windows | macOS | Ubuntu |
@@ -21,11 +21,11 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 | GMS 2.1 VM   |✔️      |⚠️<sup>1</sup>    | ✔️     |
 | GMS 2.1 YYC |✔️      |✔️     | ✔️     |
 
-<sub>1. Works with "Create Executable" only, not "Run" or "Debug"
+<sub>1. Works with "Create Executable" only, not "Run" or "Debug"</sub>
 
-* *FMOD Studio API:* 1.10.07
+* *FMOD Studio API:* 1.10.08
 * *GMS 2 Runtime:* v.2.1.5.246
-* *GM:S Runtime:* v.1.4.1804
+* *GM:S Runtime:* v.1.4.9999
 
 ### **Stable - [0.9.1](https://github.com/mstop4/FMODGMS/releases/tag/v0.9.1)**
 * *Platform coverage*:
