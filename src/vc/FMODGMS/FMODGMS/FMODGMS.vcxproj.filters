@@ -15,57 +15,57 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="fmod.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fmod.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fmod_common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fmod_errors.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fmod_codec.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fmod_dsp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fmod_dsp_effects.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fmod_output.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fmodgms.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kiss_fft.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kiss_fftr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\_kiss_fft_guts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="fmodgms.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfft\kiss_fftr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <Library Include="fmod_vc.lib">
       <Filter>Resource Files</Filter>
     </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\code\fmod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\fmod.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\fmod_codec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\fmod_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\fmod_dsp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\fmod_dsp_effects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\fmod_errors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\fmod_output.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\fmodgms.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\kissfft\_kiss_fft_guts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\kissfft\kiss_fft.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\kissfft\kiss_fftr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\code\fmodgms.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\code\kissfft\kiss_fft.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\code\kissfft\kiss_fftr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

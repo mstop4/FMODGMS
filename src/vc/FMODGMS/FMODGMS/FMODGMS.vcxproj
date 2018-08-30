@@ -81,26 +81,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="fmodgms.cpp" />
-    <ClCompile Include="kissfft\kiss_fft.c" />
-    <ClCompile Include="kissfft\kiss_fftr.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="fmod.h" />
-    <ClInclude Include="fmod.hpp" />
-    <ClInclude Include="fmodgms.hpp" />
-    <ClInclude Include="fmod_codec.h" />
-    <ClInclude Include="fmod_common.h" />
-    <ClInclude Include="fmod_dsp.h" />
-    <ClInclude Include="fmod_dsp_effects.h" />
-    <ClInclude Include="fmod_errors.h" />
-    <ClInclude Include="fmod_output.h" />
-    <ClInclude Include="kissfft\kiss_fft.h" />
-    <ClInclude Include="kissfft\kiss_fftr.h" />
-    <ClInclude Include="kissfft\_kiss_fft_guts.h" />
-  </ItemGroup>
-  <ItemGroup>
     <Library Include="fmod_vc.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\code\fmod.h" />
+    <ClInclude Include="..\..\..\code\fmod.hpp" />
+    <ClInclude Include="..\..\..\code\fmodgms.hpp" />
+    <ClInclude Include="..\..\..\code\fmod_codec.h" />
+    <ClInclude Include="..\..\..\code\fmod_common.h" />
+    <ClInclude Include="..\..\..\code\fmod_dsp.h" />
+    <ClInclude Include="..\..\..\code\fmod_dsp_effects.h" />
+    <ClInclude Include="..\..\..\code\fmod_errors.h" />
+    <ClInclude Include="..\..\..\code\fmod_output.h" />
+    <ClInclude Include="..\..\..\code\kissfft\kiss_fft.h" />
+    <ClInclude Include="..\..\..\code\kissfft\kiss_fftr.h" />
+    <ClInclude Include="..\..\..\code\kissfft\_kiss_fft_guts.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\code\fmodgms.cpp" />
+    <ClCompile Include="..\..\..\code\kissfft\kiss_fft.c" />
+    <ClCompile Include="..\..\..\code\kissfft\kiss_fftr.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

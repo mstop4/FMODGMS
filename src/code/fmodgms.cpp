@@ -12,14 +12,12 @@
 #ifndef FMODGMS_CPP
 #define FMODGMS_CPP
 
-//#include <iostream>
+#include <unordered_map>
 #include <vector>
 #include <string>
 #include <algorithm>
 #include <iterator>
 #include <cmath>
-//#include <locale>
-//#include <codecvt>
 #include <stdio.h>
 #include "fmod.hpp"
 #include "fmod_errors.h"
@@ -29,9 +27,12 @@
 
 // System Stuff
 FMOD::System *sys = NULL;
-std::vector <FMOD::Channel*> channelList;
-std::vector <FMOD::Sound*> soundList;
-std::vector <FMOD::DSP*> effectList;
+std::unordered_map <std::size_t, FMOD::Channel*> channelList;
+std::size_t nChannels = 0;
+std::unordered_map <std::size_t, FMOD::Sound*> soundList;
+std::size_t nSounds = 0;
+std::unordered_map <std::size_t, FMOD::DSP*> effectList;
+std::size_t nEffects = 0;
 FMOD::ChannelGroup *masterGroup;
 FMOD_RESULT result;
 const char* errorMessage;
@@ -80,7 +81,7 @@ GMexport double FMODGMS_Sys_Initialize(double maxChan)
 	soundParams->cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
 	soundParams->dlsname = 0;
 	fftdsp = NULL;
-	
+
 	//if (result != FMOD_OK)
 	return FMODGMS_Util_ErrorChecker();
 }
@@ -91,7 +92,7 @@ GMexport double FMODGMS_Sys_Update()
 	result = sys->update();
 	if (result != FMOD_OK)
 		return FMODGMS_Util_ErrorChecker();
-	
+
 	//Check to see if anything is playing before gathering spectrum data
 	bool playState = false;
 	masterGroup->isPlaying(&playState);
@@ -101,7 +102,7 @@ GMexport double FMODGMS_Sys_Update()
 		result = fftdsp->getParameterData(FMOD_DSP_FFT_SPECTRUMDATA, (void **)&fftParams, 0, 0, 0);
 		if (result != FMOD_OK)
 			return FMODGMS_Util_ErrorChecker();
-		
+
 		int numChan = fftParams->numchannels;
 
 		for (int j = 0; j < nyquist; j++)
@@ -122,11 +123,14 @@ GMexport double FMODGMS_Sys_Update()
 GMexport double FMODGMS_Sys_Close()
 {
 	// Free sounds
-	while (!soundList.empty())
+	for (auto itr = soundList.cbegin(); itr != soundList.cend(); ++itr)
 	{
-		soundList.back()->release();
-		soundList.pop_back();
+		result = itr->second->release();
+		if (result != FMOD_OK)
+			return FMODGMS_Util_ErrorChecker();
 	}
+	soundList.clear();
+	nSounds = 0;
 
 	// Free DSP
 	if (fftdsp != NULL)
@@ -139,11 +143,13 @@ GMexport double FMODGMS_Sys_Close()
 		if (result != FMOD_OK)
 			return FMODGMS_Util_ErrorChecker();
 	}
-	
+
 	// Free system
 	result = sys->close();
 	if (result != FMOD_OK)
 		return FMODGMS_Util_ErrorChecker();
+
+	nChannels = 0;
 
 	result = sys->release();
 	if (result != FMOD_OK)
@@ -259,13 +265,13 @@ GMexport double FMODGMS_Sys_Get_OutputMode()
 // Gets the highest index in soundList (number of sounds - 1)
 GMexport double FMODGMS_Sys_Get_MaxSoundIndex()
 {
-	return soundList.size() - 1.0f;
+	return nSounds;
 }
 
 // Returns the highest index in channelList (number of channels - 1)
 GMexport double FMODGMS_Sys_Get_MaxChannelIndex()
 {
-	return channelList.size() - 1.0f;
+	return nChannels;
 }
 
 // Returns the DSP buffer size
@@ -416,8 +422,8 @@ GMexport double FMODGMS_Snd_LoadSound(char* filename)
 	// Yes, index the sound
 	if (isOK == GMS_true)
 	{
-		soundList.push_back(sound);
-		return soundList.size() - 1;
+		soundList.emplace(nSounds++, sound);
+		return nSounds - 1;
 	}
 
 	// No? Then don't index the new sound
@@ -437,8 +443,8 @@ GMexport double FMODGMS_Snd_LoadStream(char* filename)
 	// Yes, index the sound
 	if (isOK == GMS_true)
 	{
-		soundList.push_back(sound);
-		return soundList.size() - 1;
+		soundList.emplace(nSounds++, sound);
+		return nSounds - 1;
 	}
 
 	// No? Then don't index the new sound
@@ -458,62 +464,62 @@ GMexport double FMODGMS_Snd_LoadStream(char* filename)
 GMexport double FMODGMS_Snd_LoadSound_Ext(char* location, double mode, uint64_t* exInfo)
 {
 	FMOD::Sound *sound = NULL;
-	FMOD_MODE _mode = FMOD_DEFAULT | (unsigned int)(mode+0.5);
+	FMOD_MODE _mode = FMOD_DEFAULT | (unsigned int)(mode + 0.5);
 
 	//if exInfo is used, transfer data to struct and pass to createSound
 	if (exInfo != 0)
 	{
 		FMOD_CREATESOUNDEXINFO _exInfo;
-		_exInfo.cbsize =				(int)sizeof(_exInfo);
-		_exInfo.length =				(unsigned int)exInfo[0];
-		_exInfo.fileoffset =			(unsigned int)exInfo[1];
-		_exInfo.numchannels =			(int)exInfo[2];
-		_exInfo.defaultfrequency =		(int)exInfo[3];
-		_exInfo.format =				(FMOD_SOUND_FORMAT)exInfo[4];
-		_exInfo.decodebuffersize =		(unsigned int)exInfo[5];
-		_exInfo.initialsubsound =		(int)exInfo[6];
-		_exInfo.numsubsounds =			(int)exInfo[7];
-		_exInfo.inclusionlist =			(int*)exInfo[8];
-		_exInfo.inclusionlistnum =		(int)exInfo[9];
-		_exInfo.pcmreadcallback =		0; //not supported
-		_exInfo.pcmsetposcallback =		0; //not supported
-		_exInfo.nonblockcallback =		0; //not supported
-		_exInfo.dlsname =				(const char*)exInfo[13];
-		_exInfo.encryptionkey =			(const char*)exInfo[14];
-		_exInfo.maxpolyphony =			(int)exInfo[15];
-		_exInfo.userdata =				(void*)exInfo[16];
-		_exInfo.suggestedsoundtype =	(FMOD_SOUND_TYPE)exInfo[17];
-		_exInfo.fileuseropen =			0; //not supported
-		_exInfo.fileuserclose =			0; //not supported
-		_exInfo.fileuserread =			0; //not supported
-		_exInfo.fileuserseek =			0; //not supported
-		_exInfo.fileuserasyncread =		0; //not supported
-		_exInfo.fileuserasynccancel =	0; //not supported
-		_exInfo.fileuserdata =			(void*)exInfo[24];
-		_exInfo.filebuffersize =		(int)exInfo[25];
-		_exInfo.channelorder =			(FMOD_CHANNELORDER)exInfo[26];
-		_exInfo.channelmask =			(FMOD_CHANNELMASK)exInfo[27];
-		_exInfo.initialsoundgroup =		0; //not supported
-		_exInfo.initialseekposition =	(unsigned int)exInfo[29];
-		_exInfo.initialseekpostype =	(FMOD_TIMEUNIT)exInfo[30];
-		_exInfo.ignoresetfilesystem =	(int)exInfo[31];
-		_exInfo.audioqueuepolicy =		(unsigned int)exInfo[32];
-		_exInfo.minmidigranularity =	(unsigned int)exInfo[33];
-		_exInfo.nonblockthreadid =		(unsigned int)exInfo[34];
-		_exInfo.fsbguid =				0; //not supported
+		_exInfo.cbsize = (int)sizeof(_exInfo);
+		_exInfo.length = (unsigned int)exInfo[0];
+		_exInfo.fileoffset = (unsigned int)exInfo[1];
+		_exInfo.numchannels = (int)exInfo[2];
+		_exInfo.defaultfrequency = (int)exInfo[3];
+		_exInfo.format = (FMOD_SOUND_FORMAT)exInfo[4];
+		_exInfo.decodebuffersize = (unsigned int)exInfo[5];
+		_exInfo.initialsubsound = (int)exInfo[6];
+		_exInfo.numsubsounds = (int)exInfo[7];
+		_exInfo.inclusionlist = (int*)exInfo[8];
+		_exInfo.inclusionlistnum = (int)exInfo[9];
+		_exInfo.pcmreadcallback = 0; //not supported
+		_exInfo.pcmsetposcallback = 0; //not supported
+		_exInfo.nonblockcallback = 0; //not supported
+		_exInfo.dlsname = (const char*)exInfo[13];
+		_exInfo.encryptionkey = (const char*)exInfo[14];
+		_exInfo.maxpolyphony = (int)exInfo[15];
+		_exInfo.userdata = (void*)exInfo[16];
+		_exInfo.suggestedsoundtype = (FMOD_SOUND_TYPE)exInfo[17];
+		_exInfo.fileuseropen = 0; //not supported
+		_exInfo.fileuserclose = 0; //not supported
+		_exInfo.fileuserread = 0; //not supported
+		_exInfo.fileuserseek = 0; //not supported
+		_exInfo.fileuserasyncread = 0; //not supported
+		_exInfo.fileuserasynccancel = 0; //not supported
+		_exInfo.fileuserdata = (void*)exInfo[24];
+		_exInfo.filebuffersize = (int)exInfo[25];
+		_exInfo.channelorder = (FMOD_CHANNELORDER)exInfo[26];
+		_exInfo.channelmask = (FMOD_CHANNELMASK)exInfo[27];
+		_exInfo.initialsoundgroup = 0; //not supported
+		_exInfo.initialseekposition = (unsigned int)exInfo[29];
+		_exInfo.initialseekpostype = (FMOD_TIMEUNIT)exInfo[30];
+		_exInfo.ignoresetfilesystem = (int)exInfo[31];
+		_exInfo.audioqueuepolicy = (unsigned int)exInfo[32];
+		_exInfo.minmidigranularity = (unsigned int)exInfo[33];
+		_exInfo.nonblockthreadid = (unsigned int)exInfo[34];
+		_exInfo.fsbguid = 0; //not supported
 		result = sys->createSound(location, _mode, &_exInfo, &sound);
 	}
 	else
 		result = sys->createSound(location, _mode, NULL, &sound);
-	
+
 	// we cool?
 	double isOK = FMODGMS_Util_ErrorChecker();
 
 	// Yes, index the sound
 	if (isOK == GMS_true)
 	{
-		soundList.push_back(sound);
-		return soundList.size() - 1;
+		soundList.emplace(nSounds++, sound);
+		return nSounds - 1;
 	}
 
 	// No? Then don't index the new sound
@@ -524,12 +530,12 @@ GMexport double FMODGMS_Snd_LoadSound_Ext(char* location, double mode, uint64_t*
 // Unload a sound and removes it from soundList
 GMexport double FMODGMS_Snd_Unload(double index)
 {
-	int i = (int)round(index);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
-	if (sndListSize > i && i >= 0)
+	if (soundList.count(i) == 1)
 	{
-		soundList.erase(soundList.begin());
+		soundList[i]->release();
+		soundList.erase(i);
 		errorMessage = "No errors.";
 		return GMS_true;
 	}
@@ -544,22 +550,11 @@ GMexport double FMODGMS_Snd_Unload(double index)
 // Plays a sound on a given channel
 GMexport double FMODGMS_Snd_PlaySound(double index, double channel)
 {
-	int i = (int)round(index);
-	int c = (int)round(channel);
-	//bool *n = false;
-	int chanListSize = channelList.size();
+	std::size_t i = (std::size_t)round(index);
+	std::size_t c = (std::size_t)round(channel);
 
 	// check to see if channel is already playing. if so, stop it.
-	if (chanListSize > c && c >= 0)
-	{
-		/*channelList[c]->isPlaying(n);
-
-		if (&n)
-		channelList[c]->stop;*/
-	}
-
-	// index out of bounds
-	else
+	if (channelList.count(c) == 0 || soundList.count(i) == 0)
 	{
 		errorMessage = "Index out of bounds.";
 		return GMS_error;
@@ -593,10 +588,9 @@ GMexport double FMODGMS_Snd_Remove_DLS()
 // Set loop mode and count for a particular sound
 GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times)
 {
-	int i = (int)round(index);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
-	if (i < sndListSize && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		int m = (int)round(mode);
 		int t = (int)round(times);
@@ -638,10 +632,9 @@ GMexport double FMODGMS_Snd_Set_LoopMode(double index, double mode, double times
 // or FMODGMS_Util_BeatsToSamples for precise loop point control.
 GMexport double FMODGMS_Snd_Set_LoopPoints(double index, double startTimeInSamples, double endTimeInSamples)
 {
-	int i = (int)round(index);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
-	if (i < sndListSize && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		int s = (int)round(startTimeInSamples);
 		int e = (int)round(endTimeInSamples);
@@ -661,11 +654,10 @@ GMexport double FMODGMS_Snd_Set_LoopPoints(double index, double startTimeInSampl
 // Sets the channel volume of a module file
 GMexport double FMODGMS_Snd_Set_ModChannelVolume(double index, double modChannel, double vol)
 {
-	int i = (int)round(index);
+	std::size_t i = (std::size_t)round(index);
 	int mc = (int)round(modChannel);
-	int sndListSize = soundList.size();
 
-	if (sndListSize > i && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		// check to see if the sound is a module
 		FMOD_SOUND_TYPE type;
@@ -723,10 +715,9 @@ GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double whichOne)
 	// 0 = start;
 	// 1 = end;
 
-	int i = (int)round(index);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
-	if (sndListSize > i && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		unsigned int start = 0;
 		unsigned int end = 0;
@@ -749,10 +740,9 @@ GMexport double FMODGMS_Snd_Get_LoopPoints(double index, double whichOne)
 // Gets the length of an audio file in PCM samples
 GMexport double FMODGMS_Snd_Get_Length(double index)
 {
-	int i = (int)round(index);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
-	if (sndListSize > i && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		unsigned int len;
 		soundList[i]->getLength(&len, FMOD_TIMEUNIT_PCM);
@@ -770,11 +760,10 @@ GMexport double FMODGMS_Snd_Get_Length(double index)
 // Gets the channel volume of a module file
 GMexport double FMODGMS_Snd_Get_ModChannelVolume(double index, double modChannel)
 {
-	int i = (int)round(index);
+	std::size_t i = (std::size_t)round(index);
 	int mc = (int)round(modChannel);
-	int sndListSize = soundList.size();
 
-	if (sndListSize > i && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		// check to see if the sound is a module
 		FMOD_SOUND_TYPE type;
@@ -792,7 +781,7 @@ GMexport double FMODGMS_Snd_Get_ModChannelVolume(double index, double modChannel
 			if (numChan > mc && 0 <= mc)
 			{
 				float vol;
-				soundList[i]->getMusicChannelVolume(mc,&vol);
+				soundList[i]->getMusicChannelVolume(mc, &vol);
 				errorMessage = "No errors.";
 				return (double)vol;
 			}
@@ -823,10 +812,9 @@ GMexport double FMODGMS_Snd_Get_ModChannelVolume(double index, double modChannel
 // Gets the number of channels in a module file
 GMexport double FMODGMS_Snd_Get_ModNumChannels(double index)
 {
-	int i = (int)round(index);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
-	if (sndListSize > i && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		// check to see if sound is a module
 		FMOD_SOUND_TYPE type;
@@ -861,10 +849,9 @@ GMexport double FMODGMS_Snd_Get_ModNumChannels(double index)
 //Gets number of channels (e.g 2 for left and right) of sound
 GMexport double FMODGMS_Snd_Get_NumChannels(double index)
 {
-	int i = (int)(index+0.5);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
-	if (sndListSize > i && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		int channels;
 
@@ -876,7 +863,7 @@ GMexport double FMODGMS_Snd_Get_NumChannels(double index)
 			errorMessage = "Failed to get data";
 			return GMS_error;
 		}
-		
+
 	}
 	else
 	{
@@ -888,10 +875,9 @@ GMexport double FMODGMS_Snd_Get_NumChannels(double index)
 //Gets number of bits per sample (resolution) of sound
 GMexport double FMODGMS_Snd_Get_BitsPerSample(double index)
 {
-	int i = (int)(index + 0.5);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
-	if (sndListSize > i && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		int bits;
 
@@ -915,10 +901,9 @@ GMexport double FMODGMS_Snd_Get_BitsPerSample(double index)
 //Gets default frequency (samples per second) of sound
 GMexport double FMODGMS_Snd_Get_DefaultFrequency(double index)
 {
-	int i = (int)(index + 0.5);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
-	if (sndListSize > i && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		float freq;
 
@@ -945,11 +930,10 @@ GMexport double FMODGMS_Snd_Get_DefaultFrequency(double index)
 // NB: You should read the remarks in fmod's documentation for this function before using it.
 GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, void* buffer)
 {
-	int i = (int)(index+0.5);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
 	//check for parameter validity
-	if (sndListSize < i || i < 0)
+	if (soundList.count(i) == 0)
 	{
 		errorMessage = "Index out of bounds.";
 		return GMS_error;
@@ -978,7 +962,7 @@ GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, vo
 	}
 
 	sys->update();
-			
+
 	//read sound and populate buffer
 	unsigned int read = 0;
 	result = soundList[i]->readData(buffer, _length, &read);
@@ -999,24 +983,23 @@ GMexport double FMODGMS_Snd_ReadData(double index, double pos, double length, vo
 GMexport double FMODGMS_Chan_CreateChannel()
 {
 	FMOD::Channel *chan = NULL;
-	channelList.push_back(chan);
+	channelList.emplace(nChannels++, chan);
 
 	errorMessage = "No errors.";
-	return channelList.size() - 1;
+	return nChannels - 1;
 }
 
 //Deletes a channel
 GMexport double FMODGMS_Chan_RemoveChannel(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		if (channelList[c] != NULL)
 		{
 			channelList[c]->stop();
-			channelList.erase(channelList.begin());
+			channelList.erase(c);
 			errorMessage = "No errors.";
 			return GMS_true;
 		}
@@ -1039,10 +1022,9 @@ GMexport double FMODGMS_Chan_RemoveChannel(double channel)
 // Pauses a channel
 GMexport double FMODGMS_Chan_PauseChannel(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		if (channelList[c] != NULL)
 		{
@@ -1069,10 +1051,9 @@ GMexport double FMODGMS_Chan_PauseChannel(double channel)
 //Resumes a puased channel
 GMexport double FMODGMS_Chan_ResumeChannel(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		if (channelList[c] != NULL)
 		{
@@ -1099,10 +1080,9 @@ GMexport double FMODGMS_Chan_ResumeChannel(double channel)
 // Stops a channel
 GMexport double FMODGMS_Chan_StopChannel(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		if (channelList[c] != NULL)
 		{
@@ -1129,7 +1109,7 @@ GMexport double FMODGMS_Chan_StopChannel(double channel)
 // Sets the playing position of a channel
 GMexport double FMODGMS_Chan_Set_Position(double channel, double pos)
 {
-	int c = (int)round(channel);
+	std::size_t c = (std::size_t)round(channel);
 
 	unsigned int p;
 	if (pos < 0)
@@ -1137,9 +1117,7 @@ GMexport double FMODGMS_Chan_Set_Position(double channel, double pos)
 	else
 		p = (unsigned int)pos;
 
-	int chanListSize = channelList.size();
-
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		result = channelList[c]->setPosition(p, FMOD_TIMEUNIT_PCM);
 		errorMessage = "No errors.";
@@ -1157,11 +1135,10 @@ GMexport double FMODGMS_Chan_Set_Position(double channel, double pos)
 // Sets the volume of a channel
 GMexport double FMODGMS_Chan_Set_Volume(double channel, double vol)
 {
-	int c = (int)round(channel);
+	std::size_t c = (std::size_t)round(channel);
 	float v = (float)vol;
-	int chanListSize = channelList.size();
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		result = channelList[c]->setVolume(v);
 		errorMessage = "No errors.";
@@ -1179,11 +1156,10 @@ GMexport double FMODGMS_Chan_Set_Volume(double channel, double vol)
 //Sets playback frequency of a channel
 GMexport double FMODGMS_Chan_Set_Frequency(double channel, double freq)
 {
-	int c = (int)round(channel);
+	std::size_t c = (std::size_t)round(channel);
 	float f = (float)freq;
-	int chanListSize = channelList.size();
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		result = channelList[c]->setFrequency(f);
 		errorMessage = "No errors.";
@@ -1201,11 +1177,10 @@ GMexport double FMODGMS_Chan_Set_Frequency(double channel, double freq)
 //Sets frequency multiplier of a channel
 GMexport double FMODGMS_Chan_Set_Pitch(double channel, double pitch)
 {
-	int c = (int)round(channel);
+	std::size_t c = (std::size_t)round(channel);
 	float p = (float)pitch;
-	int chanListSize = channelList.size();
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		result = channelList[c]->setPitch(p);
 		errorMessage = "No errors.";
@@ -1223,10 +1198,9 @@ GMexport double FMODGMS_Chan_Set_Pitch(double channel, double pitch)
 // Sets the order position of a channel playing a MOD
 GMexport double FMODGMS_Chan_Set_ModOrder(double channel, double ord)
 {
-	int c = (int)channel;
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		// get handle of sound currently playing in channel
 		FMOD::Sound *snd;
@@ -1271,10 +1245,9 @@ GMexport double FMODGMS_Chan_Set_ModOrder(double channel, double ord)
 // Sets the row position of a channel playing a MOD
 GMexport double FMODGMS_Chan_Set_ModRow(double channel, double row)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		// get handle of sound currently playing in channel
 		FMOD::Sound *snd;
@@ -1319,10 +1292,9 @@ GMexport double FMODGMS_Chan_Set_ModRow(double channel, double row)
 //Sets current mute status (1= muted, 0=unmuted)
 GMexport double FMODGMS_Chan_Set_Mute(double channel, double mute)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		channelList[c]->setMute((mute > 0.5));
 		return FMODGMS_Util_ErrorChecker();
@@ -1339,10 +1311,9 @@ GMexport double FMODGMS_Chan_Set_Mute(double channel, double mute)
 // Returns the current position of the sound being played on the channel
 GMexport double FMODGMS_Chan_Get_Position(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		/*
 		// get handle of sound currently playing in channel
@@ -1367,10 +1338,9 @@ GMexport double FMODGMS_Chan_Get_Position(double channel)
 // Returns the volume of a channel
 GMexport double FMODGMS_Chan_Get_Volume(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		float vol;
 		channelList[c]->getVolume(&vol);
@@ -1389,10 +1359,9 @@ GMexport double FMODGMS_Chan_Get_Volume(double channel)
 // Returns the frequency the channel is being played at
 GMexport double FMODGMS_Chan_Get_Frequency(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		float freq;
 		channelList[c]->getFrequency(&freq);
@@ -1411,10 +1380,9 @@ GMexport double FMODGMS_Chan_Get_Frequency(double channel)
 //Returns the frequency multipler of a channel
 GMexport double FMODGMS_Chan_Get_Pitch(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		float pitch;
 		channelList[c]->getPitch(&pitch);
@@ -1433,10 +1401,9 @@ GMexport double FMODGMS_Chan_Get_Pitch(double channel)
 // Returns current order of a module playing in a particular channel
 GMexport double FMODGMS_Chan_Get_ModOrder(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		// get handle of sound currently playing in channel
 		FMOD::Sound *snd;
@@ -1476,10 +1443,9 @@ GMexport double FMODGMS_Chan_Get_ModOrder(double channel)
 // Returns current pattern of a module playing in a particular channel
 GMexport double FMODGMS_Chan_Get_ModPattern(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		// get handle of sound currently playing in channel
 		FMOD::Sound *snd;
@@ -1519,10 +1485,9 @@ GMexport double FMODGMS_Chan_Get_ModPattern(double channel)
 // Returns current row of a module playing in a particular channel
 GMexport double FMODGMS_Chan_Get_ModRow(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		// get handle of sound currently playing in channel
 		FMOD::Sound *snd;
@@ -1562,10 +1527,9 @@ GMexport double FMODGMS_Chan_Get_ModRow(double channel)
 //Gets current mute status (1= muted, 0=unmuted)
 GMexport double FMODGMS_Chan_Get_Mute(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		bool muted;
 		if (channelList[c]->getMute(&muted) == FMOD_OK)
@@ -1590,13 +1554,12 @@ GMexport double FMODGMS_Chan_Get_Mute(double channel)
 //Adds an effect e to the i-th index of effect chain of a channel
 GMexport double FMODGMS_Chan_Add_Effect(double channel, double e, double i)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
-		int effectIndex = (int)round(e);
-		if ((effectIndex < 0) || (effectIndex >= (int)effectList.size()))
+		std::size_t effectIndex = (std::size_t)round(e);
+		if (effectList.count(e) == 0)
 		{
 			errorMessage = "Invalid effect index";
 			return GMS_error;
@@ -1621,13 +1584,12 @@ GMexport double FMODGMS_Chan_Add_Effect(double channel, double e, double i)
 //Removes an effect e from the effect chain of a channel
 GMexport double FMODGMS_Chan_Remove_Effect(double channel, double e)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
-		int effectIndex = (int)round(e);
-		if ((effectIndex < 0) || (effectIndex >= (int)effectList.size()))
+		std::size_t effectIndex = (std::size_t)round(e);
+		if (effectList.count(e) == 0)
 		{
 			errorMessage = "Invalid effect index";
 			return GMS_error;
@@ -1652,10 +1614,9 @@ GMexport double FMODGMS_Chan_Remove_Effect(double channel, double e)
 //Get current level/loudness of audio (RMS value)
 GMexport double FMODGMS_Chan_Get_Level(double channel)
 {
-	int c = (int)round(channel);
-	int chanListSize = channelList.size();
+	std::size_t c = (std::size_t)round(channel);
 
-	if (chanListSize > c && c >= 0)
+	if (channelList.count(c) == 1)
 	{
 		FMOD::DSP* headDSP;
 		channelList[c]->getDSP(FMOD_CHANNELCONTROL_DSP_TAIL, &headDSP);
@@ -1693,10 +1654,9 @@ GMexport double FMODGMS_Chan_Get_Level(double channel)
 // Get number of tags in a sound
 GMexport double FMODGMS_Snd_Get_NumTags(double index)
 {
-	int i = (int)round(index);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
-	if (sndListSize > i && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		int numTags;
 		soundList[i]->getNumTags(&numTags, 0);
@@ -1716,10 +1676,9 @@ GMexport double FMODGMS_Snd_Get_NumTags(double index)
 // Get a tag name for a particular sound
 GMexport const char* FMODGMS_Snd_Get_TagName(double soundIndex, double tagIndex)
 {
-	int si = (int)round(soundIndex);
-	int sndListSize = soundList.size();
+	std::size_t si = (std::size_t)round(soundIndex);
 
-	if (sndListSize > si && si >= 0)
+	if (soundList.count(si) == 1)
 	{
 		int numTags;
 		int ti = (int)round(tagIndex);
@@ -1752,10 +1711,9 @@ GMexport const char* FMODGMS_Snd_Get_TagName(double soundIndex, double tagIndex)
 // Get a tag's type from a given index
 GMexport double FMODGMS_Snd_Get_TagTypeFromIndex(double soundIndex, double tagIndex)
 {
-	int si = (int)round(soundIndex);
-	int sndListSize = soundList.size();
+	std::size_t si = (std::size_t)round(soundIndex);
 
-	if (sndListSize > si && si >= 0)
+	if (soundList.count(si) == 1)
 	{
 		int numTags;
 		int ti = (int)round(tagIndex);
@@ -1788,10 +1746,10 @@ GMexport double FMODGMS_Snd_Get_TagTypeFromIndex(double soundIndex, double tagIn
 // Get a tag's data type from a given index
 GMexport double FMODGMS_Snd_Get_TagDataTypeFromIndex(double soundIndex, double tagIndex)
 {
-	int si = (int)round(soundIndex);
-	int sndListSize = soundList.size();
+	std::size_t si = (std::size_t)round(soundIndex);
 
-	if (sndListSize > si && si >= 0)
+
+	if (soundList.count(si) == 1)
 	{
 		int numTags;
 		int ti = (int)round(tagIndex);
@@ -1824,10 +1782,9 @@ GMexport double FMODGMS_Snd_Get_TagDataTypeFromIndex(double soundIndex, double t
 // Get a tag's numerical value (int, float) from a given index
 GMexport double FMODGMS_Snd_Get_TagRealFromIndex(double soundIndex, double tagIndex)
 {
-	int si = (int)round(soundIndex);
-	int sndListSize = soundList.size();
+	std::size_t si = (std::size_t)round(soundIndex);
 
-	if (sndListSize > si && si >= 0)
+	if (soundList.count(si) == 1)
 	{
 		int numTags;
 		int ti = (int)round(tagIndex);
@@ -1877,10 +1834,9 @@ GMexport double FMODGMS_Snd_Get_TagRealFromIndex(double soundIndex, double tagIn
 // Get a tag's string value from a given index
 GMexport const char* FMODGMS_Snd_Get_TagStringFromIndex(double soundIndex, double tagIndex)
 {
-	int si = (int)round(soundIndex);
-	int sndListSize = soundList.size();
+	std::size_t si = (std::size_t)round(soundIndex);
 
-	if (sndListSize > si && si >= 0)
+	if (soundList.count(si) == 1)
 	{
 		int numTags;
 		int ti = (int)round(tagIndex);
@@ -1952,10 +1908,9 @@ GMexport const char* FMODGMS_Snd_Get_TagStringFromIndex(double soundIndex, doubl
 // Get a tag's type from a given name
 GMexport double FMODGMS_Snd_Get_TagTypeFromName(double soundIndex, char* tagName)
 {
-	int si = (int)round(soundIndex);
-	int sndListSize = soundList.size();
+	std::size_t si = (std::size_t)round(soundIndex);
 
-	if (sndListSize > si && si >= 0)
+	if (soundList.count(si) == 1)
 	{
 		int numTags;
 		FMOD_TAG tag;
@@ -1977,7 +1932,7 @@ GMexport double FMODGMS_Snd_Get_TagTypeFromName(double soundIndex, char* tagName
 
 		if (tagFound)
 		{
-			return (double)(int)tag.type;
+			(double)(int)tag.type;
 		}
 
 		else
@@ -2000,10 +1955,9 @@ GMexport double FMODGMS_Snd_Get_TagTypeFromName(double soundIndex, char* tagName
 // Get a tag's data type from a given name
 GMexport double FMODGMS_Snd_Get_TagDataTypeFromName(double soundIndex, char* tagName)
 {
-	int si = (int)round(soundIndex);
-	int sndListSize = soundList.size();
+	std::size_t si = (std::size_t)round(soundIndex);
 
-	if (sndListSize > si && si >= 0)
+	if (soundList.count(si) == 1)
 	{
 		int numTags;
 		FMOD_TAG tag;
@@ -2046,10 +2000,9 @@ GMexport double FMODGMS_Snd_Get_TagDataTypeFromName(double soundIndex, char* tag
 // Get a tag's numerical value (int, float) from a given name
 GMexport double FMODGMS_Snd_Get_TagRealFromName(double soundIndex, char* tagName)
 {
-	int si = (int)round(soundIndex);
-	int sndListSize = soundList.size();
+	std::size_t si = (std::size_t)round(soundIndex);
 
-	if (sndListSize > si && si >= 0)
+	if (soundList.count(si) == 1)
 	{
 		int numTags;
 		FMOD_TAG tag;
@@ -2109,10 +2062,9 @@ GMexport double FMODGMS_Snd_Get_TagRealFromName(double soundIndex, char* tagName
 // Get a tag's string value from a given name
 GMexport const char* FMODGMS_Snd_Get_TagStringFromName(double soundIndex, char* tagName)
 {
-	int si = (int)round(soundIndex);
-	int sndListSize = soundList.size();
+	std::size_t si = (std::size_t)round(soundIndex);
 
-	if (sndListSize > si && si >= 0)
+	if (soundList.count(si) == 1)
 	{
 		int numTags;
 		FMOD_TAG tag;
@@ -2228,10 +2180,9 @@ GMexport double FMODGMS_Snd_Get_Type(double index)
 	24 - Max
 	*/
 
-	int i = (int)round(index);
-	int sndListSize = soundList.size();
+	std::size_t i = (std::size_t)round(index);
 
-	if (sndListSize > i && i >= 0)
+	if (soundList.count(i) == 1)
 	{
 		FMOD_SOUND_TYPE type;
 		soundList[i]->getFormat(&type, 0, 0, 0);
@@ -2266,8 +2217,8 @@ GMexport double FMODGMS_Effect_Create(double t)
 	FMOD::DSP* effect = NULL;
 	if (sys->createDSPByType((FMOD_DSP_TYPE)type, &effect) == FMOD_OK)
 	{
-		effectList.push_back(effect);
-		return effectList.size() - 1;
+		effectList.emplace(nEffects++, effect);
+		return nEffects - 1;
 	}
 
 	errorMessage = "FMOD could not create effect.";
@@ -2277,8 +2228,8 @@ GMexport double FMODGMS_Effect_Create(double t)
 //Sets a parameter a of effect e to value v. For parameters of different effects, see fmod_dsp_effects.h
 GMexport double FMODGMS_Effect_Set_Parameter(double e, double p, double v)
 {
-	int effectIndex = (int)round(e);
-	if ((effectIndex < 0) || (effectIndex >= (int)effectList.size()))
+	std::size_t effectIndex = (std::size_t)round(e);
+	if (effectList.count(e) == 0)
 	{
 		errorMessage = "Invalid effect index";
 		return GMS_error;
@@ -2313,15 +2264,15 @@ GMexport double FMODGMS_Effect_Set_Parameter(double e, double p, double v)
 		errorMessage = "Unsupported effect parameter type";
 		return GMS_error;
 	}
-	
+
 	errorMessage = "Could not set effect parameter";
 	return GMS_error;
 }
 
 GMexport double FMODGMS_Effect_Get_Parameter(double e, double p)
 {
-	int effectIndex = (int)round(e);
-	if ((effectIndex < 0) || (effectIndex >= (int)effectList.size()))
+	std::size_t effectIndex = (std::size_t)round(e);
+	if (effectList.count(e) == 0)
 	{
 		errorMessage = "Invalid effect index";
 		return GMS_error;
@@ -2367,8 +2318,8 @@ GMexport double FMODGMS_Effect_Get_Parameter(double e, double p)
 //Frees an effect from the memory
 GMexport double FMODGMS_Effect_Remove(double e)
 {
-	int effectIndex = (int)round(e);
-	if ((effectIndex < 0) || (effectIndex >= (int)effectList.size()))
+	std::size_t effectIndex = (std::size_t)round(e);
+	if (effectList.count(e) == 0)
 	{
 		errorMessage = "Invalid effect index";
 		return GMS_error;
@@ -2376,7 +2327,7 @@ GMexport double FMODGMS_Effect_Remove(double e)
 	FMOD::DSP* effect = effectList[effectIndex];
 	if (effect->release() == FMOD_OK)
 	{
-		effectList[effectIndex] = NULL;
+		effectList.erase(effectIndex);
 		return FMODGMS_Util_ErrorChecker();
 	}
 
@@ -2388,21 +2339,29 @@ GMexport double FMODGMS_Effect_Remove(double e)
 GMexport double FMODGMS_Effect_RemoveAll()
 {
 	bool success = true;
-	for (int i = 0; i < (int)effectList.size(); i++)
+	std::vector<std::size_t> toRemove;
+	for (auto itr = effectList.cbegin(); itr != effectList.cend(); ++itr)
 	{
-		if (effectList[i] != NULL)
+		if (itr->second->release() != FMOD_OK)
 		{
-			if (FMODGMS_Effect_Remove(i) != FMOD_OK)
-				success = false;
+			success = false;
+		}
+		else
+		{
+			toRemove.push_back(itr->first);
 		}
 	}
+	for (auto itr = toRemove.cbegin(); itr != toRemove.cend(); ++itr)
+	{
+		effectList.erase(*itr);
+	}
+
 	if (success == false)
 	{
 		errorMessage = "Failed to remove some effects, are they still attached to some audio?";
 		return GMS_error;
 	}
 
-	effectList.clear();
 	return FMODGMS_Util_ErrorChecker();
 }
 
@@ -2441,7 +2400,7 @@ GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPo
 	float bufferInTemp[4096];
 	for (int i = 0; i < _numPoints; i++)
 	{
-		bufferInTemp[i] = bufferIn[i]*powf(sinf((float)3.141592*i/(_numPoints-1)),2);
+		bufferInTemp[i] = bufferIn[i] * powf(sinf((float)3.141592*i / (_numPoints - 1)), 2);
 		loudness += pow(bufferInTemp[i], 2);
 	}
 
@@ -2457,9 +2416,9 @@ GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPo
 	kiss_fftr(cfg, bufferInTemp, bufferOutTemp);
 	for (int i = 0; i < numPointsQuarter; i++)
 	{
-		bufferOut[i] = (sqrt(bufferOutTemp[i].i*bufferOutTemp[i].i + bufferOutTemp[i].r*bufferOutTemp[i].r)/_numPoints);
+		bufferOut[i] = (sqrt(bufferOutTemp[i].i*bufferOutTemp[i].i + bufferOutTemp[i].r*bufferOutTemp[i].r) / _numPoints);
 	}
-	
+
 	//optional normalizing
 	if (normalize > 0.5)
 	{
@@ -2474,10 +2433,10 @@ GMexport double FMODGMS_Util_FFT(float* bufferIn, float* bufferOut, double numPo
 			bufferOut[i] /= normalizeFactor;
 		}
 	}
-	
+
 	kiss_fftr_free(cfg);
 
-	return sqrt(loudness/_numPoints);
+	return sqrt(loudness / _numPoints);
 }
 
 // Helper function: converts FMOD Results to error message strings and returns GMS_true (1.0) if 

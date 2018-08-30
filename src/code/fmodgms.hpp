@@ -1,7 +1,7 @@
 /*--------------------------------------------------------
 //  fmodgms.hpp
 //
-//  FMODGMS v.0.10.0
+//  FMODGMS v.0.10.1
 //
 //  GML bindings to the FMOD Studio low-level API for
 //  GameMaker:Studio.
@@ -14,7 +14,12 @@
 
 #include "kissfft/kiss_fftr.h"
 
+#ifdef _WIN32
+#define GMexport extern "C" __declspec (dllexport)
+#else
 #define GMexport extern "C"
+#endif
+
 #define GMS_true 1
 #define GMS_false 0
 #define GMS_error -1;
