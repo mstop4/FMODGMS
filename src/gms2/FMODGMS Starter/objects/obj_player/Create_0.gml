@@ -14,7 +14,7 @@ FMODGMS_Sys_Create();
 FMODGMS_Sys_Initialize(32);
 
 // Load sound
-sound = FMODGMS_Snd_LoadSound(working_directory + "cronolog.s3m");
+sound = FMODGMS_Snd_LoadSound(working_directory + "SE_Executive Pay II.it");
 
 // create a channel
 channel = FMODGMS_Chan_CreateChannel();
