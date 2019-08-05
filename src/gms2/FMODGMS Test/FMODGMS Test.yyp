@@ -335,6 +335,14 @@
             }
         },
         {
+            "Key": "93566aad-c3b3-48a9-8fa7-9c5ee19f74ac",
+            "Value": {
+                "id": "8ce359c4-9993-4267-be4f-d3340a74340f",
+                "resourcePath": "options\\tvos\\options_tvos.yy",
+                "resourceType": "GMtvOSOptions"
+            }
+        },
+        {
             "Key": "9a8de64f-50af-4335-a778-ca41d413f733",
             "Value": {
                 "id": "691bdaf6-3240-4e30-a83b-b0c8babd21ac",
@@ -460,14 +468,6 @@
                 "id": "5b57916b-5eca-49cb-b72a-3f679327ac18",
                 "resourcePath": "scripts\/shift_hue\/shift_hue.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "d48309f0-065c-4ab4-a6c7-9e5eb7c199ec",
-            "Value": {
-                "id": "61361596-6642-4d53-bfb7-9849edabb94d",
-                "resourcePath": "extensions\/FMODGMS\/FMODGMS.yy",
-                "resourceType": "GMExtension"
             }
         },
         {
