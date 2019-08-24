@@ -1551,6 +1551,31 @@ GMexport double FMODGMS_Chan_Get_Mute(double channel)
 	}
 }
 
+// Checks if the given channel is currently playing a sound
+GMexport double FMODGMS_Chan_Is_Playing(double channel)
+{
+	std::size_t c = (std::size_t)round(channel);
+	if (channelList.count(c) == 1)
+	{
+		bool playing;
+		if (channelList[c]->isPlaying(&playing) == FMOD_OK)
+		{
+			return (double)playing;
+		}
+		else
+		{
+			errorMessage = "Could not get playing status";
+			return GMS_false;
+		}
+	}
+	// index out of bounds
+	else
+	{
+		errorMessage = "Index out of bounds.";
+		return GMS_error;
+	}
+}
+
 //Adds an effect e to the i-th index of effect chain of a channel
 GMexport double FMODGMS_Chan_Add_Effect(double channel, double e, double i)
 {
