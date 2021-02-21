@@ -3,10 +3,9 @@
 //
 //  FMODGMS v.0.10.0
 //
-//  GML bindings to the FMOD Studio low-level API for
-//  GameMaker:Studio.
+//  GML bindings to the FMOD Core API for GameMaker:Studio.
 //
-//  FMOD Studio version: 1.10.07
+//  FMOD Studio version: 2.01.07
 ----------------------------------------------------------*/
 
 #ifndef FMODGMS_HPP
