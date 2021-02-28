@@ -107,6 +107,7 @@ GMexport double FMODGMS_Chan_Get_ModOrder(double channel);
 GMexport double FMODGMS_Chan_Get_ModPattern(double channel);
 GMexport double FMODGMS_Chan_Get_ModRow(double channel);
 GMexport double FMODGMS_Chan_Get_Mute(double channel);
+GMexport double FMODGMS_Chan_Is_Playing(double channel);
 GMexport double FMODGMS_Chan_Add_Effect(double channel, double effect, double index);
 GMexport double FMODGMS_Chan_Remove_Effect(double channel, double effect);
 GMexport double FMODGMS_Chan_Get_Level(double channel);
