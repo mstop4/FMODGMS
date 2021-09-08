@@ -24,9 +24,9 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 | GMS 2.3 YYC  |✔️      |✔️<sup>2</sup> |✔️     | ✔️     |
 
 <sub>1. Works with "Create Executable" only, not "Run" or "Debug"<br>
-2. Must be replaced with FMODGMS.dll for Windows x64 platform<br>
+2. Must be replaced with FMODGMS.dll for Windows x64 platform:<br>
 You must be copy files from Project directory\extensions\FMODGMS\x64 into Project directory\extensions\FMODGMS if you want to use x64 Windows Runtime.<sup>3</sup><br>
-fmod.dll and FMODGMS.dll for x86 Windows is located from Project directory\extensions\FMODGMS\x86, You must be copy them into Project directory\extensions\FMODGMS if you want to build game for x86 windows.<sup>3</sup><br>
+fmod.dll and FMODGMS.dll for x86 Windows is located from Project directory\extensions\FMODGMS\x86, You must be copy them into Project directory\extensions\FMODGMS if you want to build game for x86 Windows.<sup>3</sup><br>
 3. FMODGMS.dll for x64 can't be loaded in x86 Windows game. It can't be loaded with error When trying to load it, and vice-versa.</sub>
 
 * *FMOD Studio API:* 1.10.07
