@@ -14,7 +14,7 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 ### **Latest - [0.10.1](https://github.com/mstop4/FMODGMS/tree/v0.10.1)**
 * *Platform coverage:*
 
-|              | Windows | Windows x64 | macOS | Ubuntu |
+|              | Windows x86 | Windows x64 | macOS | Ubuntu |
 | ------------ | ------- |------ | ------ | ------ |
 | GM:S 1.4 VM  |✔️      |❌      |⚠️<sup>1</sup>    | ✔️     |
 | GM:S 1.4 YYC |✔️      |❌      |🚧     | ✔️     |
@@ -25,8 +25,8 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 
 <sub>1. Works with "Create Executable" only, not "Run" or "Debug"<br>
 2. Must be replaced with FMODGMS.dll for Windows x64 platform<br>
-Copy files from Project directory\extensions\FMODGMS\x64 into Project directory\extensions\FMODGMS if you want to use x64 Windows Runtime.<br>
-fmod.dll and FMODGMS.dll for x86 Windows is located from Project directory\extensions\FMODGMS\x86.</sub>
+You must be copy files from Project directory\extensions\FMODGMS\x64 into Project directory\extensions\FMODGMS if you want to use x64 Windows Runtime, or FMODGMS isn't work with error.<br>
+fmod.dll and FMODGMS.dll for x86 Windows is located from Project directory\extensions\FMODGMS\x86, You must be copy them into Project directory\extensions\FMODGMS if you want to export game for x86 windows.</sub>
 
 * *FMOD Studio API:* 1.10.07
 * *GMS 2.1 Runtime:* v.2.1.5.246
@@ -72,8 +72,10 @@ What's inside
   - *code* - Library source code
   - *gms/FMODGMS Test.gmx* - GM:S 1.4 project for player demo
   - *gms/FMODGMS Starter.gmx* - GM:S 1.4 starter project
-  - *gms2/FMODGMS Test* - GMS 2 project for player demo
-  - *gms2/FMODGMS Starter* - GMS 2 starter project
+  - *gms2/FMODGMS Test* - GMS 2(pre-2.3) project for player demo
+  - *gms2/FMODGMS Starter* - GMS 2(pre-2.3) starter project
+  - *gms2_3/FMODGMS Test* - GMS 2.3 project for player demo
+  - *gms2_3/FMODGMS Starter* - GMS 2.3 starter project
   - *linux* - Scripts for building Linux library.
   - *xcode* - Xcode project for macOS.
   - *vc/FMODGMS* - Visual Studio project for Windows.
