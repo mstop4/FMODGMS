@@ -14,17 +14,23 @@ A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML
 ### **Latest - [0.10.1](https://github.com/mstop4/FMODGMS/tree/v0.10.1)**
 * *Platform coverage:*
 
-|              | Windows | macOS | Ubuntu |
-| ------------ | ------- |------ | ------ |
-| GM:S 1.4 VM  |✔️      |⚠️<sup>1</sup>    | ✔️     |
-| GM:S 1.4 YYC |✔️      |🚧     | ✔️     |
-| GMS 2.1 VM   |✔️      |⚠️<sup>1</sup>    | ✔️     |
-| GMS 2.1 YYC |✔️      |✔️     | ✔️     |
+|              | Windows | Windows x64 | macOS | Ubuntu |
+| ------------ | ------- |------ | ------ | ------ |
+| GM:S 1.4 VM  |✔️      |❌      |⚠️<sup>1</sup>    | ✔️     |
+| GM:S 1.4 YYC |✔️      |❌      |🚧     | ✔️     |
+| GMS 2.1 VM   |✔️      |❌      |⚠️<sup>1</sup>    | ✔️     |
+| GMS 2.1 YYC  |✔️      |❌      |✔️     | ✔️     |
+| GMS 2.3 VM   |✔️      |✔️<sup>2</sup> |⚠️<sup>1</sup>    | ✔️     |
+| GMS 2.3 YYC  |✔️      |✔️<sup>2</sup> |✔️     | ✔️     |
 
 <sub>1. Works with "Create Executable" only, not "Run" or "Debug"</sub>
+<sub>2. Must be replaced with FMODGMS.dll for Windows x64 platform</sub>
+<sub>Copy files from Project directory\extensions\FMODGMS\x64 into Project directory\extensions\FMODGMS if you want to using x64 Windows Runtime.</sub>
+<sub>FMODGMS.dll for x86 Windows is located from Project directory\extensions\FMODGMS\x86.</sub>
 
-* *FMOD Studio API:* 1.10.08
-* *GMS 2 Runtime:* v.2.1.5.246
+* *FMOD Studio API:* 1.10.07
+* *GMS 2.1 Runtime:* v.2.1.5.246
+* *GMS 2.3 Runtime:* v.2.3.2.420
 * *GM:S Runtime:* v.1.4.9999
 
 ### **Stable - [0.9.1](https://github.com/mstop4/FMODGMS/releases/tag/v0.9.1)**

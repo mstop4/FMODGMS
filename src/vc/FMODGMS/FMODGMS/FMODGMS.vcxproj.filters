@@ -18,6 +18,9 @@
     <Library Include="fmod_vc.lib">
       <Filter>Resource Files</Filter>
     </Library>
+    <Library Include="fmod64_vc.lib">
+      <Filter>Resource Files</Filter>
+    </Library>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\code\fmod.h">
