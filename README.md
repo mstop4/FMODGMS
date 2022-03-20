@@ -85,7 +85,7 @@ Basic Usage
 if (FMODGMS_Util_Handshake() == "FMODGMS is working.")
     show_message_async("Success! FMODGMS has been loaded.");
 else {
-    show_message_async("Error! FMODGMS was not loaded prorperly.");
+    show_message_async("Error! FMODGMS was not loaded properly.");
     exit;
 }
 
