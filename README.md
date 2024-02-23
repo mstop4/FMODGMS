@@ -7,15 +7,14 @@
 
 A ***GameMaker: Studio* and *GameMaker Studio 2* extension** that provides **GML bindings to the [FMOD](http://www.fmod.org) Studio low-level API.** Can be used in **Windows**, **macOS**, and **Linux** games.
 
+## **CURRENT STATUS OF PROJECT**
+
+### This project has been officially retired. YoYo Games has released their own official FMOD extension for GameMaker, ***GMEXT-FMOD***, that is more up-to-date and works with both FMOD Core and FMOD Studio. You can find the extension here:
+### https://github.com/YoYoGames/GMEXT-FMOD
+
+### This repo will remain up for archival purposes. I would like to thank [Gitle Mikkelsen (Grix)](https://github.com/Grix), [rissole](https://github.com/rissole), and [BPzeBanshee](https://github.com/BPzeBanshee) for their past contributions to the project.
+
 ---
-
-## **Status**
-
-### Note: 
-
-The project is on hold for the time being. Work on this project is mainly done by me and I don't have as much time as I did in the past to maintain, add features, and keep up with the development of FMOD Studio. There might be a time when I'll come back to work on this, but I'm not certain when that will be.
-
-If you want to contribute to the project, feel free to create a pull request. I would like to thank [Gitle Mikkelsen (Grix)](https://github.com/Grix), [rissole](https://github.com/rissole), and [BPzeBanshee](https://github.com/BPzeBanshee) for their past contributions to the project.
 
 ### **Latest - [0.10.0](https://github.com/mstop4/FMODGMS/tree/v0100)**
 * *Platform coverage:*
